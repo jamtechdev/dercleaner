@@ -1,0 +1,361 @@
+{
+  "seo": {
+    "title": "Der Cleaner",
+    "description": "Professionelle Reinigungslösungen mit höchster Effizienz, klaren Prozessen und messbaren Ergebnissen."
+  },
+  "branding": {
+    "name": "Der Cleaner",
+    "logo": {
+      "src": "/logo-der-cleaner.png",
+      "alt": "Der Cleaner Logo"
+    }
+  },
+  "navigation": {
+    "links": [
+      { "label": "Produkte", "href": "/#produkte" },
+      { "label": "Kontakt", "href": "/#kontakt" },
+      { "label": "Über uns", "href": "/#ueber-uns" }
+    ]
+  },
+  "videoSection": {
+    "youtubeUrl": "https://youtu.be/KLuTLF3x9sA?si=xpmj5T9psAuNAqaW",
+    "posterImage": {
+      "src": "/Video.png",
+      "alt": "Video section background"
+    }
+  },
+  "productsSection": {
+    "actions": {
+      "techDataLabel": "Technische Daten",
+      "demoLabel": "Demo Buchen"
+    },
+    "products": [
+      {
+        "id": "product1",
+        "tabTitle": "product1",
+        "tabDesc": "Entwickelt für Unternehmen, die eine effektive, budgetfreundliche Reinigungslösung benötigen.",
+        "tabImage": { "src": "/product1.png", "alt": "product1" },
+        "name": "imop 36",
+        "heroImage": { "src": "/product1.png", "alt": "imop 36" },
+        "savingsTitle": "Einsparungen pro 300 m2 vs.",
+        "savingsSubtitle": "manuelle Bodenreinigung",
+        "stats": [
+          { "icon": "💧", "label": "Wasser", "value": "15.2 L", "sub": "*ECO - Modus" },
+          { "icon": "⏱️", "label": "Zeit", "value": "30 min", "sub": "*ECO - Modus" }
+        ]
+      },
+      {
+        "id": "product2",
+        "tabTitle": "product2",
+        "tabDesc": "Für höhere Flächenleistung und noch weniger Stillstand in Ihrem Alltag.",
+        "tabImage": { "src": "/product2.png", "alt": "product2" },
+        "name": "product2",
+        "heroImage": { "src": "/product2.png", "alt": "product2" },
+        "savingsTitle": "Einsparungen pro 300 m2 vs.",
+        "savingsSubtitle": "manuelle Bodenreinigung",
+        "stats": [
+          { "icon": "💧", "label": "Wasser", "value": "18.0 L", "sub": "*ECO - Modus" },
+          { "icon": "⏱️", "label": "Zeit", "value": "25 min", "sub": "*ECO - Modus" }
+        ]
+      },
+      {
+        "id": "product3",
+        "tabTitle": "product3",
+        "tabDesc": "Ideal für enge Bereiche, schnellere Zyklen und saubere Ergebnisse.",
+        "tabImage": { "src": "/product3.png", "alt": "product3" },
+        "name": "product3",
+        "heroImage": { "src": "/product3.png", "alt": "product3" },
+        "savingsTitle": "Einsparungen pro 300 m2 vs.",
+        "savingsSubtitle": "manuelle Bodenreinigung",
+        "stats": [
+          { "icon": "💧", "label": "Wasser", "value": "12.8 L", "sub": "*ECO - Modus" },
+          { "icon": "⏱️", "label": "Zeit", "value": "28 min", "sub": "*ECO - Modus" }
+        ]
+      },
+      {
+        "id": "product4",
+        "tabTitle": "product4",
+        "tabDesc": "Für maximale Effizienz bei regelmäßiger Reinigung großer Flächen.",
+        "tabImage": { "src": "/product4.png", "alt": "product4" },
+        "name": "product4",
+        "heroImage": { "src": "/product4.png", "alt": "product4" },
+        "savingsTitle": "Einsparungen pro 300 m2 vs.",
+        "savingsSubtitle": "manuelle Bodenreinigung",
+        "stats": [
+          { "icon": "💧", "label": "Wasser", "value": "20.0 L", "sub": "*ECO - Modus" },
+          { "icon": "⏱️", "label": "Zeit", "value": "22 min", "sub": "*ECO - Modus" }
+        ]
+      }
+    ]
+  },
+  "missionSection": {
+    "hero": {
+      "backgroundImage": { "src": "/misssion.png", "alt": "Professional cleaning environment" },
+      "title": "Wir ändern die Art und Weise, wie Sie über Reinigung denken",
+      "description": "Professionelle Reinigungslösungen mit höchster Effizienz, klaren Prozessen und messbaren Ergebnissen.",
+      "ctaLabel": "Demo Buchen"
+    },
+    "industriesIntro": {
+      "title": "Wir verstehen Ihre Branche",
+      "description": "Jede Umgebung erfordert einen eigenen Ansatz, um die beste Lösung zu bieten."
+    },
+    "industries": [
+      { "name": "Transport", "icon": "✈️" },
+      { "name": "Reinräume", "icon": "🔬" },
+      { "name": "Öffentliche Einrichtungen", "icon": "🏛️" },
+      { "name": "Gesundheitswesen", "icon": "🏥" },
+      { "name": "Gastgewerbe", "icon": "📋" },
+      { "name": "Einzelhandel", "icon": "🛍️" },
+      { "name": "Industrie", "icon": "⚙️" },
+      { "name": "Gebäudedienstleister", "icon": "🏢" }
+    ]
+  },
+  "featuresSection": {
+    "features": [
+      {
+        "title": "schneller",
+        "colorClass": "text-gray-600",
+        "icon": "⏱️",
+        "text": "Zeit ist wichtig. Deshalb glauben wir an effiziente und schnellere Reinigungsvorgänge."
+      },
+      {
+        "title": "sauberer",
+        "colorClass": "text-cyan-500",
+        "icon": "💧",
+        "text": "Unsere Produkte revolutionieren Ihre Reinigungsroutine, setzen neue Maßstäbe..."
+      },
+      {
+        "title": "grüner",
+        "colorClass": "text-green-600",
+        "icon": "🍃",
+        "text": "Die wachsende Sorge um unseren Planeten erfordert nachhaltigere Reinigungsprodukte..."
+      },
+      {
+        "title": "sicherer",
+        "colorClass": "text-yellow-500",
+        "icon": "🔒",
+        "text": "Intelligentes Design mit einem scharfen Blick für die praktische Anwendung..."
+      },
+      {
+        "title": "besser",
+        "colorClass": "text-pink-500",
+        "icon": "💗",
+        "text": "Unser Fokus liegt nicht nur auf der Sauberkeit, sondern auch auf dem Wohlbefinden..."
+      }
+    ]
+  },
+  "aboutSection": {
+    "title": "Über uns",
+    "image": { "src": "/owner.png", "alt": "Über uns portrait" },
+    "paragraphs": [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    ]
+  },
+  "contactSection": {
+    "title": "Sie haben Fragen oder möchten ein unverbindliches Angebot?",
+    "subtitle": "Kontaktieren Sie uns jetzt.",
+    "form": {
+      "placeholders": {
+        "name": "Name",
+        "email": "Email",
+        "tel": "Telefon",
+        "message": "Nachricht"
+      },
+      "submitLabel": "Abschicken"
+    },
+    "privacyText": "Hiermit akzeptiere ich die Datenschutzvereinbarung und bestätige, dass ich sie vollständig gelesen habe. Ich stimme zu, dass meine Formularangaben zur Kontaktaufnahme bzw. zur Bearbeitung meines Anliegens gespeichert werden."
+  },
+  "footer": {
+    "information": {
+      "title": "Information",
+      "links": [
+        { "label": "Produkte", "href": "/#produkte" },
+        { "label": "Kontakt", "href": "/#kontakt" }
+      ]
+    },
+    "legal": {
+      "title": "Rechtliches",
+      "links": [
+        { "label": "Datenschutz", "href": "/datenschutz" },
+        { "label": "Impressum", "href": "/impressum" }
+      ]
+    },
+    "bottomBarColor": "#2d3748"
+  },
+  "legalPages": {
+    "privacy": {
+      "title": "Datenschutzerklärung",
+      "description": "Informationen zum Datenschutz und zur Verarbeitung personenbezogener Daten.",
+      "lastUpdated": "18.12.2025",
+      "backToHomeLabel": "Zurück zur Startseite",
+      "sections": [
+        {
+          "title": "1. Überblick",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Mit dieser Datenschutzerklärung informieren wir Sie über Art, Umfang und Zweck der Verarbeitung personenbezogener Daten auf dieser Website."
+            },
+            {
+              "type": "note",
+              "text": "Hinweis: Dieser Text ist eine Vorlage. Bitte ergänzen Sie Ihre echten Unternehmensdaten (Anschrift, E-Mail, Verantwortliche Person) und prüfen Sie Inhalte rechtlich."
+            }
+          ]
+        },
+        {
+          "title": "2. Verantwortlicher",
+          "blocks": [
+            { "type": "p", "text": "Der Cleaner" },
+            {
+              "type": "list",
+              "items": [
+                "Adresse: (bitte ergänzen)",
+                "E-Mail: (bitte ergänzen)",
+                "Telefon: (bitte ergänzen)"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "3. Welche Daten wir verarbeiten",
+          "blocks": [
+            { "type": "p", "text": "Wir können insbesondere folgende Daten verarbeiten:" },
+            {
+              "type": "list",
+              "items": [
+                "Kontaktdaten (z. B. Name, E-Mail, Telefonnummer)",
+                "Inhaltsdaten (z. B. Nachrichten im Kontaktformular)",
+                "Nutzungsdaten (z. B. aufgerufene Seiten, Zugriffszeiten)",
+                "Meta-/Kommunikationsdaten (z. B. IP-Adresse, Browserinformationen)"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "4. Kontaktformular",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Wenn Sie uns über das Kontaktformular kontaktieren, verarbeiten wir Ihre Angaben zur Bearbeitung Ihrer Anfrage und für Anschlussfragen."
+            },
+            {
+              "type": "list",
+              "items": [
+                "Verarbeitete Daten: Name, E-Mail, Telefon (optional), Nachricht",
+                "Zweck: Bearbeitung Ihrer Anfrage",
+                "Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO (vorvertraglich/Vertrag) oder Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an Kommunikation)",
+                "Speicherdauer: bis zur Erledigung der Anfrage, anschließend gemäß gesetzlichen Aufbewahrungspflichten bzw. internen Löschfristen"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "5. Server-Logfiles",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Beim Besuch unserer Website werden durch den Hosting-Provider typischerweise Server-Logfiles erhoben (z. B. IP-Adresse, Datum/Uhrzeit, angeforderte Ressource). Diese Daten dienen der Sicherheit und Stabilität."
+            }
+          ]
+        },
+        {
+          "title": "6. Ihre Rechte",
+          "blocks": [
+            { "type": "p", "text": "Sie haben insbesondere folgende Rechte:" },
+            {
+              "type": "list",
+              "items": [
+                "Auskunft (Art. 15 DSGVO)",
+                "Berichtigung (Art. 16 DSGVO)",
+                "Löschung (Art. 17 DSGVO)",
+                "Einschränkung der Verarbeitung (Art. 18 DSGVO)",
+                "Datenübertragbarkeit (Art. 20 DSGVO)",
+                "Widerspruch gegen Verarbeitung (Art. 21 DSGVO)",
+                "Beschwerde bei einer Aufsichtsbehörde (Art. 77 DSGVO)"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "7. Änderungen",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Wir können diese Datenschutzerklärung anpassen, damit sie stets den aktuellen rechtlichen Anforderungen entspricht oder Änderungen unserer Leistungen abbildet."
+            }
+          ]
+        }
+      ]
+    },
+    "imprint": {
+      "title": "Impressum",
+      "description": "Angaben gemäß § 5 TMG.",
+      "lastUpdated": "18.12.2025",
+      "backToHomeLabel": "Zurück zur Startseite",
+      "sections": [
+        {
+          "title": "Angaben gemäß § 5 TMG",
+          "blocks": [
+            { "type": "p", "text": "Der Cleaner" },
+            {
+              "type": "list",
+              "items": [
+                "Adresse: (bitte ergänzen)",
+                "Vertreten durch: (bitte ergänzen)"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Kontakt",
+          "blocks": [
+            {
+              "type": "list",
+              "items": [
+                "Telefon: (bitte ergänzen)",
+                "E-Mail: (bitte ergänzen)"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Umsatzsteuer",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz: (bitte ergänzen, falls vorhanden)"
+            }
+          ]
+        },
+        {
+          "title": "Haftung für Inhalte",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen."
+            }
+          ]
+        },
+        {
+          "title": "Haftung für Links",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen."
+            }
+          ]
+        },
+        {
+          "title": "Urheberrecht",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem Urheberrecht. Beiträge Dritter sind als solche gekennzeichnet."
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
