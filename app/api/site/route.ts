@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
-import site from "@/app/content/site.json";
+import { getSite } from "@/app/lib/site";
 
-export function GET() {
+export async function GET() {
+  const site = await getSite();
   return NextResponse.json(site);
 }

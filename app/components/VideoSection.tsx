@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useMemo, useState } from "react";
-import site from "@/app/content/site.json";
 
 // Example formats that work:
 // - https://www.youtube.com/watch?v=VIDEO_ID
@@ -55,7 +54,7 @@ function toYouTubeEmbedUrl(input: string): string | null {
   return `https://www.youtube.com/embed/${videoId}?${params.toString()}`;
 }
 
-export function VideoSection() {
+export function VideoSection({ site }: { site: any }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const embedUrl = useMemo(
     () => toYouTubeEmbedUrl(site.videoSection.youtubeUrl),

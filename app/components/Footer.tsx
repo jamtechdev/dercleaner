@@ -1,8 +1,7 @@
-import React from 'react';
-import Link from 'next/link';
-import site from '@/app/content/site.json';
+import React from "react";
+import Link from "next/link";
 
-const Footer = () => {
+const Footer = ({ site }: { site: any }) => {
   return (
     <footer className="w-full bg-white pt-10">
       <div className="max-w-6xl mx-auto px-4 pb-12">
@@ -25,7 +24,7 @@ const Footer = () => {
           {/* Information Column */}
           <div className="flex flex-col space-y-2">
             <h3 className="font-bold text-gray-900 mb-2">{site.footer.information.title}</h3>
-            {site.footer.information.links.map((link) => (
+            {(site.footer.information.links as Array<{ href: string; label: string }>).map((link) => (
               <Link
                 key={`${link.href}-${link.label}`}
                 href={link.href}
@@ -39,7 +38,7 @@ const Footer = () => {
           {/* Rechtliches (Legal) Column */}
           <div className="flex flex-col space-y-2">
             <h3 className="font-bold text-gray-900 mb-2">{site.footer.legal.title}</h3>
-            {site.footer.legal.links.map((link) => (
+            {(site.footer.legal.links as Array<{ href: string; label: string }>).map((link) => (
               <Link
                 key={`${link.href}-${link.label}`}
                 href={link.href}

@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import site from "@/app/content/site.json";
 
 type Product = {
   id: string;
@@ -16,7 +15,7 @@ type Product = {
   stats: { icon: string; label: string; value: string; sub: string }[];
 };
 
-export default function ProductShowcase() {
+export default function ProductShowcase({ site }: { site: any }) {
   const products = site.productsSection.products as Product[];
   const [activeId, setActiveId] = useState<string>(products[0]?.id ?? "");
 

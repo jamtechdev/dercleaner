@@ -4,7 +4,7 @@ import "./globals.css";
 import { Header } from "./components/Header";
 import Footer from "./components/Footer";
 import GlobalLoadingOverlay from "./components/GlobalLoadingOverlay";
-import site from "./content/site.json";
+import { getSite } from "./lib/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,25 +16,30 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: site.seo.title,
-  description: site.seo.description,
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const site = await getSite();
+  return {
+    title: site?.seo?.title ?? "Der Cleaner",
+    description: site?.seo?.description ?? "",
+  };
+}
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const site = await getSite();
+
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <GlobalLoadingOverlay />
-        <Header />
+        <Header site={site} />
         {children}
-        <Footer />
+        <Footer site={site} />
       </body>
     </html>
   );

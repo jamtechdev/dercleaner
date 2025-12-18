@@ -1,13 +1,12 @@
-import Image from 'next/image';
-import site from '@/app/content/site.json';
+import Image from "next/image";
 
-export default function FeaturesAndAbout() {
+export default function FeaturesAndAbout({ site }: { site: any }) {
   return (
     <div id="ueber-uns" className="scroll-mt-1 w-full bg-white">
       {/* Top Section: Features Grid */}
       <div className="max-w-7xl mx-auto py-20 px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8">
-          {site.featuresSection.features.map((f, i) => (
+          {(site.featuresSection.features as Array<{ title: string; colorClass: string; icon: string; text: string }>).map((f, i: number) => (
             <div key={i} className="flex flex-col space-y-3">
               <div className="flex items-center space-x-2">
                 <span className={`text-2xl ${f.colorClass}`}>{f.icon}</span>
@@ -39,7 +38,7 @@ export default function FeaturesAndAbout() {
         <div className="md:w-1/2 bg-surface-alt p-12 lg:p-24 flex flex-col justify-center">
           <h2 className="text-4xl font-bold text-brand mb-8">{site.aboutSection.title}</h2>
           <div className="space-y-6 text-gray-700 leading-relaxed text-sm">
-            {site.aboutSection.paragraphs.map((text, idx) => (
+            {(site.aboutSection.paragraphs as string[]).map((text: string, idx: number) => (
               <p key={idx}>{text}</p>
             ))}
           </div>

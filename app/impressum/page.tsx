@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import site from "@/app/content/site.json";
+import { getSite } from "@/app/lib/site";
 
 type LegalBlock =
   | { type: "p"; text: string }
@@ -17,12 +17,16 @@ type LegalPage = {
   sections: LegalSection[];
 };
 
-export const metadata: Metadata = {
-  title: `${site.legalPages.imprint.title} | ${site.branding.name}`,
-  description: site.legalPages.imprint.description,
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const site = await getSite();
+  return {
+    title: `${site.legalPages.imprint.title} | ${site.branding.name}`,
+    description: site.legalPages.imprint.description,
+  };
+}
 
-export default function ImpressumPage() {
+export default async function ImpressumPage() {
+  const site = await getSite();
   const page = site.legalPages.imprint as LegalPage;
 
   return (

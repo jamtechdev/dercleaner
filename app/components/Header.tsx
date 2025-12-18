@@ -2,10 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import site from "@/app/content/site.json";
 import { useEffect, useState } from "react";
 
-export function Header() {
+export function Header({ site }: { site: any }) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -62,7 +61,7 @@ export function Header() {
         {/* Navigation Links */}
         <nav className="hidden md:block">
           <ul className="flex items-center space-x-8 text-sm md:text-base font-semibold text-brand">
-            {site.navigation.links.map((link) => (
+            {(site.navigation.links as Array<{ href: string; label: string }>).map((link) => (
               <li key={`${link.href}-${link.label}`}>
                 <Link
                   href={link.href}
@@ -108,7 +107,7 @@ export function Header() {
             </div>
             <nav className="px-4 py-3">
               <ul className="flex flex-col gap-2">
-                {site.navigation.links.map((link) => (
+                {(site.navigation.links as Array<{ href: string; label: string }>).map((link) => (
                   <li key={`mobile-${link.href}-${link.label}`}>
                     <Link
                       href={link.href}

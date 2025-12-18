@@ -1,11 +1,11 @@
 "use client";
 
 import { submitContact } from "@/app/actions";
-import site from "@/app/content/site.json";
 import { useActionState, useEffect, useMemo, useRef, useState } from "react";
 import Toast from "./Toast";
+import Link from "next/link";
 
-export default function Contact() {
+export default function Contact({ site }: { site: any }) {
   const privacyParts = site.contactSection.privacyText.split(
     "Datenschutzvereinbarung",
   );
@@ -229,7 +229,7 @@ export default function Contact() {
             {privacyParts.length === 2 ? (
               <>
                 {privacyParts[0]}
-                <span className="underline cursor-pointer">Datenschutzvereinbarung</span>
+                <Link href="/datenschutz"><span className="underline cursor-pointer">Datenschutzvereinbarung</span></Link>
                 {privacyParts[1]}
               </>
             ) : (

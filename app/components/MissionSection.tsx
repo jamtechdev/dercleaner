@@ -1,7 +1,6 @@
-import Image from 'next/image';
-import site from '@/app/content/site.json';
+import Image from "next/image";
 
-export default function MissionSection() {
+export default function MissionSection({ site }: { site: any }) {
   return (
     <section className="w-full font-sans">
       <div className="relative w-full min-h-[520px] md:h-[800px] flex items-center justify-center md:justify-end overflow-hidden px-4 md:px-0">
@@ -47,7 +46,7 @@ export default function MissionSection() {
 
                     {/* Grid */}
                     <div className="md:w-2/3 grid grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-4">
-                        {site.missionSection.industries.map((item, index) => (
+                        {(site.missionSection.industries as Array<{ name: string; icon: string }>).map((item, index: number) => (
                             <div key={index} className="flex items-center gap-3 border-b border-gray-600 pb-2">
                                 <span className="text-brand text-xl">{item.icon}</span>
                                 <span className="text-sm font-medium">{item.name}</span>
