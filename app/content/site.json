@@ -21,7 +21,7 @@
     "youtubeUrl": "https://youtu.be/KLuTLF3x9sA?si=xpmj5T9psAuNAqaW",
     "posterImage": {
       "src": "/Video.png",
-      "alt": "Video section background"
+      "alt": "Video-Bereich Hintergrund"
     }
   },
   "productsSection": {
@@ -90,7 +90,7 @@
   },
   "missionSection": {
     "hero": {
-      "backgroundImage": { "src": "/misssion.png", "alt": "Professional cleaning environment" },
+      "backgroundImage": { "src": "/misssion.png", "alt": "Professionelle Reinigungsumgebung" },
       "title": "Wir ändern die Art und Weise, wie Sie über Reinigung denken",
       "description": "Professionelle Reinigungslösungen mit höchster Effizienz, klaren Prozessen und messbaren Ergebnissen.",
       "ctaLabel": "Demo Buchen"
@@ -164,11 +164,11 @@
       },
       "submitLabel": "Abschicken"
     },
-    "privacyText": "Hiermit akzeptiere ich die Datenschutzvereinbarung und bestätige, dass ich sie vollständig gelesen habe. Ich stimme zu, dass meine Formularangaben zur Kontaktaufnahme bzw. zur Bearbeitung meines Anliegens gespeichert werden."
+    "privacyText": "Hiermit akzeptiere ich die Datenschutzvereinbarung und bestätige, dass ich sie vollständig gelesen habe. Ich stimme zu, dass meine Formularangaben zur Kontaktaufnahme bzw. zur Bearbeitung meines Anliegens gespeichert werden."
   },
   "footer": {
     "information": {
-      "title": "Information",
+      "title": "Informationen",
       "links": [
         { "label": "Produkte", "href": "/#produkte" },
         { "label": "Kontakt", "href": "/#kontakt" }

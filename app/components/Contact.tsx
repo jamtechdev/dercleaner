@@ -40,7 +40,7 @@ export default function Contact({ site }: { site: any }) {
   useEffect(() => {
     if (state?.success) {
       setToast({
-        message: state.message ?? "Thanks! Your message has been sent.",
+        message: state.message ?? "Vielen Dank! Ihre Nachricht wurde gesendet.",
         type: "success",
       });
       setErrors({});
@@ -61,27 +61,27 @@ export default function Contact({ site }: { site: any }) {
     const tel = String(formData.get("tel") ?? "").trim();
     const message = String(formData.get("message") ?? "").trim();
 
-    if (!name) nextErrors.name = "Please enter your name.";
-    if (!email) nextErrors.email = "Please enter your email.";
-    else if (!emailRegex.test(email)) nextErrors.email = "Enter a valid email.";
+    if (!name) nextErrors.name = "Bitte geben Sie Ihren Namen ein.";
+    if (!email) nextErrors.email = "Bitte geben Sie Ihre E-Mail-Adresse ein.";
+    else if (!emailRegex.test(email)) nextErrors.email = "Bitte geben Sie eine gültige E-Mail-Adresse ein.";
 
     // Optional field, but validate if provided
     if (tel && !/^[0-9+()\-.\s]{6,}$/.test(tel)) {
-      nextErrors.tel = "Enter a valid phone number.";
+      nextErrors.tel = "Bitte geben Sie eine gültige Telefonnummer ein.";
     }
 
-    if (!message) nextErrors.message = "Please enter your message.";
+    if (!message) nextErrors.message = "Bitte geben Sie Ihre Nachricht ein.";
     else if (message.length < 10) {
-      nextErrors.message = "Message should be at least 10 characters.";
+      nextErrors.message = "Die Nachricht muss mindestens 10 Zeichen lang sein.";
     }
 
     return nextErrors;
   };
 
   return (
-    <section id="kontakt" className="scroll-mt-24 bg-white py-12 md:py-16 px-4">
+    <section id="kontakt" className="scroll-mt-24 bg-white py-12 md:py-26 px-4">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-2xl sm:text-3xl font-bold mb-6 md:mb-8 max-w-lg leading-tight uppercase">
+        <h2 className="text-2xl sm:text-3xl font-bold mb-2 md:mb-2 max-w-xl leading-tight uppercase">
           {site.contactSection.title}
         </h2>
         <div className="max-w-7xl mx-auto text-sm sm:text-base">{site.contactSection.subtitle}</div>
@@ -108,7 +108,7 @@ export default function Contact({ site }: { site: any }) {
                 e.preventDefault();
                 setErrors(nextErrors);
                 setToast({
-                  message: "Please fix the highlighted fields.",
+                  message: "Bitte korrigieren Sie die hervorgehobenen Felder.",
                   type: "error",
                 });
               }
@@ -124,7 +124,7 @@ export default function Contact({ site }: { site: any }) {
                 aria-invalid={!!errors.name}
                 aria-describedby={errors.name ? "contact-name-error" : undefined}
                 onChange={() => clearError("name")}
-                className={`w-full rounded-full px-5 sm:px-6 py-3.5 sm:py-4 border-none outline-none focus:ring-2 focus:ring-brand ${
+                className={`w-full rounded-full px-5 sm:px-6 py-3.5 sm:py-4 border-none outline-none focus:ring-2 focus:ring-brand bg-white ${
                   errors.name ? "ring-2 ring-red-400" : ""
                 }`}
                 />
@@ -149,7 +149,7 @@ export default function Contact({ site }: { site: any }) {
                 aria-invalid={!!errors.email}
                 aria-describedby={errors.email ? "contact-email-error" : undefined}
                 onChange={() => clearError("email")}
-                className={`w-full rounded-full px-5 sm:px-6 py-3.5 sm:py-4 border-none outline-none focus:ring-2 focus:ring-brand ${
+                className={`w-full rounded-full px-5 sm:px-6 py-3.5 sm:py-4 border-none outline-none focus:ring-2 focus:ring-brand bg-white ${
                   errors.email ? "ring-2 ring-red-400" : ""
                 }`}
                 />
@@ -173,7 +173,7 @@ export default function Contact({ site }: { site: any }) {
                 aria-invalid={!!errors.tel}
                 aria-describedby={errors.tel ? "contact-tel-error" : undefined}
                 onChange={() => clearError("tel")}
-                className={`w-full rounded-full px-5 sm:px-6 py-3.5 sm:py-4 border-none outline-none focus:ring-2 focus:ring-brand ${
+                className={`w-full rounded-full px-5 sm:px-6 py-3.5 sm:py-4 border-none outline-none focus:ring-2 focus:ring-brand bg-white ${
                   errors.tel ? "ring-2 ring-red-400" : ""
                 }`}
                 />
@@ -192,7 +192,7 @@ export default function Contact({ site }: { site: any }) {
                 disabled={pending}
                 className="bg-brand-cta text-white font-bold py-4 rounded-full uppercase hover:bg-brand transition disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                {pending ? "Sending..." : site.contactSection.form.submitLabel}
+                {pending ? "Wird gesendet..." : site.contactSection.form.submitLabel}
               </button>
             </div>
             
@@ -208,7 +208,7 @@ export default function Contact({ site }: { site: any }) {
                   errors.message ? "contact-message-error" : undefined
                 }
                 onChange={() => clearError("message")}
-                className={`h-full min-h-[180px] md:min-h-[200px] rounded-[22px] sm:rounded-[30px] px-5 sm:px-6 py-3.5 sm:py-4 border-none outline-none focus:ring-2 focus:ring-brand resize-none ${
+                className={`h-full min-h-[180px] md:min-h-[200px] rounded-[22px] sm:rounded-[30px] px-5 sm:px-6 py-3.5 sm:py-4 border-none outline-none focus:ring-2 focus:ring-brand resize-none bg-white ${
                   errors.message ? "ring-2 ring-red-400" : ""
                 }`}
                 />
@@ -225,7 +225,7 @@ export default function Contact({ site }: { site: any }) {
             </div>
           </form>
           
-          <p className="text-[10px] text-gray-500 mt-6 leading-normal">
+          <p className="text-[16px] text-gray-500 mt-6 leading-normal">
             {privacyParts.length === 2 ? (
               <>
                 {privacyParts[0]}

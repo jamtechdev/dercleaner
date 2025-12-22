@@ -74,25 +74,25 @@ export async function submitContact(
     const message = String(formData.get("message") ?? "").trim();
 
     if (!name) {
-      return { success: false, error: "Please enter your name." };
+      return { success: false, error: "Bitte geben Sie Ihren Namen ein." };
     }
     if (!email) {
-      return { success: false, error: "Please enter your email." };
+      return { success: false, error: "Bitte geben Sie Ihre E-Mail-Adresse ein." };
     }
     if (!message || message.length < 10) {
-      return { success: false, error: "Please enter a longer message." };
+      return { success: false, error: "Bitte geben Sie eine längere Nachricht ein." };
     }
 
     const id = await persistContactSubmission(formData);
     return {
       success: true,
       id,
-      message: "Thanks! Your message has been sent.",
+      message: "Vielen Dank! Ihre Nachricht wurde gesendet.",
     };
   } catch {
     return {
       success: false,
-      error: "Something went wrong. Please try again.",
+      error: "Etwas ist schief gelaufen. Bitte versuchen Sie es erneut.",
     };
   }
 }

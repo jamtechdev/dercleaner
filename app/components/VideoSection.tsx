@@ -89,11 +89,11 @@ export function VideoSection({ site }: { site: any }) {
               type="button"
               onClick={() => setIsPlaying(true)}
               disabled={!embedUrl}
-              className="group relative flex h-20 w-20 items-center justify-center rounded-full border-4 border-white bg-white/20 backdrop-blur transition-transform hover:scale-110 focus:outline-none focus-visible:ring-4 focus-visible:ring-white/60 disabled:cursor-not-allowed disabled:opacity-60 md:h-24 md:w-24"
+              className="group relative flex h-20 w-20 items-center justify-center rounded-full border-4 border-black bg-white/20 backdrop-blur transition-transform hover:scale-110 focus:outline-none focus-visible:ring-4 focus-visible:ring-white/60 disabled:cursor-not-allowed disabled:opacity-60 md:h-24 md:w-24"
               aria-label="Play YouTube video"
             >
               {/* Inner Play Icon */}
-              <div className="ml-2 h-0 w-0 border-b-[12px] border-b-transparent border-l-[20px] border-l-white border-t-[12px] border-t-transparent" />
+              <div className="ml-2 h-0 w-0 border-b-[12px] border-b-transparent border-l-[20px] border-l-black border-t-[12px] border-t-transparent" />
             </button>
           </div>
 

@@ -4,8 +4,8 @@ export default function FeaturesAndAbout({ site }: { site: any }) {
   return (
     <div id="ueber-uns" className="scroll-mt-1 w-full bg-white">
       {/* Top Section: Features Grid */}
-      <div className="max-w-7xl mx-auto py-20 px-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8">
+      <div className="max-w-7xl mx-auto py-20 px-6 md:px-10 md:py-50">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 md:gap-10">
           {(site.featuresSection.features as Array<{ title: string; colorClass: string; icon: string; text: string }>).map((f, i: number) => (
             <div key={i} className="flex flex-col space-y-3">
               <div className="flex items-center space-x-2">
@@ -21,7 +21,8 @@ export default function FeaturesAndAbout({ site }: { site: any }) {
       </div>
 
       {/* Bottom Section: About Us */}
-      <div className="flex flex-col md:flex-row min-h-[600px]">
+      <div className="bg-surface-alt">
+      <div className="flex flex-col md:w-[80%] mx-auto md:flex-row min-h-[600px] md:gap-20">
         {/* Left: Image with Background Color */}
         <div className="md:w-1/2 relative bg-about flex items-end justify-center overflow-hidden">
           <div className="relative w-full h-full min-h-[400px]">
@@ -29,7 +30,7 @@ export default function FeaturesAndAbout({ site }: { site: any }) {
               src={site.aboutSection.image.src}
               alt={site.aboutSection.image.alt}
               fill
-              className="object-cover object-bottom grayscale"
+              className="object-cover w-full h-full grayscale object-top"
             />
           </div>
         </div>
@@ -43,6 +44,7 @@ export default function FeaturesAndAbout({ site }: { site: any }) {
             ))}
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

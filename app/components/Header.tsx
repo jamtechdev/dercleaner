@@ -32,7 +32,7 @@ export function Header({ site }: { site: any }) {
 
         {/* Logo Section */}
         <Link href="/" className="flex items-center">
-          <div className="relative w-28 h-12 sm:w-32 sm:h-16 md:w-40 md:h-20">
+          <div className="relative w-28 h-12 sm:w-32 sm:h-16 md:w-40 md:h-26">
             <Image
               src={site.branding.logo.src}
               alt={site.branding.logo.alt}
@@ -87,7 +87,7 @@ export function Header({ site }: { site: any }) {
           />
           <div className="absolute right-0 top-0 h-full w-[85%] max-w-sm bg-white shadow-xl">
             <div className="flex items-center justify-between border-b border-gray-100 px-4 py-4">
-              <div className="relative h-10 w-28">
+              <div className="relative h-12 w-28">
                 <Image
                   src={site.branding.logo.src}
                   alt={site.branding.logo.alt}
@@ -105,7 +105,7 @@ export function Header({ site }: { site: any }) {
                 <span aria-hidden="true">×</span>
               </button>
             </div>
-            <nav className="px-4 py-3">
+            <nav className="px-4 py-3 bg-white">
               <ul className="flex flex-col gap-2">
                 {(site.navigation.links as Array<{ href: string; label: string }>).map((link) => (
                   <li key={`mobile-${link.href}-${link.label}`}>
