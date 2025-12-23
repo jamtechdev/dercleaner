@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -15,6 +16,9 @@
   --about: #4fbce1;
   --card: #f8f9fa;
 }
+
+
+
 
 @theme inline {
   --color-background: var(--background);
@@ -161,6 +165,9 @@ body{
     height: 50px;
 }
 
+body{
+  font-family: 'Roboto', sans-serif;
+}
 
 
 .daten-icons img{
@@ -212,6 +219,7 @@ body{
 .schneller-boxes > div p{
   font-weight: 600;
   font-size: 16px !important;
+  text-align: start;
 }
 
 .schneller-boxes > div h3{
@@ -220,14 +228,18 @@ body{
 }
 
 .uber-uns > p {
-    font-size: 20px !important;
-    font-weight: 400;
+    font-weight: 600;
+    font-size: 16px !important;
+    text-align: justify;
 }
+<<<<<<< HEAD
+=======
 
 
 .uber-uns-img{
   height: 735px !important;;
 }
+>>>>>>> aa6c056e00b8cbd59c4f67cd658e84a19b93ea38
 .form-btn{
 
   padding:15px 60px;
@@ -247,6 +259,10 @@ body{
 
 .product1 img{
   object-fit: cover !important;;
+}
+
+.font-36{
+  font-size: 36px !important;
 }
 
 
@@ -274,4 +290,43 @@ body{
     padding-right: 6px;
     transform: scale(2.8);
   }
+
+  .imop-buttons{
+    padding:25px;
+    display: flex;
+  }
+
+
+  .schneller-boxes > div{
+    margin:0px !important;
+    gap:4;
+  }
+   .imop-buttons p{
+    display: none;
+   }
+}
+
+
+body,html{
+   font-family: "Roboto", sans-serif;
+}
+
+.geist_mono_8d43a2aa-module__8Li5zG__variable {
+       font-family: "Roboto", sans-serif !important;
+
+}
+
+.geist_mono_8d43a2aa-module__8Li5zG__variable {
+           font-family: "Roboto", sans-serif !important;
+
+}
+
+p{
+       font-family: "Roboto", sans-serif !important;
+  
+}
+
+h2{
+       font-family: "Roboto", sans-serif !important;
+  
 }

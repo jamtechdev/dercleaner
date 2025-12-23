@@ -18,7 +18,7 @@
         {/* Glassmorphism Text Card */}
         <div className="relative z-10 w-full max-w-xl md:mr-12 lg:mr-24 p-6 sm:p-8 md:p-16 rounded-[28px] sm:rounded-[40px] bg-[var(--secondary-color)]/50  shadow-xl border border-white/20">
           <div className="space-y-10">
-            <h2 className="text-3xl sm:text-4xl md:text-[40px] font-extrabold text-gray-900 leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-[40px] font-extrabold text-gray-900 leading-tight font-36">
               {site.missionSection.hero.title}
             </h2>
             
