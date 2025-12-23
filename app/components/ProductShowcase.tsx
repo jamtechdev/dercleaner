@@ -16,7 +16,7 @@ type Product = {
   savingsSubtitle: string;
   stats: { icon: string; label: string; value: string; sub: string }[];
   description?: string;
-  technicalSpecs?: { label: string; value: string }[];
+  technicalSpecs?: { icon?: string; label: string; value: string }[];
   features?: { number: string; title: string; description: string }[];
 };
 
@@ -343,13 +343,15 @@ function ProductDetailsModal({
                     key={index}
                     className=" justify-between p-5 rounded-2xl bg-[var(--tertiary-color)] pop-up-technische-box"
                   >
-                    <span className="daten-icons">
-                      <img
-                        src={spec.icon}
-                        alt={spec.label}
-                      // className="w-full h-auto"
-                      />
-                    </span>
+                    {spec.icon && (
+                      <span className="daten-icons">
+                        <img
+                          src={spec.icon}
+                          alt={spec.label}
+                        // className="w-full h-auto"
+                        />
+                      </span>
+                    )}
 
                     <p className="text-brand font-bold text-lg">
                       {spec.label}:
