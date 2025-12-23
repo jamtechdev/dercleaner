@@ -194,7 +194,7 @@ function StatCard({
 }) {
   return (
     <div className="flex items-center p-4 rounded-2xl w-full max-w-sm bg-[var(--tertiary-color)]">
-      <div className="w-12 h-12 bg-brand rounded-full flex items-center justify-center text-white text-xl mr-4">
+      <div className="w-12 h-12 bg-brand rounded-full flex items-center justify-center text-white text-xl mr-4 imop-img">
         <img
           src={icon} // Path to the SVG file
           alt={label} // Alternative text for accessibility
@@ -308,8 +308,13 @@ function ProductDetailsModal({
                   key={stat.label}
                   className="flex items-center p-5 rounded-2xl bg-[var(--tertiary-color)]"
                 >
-                  <div className="w-14 h-14 bg-brand rounded-full flex items-center justify-center text-white text-2xl mr-4 flex-shrink-0">
-                    {stat.icon}
+                  <div className="w-14 h-14 bg-brand rounded-full flex items-center justify-center text-white text-2xl mr-4 flex-shrink-0 pop-up-icons">
+                    {/* {stat.icon} */}
+                    <img
+                      src={stat.icon}
+                      alt={stat.label}
+                    // className="w-full h-auto"
+                    />
                   </div>
                   <div>
                     <p className="text-brand font-bold text-lg leading-none mb-1">
@@ -318,7 +323,7 @@ function ProductDetailsModal({
                     <p className="text-xl font-medium text-gray-800 leading-none mb-1">
                       {stat.value}
                     </p>
-                    <p className="text-sm text-gray-600">{stat.sub}</p>
+                    <p className="text-sm text-gray-600 pop-up-date">{stat.sub}</p>
                   </div>
                 </div>
               ))}
@@ -333,12 +338,20 @@ function ProductDetailsModal({
                 {product.technicalSpecs.map((spec, index) => (
                   <div
                     key={index}
-                    className="flex items-center justify-between p-5 rounded-2xl bg-[var(--tertiary-color)]"
+                    className=" justify-between p-5 rounded-2xl bg-[var(--tertiary-color)] pop-up-technische-box"
                   >
+                    <span className="daten-icons">
+                      <img
+                        src={spec.icon}
+                        alt={spec.label}
+                      // className="w-full h-auto"
+                      />
+                    </span>
+
                     <p className="text-brand font-bold text-lg">
                       {spec.label}:
                     </p>
-                    <p className="text-xl font-medium text-gray-800">
+                    <p className="text-xl font-medium text-gray-800 pop-up-date">
                       {spec.value}
                     </p>
                   </div>

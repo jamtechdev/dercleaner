@@ -47,9 +47,9 @@
         ],
         "description": "Der imop 36 ist eine effektive und budgetfreundliche Reinigungslösung. Sein modulares Design gewährleistet einfache Wartung und Teileaustausch und liefert gleichzeitig zuverlässige Leistung zum niedrigsten Preis in der i-mop-Reihe. Eine eingebaute Selbstdiagnosefunktion bietet sofortige Warnungen und Anleitungen bei Problemen und hilft, Ausfallzeiten zu minimieren.",
         "technicalSpecs": [
-          { "label": "Laufzeit", "value": "60 min." },
-          { "label": "Praktische Leistung", "value": "730 m2" },
-          { "label": "Bürstengeschwindigkeit", "value": "355 RPM" }
+          { "icon" : "/laufzeit.png", "label": "Laufzeit", "value": "60 min." },
+          { "icon" : "/leistung.png", "label": "Praktische Leistung", "value": "730 m2" },
+          { "icon" : "/bürste.png", "label": "Bürstengeschwindigkeit", "value": "355 RPM" }
         ],
         "features": [
           {
@@ -111,9 +111,9 @@
         ],
         "description": "Der i-mop 40 Pro ist nicht nur robust — er ist auch intelligent. Mit einem korrosionsbeständigen Deck, HEPA-12-Filtration und einem leisen, bürstenlosen Motor setzt er neue Maßstäbe für die Tiefenreinigung. Sein Selbstdiagnosesystem minimiert Ausfallzeiten, während die i-link-Konnektivität die Wartung optimiert. Ob Sie Spas, Fitnessstudios oder Gesundheitseinrichtungen reinigen, diese Maschine liefert professionelle Ergebnisse — jedes Mal.",
         "technicalSpecs": [
-          { "label": "Laufzeit", "value": "81 Minuten auf glatten Oberflächen" },
-          { "label": "Praktische Leistung", "value": "960 m2" },
-          { "label": "Bürstengeschwindigkeit", "value": "350 RPM" }
+          { "icon" : "/laufzeit.png", "label": "Laufzeit", "value": "81 Minuten auf glatten Oberflächen" },
+          { "icon" : "/leistung.png","label": "Praktische Leistung", "value": "960 m2" },
+          {"icon" : "/laufzeit.png","label": "Bürstengeschwindigkeit", "value": "350 RPM" }
         ],
         "features": [
           {
@@ -170,15 +170,15 @@
         "savingsTitle": "Einsparungen pro 300 m2 vs.",
         "savingsSubtitle": "manuelle Reinigung",
         "stats": [
-          { "icon": "/power.svg", "label": "Power", "value": "90%", "sub": "" },
+          { "icon": "/power.png", "label": "Power", "value": "90%", "sub": "" },
           { "icon": "/faster.svg", "label": "Zeit", "value": "99 min", "sub": "" },
-          { "icon": "/effort.svg", "label": "Effort", "value": "0", "sub": "" }
+          { "icon": "/effort.png", "label": "Effort", "value": "0", "sub": "" }
         ],
         "description": "Lassen Sie den i-walk 46 die wiederholende Bodenreinigung übernehmen, damit sich Ihr Team auf wertvollere Aufgaben und detaillierte Reinigung konzentrieren kann. Mit diesem Co-Botik können Sie Abläufe optimieren und Ihre Ressourcen effektiv umverteilen — besonders wertvoll im heutigen angespannten Arbeitsmarkt. Entdecken Sie, wie der i-walk 46 Ihre Reinigungsstrategie verbessern kann.",
         "technicalSpecs": [
-          { "label": "Laufzeit", "value": "4 h mit i-power 9, 7 h mit i-power 14" },
-          { "label": "Praktische Leistung", "value": "bis zu 700 m2/h" },
-          { "label": "300 m2 reinigen", "value": "in 1 Minute Einrichtungszeit" }
+          {"icon" : "/laufzeit.png", "label": "Laufzeit", "value": "4 h mit i-power 9, 7 h mit i-power 14" },
+          { "icon" : "/leistung.png","label": "Praktische Leistung", "value": "bis zu 700 m2/h" },
+          {"icon" : "/bürste.png", "label": "300 m2 reinigen", "value": "in 1 Minute Einrichtungszeit" }
         ],
         "features": [
           {
@@ -240,15 +240,15 @@
         "savingsTitle": "Einsparungen pro 300 m² vs.",
         "savingsSubtitle": "manuelle Bodenreinigung",
         "stats": [
-          { "icon": "/energy.svg", "label": "Energy", "value": "90%", "sub": "" },
+          { "icon": "/energy.png", "label": "Energy", "value": "90%", "sub": "" },
           { "icon": "/cleaner.svg", "label": "Wasser", "value": "15.2 liter", "sub": "" },
           { "icon": "/faster.svg", "label": "Zeit", "value": "34 mins", "sub": "" }
         ],
         "description": "Mit i-link Cloud-Datenerfassung, i-dose für präzise Flüssigkeitsdosierung und dualen Geschwindigkeitseinstellungen für leisere Tagesreinigung passt sich der i-mop XL Pro jeder Umgebung an. Sein bürstenloser Motor verlängert die Laufzeit und reduziert Geräusche, während die i-balance-Technologie die Ergonomie verbessert und die Handhabung erleichtert. Ein beschichtetes Deck ermöglicht sichere Nutzung in nassen Bereichen wie Pools und Saunen, und die antimikrobiellen Tanks halten die Maschine zwischen den Nutzungen frischer. Für Hochleistungsreinigung auf allen Hartböden liefern die 350-RPM-Bürsten des XL Pro kraftvolle, professionelle Ergebnisse.",
         "technicalSpecs": [
-          { "label": "Laufzeit", "value": "90+ Min" },
-          { "label": "Praktische Leistung", "value": "1000-1300 m²/h" },
-          { "label": "Bürstengeschwindigkeit", "value": "350 RPM" }
+          {"icon" : "/laufzeit.png", "label": "Laufzeit", "value": "90+ Min" },
+          {"icon" : "/leistung.png", "label": "Praktische Leistung", "value": "1000-1300 m²/h" },
+          {"icon" : "/bürste.png", "label": "Bürstengeschwindigkeit", "value": "350 RPM" }
         ],
         "features": [
           {
@@ -305,17 +305,16 @@
         "savingsTitle": "Produktvorteile",
         "savingsSubtitle": "",
         "stats": [
-          { "icon": "/er", "label": "Ergonomic", "value": "relieves cleaners of physical strain", "sub": "" },
-          { "icon": "🌬️", "label": "Cleaner air", "value": "less emission of dust, bacteria & allergens", "sub": "" },
+          { "icon": "/ergonomic.png", "label": "Ergonomic", "value": "relieves cleaners of physical strain", "sub": "" },
+          { "icon": "/cleanerair.png", "label": "Cleaner air", "value": "less emission of dust, bacteria & allergens", "sub": "" },
           { "icon": "/cleaner.svg", "label": "Saves time", "value": "4 minutes per hotel room", "sub": "" }
         ],
         "description": "Wir wissen, dass jedes Hotel auf eine 5-Sterne-Bewertung abzielt, und saubere Böden spielen dabei eine große Rolle. Der co-botic 1900 Drop & Go reinigt Böden präzise und ermöglicht es Ihnen, sich auf komplexere Aufgaben zu konzentrieren. Gemeinsam mit Reinigungsprofis entwickelt, liefert diese kompakte, leistungsstarke und vollautonome Maschine jedes Mal konsistente, hochwertige Ergebnisse.",
         "technicalSpecs": [
-          { "label": "Laufzeit", "value": "bis zu 4h mit 2x i-power 8.7, bis zu 5h mit 2x i-power 10.5" },
-          { "label": "Saugleistung", "value": "3 Geschwindigkeiten: 4, 8 und 20 KPA" },
-          { "label": "Kapazität", "value": "2L" },
-          { "label": "Staubbehälter", "value": "2L schimmelhemmender Staubbehälter mit HEPA-11-Filter" }
-        ],
+          {"icon" : "/laufzeit.png", "label": "Laufzeit", "value": "bis zu 4h mit 2x i-power 8.7, bis zu 5h mit 2x i-power 10.5" },
+          {"icon" : "/leistung.png", "label": "Saugleistung", "value": "3 Geschwindigkeiten: 4, 8 und 20 KPA" },
+          {"icon" : "/bürste.png","label": "Kapazität", "value": "2L" }],
+          
         "features": [
           {
             "number": "01",
