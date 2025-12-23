@@ -12,9 +12,18 @@
   },
   "navigation": {
     "links": [
-      { "label": "Produkte", "href": "/#produkte" },
-      { "label": "Kontakt", "href": "/#kontakt" },
-      { "label": "Über uns", "href": "/#ueber-uns" }
+      {
+        "label": "Produkte",
+        "href": "/#produkte"
+      },
+      {
+        "label": "Kontakt",
+        "href": "/#kontakt"
+      },
+      {
+        "label": "Über uns",
+        "href": "/#ueber-uns"
+      }
     ]
   },
   "videoSection": {
@@ -33,34 +42,65 @@
       {
         "id": "product1",
         "tabTitle": "IMOP 36",
-        "tabDesc": "Entwickelt für Unternehmen, die eine effektive, budgetfreundliche Reinigungslösung benötigen.",
-        "tabImage": { "src": "/product1.png", "alt": "i mop36" },
+        "tabDesc": "Der imop 36 ist eine effektive und zugleich budgetfreundliche Reinigungslösung. Seine modulare Bauweise ermöglicht eine einfache Wartung und den Austausch von Teilen und bietet gleichzeitig eine zuverlässige Leistung zum niedrigsten Preis der i-mop-Reihe.",
+        "tabImage": {
+          "src": "/product1.png",
+          "alt": "i mop36"
+        },
         "name": "i mop36",
-        "heroImage": { "src": "/i-mop-36-front-right_740x740.jpg", "alt": "i mop36" },
-        "video": { "src": "", "alt": "i mop36" },
-        "featuresImage": { "src": "/i-mop36.webp", "alt": "i mop36" },
+        "heroImage": {
+          "src": "/i-mop-36-front-right_740x740.jpg",
+          "alt": "i mop36"
+        },
+        "video": {
+          "src": "",
+          "alt": "i mop36"
+        },
+        "featuresImage": {
+          "src": "/i-mop36.webp",
+          "alt": "i mop36"
+        },
         "savingsTitle": "Einsparungen pro 300 m2 vs.",
         "savingsSubtitle": "manuelle Bodenreinigung",
         "stats": [
-          { "icon": "💧", "label": "Wasser", "value": "15.2 L", "sub": "*ECO - Modus" },
-          { "icon": "⏱️", "label": "Zeit", "value": "30 min", "sub": "*ECO - Modus" }
+          {
+            "icon": "💧",
+            "label": "Wasser",
+            "value": "15.2 L",
+            "sub": "*ECO - Modus"
+          },
+          {
+            "icon": "⏱️",
+            "label": "Zeit",
+            "value": "30 min",
+            "sub": "*ECO - Modus"
+          }
         ],
-        "description": "Der imop 36 ist eine effektive und budgetfreundliche Reinigungslösung. Sein modulares Design gewährleistet einfache Wartung und Teileaustausch und liefert gleichzeitig zuverlässige Leistung zum niedrigsten Preis in der i-mop-Reihe. Eine eingebaute Selbstdiagnosefunktion bietet sofortige Warnungen und Anleitungen bei Problemen und hilft, Ausfallzeiten zu minimieren.",
+        "description": "Der imop 36 ist eine effektive und zugleich budgetfreundliche Reinigungslösung. Seine modulare Bauweise ermöglicht eine einfache Wartung und den Austausch von Teilen und bietet gleichzeitig eine zuverlässige Leistung zum niedrigsten Preis der i-mop-Reihe. Eine eingebaute Selbstdiagnosefunktion gibt bei Problemen sofortige Warnungen und Hilfestellungen und trägt so zur Minimierung von Ausfallzeiten bei.",
         "technicalSpecs": [
-          { "label": "Laufzeit", "value": "60 min." },
-          { "label": "Praktische Leistung", "value": "730 m2" },
-          { "label": "Bürstengeschwindigkeit", "value": "355 RPM" }
+          {
+            "label": "Laufzeit",
+            "value": "60 Minuten."
+          },
+          {
+            "label": "Praktische Leistung",
+            "value": "730 m2"
+          },
+          {
+            "label": "Geschwindigkeit der Bürste",
+            "value": "355 RPM"
+          }
         ],
         "features": [
           {
             "number": "01",
             "title": "Ergonomischer Griff",
-            "description": "Neue integrierte blaue Griffe für verbesserten Komfort und Haltbarkeit."
+            "description": "Neue integrierte blaue Griffe für mehr Komfort und Haltbarkeit."
           },
           {
             "number": "02",
             "title": "Verbesserter Zugang zur Elektronik",
-            "description": "Die Leiterplatten befinden sich oben für einfachere Wartung und Reparaturen im Vergleich zu älteren i-mop-Modellen."
+            "description": "Die Leiterplatten befinden sich an der Oberseite, was Wartung und Reparaturen im Vergleich zu älteren i-mop-Modellen erleichtert."
           },
           {
             "number": "03",
@@ -70,12 +110,12 @@
           {
             "number": "04",
             "title": "Microban® antimikrobieller Tank",
-            "description": "Verhindert Bakterienwachstum für dauerhafte Hygiene und Schutz."
+            "description": "Verhindert das Wachstum von Bakterien für dauerhafte Hygiene und Schutz."
           },
           {
             "number": "05",
-            "title": "Fester Antrieb & Park-Unterstützung",
-            "description": "Für bessere Kontrolle und einfache Bedienung."
+            "title": "Feste Antriebs- und Parkunterstützung",
+            "description": "Für bessere Kontrolle und einfachere Handhabung."
           },
           {
             "number": "06",
@@ -85,35 +125,66 @@
           {
             "number": "07",
             "title": "Arbeitsfläche von 36 Zentimetern",
-            "description": "Sehr flexibel in kleineren Räumen oder Bereichen mit vielen Hindernissen."
+            "description": "Super flexibel in kleineren Räumen oder Bereichen mit vielen Hindernissen."
           },
           {
             "number": "08",
-            "title": "Gegenläufige Bürsten",
-            "description": "Für kraftvolle Reinigung auf allen Hartböden."
+            "title": "Gegenläufig rotierende Bürsten",
+            "description": "Für eine kraftvolle Reinigung auf allen Hartböden."
           }
         ]
       },
       {
         "id": "product2",
         "tabTitle": "i-mop 40 Pro",
-        "tabDesc": "Für höhere Flächenleistung und noch weniger Stillstand in Ihrem Alltag.",
-        "tabImage": { "src": "/product2.png", "alt": "i-mop 40 Pro" },
+        "tabDesc": "Der i-mop 40 Pro wurde für die härtesten Umgebungen entwickelt und ist Ihre ultimative Reinigungslösung. Von stark frequentierten Bereichen bis hin zu chlorhaltigen Wellnessbereichen bietet er unübertroffene Haltbarkeit und Präzision.",
+        "tabImage": {
+          "src": "/product2.png",
+          "alt": "i-mop 40 Pro"
+        },
         "name": "i-mop 40 Pro",
-        "heroImage": { "src": "/i-mop-40-Pro-front-right_740x740.jpg", "alt": "i-mop 40 Pro" },
-        "video": { "src": "/product1.mp4", "alt": "i mop36" },
-        "featuresImage": { "src": "/i-mop-40-Pro-front-right_740x740.jpg", "alt": "i-mop 40 Pro" },
-        "savingsTitle": "Einsparungen pro 300 m2 vs.",
-        "savingsSubtitle": "manuelle Bodenreinigung",
+        "heroImage": {
+          "src": "/i-mop-40-Pro-front-right_740x740.jpg",
+          "alt": "i-mop 40 Pro"
+        },
+        "video": {
+          "src": "/product1.mp4",
+          "alt": "i mop36"
+        },
+        "featuresImage": {
+          "src": "/i-mop-40-Pro-front-right_740x740.jpg",
+          "alt": "i-mop 40 Pro"
+        },
+        "savingsTitle": "Einsparungen pro 300 m2",
+        "savingsSubtitle": "gegenüber der manuellen Bodenreinigung",
         "stats": [
-          { "icon": "💧", "label": "Wasser", "value": "15.6 L", "sub": "Im ECO-Modus" },
-          { "icon": "⏱️", "label": "Zeit", "value": "32.5 min", "sub": "Im ECO-Modus" }
+          {
+            "icon": "💧",
+            "label": "Wasser",
+            "value": "15.6 L",
+            "sub": "Im ECO-Modus"
+          },
+          {
+            "icon": "⏱️",
+            "label": "Zeit",
+            "value": "32.5 min",
+            "sub": "Im ECO-Modus"
+          }
         ],
         "description": "Der i-mop 40 Pro ist nicht nur robust — er ist auch intelligent. Mit einem korrosionsbeständigen Deck, HEPA-12-Filtration und einem leisen, bürstenlosen Motor setzt er neue Maßstäbe für die Tiefenreinigung. Sein Selbstdiagnosesystem minimiert Ausfallzeiten, während die i-link-Konnektivität die Wartung optimiert. Ob Sie Spas, Fitnessstudios oder Gesundheitseinrichtungen reinigen, diese Maschine liefert professionelle Ergebnisse — jedes Mal.",
         "technicalSpecs": [
-          { "label": "Laufzeit", "value": "81 Minuten auf glatten Oberflächen" },
-          { "label": "Praktische Leistung", "value": "960 m2" },
-          { "label": "Bürstengeschwindigkeit", "value": "350 RPM" }
+          {
+            "label": "Laufzeit",
+            "value": "81 Minuten auf glatten Oberflächen"
+          },
+          {
+            "label": "Praktische Leistung",
+            "value": "960 m2"
+          },
+          {
+            "label": "Bürstengeschwindigkeit",
+            "value": "350 RPM"
+          }
         ],
         "features": [
           {
@@ -162,23 +233,59 @@
         "id": "product3",
         "tabTitle": "i-walk 46",
         "tabDesc": "Ideal für enge Bereiche, schnellere Zyklen und saubere Ergebnisse.",
-        "tabImage": { "src": "/product3.png", "alt": "i-walk 46" },
+        "tabImage": {
+          "src": "/product3.png",
+          "alt": "i-walk 46"
+        },
         "name": "i-walk 46",
-        "heroImage": { "src": "/i-walk_angled-front-view-with-controler-740x740.jpg", "alt": "i-walk 46" },
-        "video": { "src": "/product1.mp4", "alt": "i mop36" },
-        "featuresImage": { "src": "/i-walk_angled-front-view-with-controler-740x740.jpg", "alt": "i mop36" },
+        "heroImage": {
+          "src": "/i-walk_angled-front-view-with-controler-740x740.jpg",
+          "alt": "i-walk 46"
+        },
+        "video": {
+          "src": "/product1.mp4",
+          "alt": "i mop36"
+        },
+        "featuresImage": {
+          "src": "/i-walk_angled-front-view-with-controler-740x740.jpg",
+          "alt": "i mop36"
+        },
         "savingsTitle": "Einsparungen pro 300 m2 vs.",
         "savingsSubtitle": "manuelle Reinigung",
         "stats": [
-          { "icon": "⚡", "label": "Leistung", "value": "90%", "sub": "" },
-          { "icon": "⏱️", "label": "Zeit", "value": "99 min", "sub": "" },
-          { "icon": "💪", "label": "Aufwand", "value": "0", "sub": "" }
+          {
+            "icon": "⚡",
+            "label": "Leistung",
+            "value": "90%",
+            "sub": ""
+          },
+          {
+            "icon": "⏱️",
+            "label": "Zeit",
+            "value": "99 min",
+            "sub": ""
+          },
+          {
+            "icon": "💪",
+            "label": "Aufwand",
+            "value": "0",
+            "sub": ""
+          }
         ],
         "description": "Lassen Sie den i-walk 46 die wiederholende Bodenreinigung übernehmen, damit sich Ihr Team auf wertvollere Aufgaben und detaillierte Reinigung konzentrieren kann. Mit diesem Co-Botik können Sie Abläufe optimieren und Ihre Ressourcen effektiv umverteilen — besonders wertvoll im heutigen angespannten Arbeitsmarkt. Entdecken Sie, wie der i-walk 46 Ihre Reinigungsstrategie verbessern kann.",
         "technicalSpecs": [
-          { "label": "Laufzeit", "value": "4 h mit i-power 9, 7 h mit i-power 14" },
-          { "label": "Praktische Leistung", "value": "bis zu 700 m2/h" },
-          { "label": "300 m2 reinigen", "value": "in 1 Minute Einrichtungszeit" }
+          {
+            "label": "Laufzeit",
+            "value": "4 h mit i-power 9, 7 h mit i-power 14"
+          },
+          {
+            "label": "Praktische Leistung",
+            "value": "bis zu 700 m2/h"
+          },
+          {
+            "label": "300 m2 reinigen",
+            "value": "in 1 Minute Einrichtungszeit"
+          }
         ],
         "features": [
           {
@@ -232,23 +339,59 @@
         "id": "product4",
         "tabTitle": "i-mop XL Pro",
         "tabDesc": "Für maximale Effizienz bei regelmäßiger Reinigung großer Flächen.",
-        "tabImage": { "src": "/product4.png", "alt": "i-mop XL Pro" },
+        "tabImage": {
+          "src": "/product4.png",
+          "alt": "i-mop XL Pro"
+        },
         "name": "i-mop XL Pro",
-        "heroImage": { "src": "/i-mop-XL-Pro_v23_angled-left-front-view_740x740.jpg", "alt": "i-mop XL Pro" },
-        "video": { "src": "/product1.mp4", "alt": "i mop36" },
-        "featuresImage": { "src": "/i-mop-XL-Pro_v23_angled-left-front-view_740x740.jpg", "alt": "i mop36" },
+        "heroImage": {
+          "src": "/i-mop-XL-Pro_v23_angled-left-front-view_740x740.jpg",
+          "alt": "i-mop XL Pro"
+        },
+        "video": {
+          "src": "/product1.mp4",
+          "alt": "i mop36"
+        },
+        "featuresImage": {
+          "src": "/i-mop-XL-Pro_v23_angled-left-front-view_740x740.jpg",
+          "alt": "i mop36"
+        },
         "savingsTitle": "Einsparungen pro 300 m² vs.",
         "savingsSubtitle": "manuelle Bodenreinigung",
         "stats": [
-          { "icon": "⚡", "label": "Energie", "value": "90%", "sub": "" },
-          { "icon": "💧", "label": "Wasser", "value": "15.2 Liter", "sub": "" },
-          { "icon": "⏱️", "label": "Zeit", "value": "34 Min", "sub": "" }
+          {
+            "icon": "⚡",
+            "label": "Energie",
+            "value": "90%",
+            "sub": ""
+          },
+          {
+            "icon": "💧",
+            "label": "Wasser",
+            "value": "15.2 Liter",
+            "sub": ""
+          },
+          {
+            "icon": "⏱️",
+            "label": "Zeit",
+            "value": "34 Min",
+            "sub": ""
+          }
         ],
         "description": "Mit i-link Cloud-Datenerfassung, i-dose für präzise Flüssigkeitsdosierung und dualen Geschwindigkeitseinstellungen für leisere Tagesreinigung passt sich der i-mop XL Pro jeder Umgebung an. Sein bürstenloser Motor verlängert die Laufzeit und reduziert Geräusche, während die i-balance-Technologie die Ergonomie verbessert und die Handhabung erleichtert. Ein beschichtetes Deck ermöglicht sichere Nutzung in nassen Bereichen wie Pools und Saunen, und die antimikrobiellen Tanks halten die Maschine zwischen den Nutzungen frischer. Für Hochleistungsreinigung auf allen Hartböden liefern die 350-RPM-Bürsten des XL Pro kraftvolle, professionelle Ergebnisse.",
         "technicalSpecs": [
-          { "label": "Laufzeit", "value": "90+ Min" },
-          { "label": "Praktische Leistung", "value": "1000-1300 m²/h" },
-          { "label": "Bürstengeschwindigkeit", "value": "350 RPM" }
+          {
+            "label": "Laufzeit",
+            "value": "90+ Min"
+          },
+          {
+            "label": "Praktische Leistung",
+            "value": "1000-1300 m²/h"
+          },
+          {
+            "label": "Bürstengeschwindigkeit",
+            "value": "350 RPM"
+          }
         ],
         "features": [
           {
@@ -297,24 +440,63 @@
         "id": "product5",
         "tabTitle": "co-botic 1900",
         "tabDesc": "Intelligente und konsistente Hotelreinigungslösung.",
-        "tabImage": { "src": "/product5.png", "alt": "co-botic 1900" },
+        "tabImage": {
+          "src": "/product5.png",
+          "alt": "co-botic 1900"
+        },
         "name": "co-botic 1900",
-        "heroImage": { "src": "/co-botic1900_740x740.jpg", "alt": "co-botic 1900" },
-        "video": { "src": "/product1.mp4", "alt": "i mop36" },
-        "featuresImage": { "src": "/co-botic1900_740x740.jpg", "alt": "i mop36" },
+        "heroImage": {
+          "src": "/co-botic1900_740x740.jpg",
+          "alt": "co-botic 1900"
+        },
+        "video": {
+          "src": "/product1.mp4",
+          "alt": "i mop36"
+        },
+        "featuresImage": {
+          "src": "/co-botic1900_740x740.jpg",
+          "alt": "i mop36"
+        },
         "savingsTitle": "Produktvorteile",
         "savingsSubtitle": "",
         "stats": [
-          { "icon": "💪", "label": "Ergonomisch", "value": "entlastet Reinigungskräfte von körperlicher Belastung", "sub": "" },
-          { "icon": "🌬️", "label": "Sauberere Luft", "value": "geringere Emission von Staub, Bakterien & Allergenen", "sub": "" },
-          { "icon": "⏱️", "label": "Zeitersparnis", "value": "4 Minuten pro Hotelzimmer", "sub": "" }
+          {
+            "icon": "💪",
+            "label": "Ergonomisch",
+            "value": "entlastet Reinigungskräfte von körperlicher Belastung",
+            "sub": ""
+          },
+          {
+            "icon": "🌬️",
+            "label": "Sauberere Luft",
+            "value": "geringere Emission von Staub, Bakterien & Allergenen",
+            "sub": ""
+          },
+          {
+            "icon": "⏱️",
+            "label": "Zeitersparnis",
+            "value": "4 Minuten pro Hotelzimmer",
+            "sub": ""
+          }
         ],
         "description": "Wir wissen, dass jedes Hotel auf eine 5-Sterne-Bewertung abzielt, und saubere Böden spielen dabei eine große Rolle. Der co-botic 1900 Drop & Go reinigt Böden präzise und ermöglicht es Ihnen, sich auf komplexere Aufgaben zu konzentrieren. Gemeinsam mit Reinigungsprofis entwickelt, liefert diese kompakte, leistungsstarke und vollautonome Maschine jedes Mal konsistente, hochwertige Ergebnisse.",
         "technicalSpecs": [
-          { "label": "Laufzeit", "value": "bis zu 4h mit 2x i-power 8.7, bis zu 5h mit 2x i-power 10.5" },
-          { "label": "Saugleistung", "value": "3 Geschwindigkeiten: 4, 8 und 20 KPA" },
-          { "label": "Kapazität", "value": "2L" },
-          { "label": "Staubbehälter", "value": "2L schimmelhemmender Staubbehälter mit HEPA-11-Filter" }
+          {
+            "label": "Laufzeit",
+            "value": "bis zu 4h mit 2x i-power 8.7, bis zu 5h mit 2x i-power 10.5"
+          },
+          {
+            "label": "Saugleistung",
+            "value": "3 Geschwindigkeiten: 4, 8 und 20 KPA"
+          },
+          {
+            "label": "Kapazität",
+            "value": "2L"
+          },
+          {
+            "label": "Staubbehälter",
+            "value": "2L schimmelhemmender Staubbehälter mit HEPA-11-Filter"
+          }
         ],
         "features": [
           {
@@ -368,7 +550,10 @@
   },
   "missionSection": {
     "hero": {
-      "backgroundImage": { "src": "/misssion.png", "alt": "Professionelle Reinigungsumgebung" },
+      "backgroundImage": {
+        "src": "/misssion.png",
+        "alt": "Professionelle Reinigungsumgebung"
+      },
       "title": "Wir ändern die Art und Weise, wie Sie über Reinigung denken",
       "description": "Professionelle Reinigungslösungen mit höchster Effizienz, klaren Prozessen und messbaren Ergebnissen.",
       "ctaLabel": "Demo Buchen"
@@ -378,14 +563,38 @@
       "description": "Jede Umgebung erfordert einen eigenen Ansatz, um die beste Lösung zu bieten."
     },
     "industries": [
-      { "name": "Transport", "icon": "✈️" },
-      { "name": "Reinräume", "icon": "🔬" },
-      { "name": "Öffentliche Einrichtungen", "icon": "🏛️" },
-      { "name": "Gesundheitswesen", "icon": "🏥" },
-      { "name": "Gastgewerbe", "icon": "📋" },
-      { "name": "Einzelhandel", "icon": "🛍️" },
-      { "name": "Industrie", "icon": "⚙️" },
-      { "name": "Gebäudedienstleister", "icon": "🏢" }
+      {
+        "name": "Transport",
+        "icon": "✈️"
+      },
+      {
+        "name": "Reinräume",
+        "icon": "🔬"
+      },
+      {
+        "name": "Öffentliche Einrichtungen",
+        "icon": "🏛️"
+      },
+      {
+        "name": "Gesundheitswesen",
+        "icon": "🏥"
+      },
+      {
+        "name": "Gastgewerbe",
+        "icon": "📋"
+      },
+      {
+        "name": "Einzelhandel",
+        "icon": "🛍️"
+      },
+      {
+        "name": "Industrie",
+        "icon": "⚙️"
+      },
+      {
+        "name": "Gebäudedienstleister",
+        "icon": "🏢"
+      }
     ]
   },
   "featuresSection": {
@@ -424,7 +633,10 @@
   },
   "aboutSection": {
     "title": "Über uns",
-    "image": { "src": "/owner.png", "alt": "Über uns portrait" },
+    "image": {
+      "src": "/owner.png",
+      "alt": "Über uns portrait"
+    },
     "paragraphs": [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
@@ -448,15 +660,27 @@
     "information": {
       "title": "Informationen",
       "links": [
-        { "label": "Produkte", "href": "/#produkte" },
-        { "label": "Kontakt", "href": "/#kontakt" }
+        {
+          "label": "Produkte",
+          "href": "/#produkte"
+        },
+        {
+          "label": "Kontakt",
+          "href": "/#kontakt"
+        }
       ]
     },
     "legal": {
       "title": "Rechtliches",
       "links": [
-        { "label": "Datenschutz", "href": "/datenschutz" },
-        { "label": "Impressum", "href": "/impressum" }
+        {
+          "label": "Datenschutz",
+          "href": "/datenschutz"
+        },
+        {
+          "label": "Impressum",
+          "href": "/impressum"
+        }
       ]
     },
     "bottomBarColor": "#2d3748"
@@ -484,7 +708,10 @@
         {
           "title": "2. Verantwortlicher",
           "blocks": [
-            { "type": "p", "text": "Der Cleaner" },
+            {
+              "type": "p",
+              "text": "Der Cleaner"
+            },
             {
               "type": "list",
               "items": [
@@ -498,7 +725,10 @@
         {
           "title": "3. Welche Daten wir verarbeiten",
           "blocks": [
-            { "type": "p", "text": "Wir können insbesondere folgende Daten verarbeiten:" },
+            {
+              "type": "p",
+              "text": "Wir können insbesondere folgende Daten verarbeiten:"
+            },
             {
               "type": "list",
               "items": [
@@ -540,7 +770,10 @@
         {
           "title": "6. Ihre Rechte",
           "blocks": [
-            { "type": "p", "text": "Sie haben insbesondere folgende Rechte:" },
+            {
+              "type": "p",
+              "text": "Sie haben insbesondere folgende Rechte:"
+            },
             {
               "type": "list",
               "items": [
@@ -575,7 +808,10 @@
         {
           "title": "Angaben gemäß § 5 TMG",
           "blocks": [
-            { "type": "p", "text": "Der Cleaner" },
+            {
+              "type": "p",
+              "text": "Der Cleaner"
+            },
             {
               "type": "list",
               "items": [
