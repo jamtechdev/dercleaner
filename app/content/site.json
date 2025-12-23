@@ -63,8 +63,18 @@
         "savingsTitle": "Einsparungen pro 300 m2 vs.",
         "savingsSubtitle": "manuelle Bodenreinigung",
         "stats": [
-          { "icon": "/cleaner.svg", "label": "Wasser", "value": "15.2 L", "sub": "*ECO - Modus" },
-          { "icon": "/faster.svg", "label": "Zeit", "value": "30 min", "sub": "*ECO - Modus" }
+          {
+            "icon": "/cleaner.svg",
+            "label": "Wasser",
+            "value": "15.2 L",
+            "sub": "*ECO - Modus"
+          },
+          {
+            "icon": "/faster.svg",
+            "label": "Zeit",
+            "value": "30 min",
+            "sub": "*ECO - Modus"
+          }
         ],
         "description": "Der imop 36 ist eine effektive und zugleich budgetfreundliche Reinigungslösung. Seine modulare Bauweise ermöglicht eine einfache Wartung und den Austausch von Teilen und bietet gleichzeitig eine zuverlässige Leistung zum niedrigsten Preis der i-mop-Reihe. Eine eingebaute Selbstdiagnosefunktion gibt bei Problemen sofortige Warnungen und Hilfestellungen und trägt so zur Minimierung von Ausfallzeiten bei.",
         "technicalSpecs": [
@@ -139,7 +149,7 @@
         },
         "video": {
           "src": "/product1.mp4",
-          "alt": "i mop36"
+          "alt": "i-mop 40 Pro"
         },
         "featuresImage": {
           "src": "/i-mop-40-Pro-front-right_740x740.jpg",
@@ -148,79 +158,89 @@
         "savingsTitle": "Einsparungen pro 300 m2",
         "savingsSubtitle": "gegenüber der manuellen Bodenreinigung",
         "stats": [
-          { "icon": "/cleaner.svg", "label": "Wasser", "value": "15.6 L", "sub": "In ECO mode" },
-          { "icon": "/faster.svg", "label": "Zeit", "value": "32.5 min", "sub": "In ECO mode" }
+          {
+            "icon": "/cleaner.svg",
+            "label": "Wasser",
+            "value": "15.6 L",
+            "sub": "In ECO mode"
+          },
+          {
+            "icon": "/faster.svg",
+            "label": "Zeit",
+            "value": "32.5 min",
+            "sub": "In ECO mode"
+          }
         ],
-        "description": "Der i-mop 40 Pro ist nicht nur robust — er ist auch intelligent. Mit einem korrosionsbeständigen Deck, HEPA-12-Filtration und einem leisen, bürstenlosen Motor setzt er neue Maßstäbe für die Tiefenreinigung. Sein Selbstdiagnosesystem minimiert Ausfallzeiten, während die i-link-Konnektivität die Wartung optimiert. Ob Sie Spas, Fitnessstudios oder Gesundheitseinrichtungen reinigen, diese Maschine liefert professionelle Ergebnisse — jedes Mal.",
+        "description": "Der i-mop 40 Pro ist nicht nur robust - er ist auch clever. Mit einem korrosionsgeschützten Deck, HEPA-12-Filterung und einem leisen, bürstenlosen Motor setzt er einen neuen Standard für die Tiefenreinigung. Sein Selbstdiagnosesystem minimiert die Ausfallzeiten, während die i-link-Konnektivität die Wartung optimiert. Ganz gleich, ob Sie Spas, Fitnessstudios oder Einrichtungen des Gesundheitswesens reinigen, diese Maschine liefert professionelle Ergebnisse - jedes Mal.",
         "technicalSpecs": [
           {
             "label": "Laufzeit",
-            "value": "81 Minuten auf glatten Oberflächen"
+            "value": "81 Minuten auf glatten Boden"
           },
           {
-            "label": "Praktische Leistung",
+            "label": "Leistung im Praxiseinsatz",
             "value": "960 m2"
           },
           {
-            "label": "Bürstengeschwindigkeit",
+            "label": "Bürstendrehzahl",
             "value": "350 RPM"
           }
         ],
         "features": [
           {
             "number": "01",
-            "title": "Einstellbare Leistungsstufen",
-            "description": "Hoch- und Niedrigmodus für angepasste Leistung und Geräuschpegel."
+            "title": "Einstellbare Leistungseinstellungen",
+            "description": "Hoher und niedriger Modus für individuelle Leistung und Geräuschpegel."
           },
           {
             "number": "02",
-            "title": "HEPA-12-Filtration",
-            "description": "Verbessert die Luftqualität durch Erfassen feiner Staubpartikel."
+            "title": "HEPA 12-Filterung",
+            "description": "Verbessert die Luftqualität durch Auffangen von Feinstaubpartikeln."
           },
           {
             "number": "03",
             "title": "Bürstenloser Saugmotor",
-            "description": "Längere Lebensdauer, niedrigere Geräuschpegel und höhere Effizienz."
+            "description": "Längere Lebensdauer, geringerer Geräuschpegel und höhere Effizienz."
           },
           {
             "number": "04",
             "title": "i-link",
-            "description": "Intelligentes Flottenmanagement mit Echtzeit-Dateneinblicken."
+            "description": "Intelligenteres Flottenmanagement mit Dateneinblicken in Echtzeit."
           },
           {
             "number": "05",
             "title": "AKSU pulverbeschichtetes Deck",
-            "description": "Überlegene Resistenz gegen korrosive Substanzen."
+            "description": "Hervorragende Beständigkeit gegen korrosive Substanzen."
           },
           {
             "number": "06",
             "title": "i-dose",
-            "description": "Für einfache Dosierung von Flüssigkeiten."
+            "description": "Zur einfachen Dosierung von Flüssigkeiten."
           },
           {
             "number": "07",
             "title": "i-balance®",
-            "description": "Stabilisiert die Maschine und reduziert körperliche Belastung."
+            "description": "Stabilisiert die Maschine und verringert die Belastung des Körpers."
           },
           {
             "number": "08",
-            "title": "Einfach klickbarer Abzieher",
-            "description": "Schnell auswechselbar."
+            "title": "Einfacher Klick-Rakel",
+            "description": "Schnell zu ersetzen."
           }
         ]
       },
       {
         "id": "product3",
-        "tabTitle": "i-walk 46",
-        "tabDesc": "Ideal für enge Bereiche, schnellere Zyklen und saubere Ergebnisse.",
+        "tabTitle": "i-walk",
+        "tabDesc": "Revolutionieren Sie Ihre Reinigungsprozesse mit dem I-walk 46. Der co-botische Reinigungsroboter, der Ihren i-mop XL ergänzt. Für überragende Effizienz und mehr Zeit für andere Aufgaben.",
         "tabImage": {
           "src": "/product3.png",
-          "alt": "i-walk 46"
+          "alt": "i-walk"
         },
-        "name": "i-walk 46",
+        "name": "i-walk",
         "heroImage": {
           "src": "/i-walk_angled-front-view-with-controler-740x740.jpg",
-          "alt": "i-walk 46"
+          "alt": "i-walk"
         },
         "video": {
           "src": "/product1.mp4",
@@ -230,80 +250,95 @@
           "src": "/i-walk_angled-front-view-with-controler-740x740.jpg",
           "alt": "i mop36"
         },
-        "savingsTitle": "Einsparungen pro 300 m2 vs.",
-        "savingsSubtitle": "manuelle Reinigung",
+        "savingsTitle": "Einsparungen pro 300 m2",
+        "savingsSubtitle": "gegenüber der manuellen Reinigung",
         "stats": [
-          { "icon": "/power.svg", "label": "Power", "value": "90%", "sub": "" },
-          { "icon": "/faster.svg", "label": "Zeit", "value": "99 min", "sub": "" },
-          { "icon": "/effort.svg", "label": "Effort", "value": "0", "sub": "" }
+          {
+            "icon": "/power.svg",
+            "label": "Strom",
+            "value": "90%",
+            "sub": ""
+          },
+          {
+            "icon": "/faster.svg",
+            "label": "Zeit",
+            "value": "99 min",
+            "sub": ""
+          },
+          {
+            "icon": "/effort.svg",
+            "label": "Anstrengung",
+            "value": "0",
+            "sub": ""
+          }
         ],
-        "description": "Lassen Sie den i-walk 46 die wiederholende Bodenreinigung übernehmen, damit sich Ihr Team auf wertvollere Aufgaben und detaillierte Reinigung konzentrieren kann. Mit diesem Co-Botik können Sie Abläufe optimieren und Ihre Ressourcen effektiv umverteilen — besonders wertvoll im heutigen angespannten Arbeitsmarkt. Entdecken Sie, wie der i-walk 46 Ihre Reinigungsstrategie verbessern kann.",
+        "description": "Überlassen Sie dem i-walk 46 die sich wiederholende Bodenreinigung, damit sich Ihr Team auf höherwertige Aufgaben und die Feinreinigung konzentrieren kann. Mit dem i-walk 46 können Sie Ihre Arbeitsabläufe rationalisieren und Ihre Ressourcen effektiv umverteilen - besonders wertvoll auf dem heutigen Arbeitsmarkt. Entdecken Sie, wie der i-walk 46 Ihre Reinigungsstrategie verbessern kann.",
         "technicalSpecs": [
           {
-            "label": "Laufzeit",
-            "value": "4 h mit i-power 9, 7 h mit i-power 14"
+            "label": "Dauer der Laufzeit",
+            "value": "4 h mit i-power 9 7 h mit i-power 14"
           },
           {
             "label": "Praktische Leistung",
             "value": "bis zu 700 m2/h"
           },
           {
-            "label": "300 m2 reinigen",
+            "label": "300m2",
             "value": "in 1 Minute Einrichtungszeit"
           }
         ],
         "features": [
           {
             "number": "01",
-            "title": "Steuerbox",
-            "description": "Steuern Sie den i-walk direkt mit Tasten — keine App, Schnittstelle oder Internet erforderlich"
+            "title": "Bedieneinheit",
+            "description": "Steuern Sie i-walk direkt mit Tasten - keine App, Schnittstelle oder Internet erforderlich"
           },
           {
             "number": "02",
             "title": "Not-Aus",
-            "description": "Die Einheit stoppt bei Notfällen"
+            "description": "Das Gerät hält in Notsituationen an"
           },
           {
             "number": "03",
             "title": "Ultraschall-Abstandssensoren",
-            "description": "Erkennt Glas und Spiegel"
+            "description": "Erkennung von Glas und Spiegeln"
           },
           {
             "number": "04",
-            "title": "TOF-Sensoren für Hindernisvermeidung und Klippenerkennung",
-            "description": "Verhindert Kollisionen und Stürze"
+            "title": "TOF Sensoren",
+            "description": "Zur Objekterkennung und dem Verhindern von Abstürzen oder Kollisionen"
           },
           {
             "number": "05",
-            "title": "Hochwertiges LiDAR (50m Reichweite)",
-            "description": "Ermöglicht Navigation auch in den anspruchsvollsten oder offenen Räumen"
+            "title": "LiDAR (50 m Reichweite)",
+            "description": "Ermöglicht das Navigieren auch in den schwierigsten oder offenen Räumen"
           },
           {
             "number": "06",
-            "title": "TOF-Sensor für Objekte über dem Boden",
-            "description": "Erkennt Hindernisse über dem Boden und scannt QR-Codes für Navigationskartierung"
+            "title": "Sensor für über dem Boden befindliche Objekte",
+            "description": "Erkennt Hindernisse über dem Boden und scannt QR-Codes für die Navigationskartierung"
           },
           {
             "number": "07",
             "title": "Antriebsräder mit hoher Traktion",
-            "description": "Für optimale Traktion auf jeder Oberfläche, nass oder trocken"
+            "description": "Für optimale Traktion auf jedem Untergrund, nass oder trocken"
           },
           {
             "number": "08",
-            "title": "Seitenschutz-Stoßfänger-Räder",
-            "description": "Schützt den i-walk vor versehentlichen Kollisionen während der Nutzung oder Kartierung"
+            "title": "Seitliche Führungsräder",
+            "description": "Schützt i-walk vor versehentlichen Kollisionen während der Benutzung oder Kartierung"
           },
           {
             "number": "09",
-            "title": "Berührungsempfindlicher Sicherheitsstoßfänger",
-            "description": "Ein Sicherheitsstoßfänger lässt den i-walk 10 cm zurückfahren, um Hindernissen auszuweichen"
+            "title": "Bumper",
+            "description": "Ein Sicherheitsbumper lässt i-walk 10 cm zurückfahren, um Hindernissen auszuweichen"
           }
         ]
       },
       {
         "id": "product4",
         "tabTitle": "i-mop XL Pro",
-        "tabDesc": "Für maximale Effizienz bei regelmäßiger Reinigung großer Flächen.",
+        "tabDesc": "Der i-mop XL Pro kombiniert robuste Leistung mit intelligenten Upgrades für Reinigungseffizienz auf höchstem Niveau. Ausgestattet mit einzigartigen Funktionen, bietet er Ihnen mehr Kontrolle, Präzision und Flexibilität bei jeder Reinigungsaufgabe.",
         "tabImage": {
           "src": "/product4.png",
           "alt": "i-mop XL Pro"
@@ -321,14 +356,29 @@
           "src": "/i-mop-XL-Pro_v23_angled-left-front-view_740x740.jpg",
           "alt": "i mop36"
         },
-        "savingsTitle": "Einsparungen pro 300 m² vs.",
-        "savingsSubtitle": "manuelle Bodenreinigung",
+        "savingsTitle": "Einsparungen pro 300 m²",
+        "savingsSubtitle": "im Vergleich zum manuellen Wischen",
         "stats": [
-          { "icon": "/energy.svg", "label": "Energy", "value": "90%", "sub": "" },
-          { "icon": "/cleaner.svg", "label": "Wasser", "value": "15.2 liter", "sub": "" },
-          { "icon": "/faster.svg", "label": "Zeit", "value": "34 mins", "sub": "" }
+          {
+            "icon": "/energy.svg",
+            "label": "Energie",
+            "value": "90%",
+            "sub": ""
+          },
+          {
+            "icon": "/cleaner.svg",
+            "label": "Wasser",
+            "value": "15.2 liter",
+            "sub": ""
+          },
+          {
+            "icon": "/faster.svg",
+            "label": "Zeit",
+            "value": "34 Minuten",
+            "sub": ""
+          }
         ],
-        "description": "Mit i-link Cloud-Datenerfassung, i-dose für präzise Flüssigkeitsdosierung und dualen Geschwindigkeitseinstellungen für leisere Tagesreinigung passt sich der i-mop XL Pro jeder Umgebung an. Sein bürstenloser Motor verlängert die Laufzeit und reduziert Geräusche, während die i-balance-Technologie die Ergonomie verbessert und die Handhabung erleichtert. Ein beschichtetes Deck ermöglicht sichere Nutzung in nassen Bereichen wie Pools und Saunen, und die antimikrobiellen Tanks halten die Maschine zwischen den Nutzungen frischer. Für Hochleistungsreinigung auf allen Hartböden liefern die 350-RPM-Bürsten des XL Pro kraftvolle, professionelle Ergebnisse.",
+        "description": "Mit i-link cloud data tracking, i-dose für präzise Flüssigkeitsdosierung und zwei Geschwindigkeitsstufen für eine leisere Reinigung am Tag passt sich der i-mop XL Pro an jede Umgebung an. Sein bürstenloser Motor verlängert die Laufzeit und reduziert die Geräuschentwicklung, während die i-balance Technologie die Ergonomie verbessert und die Handhabung erleichtert. Ein beschichtetes Deck ermöglicht den sicheren Einsatz in Nassbereichen wie Pools und Saunen, und die antimikrobiellen Tanks sorgen dafür, dass das Gerät zwischen den Einsätzen frischer bleibt. Für eine leistungsstarke Reinigung aller Hartböden sorgen die Bürsten des XL Pro mit 350 U/min für kraftvolle, professionelle Ergebnisse.",
         "technicalSpecs": [
           {
             "label": "Laufzeit",
@@ -339,57 +389,57 @@
             "value": "1000-1300 m²/h"
           },
           {
-            "label": "Bürstengeschwindigkeit",
-            "value": "350 RPM"
+            "label": "Geschwindigkeit der Bürste",
+            "value": "350 UMDREHUNGEN PRO MINUTE"
           }
         ],
         "features": [
           {
             "number": "01",
-            "title": "2 Geschwindigkeitseinstellungen",
-            "description": "Leiser Modus für Tagesreinigung"
+            "title": "2 Geschwindigkeitsstufen (Pro)",
+            "description": "Geräuscharme Einstellung für die Reinigung am Tag"
           },
           {
             "number": "02",
-            "title": "i-link",
+            "title": "i-link (Pro)",
             "description": "Alle Maschinendaten in der Cloud verfügbar"
           },
           {
             "number": "03",
-            "title": "Microban® antimikrobielle Tanks",
-            "description": "Diese Innovation ermöglicht es dem Tank, zwischen den Reinigungen sauberer zu bleiben"
+            "title": "Microban® antimikrobieller Tank",
+            "description": "Diese Innovation sorgt dafür, dass der Tank zwischen den Reinigungen sauberer und frischer bleibt"
           },
           {
             "number": "04",
-            "title": "i-dose",
-            "description": "Für einfache Dosierung von Flüssigkeiten"
+            "title": "i-dose (Pro)",
+            "description": "Für die einfache Dosierung von Reinigungsmittel"
           },
           {
             "number": "05",
-            "title": "Bürstenloser Motor",
-            "description": "Niedriger Geräuschpegel und längere Laufzeit"
+            "title": "Bürstenloser Motor (Pro)",
+            "description": "Niedriger Geräuschpegel und längere Betriebsdauer"
           },
           {
             "number": "06",
-            "title": "i-balance",
-            "description": "Bessere Ergonomie und mehr Arbeitszufriedenheit für den Reiniger"
+            "title": "i-balance (Pro)",
+            "description": "Bessere Ergonomie und mehr Arbeitszufriedenheit für die Reinigungskraft"
           },
           {
             "number": "07",
-            "title": "Beschichtetes Deck",
-            "description": "Für Schwimmbäder und Saunen"
+            "title": "Beschichtetes Deck (Pro)",
+            "description": "Für Schwimmbäder und Saunas"
           },
           {
             "number": "08",
-            "title": "Kraftvolle Reinigung auf allen Hartbodenoberflächen",
-            "description": "Mit Hochgeschwindigkeits-350-RPM-Bürsten"
+            "title": "Leistungsstarke Reinigung auf allen harten Bodenbelägen",
+            "description": "Mit Hochgeschwindigkeitsbürsten 350RPM"
           }
         ]
       },
       {
         "id": "product5",
-        "tabTitle": "co-botic 1900",
-        "tabDesc": "Intelligente und konsistente Hotelreinigungslösung.",
+        "tabTitle": "co-botic 1900 Drop & Go",
+        "tabDesc": "Gemeinsam mit Reinigungsprofis entwickelt für optimale Leistung und Benutzerfreundlichkeit.",
         "tabImage": {
           "src": "/product5.png",
           "alt": "co-botic 1900"
@@ -410,74 +460,90 @@
         "savingsTitle": "Produktvorteile",
         "savingsSubtitle": "",
         "stats": [
-          { "icon": "/er", "label": "Ergonomic", "value": "relieves cleaners of physical strain", "sub": "" },
-          { "icon": "🌬️", "label": "Cleaner air", "value": "less emission of dust, bacteria & allergens", "sub": "" },
-          { "icon": "/cleaner.svg", "label": "Saves time", "value": "4 minutes per hotel room", "sub": "" }
+          {
+            "icon": "/er",
+            "label": "Ergonomisch",
+            "value": "entlastet die Reiniger von körperlichen Belastungen",
+            "sub": ""
+          },
+          {
+            "icon": "🌬️",
+            "label": "Sauberere Luft",
+            "value": "geringere Emission von Staub, Bakterien und Allergenen",
+            "sub": ""
+          },
+          {
+            "icon": "/cleaner.svg",
+            "label": "Zeitersparnis",
+            "value": "4 Minuten pro Hotelzimmer",
+            "sub": ""
+          }
         ],
-        "description": "Wir wissen, dass jedes Hotel auf eine 5-Sterne-Bewertung abzielt, und saubere Böden spielen dabei eine große Rolle. Der co-botic 1900 Drop & Go reinigt Böden präzise und ermöglicht es Ihnen, sich auf komplexere Aufgaben zu konzentrieren. Gemeinsam mit Reinigungsprofis entwickelt, liefert diese kompakte, leistungsstarke und vollautonome Maschine jedes Mal konsistente, hochwertige Ergebnisse.",
+        "description": "Wir wissen, dass jedes Hotel eine 5-Sterne-Bewertung anstrebt, und saubere Böden spielen dabei eine große Rolle. Der co-botic 1900 Drop & Go reinigt Böden mit Präzision und ermöglicht es Ihnen, sich auf komplexere Aufgaben zu konzentrieren. Dieses kompakte, leistungsstarke und völlig autonome Gerät wurde gemeinsam mit Reinigungsprofis entwickelt und liefert jedes Mal gleichbleibend hochwertige Ergebnisse.",
         "technicalSpecs": [
           {
             "label": "Laufzeit",
-            "value": "bis zu 4h mit 2x i-power 8.7, bis zu 5h mit 2x i-power 10.5"
+            "value": "bis zu 4 Stunden mit 2x i-power 8,7 bis zu 5 Stunden mit 2x i-power 10,5"
           },
           {
-            "label": "Saugleistung",
+            "label": "Absaugleistung",
             "value": "3 Geschwindigkeiten: 4, 8 und 20 KPA"
           },
           {
             "label": "Kapazität",
             "value": "2L"
-          },
-          {
-            "label": "Staubbehälter",
-            "value": "2L schimmelhemmender Staubbehälter mit HEPA-11-Filter"
           }
         ],
         "features": [
           {
             "number": "01",
-            "title": "Lasernavigation",
-            "description": "Präzise Führung und Kartierung"
+            "title": "Abfalleimer",
+            "description": "2L Anti-Schimmel-Staubbehälter mit HEPA 11-Filter"
           },
           {
             "number": "02",
-            "title": "i-scent Pod",
-            "description": "Gibt Duftstoffe in die Luft ab"
+            "title": "Laser-Navigation",
+            "description": "Präzise Führung und Kartierung"
           },
           {
             "number": "03",
+            "title": "i-scent Pod",
+            "description": "Gibt den Duft an die Luft ab"
+          },
+          {
+            "number": "04",
             "title": "Not-Aus-Taste",
             "description": "Für zusätzliche Sicherheit"
           },
           {
-            "number": "04",
+            "number": "05",
             "title": "WiFi und 4G SIM",
             "description": "Einfach zu verbinden"
           },
           {
-            "number": "05",
-            "title": "Wechselbare Batterien",
-            "description": "Einfach auszutauschen und weiterzuarbeiten"
-          },
-          {
             "number": "06",
-            "title": "Kabelerkennungssensor",
-            "description": "Analysiert und navigiert über Hindernisse"
+            "title": "Auswechselbare Batterien",
+            "description": "Einfach auszutauschen und in Betrieb zu halten"
           },
           {
             "number": "07",
+            "title": "Kabelerkennungssensor",
+            "description": "Analysiert und navigiert über Hindernisse hinweg"
+          },
+          {
+            "number": "08",
             "title": "Eingebauter Lautsprecher",
             "description": "Anti-Kollisions-Warnung"
           },
           {
-            "number": "08",
-            "title": "Spurenlöscher-Pad",
-            "description": "Glättet Radspuren und hinterlässt Teppiche makellos"
+            "number": "09",
+            "title": "Radiergummi für Spuren",
+            "description": "Glättet Reifenspuren und sorgt für makellose Teppiche"
           },
           {
-            "number": "09",
+            "number": "10",
             "title": "Rotierende Seitenbürste",
-            "description": "Für Kantenreinigung"
+            "description": "Für die Kantenreinigung"
           }
         ]
       }
