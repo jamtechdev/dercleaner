@@ -67,6 +67,119 @@ body {
 }
 
 
+
+/* updated code */
+.einsparungen-boxes > div{
+  padding: 25px 25px !important;
+  /* background:blue !important; */
+}
+
+.technishe-daten{
+  margin-top: 80px;;
+}
+
+.imop-buttons button{
+  margin:10px 0px;
+}
+
+.demo-buchen{
+  padding:15px 60px !important;
+}
+
+
+.text-xs{
+  font-size: 14px !important;;
+  /* text-align: justify; */
+}
+
+.schneller-boxes > div span{
+    color: var(--color-green-600);
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    width: 43px;
+    height: 43px;
+    font-size: 22px;
+    display: flex;
+    /* background-color: blue;; */
+}
+
+.icon-2 {
+  background: #00b6e5 !important;
+}
+
+.icon-1{
+  background-color: rgb(86 106 115);
+}
+
+.icon-3{
+  background-color: rgb(128 195 66);
+}
+
+.icon-4{
+  background-color: rgb(255 213 48);
+}
+
+.icon-5{
+  background-color: rgb(236 0 133);
+}
+
+
+
+.imop-pop-box{
+  height: 485px !important;
+}
+
+.imop-pop-box img{
+      position: absolute;
+    height: 100%;
+    width: 100%;
+    inset: 0px;
+    border-radius: 24px;
+    color: transparent;
+    /* object-fit: cover !important; */
+}
+
+.imop-pop-box{
+  background:white !important;
+  border:1px solid #ededed;
+}
+
+.schneller-boxes > div {
+    /* cursor: pointer; */
+    padding:20px;
+    /* border: 1px solid #ddd; */
+    /* border-radius: 4px; */
+    /* padding: 20px; */
+    /* transition: all .5s; */
+    /* box-shadow: 0 6px 24px #0000000d, 0 0 0 1px #00000014; */
+}
+
+.schneller-boxes > div p{
+  font-weight: 600;
+  font-size: 16px !important;
+}
+
+.schneller-boxes > div h3{
+  font-size: 20px;
+  color:black;;
+}
+
+.uber-uns > p {
+    font-size: 20px !important;
+    font-weight: 400;
+}
+
+.form-btn{
+
+  padding:15px 60px;
+}
+
+.product1 img{
+  object-fit: cover !important;;
+}
+
+
 /* Simple brand-friendly animations */
 @media (prefers-reduced-motion: no-preference) {
   @keyframes dc-fade-up {

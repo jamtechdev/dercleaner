@@ -42,8 +42,8 @@
         "savingsTitle": "Einsparungen pro 300 m2 vs.",
         "savingsSubtitle": "manuelle Bodenreinigung",
         "stats": [
-          { "icon": "💧", "label": "Wasser", "value": "15.2 L", "sub": "*ECO - Modus" },
-          { "icon": "⏱️", "label": "Zeit", "value": "30 min", "sub": "*ECO - Modus" }
+          { "icon": "/cleaner.svg", "label": "Wasser", "value": "15.2 L", "sub": "*ECO - Modus" },
+          { "icon": "/faster.svg", "label": "Zeit", "value": "30 min", "sub": "*ECO - Modus" }
         ],
         "description": "The imop 36 is an effective yet budget-friendly cleaning solution. Its modular design ensures easy maintenance and part replacement, while delivering reliable performance at the lowest price point in the i-mop range. A built-in self-diagnosing feature provides immediate alerts and guidance in case of any issues, helping to minimize downtime.",
         "technicalSpecs": [
@@ -106,8 +106,8 @@
         "savingsTitle": "Einsparungen pro 300 m2 vs.",
         "savingsSubtitle": "manuelle Bodenreinigung",
         "stats": [
-          { "icon": "💧", "label": "Wasser", "value": "15.6 L", "sub": "In ECO mode" },
-          { "icon": "⏱️", "label": "Zeit", "value": "32.5 min", "sub": "In ECO mode" }
+          { "icon": "/cleaner.svg", "label": "Wasser", "value": "15.6 L", "sub": "In ECO mode" },
+          { "icon": "/faster.svg", "label": "Zeit", "value": "32.5 min", "sub": "In ECO mode" }
         ],
         "description": "The i-mop 40 Pro isn't just tough — it's smart. With an anti-corrosion deck, HEPA 12 filtration, and a quiet, brushless motor, it sets a new standard for deep cleaning. Its self-diagnosing system minimizes downtime, while i-link connectivity streamlines maintenance. Whether you're cleaning spas, gyms, or healthcare facilities, this machine delivers professional results — every time.",
         "technicalSpecs": [
@@ -170,9 +170,9 @@
         "savingsTitle": "Einsparungen pro 300 m2 vs.",
         "savingsSubtitle": "manuelle Reinigung",
         "stats": [
-          { "icon": "⚡", "label": "Power", "value": "90%", "sub": "" },
-          { "icon": "⏱️", "label": "Zeit", "value": "99 min", "sub": "" },
-          { "icon": "💪", "label": "Effort", "value": "0", "sub": "" }
+          { "icon": "/power.svg", "label": "Power", "value": "90%", "sub": "" },
+          { "icon": "/faster.svg", "label": "Zeit", "value": "99 min", "sub": "" },
+          { "icon": "/effort.svg", "label": "Effort", "value": "0", "sub": "" }
         ],
         "description": "Let the i-walk 46 handle repetitive floor cleaning, so your team can concentrate on higher-value tasks and detailed cleaning. With this co-botic, you can streamline operations and reallocate your resources effectively — especially valuable in today's tight labor market. Discover how the i-walk 46 can elevate your cleaning strategy.",
         "technicalSpecs": [
@@ -240,9 +240,9 @@
         "savingsTitle": "Einsparungen pro 300 m² vs.",
         "savingsSubtitle": "manuelle Bodenreinigung",
         "stats": [
-          { "icon": "⚡", "label": "Energy", "value": "90%", "sub": "" },
-          { "icon": "💧", "label": "Wasser", "value": "15.2 liter", "sub": "" },
-          { "icon": "⏱️", "label": "Zeit", "value": "34 mins", "sub": "" }
+          { "icon": "/energy.svg", "label": "Energy", "value": "90%", "sub": "" },
+          { "icon": "/cleaner.svg", "label": "Wasser", "value": "15.2 liter", "sub": "" },
+          { "icon": "/faster.svg", "label": "Zeit", "value": "34 mins", "sub": "" }
         ],
         "description": "With i-link cloud data tracking, i-dose for precise liquid dosing, and dual speed settings for quieter day cleaning, the i-mop XL Pro adapts to any environment. Its brushless motor extends runtime and reduces noise, while i-balance technology improves ergonomics, making it easier to handle. A coated deck allows safe use in wet areas like pools and saunas, and the antimicrobial tanks keep the machine fresher between uses. For high-performance cleaning on all hard floors, the XL Pro's 350 RPM brushes provide powerful, professional results.",
         "technicalSpecs": [
@@ -305,9 +305,9 @@
         "savingsTitle": "Product benefits",
         "savingsSubtitle": "",
         "stats": [
-          { "icon": "💪", "label": "Ergonomic", "value": "relieves cleaners of physical strain", "sub": "" },
+          { "icon": "/er", "label": "Ergonomic", "value": "relieves cleaners of physical strain", "sub": "" },
           { "icon": "🌬️", "label": "Cleaner air", "value": "less emission of dust, bacteria & allergens", "sub": "" },
-          { "icon": "⏱️", "label": "Saves time", "value": "4 minutes per hotel room", "sub": "" }
+          { "icon": "/cleaner.svg", "label": "Saves time", "value": "4 minutes per hotel room", "sub": "" }
         ],
         "description": "We know that every hotel aims for a 5-star review, and clean floors play a big part in that. The co-botic 1900 Drop & Go cleans floors with precision, allowing you to focus on more complex tasks. Co-designed with cleaning professionals, this compact, powerful, and fully autonomous machine delivers consistent, high-quality results every time.",
         "technicalSpecs": [
@@ -393,31 +393,31 @@
       {
         "title": "schneller",
         "colorClass": "text-gray-600",
-        "icon": "⏱️",
+        "icon": "/faster.svg",
         "text": "Zeit ist wichtig. Deshalb glauben wir an effiziente und schnellere Reinigungsvorgänge."
       },
       {
         "title": "sauberer",
         "colorClass": "text-cyan-500",
-        "icon": "💧",
+        "icon": "/cleaner.svg",
         "text": "Unsere Produkte revolutionieren Ihre Reinigungsroutine, setzen neue Maßstäbe..."
       },
       {
         "title": "grüner",
         "colorClass": "text-green-600",
-        "icon": "🍃",
+        "icon": "/greener.svg",
         "text": "Die wachsende Sorge um unseren Planeten erfordert nachhaltigere Reinigungsprodukte..."
       },
       {
         "title": "sicherer",
         "colorClass": "text-yellow-500",
-        "icon": "🔒",
+        "icon": "/safer.svg",
         "text": "Intelligentes Design mit einem scharfen Blick für die praktische Anwendung..."
       },
       {
         "title": "besser",
         "colorClass": "text-pink-500",
-        "icon": "💗",
+        "icon": "/better.svg",
         "text": "Unser Fokus liegt nicht nur auf der Sauberkeit, sondern auch auf dem Wohlbefinden..."
       }
     ]

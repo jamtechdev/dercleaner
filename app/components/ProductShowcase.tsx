@@ -35,7 +35,7 @@ export default function ProductShowcase({ site }: { site: any }) {
     >
 
       {/* Sidebar Navigation */}
-      <aside className="w-full md:w-1/3 flex flex-col gap-4 md:ml-6 bg-[var(--tertiary-color)] py-8 md:pt-20 md:pb-12">
+      <aside className="w-full md:w-1/3 flex flex-col gap-4 md:ml-6 bg-[var(--tertiary-color)] py-8 md:pt-20 md:pb-12 imop-buttons">
         {products.map((p) => (
           <ProductTab
             key={p.id}
@@ -68,7 +68,7 @@ export default function ProductShowcase({ site }: { site: any }) {
 
           {/* Product Details */}
           <div className="w-full md:w-1/2 space-y-5 md:space-y-10">
-            <header className="dc-animate-fade-up md:mb-10">
+            <header className="dc-animate-fade-up md:mb-15">
               <h2 className="text-brand text-3xl sm:text-4xl font-bold italic">
                 {activeProduct.name}
               </h2>
@@ -81,7 +81,7 @@ export default function ProductShowcase({ site }: { site: any }) {
             </header>
 
             {/* Stats Cards */}
-            <div className="space-y-4 md:space-y-10">
+            <div className="space-y-4 md:space-y-10 einsparungen-boxes ">
               {activeProduct.stats.map((s) => (
                 <StatCard
                   key={s.label}
@@ -94,21 +94,21 @@ export default function ProductShowcase({ site }: { site: any }) {
             </div>
 
             {/* Actions */}
-            <div className="pt-4 space-y-4 md:space-y-14">
-              <button 
+            <div className="pt-4 space-y-4 md:space-y-14 technishe-daten">
+              <button
                 onClick={() => setIsModalOpen(true)}
                 className="flex items-start text-gray-800 font-bold pb-1 flex-col hover:opacity-80 transition-opacity cursor-pointer"
               >
                 {site.productsSection.actions.techDataLabel}{" "}
-              
+
                 <span className="">
-                <svg width="150" height="15" viewBox="0 0 195 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg width="150" height="15" viewBox="0 0 195 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M194.707 8.07112C195.098 7.6806 195.098 7.04743 194.707 6.65691L188.343 0.292946C187.953 -0.0975785 187.319 -0.0975785 186.929 0.292946C186.538 0.68347 186.538 1.31664 186.929 1.70716L192.586 7.36401L186.929 13.0209C186.538 13.4114 186.538 14.0446 186.929 14.4351C187.319 14.8256 187.953 14.8256 188.343 14.4351L194.707 8.07112ZM0 7.36401V8.36401H194V7.36401V6.36401H0V7.36401Z" fill="black" />
                   </svg>
                 </span>
-                
+
               </button>
-              <button className="bg-ink text-white w-full sm:w-auto px-10 py-3 rounded-full font-bold hover:bg-black hover:scale-105 transition-all duration-300">
+              <button className="bg-ink text-white w-full sm:w-auto px-10 py-3 rounded-full font-bold hover:bg-black hover:scale-105 transition-all duration-300 demo-buchen">
                 {site.productsSection.actions.demoLabel}
               </button>
             </div>
@@ -153,8 +153,8 @@ function ProductTab({
       type="button"
       onClick={onClick}
       className={`p-4 sm:p-6 text-left transition-colors md:py-10 md:my-5 ${isActive
-          ? "bg-[var(--primary-color)] text-white active-product"
-          : "bg-[var(--secondary-color)]  text-[var(--primary-color)]"
+        ? "bg-[var(--primary-color)] text-white active-product"
+        : "bg-[var(--secondary-color)]  text-[var(--primary-color)]"
         }`}
       aria-pressed={isActive}
     >
@@ -170,7 +170,7 @@ function ProductTab({
         <div>
           <h3 className="font-bold text-base sm:text-lg">{name}</h3>
           {desc && (
-            <p className="text-xs mt-1 leading-tight opacity-90">
+            <p className="text-xs mt-1 leading-tight ">
               {desc}
             </p>
           )}
@@ -195,7 +195,11 @@ function StatCard({
   return (
     <div className="flex items-center p-4 rounded-2xl w-full max-w-sm bg-[var(--tertiary-color)]">
       <div className="w-12 h-12 bg-brand rounded-full flex items-center justify-center text-white text-xl mr-4">
-        {icon}
+        <img
+          src={icon} // Path to the SVG file
+          alt={label} // Alternative text for accessibility
+          className={`w-6 h-6`} // Styling
+        />
       </div>
       <div>
         <p className="text-brand font-bold text-[18px] leading-none mb-1">{label}</p>
@@ -216,7 +220,7 @@ function ProductDetailsModal({
 }) {
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50 backdrop-blur-sm"
+      className={`fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50 backdrop-blur-sm`}
       onClick={onClose}
     >
       <div
@@ -258,7 +262,7 @@ function ProductDetailsModal({
           </div>
 
           {/* Product Image or Video */}
-          <div className="relative w-full h-[300px] md:h-[400px] mb-8 bg-gray-50 rounded-xl overflow-hidden">
+          <div className={`relative w-full h-[300px] md:h-[490px] mb-8 bg-gray-50 rounded-xl overflow-hidden imop-pop-box ${product.id}`}>
             {product.featuresImage && product.featuresImage.src ? (
               <Image
                 src={product.featuresImage.src}
