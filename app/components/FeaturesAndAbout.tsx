@@ -31,7 +31,7 @@ export default function FeaturesAndAbout({ site }: { site: any }) {
 
       {/* Bottom Section: About Us */}
       <div className="bg-surface-alt">
-        <div className="flex flex-col md:w-[80%] mx-auto md:flex-row min-h-[600px] md:gap-20">
+        <div className="flex flex-col md:w-[80%] mx-auto md:flex-row min-h-[600px] md:gap-20 uber-uns-img">
           {/* Left: Image with Background Color */}
           <div className="md:w-1/2 relative bg-about flex items-end justify-center overflow-hidden">
             <div className="relative w-full h-full min-h-[400px]">
