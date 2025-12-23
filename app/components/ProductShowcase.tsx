@@ -193,6 +193,7 @@ function StatCard({
   label: string;
   value: string;
   sub: string;
+  index: number;
 }) {
   return (
     <div className="flex items-center p-4 rounded-2xl w-full max-w-sm bg-[var(--tertiary-color)]">
