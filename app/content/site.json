@@ -497,28 +497,9 @@
         ],
         "description": "Wir wissen, dass jedes Hotel eine 5-Sterne-Bewertung anstrebt, und saubere Böden spielen dabei eine große Rolle. Der co-botic 1900 Drop & Go reinigt Böden mit Präzision und ermöglicht es Ihnen, sich auf komplexere Aufgaben zu konzentrieren. Dieses kompakte, leistungsstarke und völlig autonome Gerät wurde gemeinsam mit Reinigungsprofis entwickelt und liefert jedes Mal gleichbleibend hochwertige Ergebnisse.",
         "technicalSpecs": [
-<<<<<<< HEAD
           {"icon" : "/laufzeit.png", "label": "Laufzeit", "value": "bis zu 4h mit 2x i-power 8.7, bis zu 5h mit 2x i-power 10.5" },
           {"icon" : "/absaugleistung.png", "label": "Saugleistung", "value": "3 Geschwindigkeiten: 4, 8 und 20 KPA" },
           {"icon" : "/kapazität.png","label": "Kapazität", "value": "2L" }],
-=======
-          {
-            "icon" : "/laufzeit.png",
-            "label": "Laufzeit",
-            "value": "bis zu 4 Stunden mit 2x i-power 8,7 bis zu 5 Stunden mit 2x i-power 10,5"
-          },
-          {
-            "icon" : "/leistung.png",
-            "label": "Absaugleistung",
-            "value": "3 Geschwindigkeiten: 4, 8 und 20 KPA"
-          },
-          {
-            "icon" : "/bürste.png",
-            "label": "Kapazität",
-            "value": "2L"
-          }
-        ],
->>>>>>> aa6c056e00b8cbd59c4f67cd658e84a19b93ea38
           
         "features": [
           {
@@ -578,7 +559,7 @@
   "missionSection": {
     "hero": {
       "backgroundImage": {
-        "src": "/misssion.png",
+        "src": "/IMOP XL.jpg",
         "alt": "Professionelle Reinigungsumgebung"
       },
       "title": "Wir ändern die Art und Weise, wie Sie über Reinigung denken",

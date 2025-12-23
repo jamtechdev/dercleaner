@@ -47,7 +47,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  /* font-family: var(--font-sans), Arial, Helvetica, sans-serif; */
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -68,10 +68,6 @@ body {
   transform: scale(3.5);
   padding-bottom: 1.5rem;
   padding-right: 6px;
-}
-
-body{
-  /* font-family: "Geist Mono", "; */
 }
 
 
@@ -232,26 +228,9 @@ body{
     font-size: 16px !important;
     text-align: justify;
 }
-
-
-.uber-uns-img{
-  height: 735px !important;;
-}
 .form-btn{
 
   padding:15px 60px;
-}
-
-.stack-card-Sauberere{
-  border-radius: 50%;
-  width: 100px;
-  height: 51px;
-}
-
-.stack-card-Ergonomisch {
-  border-radius: 50%;
-  width: 90px;
-  height: 51px;
 }
 
 .product1 img{
@@ -322,6 +301,14 @@ p{
        font-family: "Roboto", sans-serif !important;
   
 }
+
+.mission-section{
+  background-image: url('/IMOP XL.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 
 h2{
        font-family: "Roboto", sans-serif !important;

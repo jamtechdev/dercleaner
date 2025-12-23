@@ -2,17 +2,17 @@
 
   export default function MissionSection({ site }: { site: any }) {
     return (
-      <section className="w-full font-sans">
+      <section className="w-full font-sans mission-section">
         <div className="relative w-full min-h-[520px] md:h-[800px] flex items-center justify-center md:justify-end overflow-hidden px-4 md:px-0">
         {/* Background Image - High Quality SSR optimized */}
         <div className="absolute inset-0 z-0">
-          <Image
+          {/* <Image
             src={site.missionSection.hero.backgroundImage.src}
             alt={site.missionSection.hero.backgroundImage.alt}
             fill
-            className="object-cover"
+            // className="object-cover"
             priority
-          />
+          /> */}
         </div>
 
         {/* Glassmorphism Text Card */}
