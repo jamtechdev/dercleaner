@@ -32,58 +32,336 @@
     "products": [
       {
         "id": "product1",
-        "tabTitle": "product1",
+        "tabTitle": "IMOP 36",
         "tabDesc": "Entwickelt für Unternehmen, die eine effektive, budgetfreundliche Reinigungslösung benötigen.",
-        "tabImage": { "src": "/product1.png", "alt": "product1" },
-        "name": "imop 36",
-        "heroImage": { "src": "/product1.png", "alt": "imop 36" },
+        "tabImage": { "src": "/product1.png", "alt": "i mop36" },
+        "name": "i mop36",
+        "heroImage": { "src": "/i-mop-36-front-right_740x740.jpg", "alt": "i mop36" },
+        "video": { "src": "", "alt": "i mop36" },
+        "featuresImage": { "src": "/i-mop36.webp", "alt": "i mop36" },
         "savingsTitle": "Einsparungen pro 300 m2 vs.",
         "savingsSubtitle": "manuelle Bodenreinigung",
         "stats": [
           { "icon": "💧", "label": "Wasser", "value": "15.2 L", "sub": "*ECO - Modus" },
           { "icon": "⏱️", "label": "Zeit", "value": "30 min", "sub": "*ECO - Modus" }
+        ],
+        "description": "The imop 36 is an effective yet budget-friendly cleaning solution. Its modular design ensures easy maintenance and part replacement, while delivering reliable performance at the lowest price point in the i-mop range. A built-in self-diagnosing feature provides immediate alerts and guidance in case of any issues, helping to minimize downtime.",
+        "technicalSpecs": [
+          { "label": "Laufzeit", "value": "60 min." },
+          { "label": "Praktische Leistung", "value": "730 m2" },
+          { "label": "Bürstengeschwindigkeit", "value": "355 RPM" }
+        ],
+        "features": [
+          {
+            "number": "01",
+            "title": "Ergonomic handle",
+            "description": "New integrated blue handles for improved comfort and durability."
+          },
+          {
+            "number": "02",
+            "title": "Enhanced electronics access",
+            "description": "PCB's are located at the top for easier maintenance and repairs compared to older i-mop models."
+          },
+          {
+            "number": "03",
+            "title": "Brushless vacuum motor",
+            "description": "For longer lifespan and quieter operation."
+          },
+          {
+            "number": "04",
+            "title": "Microban® antimicrobial tank",
+            "description": "Prevents bacterial growth for lasting hygiene and protection."
+          },
+          {
+            "number": "05",
+            "title": "Fixed drive & park support",
+            "description": "For better control and ease of use."
+          },
+          {
+            "number": "06",
+            "title": "i-power 12.5 batteries",
+            "description": "Uninterrupted cleaning performance."
+          },
+          {
+            "number": "07",
+            "title": "Work deck of 36 centimeters",
+            "description": "Super flexible in smaller spaces or areas with many obstacles."
+          },
+          {
+            "number": "08",
+            "title": "Counter-rotating brushes",
+            "description": "For powerful cleaning on all hard floors."
+          }
         ]
       },
       {
         "id": "product2",
-        "tabTitle": "product2",
+        "tabTitle": "i-mop 40 Pro",
         "tabDesc": "Für höhere Flächenleistung und noch weniger Stillstand in Ihrem Alltag.",
-        "tabImage": { "src": "/product2.png", "alt": "product2" },
-        "name": "product2",
-        "heroImage": { "src": "/product2.png", "alt": "product2" },
+        "tabImage": { "src": "/product2.png", "alt": "i-mop 40 Pro" },
+        "name": "i-mop 40 Pro",
+        "heroImage": { "src": "/i-mop-40-Pro-front-right_740x740.jpg", "alt": "i-mop 40 Pro" },
+        "video": { "src": "/product1.mp4", "alt": "i mop36" },
+        "featuresImage": { "src": "/i-mop-40-Pro-front-right_740x740.jpg", "alt": "i-mop 40 Pro" },
         "savingsTitle": "Einsparungen pro 300 m2 vs.",
         "savingsSubtitle": "manuelle Bodenreinigung",
         "stats": [
-          { "icon": "💧", "label": "Wasser", "value": "18.0 L", "sub": "*ECO - Modus" },
-          { "icon": "⏱️", "label": "Zeit", "value": "25 min", "sub": "*ECO - Modus" }
+          { "icon": "💧", "label": "Wasser", "value": "15.6 L", "sub": "In ECO mode" },
+          { "icon": "⏱️", "label": "Zeit", "value": "32.5 min", "sub": "In ECO mode" }
+        ],
+        "description": "The i-mop 40 Pro isn't just tough — it's smart. With an anti-corrosion deck, HEPA 12 filtration, and a quiet, brushless motor, it sets a new standard for deep cleaning. Its self-diagnosing system minimizes downtime, while i-link connectivity streamlines maintenance. Whether you're cleaning spas, gyms, or healthcare facilities, this machine delivers professional results — every time.",
+        "technicalSpecs": [
+          { "label": "Laufzeit", "value": "81 minutes on smooth surfaces" },
+          { "label": "Praktische Leistung", "value": "960 m2" },
+          { "label": "Bürstengeschwindigkeit", "value": "350 RPM" }
+        ],
+        "features": [
+          {
+            "number": "01",
+            "title": "Adjustable power settings",
+            "description": "High and low modes for customized performance and noise levels."
+          },
+          {
+            "number": "02",
+            "title": "HEPA 12 filtration",
+            "description": "Enhances air quality by capturing fine dust particles."
+          },
+          {
+            "number": "03",
+            "title": "Brushless vacuum motor",
+            "description": "Longer lifespan, lower noise levels and greater efficiency."
+          },
+          {
+            "number": "04",
+            "title": "i-link",
+            "description": "Smarter fleet management with real-time data insights."
+          },
+          {
+            "number": "05",
+            "title": "AKSU powder-coated deck",
+            "description": "Superior resistance to corrosive substances."
+          },
+          {
+            "number": "06",
+            "title": "i-dose",
+            "description": "For easy dosing of liquids."
+          },
+          {
+            "number": "07",
+            "title": "i-balance®",
+            "description": "Stabilizes the machine which reduces body strain."
+          },
+          {
+            "number": "08",
+            "title": "Easy click squeegee",
+            "description": "Quick to replace."
+          }
         ]
       },
       {
         "id": "product3",
-        "tabTitle": "product3",
+        "tabTitle": "i-walk 46",
         "tabDesc": "Ideal für enge Bereiche, schnellere Zyklen und saubere Ergebnisse.",
-        "tabImage": { "src": "/product3.png", "alt": "product3" },
-        "name": "product3",
-        "heroImage": { "src": "/product3.png", "alt": "product3" },
+        "tabImage": { "src": "/product3.png", "alt": "i-walk 46" },
+        "name": "i-walk 46",
+        "heroImage": { "src": "/i-walk_angled-front-view-with-controler-740x740.jpg", "alt": "i-walk 46" },
+        "video": { "src": "/product1.mp4", "alt": "i mop36" },
+        "featuresImage": { "src": "/i-walk_angled-front-view-with-controler-740x740.jpg", "alt": "i mop36" },
         "savingsTitle": "Einsparungen pro 300 m2 vs.",
-        "savingsSubtitle": "manuelle Bodenreinigung",
+        "savingsSubtitle": "manuelle Reinigung",
         "stats": [
-          { "icon": "💧", "label": "Wasser", "value": "12.8 L", "sub": "*ECO - Modus" },
-          { "icon": "⏱️", "label": "Zeit", "value": "28 min", "sub": "*ECO - Modus" }
+          { "icon": "⚡", "label": "Power", "value": "90%", "sub": "" },
+          { "icon": "⏱️", "label": "Zeit", "value": "99 min", "sub": "" },
+          { "icon": "💪", "label": "Effort", "value": "0", "sub": "" }
+        ],
+        "description": "Let the i-walk 46 handle repetitive floor cleaning, so your team can concentrate on higher-value tasks and detailed cleaning. With this co-botic, you can streamline operations and reallocate your resources effectively — especially valuable in today's tight labor market. Discover how the i-walk 46 can elevate your cleaning strategy.",
+        "technicalSpecs": [
+          { "label": "Laufzeit", "value": "4 h with i-power 9, 7 h with i-power 14" },
+          { "label": "Praktische Leistung", "value": "up to 700 m2/h" },
+          { "label": "Clean 300m2", "value": "in 1 minute setup time" }
+        ],
+        "features": [
+          {
+            "number": "01",
+            "title": "Control box",
+            "description": "Control the i-walk directly with buttons — no app, interface, or internet required"
+          },
+          {
+            "number": "02",
+            "title": "Emergency stop",
+            "description": "The unit stops during emergency situations"
+          },
+          {
+            "number": "03",
+            "title": "Ultrasonic distance sensors",
+            "description": "Detects glass and mirrors"
+          },
+          {
+            "number": "04",
+            "title": "TOF sensors for object avoidance and cliff detection",
+            "description": "Prevents collisions and falls"
+          },
+          {
+            "number": "05",
+            "title": "High quality LiDAR (50m range)",
+            "description": "Allows to navigate even in the most challenging or open spaces"
+          },
+          {
+            "number": "06",
+            "title": "TOF sensor for above the floor objects",
+            "description": "Detects obstacles above the floor and scans QR codes for navigation mapping"
+          },
+          {
+            "number": "07",
+            "title": "High traction drive wheels",
+            "description": "For optimal traction on any surface, wet or dry"
+          },
+          {
+            "number": "08",
+            "title": "Side guard bumper wheels",
+            "description": "Protects the i-walk from accidental collisions during use or mapping"
+          },
+          {
+            "number": "09",
+            "title": "Touch sensitive safety bumper",
+            "description": "A safety bumper reverses the i-walk 10cm to avoid obstacles"
+          }
         ]
       },
       {
         "id": "product4",
-        "tabTitle": "product4",
+        "tabTitle": "i-mop XL Pro",
         "tabDesc": "Für maximale Effizienz bei regelmäßiger Reinigung großer Flächen.",
-        "tabImage": { "src": "/product4.png", "alt": "product4" },
-        "name": "product4",
-        "heroImage": { "src": "/product4.png", "alt": "product4" },
-        "savingsTitle": "Einsparungen pro 300 m2 vs.",
+        "tabImage": { "src": "/product4.png", "alt": "i-mop XL Pro" },
+        "name": "i-mop XL Pro",
+        "heroImage": { "src": "/i-mop-XL-Pro_v23_angled-left-front-view_740x740.jpg", "alt": "i-mop XL Pro" },
+        "video": { "src": "/product1.mp4", "alt": "i mop36" },
+        "featuresImage": { "src": "/i-mop-XL-Pro_v23_angled-left-front-view_740x740.jpg", "alt": "i mop36" },
+        "savingsTitle": "Einsparungen pro 300 m² vs.",
         "savingsSubtitle": "manuelle Bodenreinigung",
         "stats": [
-          { "icon": "💧", "label": "Wasser", "value": "20.0 L", "sub": "*ECO - Modus" },
-          { "icon": "⏱️", "label": "Zeit", "value": "22 min", "sub": "*ECO - Modus" }
+          { "icon": "⚡", "label": "Energy", "value": "90%", "sub": "" },
+          { "icon": "💧", "label": "Wasser", "value": "15.2 liter", "sub": "" },
+          { "icon": "⏱️", "label": "Zeit", "value": "34 mins", "sub": "" }
+        ],
+        "description": "With i-link cloud data tracking, i-dose for precise liquid dosing, and dual speed settings for quieter day cleaning, the i-mop XL Pro adapts to any environment. Its brushless motor extends runtime and reduces noise, while i-balance technology improves ergonomics, making it easier to handle. A coated deck allows safe use in wet areas like pools and saunas, and the antimicrobial tanks keep the machine fresher between uses. For high-performance cleaning on all hard floors, the XL Pro's 350 RPM brushes provide powerful, professional results.",
+        "technicalSpecs": [
+          { "label": "Laufzeit", "value": "90+ mins" },
+          { "label": "Praktische Leistung", "value": "1000-1300 m²/h" },
+          { "label": "Bürstengeschwindigkeit", "value": "350 RPM" }
+        ],
+        "features": [
+          {
+            "number": "01",
+            "title": "2 Speed settings",
+            "description": "Low noise setting for day time cleaning"
+          },
+          {
+            "number": "02",
+            "title": "i-link",
+            "description": "All machine data available in the cloud"
+          },
+          {
+            "number": "03",
+            "title": "Microban® antimicrobial tanks",
+            "description": "This innovation allows the tank to remain cleaner between cleanings"
+          },
+          {
+            "number": "04",
+            "title": "i-dose",
+            "description": "For easy dosing of liquids"
+          },
+          {
+            "number": "05",
+            "title": "Brushless motor",
+            "description": "Low noise level and longer run time"
+          },
+          {
+            "number": "06",
+            "title": "i-balance",
+            "description": "Better ergonomics and more job satisfaction for the cleaner"
+          },
+          {
+            "number": "07",
+            "title": "Coated deck",
+            "description": "For swimming pools and saunas"
+          },
+          {
+            "number": "08",
+            "title": "Powerful cleaning on all hard floor surfaces",
+            "description": "With high speed 350RPM brushes"
+          }
+        ]
+      },
+      {
+        "id": "product5",
+        "tabTitle": "co-botic 1900",
+        "tabDesc": "Smart and consistent hotel cleaning solution.",
+        "tabImage": { "src": "/product5.png", "alt": "co-botic 1900" },
+        "name": "co-botic 1900",
+        "heroImage": { "src": "/co-botic1900_740x740.jpg", "alt": "co-botic 1900" },
+        "video": { "src": "/product1.mp4", "alt": "i mop36" },
+        "featuresImage": { "src": "/co-botic1900_740x740.jpg", "alt": "i mop36" },
+        "savingsTitle": "Product benefits",
+        "savingsSubtitle": "",
+        "stats": [
+          { "icon": "💪", "label": "Ergonomic", "value": "relieves cleaners of physical strain", "sub": "" },
+          { "icon": "🌬️", "label": "Cleaner air", "value": "less emission of dust, bacteria & allergens", "sub": "" },
+          { "icon": "⏱️", "label": "Saves time", "value": "4 minutes per hotel room", "sub": "" }
+        ],
+        "description": "We know that every hotel aims for a 5-star review, and clean floors play a big part in that. The co-botic 1900 Drop & Go cleans floors with precision, allowing you to focus on more complex tasks. Co-designed with cleaning professionals, this compact, powerful, and fully autonomous machine delivers consistent, high-quality results every time.",
+        "technicalSpecs": [
+          { "label": "Laufzeit", "value": "up to 4h with 2x i-power 8.7, up to 5h with 2x i-power 10.5" },
+          { "label": "Saugleistung", "value": "3 speeds: 4, 8 and 20 KPA" },
+          { "label": "Kapazität", "value": "2L" },
+          { "label": "Dust bin", "value": "2L anti-mold dust bin with HEPA 11 filter" }
+        ],
+        "features": [
+          {
+            "number": "01",
+            "title": "Laser navigation",
+            "description": "Precise guidance and mapping"
+          },
+          {
+            "number": "02",
+            "title": "i-scent pod",
+            "description": "Releases fragrance into the air"
+          },
+          {
+            "number": "03",
+            "title": "Emergency stop button",
+            "description": "For extra safety"
+          },
+          {
+            "number": "04",
+            "title": "WiFi and 4G SIM",
+            "description": "Easy to connect"
+          },
+          {
+            "number": "05",
+            "title": "Swappable batteries",
+            "description": "Easy to exchange and to keep working"
+          },
+          {
+            "number": "06",
+            "title": "Cable detection sensor",
+            "description": "Analyzes and navigates over obstacles"
+          },
+          {
+            "number": "07",
+            "title": "Built-in speaker",
+            "description": "Anti-collision warning"
+          },
+          {
+            "number": "08",
+            "title": "Track eraser pad",
+            "description": "Smooths wheel marks, leaving carpets flawless"
+          },
+          {
+            "number": "09",
+            "title": "Rotating side brush",
+            "description": "For edge cleaning"
+          }
         ]
       }
     ]

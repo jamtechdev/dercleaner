@@ -10,9 +10,14 @@ type Product = {
   tabImage: { src: string; alt: string };
   name: string;
   heroImage: { src: string; alt: string };
+  video?: { src: string; alt: string };
+  featuresImage?: { src: string; alt: string };
   savingsTitle: string;
   savingsSubtitle: string;
   stats: { icon: string; label: string; value: string; sub: string }[];
+  description?: string;
+  technicalSpecs?: { label: string; value: string }[];
+  features?: { number: string; title: string; description: string }[];
 };
 
 export default function ProductShowcase({ site }: { site: any }) {
@@ -244,19 +249,40 @@ function ProductDetailsModal({
             <h2 className="text-brand text-3xl md:text-4xl font-bold italic mb-2">
               {product.name}
             </h2>
-            {product.tabDesc && (
+            {product.description && (
+              <p className="text-gray-600 text-lg mb-4">{product.description}</p>
+            )}
+            {product.tabDesc && !product.description && (
               <p className="text-gray-600 text-lg">{product.tabDesc}</p>
             )}
           </div>
 
-          {/* Product Image */}
+          {/* Product Image or Video */}
           <div className="relative w-full h-[300px] md:h-[400px] mb-8 bg-gray-50 rounded-xl overflow-hidden">
-            <Image
-              src={product.heroImage.src}
-              alt={product.heroImage.alt}
-              fill
-              className="object-contain p-4"
-            />
+            {product.featuresImage && product.featuresImage.src ? (
+              <Image
+                src={product.featuresImage.src}
+                alt={product.featuresImage.alt}
+                fill
+                className="object-contain p-4"
+              />
+            ) : product.video && product.video.src ? (
+              <video
+                src={product.video.src}
+                controls
+                className="w-full h-full object-contain"
+                aria-label={product.video.alt}
+              >
+                Your browser does not support the video tag.
+              </video>
+            ) : (
+              <Image
+                src={product.heroImage.src}
+                alt={product.heroImage.alt}
+                fill
+                className="object-contain p-4"
+              />
+            )}
           </div>
 
           {/* Savings Info */}
@@ -269,9 +295,9 @@ function ProductDetailsModal({
             </p>
           </div>
 
-          {/* Stats Grid */}
+          {/* Stats Grid - Savings */}
           <div className="mb-8">
-            <h3 className="text-2xl font-bold text-gray-800 mb-4">Technische Daten</h3>
+            <h3 className="text-2xl font-bold text-gray-800 mb-4">Einsparungen</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {product.stats.map((stat) => (
                 <div
@@ -295,20 +321,56 @@ function ProductDetailsModal({
             </div>
           </div>
 
-          {/* Additional Product Info Section */}
-          <div className="border-t pt-6">
-            <h3 className="text-2xl font-bold text-gray-800 mb-4">Produktdetails</h3>
-            <div className="space-y-3 text-gray-700">
-              <div className="flex justify-between py-2 border-b">
-                <span className="font-semibold">Produktname:</span>
-                <span>{product.name}</span>
-              </div>
-              <div className="flex justify-between py-2 border-b">
-                <span className="font-semibold">Kategorie:</span>
-                <span>{product.tabTitle}</span>
+          {/* Technical Specifications */}
+          {product.technicalSpecs && product.technicalSpecs.length > 0 && (
+            <div className="mb-8 border-t pt-6">
+              <h3 className="text-2xl font-bold text-gray-800 mb-4">Technische Daten</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {product.technicalSpecs.map((spec, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center justify-between p-5 rounded-2xl bg-[var(--tertiary-color)]"
+                  >
+                    <p className="text-brand font-bold text-lg">
+                      {spec.label}:
+                    </p>
+                    <p className="text-xl font-medium text-gray-800">
+                      {spec.value}
+                    </p>
+                  </div>
+                ))}
               </div>
             </div>
-          </div>
+          )}
+
+          {/* Features */}
+          {product.features && product.features.length > 0 && (
+            <div className="border-t pt-6">
+              <h3 className="text-2xl font-bold text-gray-800 mb-6">Features</h3>
+              <div className="space-y-6">
+                {product.features.map((feature, index) => (
+                  <div
+                    key={index}
+                    className="flex gap-4 p-5 rounded-2xl bg-[var(--tertiary-color)]"
+                  >
+                    <div className="flex-shrink-0">
+                      <span className="text-brand font-bold text-2xl">
+                        {feature.number}
+                      </span>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="text-xl font-bold text-gray-800 mb-2">
+                        {feature.title}
+                      </h4>
+                      <p className="text-gray-700 leading-relaxed">
+                        {feature.description}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
