@@ -82,13 +82,14 @@ export default function ProductShowcase({ site }: { site: any }) {
 
             {/* Stats Cards */}
             <div className="space-y-4 md:space-y-10 einsparungen-boxes ">
-              {activeProduct.stats.map((s) => (
+              {activeProduct.stats.map((s,index) => (
                 <StatCard
                   key={s.label}
                   icon={s.icon}
                   label={s.label}
                   value={s.value}
                   sub={s.sub}
+                  index={index}
                 />
               ))}
             </div>
@@ -186,6 +187,7 @@ function StatCard({
   label,
   value,
   sub,
+  index
 }: {
   icon: string;
   label: string;
@@ -194,7 +196,7 @@ function StatCard({
 }) {
   return (
     <div className="flex items-center p-4 rounded-2xl w-full max-w-sm bg-[var(--tertiary-color)]">
-      <div className="w-12 h-12 bg-brand rounded-full flex items-center justify-center text-white text-xl mr-4 imop-img">
+    <div className={`w-12 h-12 bg-brand rounded-full flex items-center justify-center text-white text-xl mr-4 imop-img stack-card-${label}`} >
         <img
           src={icon} // Path to the SVG file
           alt={label} // Alternative text for accessibility
