@@ -79,8 +79,8 @@ export default function Contact({ site }: { site: any }) {
   };
 
   return (
-    <section id="kontakt" className="scroll-mt-24 bg-white py-12 md:py-26 px-4">
-      <div className="max-w-6xl mx-auto">
+    <section id="kontakt" className="scroll-mt-24 bg-white py-12 md:py-26 px-4 ">
+      <div className="max-w-7xl mx-auto mt-12">
         <h2 className="text-2xl sm:text-3xl font-bold mb-2 md:mb-2 max-w-xl leading-tight uppercase">
           {site.contactSection.title}
         </h2>
@@ -190,7 +190,7 @@ export default function Contact({ site }: { site: any }) {
 
               <button
                 disabled={pending}
-                className="bg-brand-cta text-white font-bold py-4 rounded-full uppercase hover:bg-brand transition disabled:opacity-60 disabled:cursor-not-allowed"
+                className="form-btn bg-brand-cta text-white font-bold py-4 rounded-full uppercase hover:bg-brand transition disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 {pending ? "Wird gesendet..." : site.contactSection.form.submitLabel}
               </button>

@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Footer = ({ site }: { site: any }) => {
   return (
-    <footer className="w-full bg-white pt-10">
+    <footer className="w-full bg-white ">
       <div className="max-w-6xl mx-auto px-4 pb-12">
         {/* Top Border Line */}
         <div className="border-t border-gray-200 mb-10"></div>
