@@ -43,7 +43,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  /* font-family: var(--font-sans), Arial, Helvetica, sans-serif; */
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -64,6 +64,10 @@ body {
   transform: scale(3.5);
   padding-bottom: 1.5rem;
   padding-right: 6px;
+}
+
+body{
+  /* font-family: "Geist Mono", "; */
 }
 
 
@@ -227,6 +231,18 @@ body {
 .form-btn{
 
   padding:15px 60px;
+}
+
+.stack-card-Sauberere{
+  border-radius: 50%;
+  width: 100px;
+  height: 51px;
+}
+
+.stack-card-Ergonomisch {
+  border-radius: 50%;
+  width: 90px;
+  height: 51px;
 }
 
 .product1 img{

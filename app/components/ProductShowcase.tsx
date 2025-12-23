@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 type Product = {
@@ -82,7 +83,7 @@ export default function ProductShowcase({ site }: { site: any }) {
 
             {/* Stats Cards */}
             <div className="space-y-4 md:space-y-10 einsparungen-boxes ">
-              {activeProduct.stats.map((s,index) => (
+              {activeProduct.stats.map((s, index) => (
                 <StatCard
                   key={s.label}
                   icon={s.icon}
@@ -109,9 +110,19 @@ export default function ProductShowcase({ site }: { site: any }) {
                 </span>
 
               </button>
-              <button className="bg-ink text-white w-full sm:w-auto px-10 py-3 rounded-full font-bold hover:bg-black hover:scale-105 transition-all duration-300 demo-buchen">
+              <a 
+                href="#kontakt" 
+                onClick={(e) => {
+                  e.preventDefault();
+                  const element = document.getElementById('kontakt');
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                }}
+                className="bg-ink text-white w-full sm:w-auto px-10 py-3 rounded-full font-bold hover:bg-black hover:scale-105 transition-all duration-300 demo-buchen inline-block text-center"
+              >
                 {site.productsSection.actions.demoLabel}
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -197,7 +208,7 @@ function StatCard({
 }) {
   return (
     <div className="flex items-center p-4 rounded-2xl w-full max-w-sm bg-[var(--tertiary-color)]">
-    <div className={`w-12 h-12 bg-brand rounded-full flex items-center justify-center text-white text-xl mr-4 imop-img stack-card-${label}`} >
+      <div className={`w-12 h-12 bg-brand rounded-full flex items-center justify-center text-white text-xl mr-4 imop-img stack-card-${label}`} >
         <img
           src={icon} // Path to the SVG file
           alt={label} // Alternative text for accessibility

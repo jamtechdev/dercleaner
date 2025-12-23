@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function FeaturesAndAbout({ site }: { site: any }) {
   return (
-    <div id="ueber-uns" className="scroll-mt-1 w-full bg-white">
+    <div  className="w-full bg-white">
       {/* Top Section: Features Grid */}
       <div className="max-w-7xl mx-auto py-20  md:py-50">
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 md:gap-5 schneller-boxes">
@@ -30,7 +30,7 @@ export default function FeaturesAndAbout({ site }: { site: any }) {
       </div>
 
       {/* Bottom Section: About Us */}
-      <div className="bg-surface-alt">
+      <div id="ueber-uns" className="bg-surface-alt scroll-mt-8">
         <div className="flex flex-col md:w-[80%] mx-auto md:flex-row min-h-[600px] md:gap-20 uber-uns-img">
           {/* Left: Image with Background Color */}
           <div className="md:w-1/2 relative bg-about flex items-end justify-center overflow-hidden">
