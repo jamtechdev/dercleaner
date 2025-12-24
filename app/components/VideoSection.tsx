@@ -37,7 +37,7 @@ export function VideoSection({ site }: { site: any }) {
   }, []);
 
   return (
-    <section className="relative h-[500px] w-full overflow-hidden bg-gray-200 md:h-[92vh]">
+    <section className="relative h-[500px] w-full overflow-hidden bg-gray-200 md:h-[92vh] hero-section">
       <video
         ref={videoRef}
         className="absolute inset-0 h-full w-full object-cover"

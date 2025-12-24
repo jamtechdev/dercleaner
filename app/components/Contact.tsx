@@ -84,7 +84,7 @@ export default function Contact({ site }: { site: any }) {
         <h2 className="text-4xl font-bold text-brand md:mb-2 max-w-xl leading-tight uppercase">
           {site.contactSection.title}
         </h2>
-        <div className="text-gray-400">{site.contactSection.subtitle}</div>
+        <div className="max-w-7xl mx-auto text-sm sm:text-base">{site.contactSection.subtitle}</div>
         
         {/* The Container */}
         <div className="bg-brand-surface rounded-[28px] sm:rounded-[40px] p-6 sm:p-8 md:p-12 shadow-sm mt-6">
@@ -190,7 +190,7 @@ export default function Contact({ site }: { site: any }) {
 
               <button
                 disabled={pending}
-                className="form-btn bg-brand-cta text-white font-bold py-4 rounded-full uppercase hover:bg-brand transition disabled:opacity-60 disabled:cursor-not-allowed"
+                className="form-btn submit-button-desktop bg-brand-cta text-white font-bold py-4 rounded-full uppercase hover:bg-brand transition disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 {pending ? "Wird gesendet..." : site.contactSection.form.submitLabel}
               </button>
@@ -212,6 +212,13 @@ export default function Contact({ site }: { site: any }) {
                   errors.message ? "ring-2 ring-red-400" : ""
                 }`}
                 />
+
+                <button
+                disabled={pending}
+                className="form-btn mt-5 submit-button-mobile bg-brand-cta text-white font-bold py-4 rounded-full uppercase hover:bg-brand transition disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                {pending ? "Wird gesendet..." : site.contactSection.form.submitLabel}
+              </button>
                 {errors.message && (
                   <p
                     id="contact-message-error"

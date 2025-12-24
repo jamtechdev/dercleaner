@@ -42,7 +42,7 @@
       {
         "id": "product1",
         "tabTitle": "IMOP 36",
-        "tabDesc": "Der imop 36 ist eine effektive und zugleich budgetfreundliche Reinigungslösung. Seine modulare Bauweise ermöglicht eine einfache Wartung und den Austausch von Teilen und bietet gleichzeitig eine zuverlässige Leistung zum niedrigsten Preis der i-mop-Reihe.",
+        "tabDesc": "Der imop 36 ist eine effektive und zugleich budgetfreundliche Reinigungslösung. ",
         "tabImage": {
           "src": "/product1.png",
           "alt": "i mop36"
@@ -140,7 +140,7 @@
       {
         "id": "product2",
         "tabTitle": "i-mop 40 Pro",
-        "tabDesc": "Der i-mop 40 Pro wurde für die härtesten Umgebungen entwickelt und ist Ihre ultimative Reinigungslösung. Von stark frequentierten Bereichen bis hin zu chlorhaltigen Wellnessbereichen bietet er unübertroffene Haltbarkeit und Präzision.",
+        "tabDesc": "Der i-mop 40 Pro wurde für die härtesten Umgebungen entwickelt und ist Ihre ultimative Reinigungslösung.",
         "tabImage": {
           "src": "/product2.png",
           "alt": "i-mop 40 Pro"
@@ -238,7 +238,7 @@
       {
         "id": "product3",
         "tabTitle": "i-walk",
-        "tabDesc": "Revolutionieren Sie Ihre Reinigungsprozesse mit dem I-walk 46. Der co-botische Reinigungsroboter, der Ihren i-mop XL ergänzt. Für überragende Effizienz und mehr Zeit für andere Aufgaben.",
+        "tabDesc": "Revolutionieren Sie Ihre Reinigungsprozesse mit dem I-walk 46. Der co-botische Reinigungsroboter",
         "tabImage": {
           "src": "/product3.png",
           "alt": "i-walk"
@@ -347,7 +347,7 @@
       {
         "id": "product4",
         "tabTitle": "i-mop XL Pro",
-        "tabDesc": "Der i-mop XL Pro kombiniert robuste Leistung mit intelligenten Upgrades für Reinigungseffizienz auf höchstem Niveau. Ausgestattet mit einzigartigen Funktionen, bietet er Ihnen mehr Kontrolle, Präzision und Flexibilität bei jeder Reinigungsaufgabe.",
+        "tabDesc": "Der i-mop XL Pro kombiniert robuste Leistung mit intelligenten Upgrades für Reinigungseffizienz. ",
         "tabImage": {
           "src": "/product4.png",
           "alt": "i-mop XL Pro"

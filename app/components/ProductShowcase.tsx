@@ -36,7 +36,7 @@ export default function ProductShowcase({ site }: { site: any }) {
     >
 
       {/* Sidebar Navigation */}
-      <aside className="w-full md:w-1/3 flex flex-col gap-4 md:ml-6 bg-[var(--tertiary-color)] py-8 md:pt-20 md:pb-12 imop-buttons">
+      <aside className="w-full md:w-1/3 flex flex-col gap-2 md:ml-6 bg-[var(--tertiary-color)] py-8  md:pb-12 imop-buttons">
         {products.map((p) => (
           <ProductTab
             key={p.id}
@@ -69,7 +69,7 @@ export default function ProductShowcase({ site }: { site: any }) {
 
           {/* Product Details */}
           <div className="w-full md:w-1/2 space-y-5 md:space-y-10">
-            <header className="dc-animate-fade-up md:mb-15">
+            <header className="dc-animate-fade-up ">
               <h2 className="text-brand text-3xl sm:text-4xl font-bold italic">
                 {activeProduct.name}
               </h2>
@@ -96,10 +96,10 @@ export default function ProductShowcase({ site }: { site: any }) {
             </div>
 
             {/* Actions */}
-            <div className="pt-4 space-y-4 md:space-y-14 technishe-daten">
+            <div className=" space-y-4 md:space-y-14 technishe-daten">
               <button
                 onClick={() => setIsModalOpen(true)}
-                className="flex items-start text-gray-800 font-bold pb-1 flex-col hover:opacity-80 transition-opacity cursor-pointer"
+                className="flex items-start text-gray-800 font-bold  flex-col hover:opacity-80 transition-opacity cursor-pointer technische-arrow"
               >
                 {site.productsSection.actions.techDataLabel}{" "}
 
@@ -171,7 +171,7 @@ function ProductTab({
       aria-pressed={isActive}
     >
       <div className="flex items-center gap-4">
-        <div className="w-10 h-10 sm:w-16 sm:h-16 relative flex-shrink-0">
+        <div className="w-10 h-10 sm:w-20 sm:h-20 relative flex-shrink-0">
           <Image
             src={imageSrc}
             alt={imageAlt}
@@ -217,8 +217,8 @@ function StatCard({
       </div>
       <div>
         <p className="text-brand font-bold text-[18px] leading-none mb-1">{label}</p>
-        <p className="text-[16px] md:text-xl font-medium text-gray-800 leading-none">{value}</p>
-        <p className="text-[14px] md:text-[18px] font-medium text-gray-800">{sub}</p>
+        <p className="text-[16px] md:text-xl font-medium text-gray-800 leading-none pop-up-date">{value}</p>
+        <p className="text-[14px] md:text-[18px] font-medium text-gray-800 pop-up-date">{sub}</p>
       </div>
     </div>
   );

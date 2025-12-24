@@ -65,25 +65,39 @@ body {
 }
 
 .active-product img {
-  transform: scale(3.5);
+  transform: scale(2.1);
   padding-bottom: 1.5rem;
   padding-right: 6px;
+}
+
+.technische-arrow{
+  margin:20px 0px;;
 }
 
 
 
 /* updated code */
 .einsparungen-boxes > div{
-  padding: 25px 25px !important;
+  padding: 20px 20px !important;
   /* background:blue !important; */
 }
 
+.einsparungen-boxes > div{
+  margin:20px 0px;;
+}
+
 .technishe-daten{
-  margin-top: 80px;;
+  /* margin-top: 80px;; */
+}
+
+.imop-buttons{
+
+  background:none;
 }
 
 .imop-buttons button{
-  margin:10px 0px;
+  margin:5px 0px;
+  padding: 18px;
 }
 
 .demo-buchen{
@@ -257,6 +271,10 @@ body{
   color: black !important;;
 }
 
+   .submit-button-mobile{
+    display: none !important;
+  }
+
 
 /* Simple brand-friendly animations */
 @media (prefers-reduced-motion: no-preference) {
@@ -280,6 +298,10 @@ body{
   .uber-uns-img{
     gap:0 !important;
   }
+
+      .imop-buttons p {
+        display: none;
+    }
 }
 
 @media (max-width: 768px) {
@@ -287,6 +309,14 @@ body{
     padding-bottom: 0.8rem;
     padding-right: 6px;
     transform: scale(2.8);
+  }
+
+  .submit-button-desktop{
+    display: none;
+  }
+
+   .submit-button-mobile{
+    display: block !important;
   }
 
   .menu-cut-btn{
@@ -326,6 +356,23 @@ body{
 }
 
 
+@media(max-width:548px){
+  .hero-section{
+    height: 50vh !important;;
+  }
+
+  @media (max-width: 548px) {
+    .hero-section video {
+           height: 50vh !important;;
+                /* Ensure the video fills the container's height */
+        object-fit: cover;          /* Cover the container, maintaining aspect ratio */
+        object-position: center;    /* Center the video content */
+    }
+}
+
+}
+
+
 body,html{
    font-family: "Roboto", sans-serif;
 }
@@ -346,7 +393,7 @@ h1, h2, span, h3, p, button {
 
 
 .mission-section{
-  background-image: url('/imo2.png');
+  background-image: url('/imop3.png') !important;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
