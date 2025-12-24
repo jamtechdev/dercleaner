@@ -179,7 +179,7 @@ function ProductTab({
             src={imageSrc}
             alt={imageAlt}
             fill
-            className="object-contain"
+            className="object-contain active-first-image"
           />
         </div>
         <div className="min-w-0 flex-1 " >

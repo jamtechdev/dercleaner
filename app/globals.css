@@ -64,8 +64,8 @@ body {
   --quaternary-color: #2E3A48;
 }
 
-.active-product>img {
-  transform: scale(2.1);
+.active-product div .active-first-image {
+  transform: scale(2.5);
   padding-bottom: 1.5rem;
   padding-right: 6px;
 }
@@ -97,7 +97,7 @@ body {
 }
 
 .imop-buttons button {
-  margin: 5px 0px;
+  margin: 0px 0px;
   padding: 18px;
 }
 
@@ -148,10 +148,7 @@ body {
   /* width: 30px !important; */
 }
 
-.imop-buttons {
-  height: 90vh;
-  overflow: auto;
-}
+
 
 .pop-up-date {
   font-size: 16px !important;
@@ -259,7 +256,6 @@ body {
 
 .product1 img {
   object-fit: cover !important;
-  ;
 }
 
 .font-36 {
@@ -313,7 +309,7 @@ textarea {
   }
 
   .imop-buttons{
-    margin-top: 40px;;
+    margin-top: 20px;;
   }
 
 
@@ -347,11 +343,6 @@ textarea {
 }
 
 @media (max-width: 768px) {
-  .active-product>img {
-    padding-bottom: 0.8rem;
-    padding-right: 6px;
-    transform: scale(2.8);
-  }
 
   .right-arrow2 {
     object-fit: contain;
@@ -428,21 +419,28 @@ textarea {
 
 
 @media(max-width:548px) {
-  .hero-section {
-    height: 50vh !important;
-    ;
-  }
+     .hero-section {
+        height: 263px;
+        /* margin-top: 20px; */
+        background-color: white;;
+    }
+
+    body{
+      background-color: white;;
+    }
+
+  .active-product div .active-first-image {
+    padding-bottom: 10px;
+    padding-right: 6px;
+    transform: scale(2.9) !important;
+}
 
   @media (max-width: 548px) {
     .hero-section video {
-      height: 50vh !important;
-      ;
-      /* Ensure the video fills the container's height */
-      object-fit: cover;
-      /* Cover the container, maintaining aspect ratio */
-      object-position: center;
-      /* Center the video content */
-    }
+            object-fit: contain;
+            object-position: center;
+            height: 100%;;
+        }
   }
 
 }
