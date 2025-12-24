@@ -2,17 +2,17 @@
 
   export default function MissionSection({ site }: { site: any }) {
     return (
-      <section className="w-full font-sans">
+      <section className="w-full font-sans mission-section">
         <div className="relative w-full min-h-[520px] md:h-[800px] flex items-center justify-center md:justify-end overflow-hidden px-4 md:px-0">
         {/* Background Image - High Quality SSR optimized */}
         <div className="absolute inset-0 z-0">
-          <Image
+          {/* <Image
             src={site.missionSection.hero.backgroundImage.src}
             alt={site.missionSection.hero.backgroundImage.alt}
             fill
-            className="object-cover"
+            // className="object-cover"
             priority
-          />
+          /> */}
         </div>
 
         {/* Glassmorphism Text Card */}
@@ -45,7 +45,7 @@
                       </div>
 
                       {/* Grid */}
-                      <div className="md:w-2/3 grid grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-4">
+                      <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-4">
                           {(site.missionSection.industries as Array<{ name: string; icon: string }>).map((item, index: number) => (
                               <div key={index} className="flex items-center gap-3 border-b border-[var(--primary-color)] pb-2">
                                   <span className="text-brand text-xl">{item.icon}</span>

@@ -132,9 +132,17 @@ body {
   width:30px !important;
 }
 
+.stack-card-Ergonomisch{
+  width:85px !important;
+}
+.stack-card-Sauberere{
+  width:92px !important;
+
+}
+
 
 .pop-up-date{
-  font-size: 16px;;
+  font-size: 16px !important;;
 }
 
 .pop-up-technische-box{
@@ -260,6 +268,12 @@ body{
   }
 }
 
+@media(max-width:991px){
+  .uber-uns-img{
+    gap:0 !important;
+  }
+}
+
 @media (max-width: 768px) {
   .active-product img {
     padding-bottom: 0.8rem;
@@ -267,9 +281,21 @@ body{
     transform: scale(2.8);
   }
 
+  h2{
+    font-size: 30px !important;
+  }
+
+  .owner-img{
+    min-height: 600px;;
+  }
+
   .imop-buttons{
     padding:25px;
     display: flex;
+  }
+
+  .schneller-boxes{
+    gap:0 !important;
   }
 
 
@@ -297,12 +323,16 @@ body,html{
 
 }
 
-p{
-       font-family: "Roboto", sans-serif !important;
-  
+h1, h2, span, h3, p, button {
+   font-family: "Roboto", sans-serif !important;
 }
 
-h2{
-       font-family: "Roboto", sans-serif !important;
-  
+
+.mission-section{
+  background-image: url('/imo2.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
+
+
