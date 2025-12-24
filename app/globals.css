@@ -312,6 +312,10 @@ textarea {
     left: 79% !important;
   }
 
+  .imop-buttons{
+    margin-top: 40px;;
+  }
+
 
 /* Simple brand-friendly animations */
 @media (prefers-reduced-motion: no-preference) {
@@ -354,6 +358,7 @@ textarea {
     width: 25px !important;
     position: absolute !important;
     left: 79% !important;
+    display: block !important;
   }
 
   .md-mb-10 {

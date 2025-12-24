@@ -36,8 +36,8 @@ export default function ProductShowcase({ site }: { site: any }) {
     >
 
       {/* Sidebar Navigation */}
-      <aside className="w-full md:w-1/3 flex flex-row md:flex-col gap-2 md:gap-4 overflow-x-auto md:overflow-x-visible md:ml-6 bg-[var(--tertiary-color)] py-4 md:py-8 md:pt-20 md:pb-12 px-4 md:px-0 imop-buttons">
-        {products.map((p) => (
+      <aside className="w-full md:w-1/3 flex flex-row md:flex-col gap-2 md:gap-4 overflow-x-auto md:overflow-x-visible md:ml-6 bg-[var(--tertiary-color)] py-4 md:py-8  md:pb-12 px-4 md:px-0 imop-buttons">
+        {products.map((p, index) => (
           <ProductTab
             key={p.id}
             name={p.tabTitle}
@@ -45,6 +45,7 @@ export default function ProductShowcase({ site }: { site: any }) {
             imageSrc={p.tabImage.src}
             imageAlt={p.tabImage.alt}
             isActive={p.id === activeId}
+            end={index === products.length - 1}
             onClick={() => setActiveId(p.id)}
           />
         ))}
@@ -110,8 +111,8 @@ export default function ProductShowcase({ site }: { site: any }) {
                 </span>
 
               </button>
-              <a 
-                href="#kontakt" 
+              <a
+                href="#kontakt"
                 onClick={(e) => {
                   e.preventDefault();
                   const element = document.getElementById('kontakt');
@@ -151,6 +152,7 @@ function ProductTab({
   imageSrc,
   imageAlt,
   isActive,
+  end,
   onClick,
 }: {
   name: string;
@@ -158,6 +160,7 @@ function ProductTab({
   imageSrc: string;
   imageAlt: string;
   isActive: boolean;
+  end: boolean;
   onClick: () => void;
 }) {
   return (
@@ -179,10 +182,17 @@ function ProductTab({
             className="object-contain"
           />
         </div>
-        <div className="min-w-0 flex-1 flex">
+        <div className="min-w-0 flex-1 " >
           <h3 className="font-bold text-sm md:text-base sm:text-lg truncate md:truncate-none">{name}</h3>
-          <Image
-          src={isActive ? `/right-arrow.png` : `/right-arrow2.png`} alt="right-arrow" fill className="right-arrow2"/>
+          {!end && (
+            <Image
+              src={isActive ? `/right-arrow.png` : `/right-arrow2.png`}
+              alt="right-arrow"
+              fill
+              className="right-arrow2"
+            />
+          )}
+
           {desc && (
             <p className="text-xs mt-1 leading-tight pop-up-date line-clamp-2 md:line-clamp-none">
               {desc}
