@@ -32,11 +32,11 @@ export default function ProductShowcase({ site }: { site: any }) {
   return (
     <section
       id="produkte"
-      className="scroll-mt-24 flex flex-col md:flex-row min-h-[600px] w-full bg-white font-sans"
+      className="scroll-mt-24 flex flex-col md:flex-row min-h-[600px] w-full bg-white font-sans overflow-x-hidden"
     >
 
       {/* Sidebar Navigation */}
-      <aside className="w-full md:w-1/3 flex flex-col gap-4 md:ml-6 bg-[var(--tertiary-color)] py-8 md:pt-20 md:pb-12 imop-buttons">
+      <aside className="w-full md:w-1/3 flex flex-row md:flex-col gap-2 md:gap-4 overflow-x-auto md:overflow-x-visible md:ml-6 bg-[var(--tertiary-color)] py-4 md:py-8 md:pt-20 md:pb-12 px-4 md:px-0 imop-buttons">
         {products.map((p) => (
           <ProductTab
             key={p.id}
@@ -51,13 +51,13 @@ export default function ProductShowcase({ site }: { site: any }) {
       </aside>
 
       {/* Main Content Area */}
-      <div className="relative flex-1 flex flex-col md:flex-row items-center gap-8 md:gap-0 p-6 sm:p-8 md:p-16">
+      <div className="relative flex-1 flex flex-col md:flex-row gap-4 md:gap-8 md:gap-0 p-4 sm:p-6 md:p-16 w-full overflow-x-hidden">
         <div
           key={activeProduct.id}
-          className="dc-animate-fade-up contents"
+          className="dc-animate-fade-up w-full flex flex-col md:flex-row gap-4 md:gap-8 md:items-center"
         >
           {/* Large Product Image */}
-          <div className="relative w-full md:w-1/2 h-[280px] sm:h-[360px] md:h-[550px]">
+          <div className="relative w-full md:w-1/2 h-[250px] sm:h-[320px] md:h-[550px] flex-shrink-0 mx-auto md:mx-0">
             <Image
               key={activeProduct.heroImage.src}
               src={activeProduct.heroImage.src}
@@ -68,12 +68,12 @@ export default function ProductShowcase({ site }: { site: any }) {
           </div>
 
           {/* Product Details */}
-          <div className="w-full md:w-1/2 space-y-5 md:space-y-10">
-            <header className="dc-animate-fade-up md:mb-15">
-              <h2 className="text-brand text-3xl sm:text-4xl font-bold italic">
+          <div className="w-full md:w-1/2 space-y-4 md:space-y-10 flex flex-col">
+            <header className="dc-animate-fade-up md:mb-15 text-left">
+              <h2 className="text-brand text-2xl sm:text-3xl md:text-4xl font-bold italic">
                 {activeProduct.name}
               </h2>
-              <p className="text-gray-700 text-lg sm:text-xl font-semibold mt-2">
+              <p className="text-gray-700 text-base sm:text-lg md:text-xl font-semibold mt-2">
                 {activeProduct.savingsTitle} <br />
                 <span className="font-normal text-gray-500">
                   {activeProduct.savingsSubtitle}
@@ -82,7 +82,7 @@ export default function ProductShowcase({ site }: { site: any }) {
             </header>
 
             {/* Stats Cards */}
-            <div className="space-y-4 md:space-y-10 einsparungen-boxes ">
+            <div className="space-y-3 md:space-y-10 einsparungen-boxes w-full">
               {activeProduct.stats.map((s, index) => (
                 <StatCard
                   key={s.label}
@@ -96,15 +96,15 @@ export default function ProductShowcase({ site }: { site: any }) {
             </div>
 
             {/* Actions */}
-            <div className="pt-4 space-y-4 md:space-y-14 technishe-daten">
+            <div className="pt-2 md:pt-4 space-y-3 md:space-y-14 technishe-daten w-full">
               <button
                 onClick={() => setIsModalOpen(true)}
-                className="flex items-start text-gray-800 font-bold pb-1 flex-col hover:opacity-80 transition-opacity cursor-pointer"
+                className="flex items-start text-gray-800 font-bold pb-1 flex-col hover:opacity-80 transition-opacity cursor-pointer w-full md:w-auto text-left"
               >
                 {site.productsSection.actions.techDataLabel}{" "}
 
-                <span className="">
-                  <svg width="150" height="15" viewBox="0 0 195 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <span className="w-full max-w-[150px] md:max-w-none mt-1">
+                  <svg width="100%" height="15" viewBox="0 0 195 15" fill="none" xmlns="http://www.w3.org/2000/svg" className="max-w-[150px] md:max-w-none">
                     <path d="M194.707 8.07112C195.098 7.6806 195.098 7.04743 194.707 6.65691L188.343 0.292946C187.953 -0.0975785 187.319 -0.0975785 186.929 0.292946C186.538 0.68347 186.538 1.31664 186.929 1.70716L192.586 7.36401L186.929 13.0209C186.538 13.4114 186.538 14.0446 186.929 14.4351C187.319 14.8256 187.953 14.8256 188.343 14.4351L194.707 8.07112ZM0 7.36401V8.36401H194V7.36401V6.36401H0V7.36401Z" fill="black" />
                   </svg>
                 </span>
@@ -119,7 +119,7 @@ export default function ProductShowcase({ site }: { site: any }) {
                     element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                   }
                 }}
-                className="bg-ink text-white w-full sm:w-auto px-10 py-3 rounded-full font-bold hover:bg-black hover:scale-105 transition-all duration-300 demo-buchen inline-block text-center"
+                className="bg-ink text-white w-full md:w-auto px-8 md:px-10 py-3 rounded-full font-bold hover:bg-black hover:scale-105 transition-all duration-300 demo-buchen inline-block text-center"
               >
                 {site.productsSection.actions.demoLabel}
               </a>
@@ -164,14 +164,14 @@ function ProductTab({
     <button
       type="button"
       onClick={onClick}
-      className={`p-4 sm:p-6 text-left transition-colors md:py-10 md:my-5 ${isActive
+      className={`p-3 md:p-4 sm:p-6 text-left transition-colors flex-shrink-0 min-w-[200px] md:min-w-0 md:w-full md:py-10 md:my-5 ${isActive
         ? "bg-[var(--primary-color)] text-white active-product"
         : "bg-[var(--secondary-color)]  text-[var(--primary-color)]"
         }`}
       aria-pressed={isActive}
     >
-      <div className="flex items-center gap-4">
-        <div className="w-10 h-10 sm:w-16 sm:h-16 relative flex-shrink-0">
+      <div className="flex items-center gap-3 md:gap-4">
+        <div className="w-10 h-10 md:w-12 md:h-12 sm:w-16 sm:h-16 relative flex-shrink-0">
           <Image
             src={imageSrc}
             alt={imageAlt}
@@ -179,10 +179,10 @@ function ProductTab({
             className="object-contain"
           />
         </div>
-        <div>
-          <h3 className="font-bold text-base sm:text-lg">{name}</h3>
+        <div className="min-w-0 flex-1">
+          <h3 className="font-bold text-sm md:text-base sm:text-lg truncate md:truncate-none">{name}</h3>
           {desc && (
-            <p className="text-xs mt-1 leading-tight pop-up-date ">
+            <p className="text-xs mt-1 leading-tight pop-up-date line-clamp-2 md:line-clamp-none">
               {desc}
             </p>
           )}
@@ -207,18 +207,18 @@ function StatCard({
   index: number;
 }) {
   return (
-    <div className="flex items-center p-4 rounded-2xl w-full max-w-sm bg-[var(--tertiary-color)]">
-      <div className={`w-12 h-12 bg-brand rounded-full flex items-center justify-center text-white text-xl mr-4 imop-img stack-card-${label}`} >
+    <div className="flex items-center p-3 md:p-4 rounded-2xl w-full bg-[var(--tertiary-color)]">
+      <div className={`w-10 h-10 md:w-12 md:h-12 bg-brand rounded-full flex items-center justify-center text-white text-xl mr-3 md:mr-4 flex-shrink-0 imop-img stack-card-${label}`} >
         <img
           src={icon} // Path to the SVG file
           alt={label} // Alternative text for accessibility
-          className={`w-6 h-6`} // Styling
+          className={`w-5 h-5 md:w-6 md:h-6`} // Styling
         />
       </div>
-      <div>
-        <p className="text-brand font-bold text-[18px] leading-none mb-1">{label}</p>
-        <p className="text-[16px] md:text-xl font-medium text-gray-800 leading-none">{value}</p>
-        <p className="text-[14px] md:text-[18px] font-medium text-gray-800">{sub}</p>
+      <div className="min-w-0 flex-1">
+        <p className="text-brand font-bold text-base md:text-[18px] leading-none mb-1">{label}</p>
+        <p className="text-sm md:text-[16px] lg:text-xl font-medium text-gray-800 leading-none">{value}</p>
+        <p className="text-xs md:text-[14px] lg:text-[18px] font-medium text-gray-800">{sub}</p>
       </div>
     </div>
   );
@@ -238,13 +238,13 @@ function ProductDetailsModal({
       onClick={onClose}
     >
       <div
-        className="relative bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+        className="relative bg-white rounded-lg md:rounded-2xl shadow-2xl max-w-4xl w-full max-h-[95vh] md:max-h-[90vh] overflow-y-auto m-2 md:m-0"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center bg-gray-100 hover:bg-gray-200 rounded-full transition-colors"
+          className="absolute top-2 right-2 md:top-4 md:right-4 z-10 w-8 h-8 md:w-10 md:h-10 flex items-center justify-center bg-gray-100 hover:bg-gray-200 rounded-full transition-colors"
           aria-label="Close modal"
         >
           <svg
@@ -261,22 +261,22 @@ function ProductDetailsModal({
         </button>
 
         {/* Modal Content */}
-        <div className="p-6 md:p-10">
+        <div className="p-4 md:p-6 lg:p-10">
           {/* Header */}
-          <div className="mb-6">
-            <h2 className="text-brand text-3xl md:text-4xl font-bold italic mb-2">
+          <div className="mb-4 md:mb-6">
+            <h2 className="text-brand text-2xl md:text-3xl lg:text-4xl font-bold italic mb-2">
               {product.name}
             </h2>
             {product.description && (
-              <p className="text-gray-600 text-lg mb-4">{product.description}</p>
+              <p className="text-gray-600 text-sm md:text-base lg:text-lg mb-4">{product.description}</p>
             )}
             {product.tabDesc && !product.description && (
-              <p className="text-gray-600 text-lg">{product.tabDesc}</p>
+              <p className="text-gray-600 text-sm md:text-base lg:text-lg">{product.tabDesc}</p>
             )}
           </div>
 
           {/* Product Image or Video */}
-          <div className={`relative w-full h-[300px] md:h-[490px] mb-8 bg-gray-50 rounded-xl overflow-hidden imop-pop-box ${product.id}`}>
+          <div className={`relative w-full h-[200px] sm:h-[300px] md:h-[400px] lg:h-[490px] mb-4 md:mb-8 bg-gray-50 rounded-lg md:rounded-xl overflow-hidden imop-pop-box ${product.id}`}>
             {product.featuresImage && product.featuresImage.src ? (
               <Image
                 src={product.featuresImage.src}
@@ -304,40 +304,40 @@ function ProductDetailsModal({
           </div>
 
           {/* Savings Info */}
-          <div className="mb-8 p-6 bg-[var(--tertiary-color)] rounded-2xl">
-            <h3 className="text-gray-700 text-xl font-semibold mb-2">
+          <div className="mb-4 md:mb-8 p-4 md:p-6 bg-[var(--tertiary-color)] rounded-lg md:rounded-2xl">
+            <h3 className="text-gray-700 text-base md:text-xl font-semibold mb-2">
               {product.savingsTitle}
             </h3>
-            <p className="text-gray-500 text-lg">
+            <p className="text-gray-500 text-sm md:text-base lg:text-lg">
               {product.savingsSubtitle}
             </p>
           </div>
 
           {/* Stats Grid - Savings */}
-          <div className="mb-8">
-            <h3 className="text-2xl font-bold text-gray-800 mb-4">Einsparungen</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="mb-4 md:mb-8">
+            <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-3 md:mb-4">Einsparungen</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
               {product.stats.map((stat) => (
                 <div
                   key={stat.label}
-                  className="flex items-center p-5 rounded-2xl bg-[var(--tertiary-color)]"
+                  className="flex items-center p-3 md:p-5 rounded-lg md:rounded-2xl bg-[var(--tertiary-color)]"
                 >
-                  <div className="w-14 h-14 bg-brand rounded-full flex items-center justify-center text-white text-2xl mr-4 flex-shrink-0 pop-up-icons">
+                  <div className="w-12 h-12 md:w-14 md:h-14 bg-brand rounded-full flex items-center justify-center text-white text-xl mr-3 md:mr-4 flex-shrink-0 pop-up-icons">
                     {/* {stat.icon} */}
                     <img
                       src={stat.icon}
                       alt={stat.label}
-                    // className="w-full h-auto"
+                      className="w-6 h-6 md:w-7 md:h-7"
                     />
                   </div>
-                  <div>
-                    <p className="text-brand font-bold text-lg leading-none mb-1">
+                  <div className="min-w-0 flex-1">
+                    <p className="text-brand font-bold text-base md:text-lg leading-none mb-1">
                       {stat.label}
                     </p>
-                    <p className="text-xl font-medium text-gray-800 pop-up-date">
+                    <p className="text-base md:text-lg lg:text-xl font-medium text-gray-800 pop-up-date">
                       {stat.value}
                     </p>
-                    <p className="text-sm text-gray-600 pop-up-date">{stat.sub}</p>
+                    <p className="text-xs md:text-sm text-gray-600 pop-up-date">{stat.sub}</p>
                   </div>
                 </div>
               ))}
@@ -346,28 +346,28 @@ function ProductDetailsModal({
 
           {/* Technical Specifications */}
           {product.technicalSpecs && product.technicalSpecs.length > 0 && (
-            <div className="mb-8 border-t pt-6">
-              <h3 className="text-2xl font-bold text-gray-800 mb-4">Technische Daten</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="mb-4 md:mb-8 border-t pt-4 md:pt-6">
+              <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-3 md:mb-4">Technische Daten</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                 {product.technicalSpecs.map((spec, index) => (
                   <div
                     key={index}
-                    className=" justify-between p-5 rounded-2xl bg-[var(--tertiary-color)] pop-up-technische-box"
+                    className="justify-between p-3 md:p-5 rounded-lg md:rounded-2xl bg-[var(--tertiary-color)] pop-up-technische-box"
                   >
                     {spec.icon && (
                       <span className="daten-icons">
                         <img
                           src={spec.icon}
                           alt={spec.label}
-                        // className="w-full h-auto"
+                          className="w-8 h-8 md:w-10 md:h-10"
                         />
                       </span>
                     )}
 
-                    <p className="text-brand font-bold text-lg">
+                    <p className="text-brand font-bold text-base md:text-lg">
                       {spec.label}:
                     </p>
-                    <p className="text-xl font-medium text-gray-800 pop-up-date">
+                    <p className="text-base md:text-lg lg:text-xl font-medium text-gray-800 pop-up-date">
                       {spec.value}
                     </p>
                   </div>
@@ -378,24 +378,24 @@ function ProductDetailsModal({
 
           {/* Features */}
           {product.features && product.features.length > 0 && (
-            <div className="border-t pt-6">
-              <h3 className="text-2xl font-bold text-gray-800 mb-6">Features</h3>
-              <div className="space-y-6">
+            <div className="border-t pt-4 md:pt-6">
+              <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-4 md:mb-6">Features</h3>
+              <div className="space-y-4 md:space-y-6">
                 {product.features.map((feature, index) => (
                   <div
                     key={index}
-                    className="flex gap-4 p-5 rounded-2xl bg-[var(--tertiary-color)]"
+                    className="flex gap-3 md:gap-4 p-4 md:p-5 rounded-lg md:rounded-2xl bg-[var(--tertiary-color)]"
                   >
                     <div className="flex-shrink-0">
-                      <span className="text-brand font-bold text-2xl">
+                      <span className="text-brand font-bold text-xl md:text-2xl">
                         {feature.number}
                       </span>
                     </div>
-                    <div className="flex-1">
-                      <h4 className="text-xl font-bold text-gray-800 mb-2">
+                    <div className="flex-1 min-w-0">
+                      <h4 className="text-lg md:text-xl font-bold text-gray-800 mb-1 md:mb-2">
                         {feature.title}
                       </h4>
-                      <p className="text-gray-700 leading-relaxed">
+                      <p className="text-sm md:text-base text-gray-700 leading-relaxed">
                         {feature.description}
                       </p>
                     </div>
