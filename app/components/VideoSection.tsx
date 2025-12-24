@@ -41,7 +41,7 @@ export function VideoSection({ site }: { site: any }) {
       <video
         ref={videoRef}
         className="absolute inset-0 h-full w-full object-cover"
-        src="/cleaning_video.mp4"
+        src="/latest_video.MOV"
         poster={site.videoSection.posterImage.src}
         autoPlay
         muted
