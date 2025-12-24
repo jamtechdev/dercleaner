@@ -249,6 +249,14 @@ body{
   font-size: 36px !important;
 }
 
+.bg-brand-surface {
+    background-color: #cef6ff !important;
+}
+
+.bg-brand-surface input,textarea{
+  color: black !important;;
+}
+
 
 /* Simple brand-friendly animations */
 @media (prefers-reduced-motion: no-preference) {
@@ -279,6 +287,15 @@ body{
     padding-bottom: 0.8rem;
     padding-right: 6px;
     transform: scale(2.8);
+  }
+
+  .menu-cut-btn{
+    width:40px;
+    height: 40px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   h2{

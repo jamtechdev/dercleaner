@@ -20,6 +20,7 @@ const Footer = ({ site }: { site: any }) => {
               />
             </div>
           </div>
+        <div className="grid grid-cols-2 md:grid-cols-2 gap-12">
 
           {/* Information Column */}
           <div className="flex flex-col space-y-2">
@@ -48,6 +49,7 @@ const Footer = ({ site }: { site: any }) => {
               </Link>
             ))}
           </div>
+        </div>
         </div>
       </div>
 

@@ -84,7 +84,7 @@ export default function Contact({ site }: { site: any }) {
         <h2 className="text-4xl font-bold text-brand md:mb-2 max-w-xl leading-tight uppercase">
           {site.contactSection.title}
         </h2>
-        <div className="max-w-7xl mx-auto text-sm sm:text-base">{site.contactSection.subtitle}</div>
+        <div className="text-gray-400">{site.contactSection.subtitle}</div>
         
         {/* The Container */}
         <div className="bg-brand-surface rounded-[28px] sm:rounded-[40px] p-6 sm:p-8 md:p-12 shadow-sm mt-6">
