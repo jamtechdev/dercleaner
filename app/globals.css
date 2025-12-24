@@ -304,6 +304,13 @@ textarea {
   background: #00a8cf;
 }
 
+ .right-arrow2 {
+    object-fit: contain;
+    display: none !important;
+    width: 25px !important;
+    position: absolute !important;
+    left: 79% !important;
+  }
 
 
 /* Simple brand-friendly animations */
