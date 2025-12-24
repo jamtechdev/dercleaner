@@ -19,6 +19,38 @@
 
 
 
+body,
+html {
+  font-family: "Roboto", sans-serif;
+}
+
+.geist_mono_8d43a2aa-module__8Li5zG__variable {
+  font-family: "Roboto", sans-serif !important;
+
+}
+
+.geist_mono_8d43a2aa-module__8Li5zG__variable {
+  font-family: "Roboto", sans-serif !important;
+
+}
+
+h1,
+h2,
+span,
+h3,
+p,
+button {
+  font-family: "Roboto", sans-serif !important;
+}
+
+
+.mission-section {
+  background-image: url('/imop3.png') !important;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 
 @theme inline {
   --color-background: var(--background);
@@ -184,8 +216,8 @@ body {
 
 
 .daten-icons img {
-    width: 25px;
-    height: 25px;
+  width: 25px;
+  height: 25px;
 }
 
 
@@ -300,17 +332,18 @@ textarea {
   background: #00a8cf;
 }
 
- .right-arrow2 {
-    object-fit: contain;
-    display: none !important;
-    width: 25px !important;
-    position: absolute !important;
-    left: 79% !important;
-  }
+.right-arrow2 {
+  object-fit: contain;
+  display: none !important;
+  width: 25px !important;
+  position: absolute !important;
+  left: 79% !important;
+}
 
-  .imop-buttons{
-    margin-top: 20px;;
-  }
+.imop-buttons {
+  margin-top: 20px;
+  ;
+}
 
 
 /* Simple brand-friendly animations */
@@ -360,7 +393,7 @@ textarea {
     position: relative;
   }
 
- 
+
 
 
 
@@ -419,61 +452,47 @@ textarea {
 
 
 @media(max-width:548px) {
-     .hero-section {
-        height: 263px;
-        /* margin-top: 20px; */
-        background-color: white;;
-    }
+  .hero-section {
+    height: 263px;
+    /* margin-top: 20px; */
+    background-color: white;
+    ;
+  }
 
-    body{
-      background-color: white;;
-    }
+  body {
+    background-color: white;
+    ;
+  }
 
   .active-product div .active-first-image {
     padding-bottom: 10px;
     padding-right: 6px;
     transform: scale(2.9) !important;
-}
+  }
 
   @media (max-width: 548px) {
     .hero-section video {
-            object-fit: contain;
-            object-position: center;
-            height: 100%;;
-        }
+      object-fit: contain;
+      object-position: center;
+      height: 100%;
+      ;
+    }
   }
 
+
+
 }
 
 
-body,
-html {
-  font-family: "Roboto", sans-serif;
-}
+@media (max-width: 438px) {
+  .hero-section video {
+    object-fit: contain;
+    object-position: center;
+    height: 100%;
+    ;
+  }
 
-.geist_mono_8d43a2aa-module__8Li5zG__variable {
-  font-family: "Roboto", sans-serif !important;
-
-}
-
-.geist_mono_8d43a2aa-module__8Li5zG__variable {
-  font-family: "Roboto", sans-serif !important;
-
-}
-
-h1,
-h2,
-span,
-h3,
-p,
-button {
-  font-family: "Roboto", sans-serif !important;
-}
-
-
-.mission-section {
-  background-image: url('/imop3.png') !important;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  .hero-section{
+    height: 237px;;
+  }
 }
