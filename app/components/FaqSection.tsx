@@ -32,7 +32,7 @@ export default function FaqSection() {
                 {/* Left Side: Header and Contact */}
                 <div className="md:w-1/3 space-y-6">
                     <h2 className="text-5xl font-bold text-[#333333] text-brand">FAQ</h2>
-                    <p className="text-gray-600 text-lg leading-relaxed faq-para">
+                    <p className="text-gray-600 text-lg leading-relaxed faq-para md:mb-4 mb-0">
                         Sie haben weitere Fragen? Kontaktieren Sie uns gerne jederzeit.
                     </p>
                     <button onClick={(e) => {
@@ -41,7 +41,7 @@ export default function FaqSection() {
                         if (element) {
                             element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                         }
-                    }} className="bg-[#00B1E6] hover:bg-[#0096C2] text-white font-bold py-3 px-10 rounded-full transition-colors duration-300 faq-contact-btn">
+                    }} className="bg-[#00B1E6] hover:bg-[#0096C2] text-white font-bold py-3 px-10 rounded-full transition-colors duration-300 faq-contact-btn hidden md:block">
                         Kontakt
                     </button>
                 </div>
@@ -84,6 +84,18 @@ export default function FaqSection() {
                             )}
                         </div>
                     ))}
+                </div>
+
+                <div className='flex items-center justify-center block md:hidden'>
+                      <button onClick={(e) => {
+                        e.preventDefault();
+                        const element = document.getElementById('kontakt');
+                        if (element) {
+                            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    }} className="bg-[#00B1E6] hover:bg-[#0096C2] text-white font-bold py-3 px-10 rounded-full transition-colors duration-300 faq-contact-btn">
+                        Kontakt
+                    </button>
                 </div>
 
             </div>
