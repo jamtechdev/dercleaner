@@ -39,16 +39,18 @@ h2,
 span,
 h3,
 p,
-button {
+button,div {
   font-family: "Roboto", sans-serif !important;
 }
 
 
 .mission-section {
-  background-image: url('/imop3.png') !important;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+    background-position: center center; /* Center the background image */
+    background-size: cover;;
+    background-repeat: no-repeat; /* Prevent repeating the image */
+    background-size: 100% 100%; /* Stretch the image to fill the entire element */
+    background-image: url('/Image.jpg') !important;
+
 }
 
 
@@ -97,7 +99,7 @@ body {
 }
 
 .active-product div .active-first-image {
-  transform: scale(2.5);
+  transform: scale(2.1);
   padding-bottom: 1.5rem;
   padding-right: 6px;
 }
@@ -129,12 +131,16 @@ body {
 }
 
 .imop-buttons button {
-  margin: 0px 0px;
-  padding: 18px;
+  margin: 5px 0px;
+  padding: 16px;
 }
 
 .demo-buchen {
   padding: 15px 60px !important;
+}
+
+.mission-section-icons img{
+  width:26px;
 }
 
 
@@ -363,6 +369,32 @@ textarea {
   .dc-animate-fade-up {
     animation: dc-fade-up 280ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
   }
+}
+
+/* FAQ */
+
+.faq-section{
+  padding:120px 0px;
+  padding-left: 15px;
+  padding-right: 15px;;
+  /* margin:50px 0px; */
+  background:#f0f9ff;
+}
+
+.faq-section button{
+  background:white;
+}
+
+.faq-content-box{
+  background-color: white;;
+}
+
+.faq-contact-btn{
+  background:#00a3cc !important;
+}
+
+.faq-para{
+  font-size: 16px;;
 }
 
 @media(max-width:991px) {
