@@ -79,9 +79,9 @@ export default function ProductShowcase({ site }: { site: any }) {
                 <p className="text-gray-700  font-normal mt-2 text-[16px]">
                   {activeProduct.savingsTitle} 
 
-                  <span className="font-normal text-gray-500 ms-2">
+                  {/* <span className="font-normal text-gray-500 ms-2"> */}
                      {activeProduct.savingsSubtitle}
-                  </span>
+                  {/* </span> */}
                 </p>
               </div>
 
