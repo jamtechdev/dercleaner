@@ -71,15 +71,20 @@ export default function ProductShowcase({ site }: { site: any }) {
           {/* Product Details */}
           <div className="w-full md:w-1/2 space-y-4 md:space-y-10 flex flex-col">
             <header className="dc-animate-fade-up  text-left mb-5">
-              <h2 className="text-brand text-2xl sm:text-3xl md:text-4xl font-bold italic">
+              <h2 className="text-brand text-2xl sm:text-3xl md:text-4xl font-semibold">
                 {activeProduct.name}
               </h2>
-              <p className="text-gray-700 text-base sm:text-lg md:text-xl font-semibold mt-2">
-                {activeProduct.savingsTitle} <br />
-                <span className="font-normal text-gray-500">
-                  {activeProduct.savingsSubtitle}
-                </span>
-              </p>
+
+              <div className="flex">
+                <p className="text-gray-700  font-normal mt-2 text-[16px]">
+                  {activeProduct.savingsTitle} 
+
+                  <span className="font-normal text-gray-500 ms-2">
+                     {activeProduct.savingsSubtitle}
+                  </span>
+                </p>
+              </div>
+
             </header>
 
             {/* Stats Cards */}
