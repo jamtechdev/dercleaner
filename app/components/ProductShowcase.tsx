@@ -396,7 +396,7 @@ function ProductDetailsModal({
           {/* Features */}
           {product.features && product.features.length > 0 && (
             <div className="border-t pt-4 md:pt-6">
-              <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-4 md:mb-6">Features</h3>
+              <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-4 md:mb-6">Funktionen</h3>
               <div className="space-y-4 md:space-y-6">
                 {product.features.map((feature, index) => (
                   <div
