@@ -41,24 +41,24 @@
     "products": [
       {
         "id": "product1",
-        "tabTitle": "IMOP 36",
+        "tabTitle": "imop 36",
         "tabDesc": "Der imop 36 ist eine effektive und zugleich budgetfreundliche Reinigungslösung. ",
         "tabImage": {
           "src": "/product1.png",
-          "alt": "i mop36"
+          "alt": "imop 36"
         },
-        "name": "i mop36",
+        "name": "imop 36",
         "heroImage": {
           "src": "/i-mop-36-front-right_740x740.jpg",
-          "alt": "i mop36"
+          "alt": "imop 36"
         },
         "video": {
           "src": "",
-          "alt": "i mop36"
+          "alt": "imop 36"
         },
         "featuresImage": {
           "src": "/i-mop36.webp",
-          "alt": "i mop36"
+          "alt": "imop 36"
         },
         "savingsTitle": "Einsparungen pro 300 m2 vs.",
         "savingsSubtitle": "manuelle Bodenreinigung",
@@ -250,11 +250,11 @@
         },
         "video": {
           "src": "/product1.mp4",
-          "alt": "i mop36"
+          "alt": "imop 36"
         },
         "featuresImage": {
           "src": "/i-walk_angled-front-view-with-controler-740x740.jpg",
-          "alt": "i mop36"
+          "alt": "imop 36"
         },
         "savingsTitle": "Einsparungen pro 300 m2",
         "savingsSubtitle": "gegenüber der manuellen Reinigung",
@@ -359,11 +359,11 @@
         },
         "video": {
           "src": "/product1.mp4",
-          "alt": "i mop36"
+          "alt": "i-mop XL Pro"
         },
         "featuresImage": {
           "src": "/i-mop-XL-Pro_v23_angled-left-front-view_740x740.jpg",
-          "alt": "i mop36"
+          "alt": "i-mop XL Pro"
         },
         "savingsTitle": "Einsparungen pro 300 m²",
         "savingsSubtitle": "im Vergleich zum manuellen Wischen",
@@ -454,20 +454,20 @@
         "tabDesc": "Gemeinsam mit Reinigungsprofis entwickelt für optimale Leistung und Benutzerfreundlichkeit.",
         "tabImage": {
           "src": "/product5.png",
-          "alt": "co-botic 1900"
+          "alt": "co-botic 1900 Drop & Go"
         },
-        "name": "co-botic 1900",
+        "name": "co-botic 1900 Drop & Go",
         "heroImage": {
           "src": "/co-botic1900_740x740.jpg",
-          "alt": "co-botic 1900"
+          "alt": "co-botic 1900 Drop & Go"
         },
         "video": {
           "src": "/product1.mp4",
-          "alt": "i mop36"
+          "alt": "co-botic 1900 Drop & Go"
         },
         "featuresImage": {
           "src": "/co-botic1900_740x740.jpg",
-          "alt": "i mop36"
+          "alt": "co-botic 1900 Drop & Go"
         },
         "savingsTitle": "Produktvorteile",
         "savingsSubtitle": "",
