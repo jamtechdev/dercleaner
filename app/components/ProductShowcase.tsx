@@ -281,7 +281,7 @@ function ProductDetailsModal({
         <div className="p-4 md:p-6 lg:p-10">
           {/* Header */}
           <div className="mb-4 md:mb-6">
-            <h2 className="text-brand text-2xl md:text-3xl lg:text-4xl font-bold italic mb-2">
+            <h2 className="text-brand text-2xl md:text-3xl lg:text-4xl font-bold mb-2">
               {product.name}
             </h2>
             {product.description && (
@@ -322,12 +322,12 @@ function ProductDetailsModal({
 
           {/* Savings Info */}
           <div className="mb-4 md:mb-8 p-4 md:p-6 bg-[var(--tertiary-color)] rounded-lg md:rounded-2xl">
-            <h3 className="text-gray-700 text-base md:text-xl font-semibold mb-2">
-              {product.savingsTitle}
+            <h3 className="text-gray-700 text-base md:text-xl mb-2">
+              {product.savingsTitle} {product.savingsSubtitle}
             </h3>
-            <p className="text-gray-500 text-sm md:text-base lg:text-lg">
-              {product.savingsSubtitle}
-            </p>
+            {/* <p className="text-gray-500 text-sm md:text-base lg:text-lg">
+              
+            </p> */}
           </div>
 
           {/* Stats Grid - Savings */}
