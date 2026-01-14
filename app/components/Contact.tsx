@@ -86,6 +86,42 @@ export default function Contact({ site }: { site: any }) {
         </h2>
         <div className="max-w-7xl mx-auto text-sm sm:text-base">{site.contactSection.subtitle}</div>
         
+        {/* Contact Information */}
+        {site.contactSection.contactInfo && (
+          <div className="mt-6 mb-4 grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+            <div className="flex flex-col">
+              <span className="font-semibold text-gray-700 mb-1">
+                {site.contactSection.contactInfo.firstContact.label}:
+              </span>
+              <a 
+                href={`mailto:${site.contactSection.contactInfo.firstContact.email}`}
+                className="text-brand hover:underline"
+              >
+                {site.contactSection.contactInfo.firstContact.email}
+              </a>
+            </div>
+            <div className="flex flex-col">
+              <span className="font-semibold text-gray-700 mb-1">
+                {site.contactSection.contactInfo.customerSupport.label}:
+              </span>
+              <a 
+                href={`mailto:${site.contactSection.contactInfo.customerSupport.email}`}
+                className="text-brand hover:underline"
+              >
+                {site.contactSection.contactInfo.customerSupport.email}
+              </a>
+            </div>
+            <div className="flex flex-col">
+              <span className="font-semibold text-gray-700 mb-1">
+                {site.contactSection.contactInfo.phone.label}:
+              </span>
+              <span className="text-gray-600">
+                {site.contactSection.contactInfo.phone.number || "—"}
+              </span>
+            </div>
+          </div>
+        )}
+        
         {/* The Container */}
         <div className="bg-brand-surface rounded-[28px] sm:rounded-[40px] p-6 sm:p-8 md:p-12 shadow-sm mt-6">
           {toast && (

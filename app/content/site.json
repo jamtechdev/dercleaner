@@ -642,13 +642,29 @@
       "alt": "Über uns portrait"
     },
     "paragraphs": [
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      "dercleaner – dein Partner für saubere Räume ohne Stress. Unser Ziel: Sauberkeit einfach, schnell und zuverlässig.",
+      "Mit modernen Geräten wie dem i‑mop bringen wir Glanz in Praxen, Büros und Gewerbeflächen – effizient, umweltbewusst und kostensparend.",
+      "Dank innovativer Reinigungstechnik sparst du Zeit und Geld, weil wir schneller und gründlicher arbeiten als mit herkömmlichen Methoden.",
+      "Wir arbeiten transparent, halten unsere Versprechen und kümmern uns um das, was dir wichtig ist: ein sauberes Umfeld, in dem du dich wohlfühlst."
     ]
   },
   "contactSection": {
     "title": "Sie haben Fragen oder möchten ein unverbindliches Angebot?",
     "subtitle": "Kontaktieren Sie uns jetzt.",
+    "contactInfo": {
+      "firstContact": {
+        "label": "Erste Kontaktaufnahme & Kampagnen",
+        "email": "info@dercleaner.de"
+      },
+      "customerSupport": {
+        "label": "Kundensupport",
+        "email": "support@dercleaner.de"
+      },
+      "phone": {
+        "label": "Telefon",
+        "number": ""
+      }
+    },
     "form": {
       "placeholders": {
         "name": "Name",
@@ -684,6 +700,10 @@
         {
           "label": "Impressum",
           "href": "/impressum"
+        },
+        {
+          "label": "AGB",
+          "href": "/agb"
         }
       ]
     },
@@ -697,107 +717,112 @@
       "backToHomeLabel": "Zurück zur Startseite",
       "sections": [
         {
-          "title": "1. Überblick",
+          "title": "Verantwortlicher",
           "blocks": [
             {
               "type": "p",
-              "text": "Mit dieser Datenschutzerklärung informieren wir Sie über Art, Umfang und Zweck der Verarbeitung personenbezogener Daten auf dieser Website."
-            },
-            {
-              "type": "note",
-              "text": "Hinweis: Dieser Text ist eine Vorlage. Bitte ergänzen Sie Ihre echten Unternehmensdaten (Anschrift, E-Mail, Verantwortliche Person) und prüfen Sie Inhalte rechtlich."
+              "text": "Der Cleaner GbR, Neckarhälde 15, 69412 Eberbach, E-Mail: info@dercleaner.de."
             }
           ]
         },
         {
-          "title": "2. Verantwortlicher",
+          "title": "Zwecke & Rechtsgrundlagen",
           "blocks": [
-            {
-              "type": "p",
-              "text": "Der Cleaner"
-            },
             {
               "type": "list",
               "items": [
-                "Adresse: (bitte ergänzen)",
-                "E-Mail: (bitte ergänzen)",
-                "Telefon: (bitte ergänzen)"
+                "Vertragsdurchführung (Art. 6 Abs. 1 b DSGVO)",
+                "Kommunikation (Art. 6 Abs. 1 f)",
+                "Buchhaltung/Steuer (Art. 6 Abs. 1 c)"
               ]
             }
           ]
         },
         {
-          "title": "3. Welche Daten wir verarbeiten",
+          "title": "Kategorien personenbezogener Daten",
           "blocks": [
-            {
-              "type": "p",
-              "text": "Wir können insbesondere folgende Daten verarbeiten:"
-            },
             {
               "type": "list",
               "items": [
-                "Kontaktdaten (z. B. Name, E-Mail, Telefonnummer)",
-                "Inhaltsdaten (z. B. Nachrichten im Kontaktformular)",
-                "Nutzungsdaten (z. B. aufgerufene Seiten, Zugriffszeiten)",
-                "Meta-/Kommunikationsdaten (z. B. IP-Adresse, Browserinformationen)"
+                "Stammdaten (Name, Anschrift)",
+                "Kommunikations- und Vertragsdaten",
+                "Zahlungsdaten"
               ]
             }
           ]
         },
         {
-          "title": "4. Kontaktformular",
+          "title": "Empfänger",
           "blocks": [
-            {
-              "type": "p",
-              "text": "Wenn Sie uns über das Kontaktformular kontaktieren, verarbeiten wir Ihre Angaben zur Bearbeitung Ihrer Anfrage und für Anschlussfragen."
-            },
             {
               "type": "list",
               "items": [
-                "Verarbeitete Daten: Name, E-Mail, Telefon (optional), Nachricht",
-                "Zweck: Bearbeitung Ihrer Anfrage",
-                "Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO (vorvertraglich/Vertrag) oder Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an Kommunikation)",
-                "Speicherdauer: bis zur Erledigung der Anfrage, anschließend gemäß gesetzlichen Aufbewahrungspflichten bzw. internen Löschfristen"
+                "interne Mitarbeitende",
+                "Hosting-Dienstleister (IONOS SE)",
+                "Steuerberater"
               ]
             }
           ]
         },
         {
-          "title": "5. Server-Logfiles",
+          "title": "Übermittlungen in Drittländer",
           "blocks": [
             {
               "type": "p",
-              "text": "Beim Besuch unserer Website werden durch den Hosting-Provider typischerweise Server-Logfiles erhoben (z. B. IP-Adresse, Datum/Uhrzeit, angeforderte Ressource). Diese Daten dienen der Sicherheit und Stabilität."
+              "text": "keine Übermittlung außerhalb EU oder Schweiz."
             }
           ]
         },
         {
-          "title": "6. Ihre Rechte",
+          "title": "Speicherdauer",
           "blocks": [
             {
               "type": "p",
-              "text": "Sie haben insbesondere folgende Rechte:"
-            },
+              "text": "6–10 Jahre für steuerrelevante Daten, sonst bis Zweckentfall."
+            }
+          ]
+        },
+        {
+          "title": "Rechte der Betroffenen",
+          "blocks": [
             {
               "type": "list",
               "items": [
-                "Auskunft (Art. 15 DSGVO)",
-                "Berichtigung (Art. 16 DSGVO)",
-                "Löschung (Art. 17 DSGVO)",
-                "Einschränkung der Verarbeitung (Art. 18 DSGVO)",
-                "Datenübertragbarkeit (Art. 20 DSGVO)",
-                "Widerspruch gegen Verarbeitung (Art. 21 DSGVO)",
-                "Beschwerde bei einer Aufsichtsbehörde (Art. 77 DSGVO)"
+                "Auskunft",
+                "Berichtigung",
+                "Löschung",
+                "Einschränkung",
+                "Widerspruch",
+                "Datenübertragbarkeit",
+                "Beschwerderecht"
               ]
             }
           ]
         },
         {
-          "title": "7. Änderungen",
+          "title": "Cookies/Tracking",
           "blocks": [
             {
               "type": "p",
-              "text": "Wir können diese Datenschutzerklärung anpassen, damit sie stets den aktuellen rechtlichen Anforderungen entspricht oder Änderungen unserer Leistungen abbildet."
+              "text": "Nur technisch notwendige Cookies; Statistik/Marketing nur mit Einwilligung."
+            }
+          ]
+        },
+        {
+          "title": "Sicherheit",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "TLS-Verschlüsselung, rollenbasierte Zugriffe, regelmäßige Updates/Backups."
+            }
+          ]
+        },
+        {
+          "title": "Kontakt Datenschutz",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "info@dercleaner.de"
             }
           ]
         }
@@ -814,13 +839,13 @@
           "blocks": [
             {
               "type": "p",
-              "text": "Der Cleaner"
+              "text": "Der Cleaner GbR"
             },
             {
               "type": "list",
               "items": [
-                "Adresse: (bitte ergänzen)",
-                "Vertreten durch: (bitte ergänzen)"
+                "Gesellschafter: Wolf‑Dieter Müller",
+                "Anschrift: Neckarhälde 15, 69412 Eberbach"
               ]
             }
           ]
@@ -831,45 +856,187 @@
             {
               "type": "list",
               "items": [
-                "Telefon: (bitte ergänzen)",
-                "E-Mail: (bitte ergänzen)"
+                "Telefon: (siehe Kontaktbereich)",
+                "E-Mail: info@dercleaner.de"
               ]
             }
           ]
         },
         {
-          "title": "Umsatzsteuer",
+          "title": "Verantwortlich i. S. d. § 18 Abs. 2 MStV",
           "blocks": [
             {
               "type": "p",
-              "text": "Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz: (bitte ergänzen, falls vorhanden)"
+              "text": "Wolf‑Dieter Müller"
             }
           ]
         },
         {
-          "title": "Haftung für Inhalte",
+          "title": "EU‑Streitschlichtung",
           "blocks": [
             {
               "type": "p",
-              "text": "Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen."
+              "text": "Plattform der EU-Kommission zur Online-Streitbeilegung unter https://ec.europa.eu/consumers/odr"
+            }
+          ]
+        }
+      ]
+    },
+    "contact": {
+      "title": "Kontakt",
+      "description": "Erste Kontaktaufnahme & Kampagnen",
+      "lastUpdated": "18.12.2025",
+      "backToHomeLabel": "Zurück zur Startseite",
+      "sections": [
+        {
+          "title": "Erste Kontaktaufnahme & Kampagnen",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "info@dercleaner.de"
             }
           ]
         },
         {
-          "title": "Haftung für Links",
+          "title": "Kundensupport",
           "blocks": [
             {
               "type": "p",
-              "text": "Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen."
+              "text": "support@dercleaner.de"
             }
           ]
         },
         {
-          "title": "Urheberrecht",
+          "title": "Telefon",
           "blocks": [
             {
               "type": "p",
-              "text": "Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem Urheberrecht. Beiträge Dritter sind als solche gekennzeichnet."
+              "text": ""
+            }
+          ]
+        }
+      ]
+    },
+    "terms": {
+      "title": "AGB",
+      "description": "Allgemeine Geschäftsbedingungen",
+      "lastUpdated": "18.12.2025",
+      "backToHomeLabel": "Zurück zur Startseite",
+      "sections": [
+        {
+          "title": "Geltungsbereich",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Diese AGB gelten für alle Verträge zwischen der Der Cleaner GbR und Kund*innen über Reinigungsdienstleistungen sowie ggf. den Verkauf von Reinigungsprodukten."
+            }
+          ]
+        },
+        {
+          "title": "Vertragspartner",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Der Cleaner GbR, Neckarhälde 15, 69412 Eberbach; Gesellschafter: Wolf‑Dieter Müller."
+            }
+          ]
+        },
+        {
+          "title": "Leistungen",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Umfang, Turnus und Qualitätsstandards ergeben sich aus dem jeweiligen Angebot."
+            }
+          ]
+        },
+        {
+          "title": "Angebot & Vertragsschluss",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Angebote sind freibleibend. Ein Vertrag kommt durch Annahme zustande."
+            }
+          ]
+        },
+        {
+          "title": "Preise & Zahlung",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Preise zzgl. gesetzlicher Umsatzsteuer. Zahlungsziel: 14 Tage netto."
+            }
+          ]
+        },
+        {
+          "title": "Termine & Mitwirkung",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Kundenseitige Zugänge sind rechtzeitig bereitzustellen."
+            }
+          ]
+        },
+        {
+          "title": "Gewährleistung",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Mängel sind binnen 5 Werktagen anzuzeigen."
+            }
+          ]
+        },
+        {
+          "title": "Haftung",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Für Vorsatz und grobe Fahrlässigkeit unbegrenzt; für einfache Fahrlässigkeit nur bei Verletzung wesentlicher Pflichten."
+            }
+          ]
+        },
+        {
+          "title": "Eigentumsvorbehalt",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Bis zur vollständigen Zahlung bleibt Ware Eigentum des Anbieters."
+            }
+          ]
+        },
+        {
+          "title": "Datenschutz",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Es gilt die Datenschutzerklärung der Der Cleaner GbR."
+            }
+          ]
+        },
+        {
+          "title": "Höhere Gewalt",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Bei Ereignissen außerhalb der Kontrolle ruhen Leistungspflichten."
+            }
+          ]
+        },
+        {
+          "title": "Verbraucherschlichtung",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Keine Teilnahme an Streitbeilegungsverfahren."
+            }
+          ]
+        },
+        {
+          "title": "Schlussbestimmungen",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Es gilt deutsches Recht. Gerichtsstand am Sitz der GbR."
             }
           ]
         }

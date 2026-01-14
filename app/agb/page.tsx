@@ -20,8 +20,8 @@ type LegalPage = {
 export async function generateMetadata(): Promise<Metadata> {
   const site = await getSite();
   return {
-    title: `${site.legalPages.privacy.title} | ${site.branding.name}`,
-    description: site.legalPages.privacy.description,
+    title: `${site.legalPages.terms.title} | ${site.branding.name}`,
+    description: site.legalPages.terms.description,
   };
 }
 
@@ -50,9 +50,9 @@ function renderBlock(block: LegalBlock) {
   }
 }
 
-export default async function DatenschutzPage() {
+export default async function AGBPage() {
   const site = await getSite();
-  const page = site.legalPages.privacy as LegalPage;
+  const page = site.legalPages.terms as LegalPage;
 
   return (
     <main className="w-full bg-white">
