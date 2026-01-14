@@ -62,10 +62,10 @@ export default function FaqSection() {
                                 </span>
                                 <div className={`flex-shrink-0 w-10 h-10 rounded-full bg-[#00B1E6] flex items-center justify-center transition-transform duration-300 ${openId === item.id ? 'rotate-0' : 'rotate-180'}`}>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 42 43" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
-                                        <g clip-path="url(#clip0_11223_43134)">
+                                        <g clipPath="url(#clip0_11223_43134)">
                                             <path d="M41.5 21.4893C41.5 10.1674 32.3218 0.989258 21 0.989258C9.67816 0.989258 0.5 10.1674 0.5 21.4893C0.5 32.8111 9.67816 41.9893 21 41.9893C32.3218 41.9893 41.5 32.8111 41.5 21.4893Z" fill="#00b3df"></path>
                                             <path d="M41.5 21.4893C41.5 10.1674 32.3218 0.989258 21 0.989258C9.67816 0.989258 0.5 10.1674 0.5 21.4893C0.5 32.8111 9.67816 41.9893 21 41.9893C32.3218 41.9893 41.5 32.8111 41.5 21.4893Z" stroke="#00b3df"></path>
-                                            <path d="M25.5 23.7393L21 19.2393L16.5 23.7393" stroke="white" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"></path>
+                                            <path d="M25.5 23.7393L21 19.2393L16.5 23.7393" stroke="white" strokeWidth="1.67" strokeLinecap="round" strokeLinejoin="round"></path>
                                         </g>
                                         <defs>
                                             <clipPath id="clip0_11223_43134">

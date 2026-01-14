@@ -43,13 +43,20 @@ export default function MissionSection({ site }: { site: any }) {
           <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-4">
             {(site.missionSection.industries as Array<{ name: string; icon: string }>).map((item, index: number) => (
               <div key={index} className="flex items-center gap-3 border-b border-[var(--primary-color)] pb-2">
-                <span className="text-brand text-xl mission-section-icons">
-                  {/* Using the client-side image component */}
-                  <img
-                    src={item.icon || ''}  // Fallback if item.icon is invalid
-                    alt={item.name}
-                    className="mission-section-icon"
-                  />
+                <span className="text-brand text-xl mission-section-icons flex-shrink-0 w-6 h-6 flex items-center justify-center">
+                  {item.icon ? (
+                    <img
+                      src={item.icon}
+                      alt={item.name}
+                      width={24}
+                      height={24}
+                      className="mission-section-icon w-6 h-6 object-contain"
+                      onError={(e) => {
+                        // Hide broken images
+                        e.currentTarget.style.display = 'none';
+                      }}
+                    />
+                  ) : null}
                 </span>
                 <span className="text-sm font-medium">{item.name}</span>
               </div>
