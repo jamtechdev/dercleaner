@@ -71,15 +71,20 @@ export default function ProductShowcase({ site }: { site: any }) {
           {/* Product Details */}
           <div className="w-full md:w-1/2 space-y-4 md:space-y-10 flex flex-col">
             <header className="dc-animate-fade-up  text-left mb-5">
-              <h2 className="text-brand text-2xl sm:text-3xl md:text-4xl font-bold italic">
+              <h2 className="text-brand text-2xl sm:text-3xl md:text-4xl font-semibold">
                 {activeProduct.name}
               </h2>
-              <p className="text-gray-700 text-base sm:text-lg md:text-xl font-semibold mt-2">
-                {activeProduct.savingsTitle} <br />
-                <span className="font-normal text-gray-500">
-                  {activeProduct.savingsSubtitle}
-                </span>
-              </p>
+
+              <div className="flex">
+                <p className="text-gray-700  font-normal mt-2 text-[16px]">
+                  {activeProduct.savingsTitle} 
+
+                  {/* <span className="font-normal text-gray-500 ms-2"> */}
+                     {activeProduct.savingsSubtitle}
+                  {/* </span> */}
+                </p>
+              </div>
+
             </header>
 
             {/* Stats Cards */}
@@ -276,7 +281,7 @@ function ProductDetailsModal({
         <div className="p-4 md:p-6 lg:p-10">
           {/* Header */}
           <div className="mb-4 md:mb-6">
-            <h2 className="text-brand text-2xl md:text-3xl lg:text-4xl font-bold italic mb-2">
+            <h2 className="text-brand text-2xl md:text-3xl lg:text-4xl font-bold mb-2">
               {product.name}
             </h2>
             {product.description && (
@@ -317,12 +322,12 @@ function ProductDetailsModal({
 
           {/* Savings Info */}
           <div className="mb-4 md:mb-8 p-4 md:p-6 bg-[var(--tertiary-color)] rounded-lg md:rounded-2xl">
-            <h3 className="text-gray-700 text-base md:text-xl font-semibold mb-2">
-              {product.savingsTitle}
+            <h3 className="text-gray-700 text-base md:text-xl mb-2">
+              {product.savingsTitle} {product.savingsSubtitle}
             </h3>
-            <p className="text-gray-500 text-sm md:text-base lg:text-lg">
-              {product.savingsSubtitle}
-            </p>
+            {/* <p className="text-gray-500 text-sm md:text-base lg:text-lg">
+              
+            </p> */}
           </div>
 
           {/* Stats Grid - Savings */}
@@ -391,7 +396,7 @@ function ProductDetailsModal({
           {/* Features */}
           {product.features && product.features.length > 0 && (
             <div className="border-t pt-4 md:pt-6">
-              <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-4 md:mb-6">Features</h3>
+              <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-4 md:mb-6">Funktionen</h3>
               <div className="space-y-4 md:space-y-6">
                 {product.features.map((feature, index) => (
                   <div
