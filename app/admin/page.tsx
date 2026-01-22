@@ -55,7 +55,7 @@ function NavIcon({ id, active }: { id: ViewId; active: boolean }) {
   }
 }
 
-type ViewId = (typeof SIDEBAR_LINKS)[number]["id"];
+type ViewId = "dashboard" | "contact" | "settings" | "reports";
 
 export default async function AdminPage({
   searchParams,
@@ -78,14 +78,8 @@ export default async function AdminPage({
   const showCleared = sp.cleared === "1";
   const showInvalidJson = sp.error === "invalid_json";
   const viewRaw = sp.view ?? "dashboard";
-  const view: ViewId = [
-    "dashboard",
-    "contact",
-    "settings",
-    "reports",
-  ].includes(viewRaw)
-    ? (viewRaw as ViewId)
-    : "dashboard";
+  const validViews = ["dashboard", "contact", "settings", "reports"] as const;
+  const view: ViewId = (validViews.includes(viewRaw as any) ? viewRaw : "dashboard") as ViewId;
   const currentPage = Math.max(1, Number(sp.page ?? "1") || 1);
   const pageSize = 10;
   const total = submissions.length;
