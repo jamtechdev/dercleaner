@@ -9,10 +9,10 @@ import {
 } from "@/app/admin/actions";
 
 const SIDEBAR_LINKS = [
-  { id: "dashboard", label: "Dashboard", href: "/admin" },
-  { id: "contact", label: "Contact Us", href: "/admin?view=contact" },
+  // { id: "dashboard", label: "Dashboard", href: "/admin" },
+  { id: "dashboard", label: "Dashboard", href: "/admin?view=contact" },
   { id: "settings", label: "Settings", href: "/admin?view=settings" },
-  { id: "reports", label: "Reports", href: "/admin?view=reports" },
+  // { id: "reports", label: "Reports", href: "/admin?view=reports" },
 ] as const;
 
 function NavIcon({ id, active }: { id: ViewId; active: boolean }) {
@@ -28,13 +28,13 @@ function NavIcon({ id, active }: { id: ViewId; active: boolean }) {
           <rect x="3" y="16" width="7" height="5" rx="1" />
         </svg>
       );
-    case "contact":
-      return (
-        <svg className={`shrink-0 ${cn}`} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-          <polyline points="22,6 12,13 2,6" />
-        </svg>
-      );
+    // case "contact":
+    //   return (
+    //     <svg className={`shrink-0 ${cn}`} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+    //       <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+    //       <polyline points="22,6 12,13 2,6" />
+    //     </svg>
+    //   );
     case "settings":
       return (
         <svg className={`shrink-0 ${cn}`} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
@@ -42,14 +42,14 @@ function NavIcon({ id, active }: { id: ViewId; active: boolean }) {
           <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
         </svg>
       );
-    case "reports":
-      return (
-        <svg className={`shrink-0 ${cn}`} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-          <line x1="18" y1="20" x2="18" y2="10" />
-          <line x1="12" y1="20" x2="12" y2="4" />
-          <line x1="6" y1="20" x2="6" y2="14" />
-        </svg>
-      );
+    // case "reports":
+    //   return (
+    //     <svg className={`shrink-0 ${cn}`} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+    //       <line x1="18" y1="20" x2="18" y2="10" />
+    //       <line x1="12" y1="20" x2="12" y2="4" />
+    //       <line x1="6" y1="20" x2="6" y2="14" />
+    //     </svg>
+    //   );
     default:
       return null;
   }
@@ -153,7 +153,7 @@ export default async function AdminPage({
         </div>
       </header>
 
-      <div className="mx-auto flex max-w-6xl">
+      <div className="mx-auto flex max-w-7xl">
         {/* Left sidebar */}
         <aside className="sticky top-[4.5rem] h-[calc(100vh-4.5rem)] w-60 shrink-0 border-r border-brand/10 bg-white py-6 pl-4 pr-3 shadow-[2px_0_16px_-4px_rgba(0,163,204,0.1)]">
           <p className="mb-3 px-3 text-xs font-bold uppercase tracking-wider text-gray-400">
@@ -184,7 +184,7 @@ export default async function AdminPage({
           {view === "dashboard" && (
             <DashboardView siteName={site.branding?.name ?? "Der Cleaner"} />
           )}
-          {view === "settings" && <SettingsView />}
+          {view === "settings" && <SettingsView site={site} />}
           {view === "reports" && <ReportsView />}
           {view === "contact" && (
             <ContactView
@@ -225,7 +225,7 @@ function DashboardView({ siteName }: { siteName: string }) {
               <strong>Settings</strong>, and <strong>Reports</strong>.
             </p>
           </div>
-          <div className="hidden shrink-0 sm:block h-14 w-14 rounded-2xl bg-gradient-to-br from-brand to-brand-cta opacity-90" aria-hidden />
+          {/* <div className="hidden shrink-0 sm:block h-14 w-14 rounded-2xl bg-gradient-to-br from-brand to-brand-cta opacity-90" aria-hidden /> */}
         </div>
       </article>
 
@@ -265,70 +265,549 @@ function DashboardView({ siteName }: { siteName: string }) {
   );
 }
 
-function SettingsView() {
+function SettingsView({ site }: { site: any }) {
+
   return (
-    <div className="grid grid-cols-1 gap-6">
+    <form action={saveSiteQuickAction} className="grid grid-cols-1 gap-6">
       <article className="rounded-3xl border border-brand/10 bg-white p-6 shadow-sm sm:p-8">
         <div className="inline-flex items-center gap-2 rounded-full bg-brand-surface px-3 py-1 text-xs font-bold uppercase tracking-wider text-brand">
           Settings
         </div>
         <h2 className="mt-3 text-xl font-extrabold tracking-tight text-ink">
-          Site settings
+          Website Content Management
         </h2>
         <p className="mt-2 max-w-2xl text-sm font-semibold leading-relaxed text-gray-600">
-          Configure general site options, SEO, and contact form copy. This page
-          is a placeholder; actual settings can be wired later.
+          Update your website content. Changes will be saved immediately after clicking "Save Changes".
         </p>
       </article>
 
+      {/* SEO & Branding */}
       <article className="rounded-3xl border border-brand/10 bg-white p-6 shadow-sm sm:p-8">
         <h3 className="text-base font-extrabold tracking-tight text-ink">
-          SEO
+          SEO & Branding
         </h3>
         <div className="mt-5 space-y-4">
           <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-gray-500">
-              Site title
+            <label htmlFor="seoTitle" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
+              Site Title (SEO)
             </label>
             <input
+              id="seoTitle"
+              name="seoTitle"
               type="text"
+              defaultValue={site.seo?.title ?? ""}
+              className="mt-2 w-full max-w-2xl rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
               placeholder="e.g. Der Cleaner – Professional Cleaning"
-              className="mt-2 w-full max-w-md rounded-xl border border-brand/20 bg-brand-surface/30 px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
-              readOnly
-              disabled
+            />
+          </div>
+          <div>
+            <label htmlFor="seoDescription" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
+              Meta Description
+            </label>
+            <textarea
+              id="seoDescription"
+              name="seoDescription"
+              rows={3}
+              defaultValue={site.seo?.description ?? ""}
+              className="mt-2 w-full max-w-2xl rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
+              placeholder="Brief description for search engines…"
+            />
+          </div>
+          <div>
+            <label htmlFor="brandingName" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
+              Brand Name
+            </label>
+            <input
+              id="brandingName"
+              name="brandingName"
+              type="text"
+              defaultValue={site.branding?.name ?? ""}
+              className="mt-2 w-full max-w-2xl rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
+              placeholder="e.g. Der Cleaner"
+            />
+          </div>
+        </div>
+      </article>
+
+      {/* Navigation */}
+      <article className="rounded-3xl border border-brand/10 bg-white p-6 shadow-sm sm:p-8">
+        <h3 className="text-base font-extrabold tracking-tight text-ink">
+          Navigation Links
+        </h3>
+        <div className="mt-5 space-y-4">
+          {site.navigation?.links?.map((link: any, i: number) => (
+            <div key={i} className="flex flex-col gap-3 sm:flex-row sm:gap-4">
+              <div className="flex-1">
+                <label htmlFor={`navLabel_${i}`} className="block text-xs font-bold uppercase tracking-wider text-gray-500">
+                  Label {i + 1}
+                </label>
+                <input
+                  id={`navLabel_${i}`}
+                  name={`navLabel_${i}`}
+                  type="text"
+                  defaultValue={link.label ?? ""}
+                  className="mt-2 w-full rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
+                />
+              </div>
+              <div className="flex-1">
+                <label htmlFor={`navHref_${i}`} className="block text-xs font-bold uppercase tracking-wider text-gray-500">
+                  URL {i + 1}
+                </label>
+                <input
+                  id={`navHref_${i}`}
+                  name={`navHref_${i}`}
+                  type="text"
+                  defaultValue={link.href ?? ""}
+                  className="mt-2 w-full rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
+                  placeholder="/#section"
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </article>
+
+      {/* Video Section */}
+      <article className="rounded-3xl border border-brand/10 bg-white p-6 shadow-sm sm:p-8">
+        <h3 className="text-base font-extrabold tracking-tight text-ink">
+          Video Section
+        </h3>
+        <div className="mt-5 space-y-4">
+          <div>
+            <label htmlFor="youtubeUrl" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
+              YouTube URL
+            </label>
+            <input
+              id="youtubeUrl"
+              name="youtubeUrl"
+              type="url"
+              defaultValue={site.videoSection?.youtubeUrl ?? ""}
+              className="mt-2 w-full max-w-2xl rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
+              placeholder="https://youtu.be/..."
+            />
+          </div>
+        </div>
+      </article>
+
+      {/* Contact Section */}
+      <article className="rounded-3xl border border-brand/10 bg-white p-6 shadow-sm sm:p-8">
+        <h3 className="text-base font-extrabold tracking-tight text-ink">
+          Contact Section
+        </h3>
+        <div className="mt-5 space-y-4">
+          <div>
+            <label htmlFor="contactTitle" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
+              Contact Title
+            </label>
+            <input
+              id="contactTitle"
+              name="contactTitle"
+              type="text"
+              defaultValue={site.contactSection?.title ?? ""}
+              className="mt-2 w-full max-w-2xl rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
+            />
+          </div>
+          <div>
+            <label htmlFor="contactSubtitle" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
+              Contact Subtitle
+            </label>
+            <input
+              id="contactSubtitle"
+              name="contactSubtitle"
+              type="text"
+              defaultValue={site.contactSection?.subtitle ?? ""}
+              className="mt-2 w-full max-w-2xl rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
+            />
+          </div>
+          <div>
+            <label htmlFor="contactEmail1" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
+              First Contact Email
+            </label>
+            <input
+              id="contactEmail1"
+              name="contactEmail1"
+              type="email"
+              defaultValue={site.contactSection?.contactInfo?.firstContact?.email ?? ""}
+              className="mt-2 w-full max-w-2xl rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
+            />
+          </div>
+          <div>
+            <label htmlFor="contactEmail2" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
+              Customer Support Email
+            </label>
+            <input
+              id="contactEmail2"
+              name="contactEmail2"
+              type="email"
+              defaultValue={site.contactSection?.contactInfo?.customerSupport?.email ?? ""}
+              className="mt-2 w-full max-w-2xl rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
+            />
+          </div>
+          <div>
+            <label htmlFor="contactPhone" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
+              Phone Number
+            </label>
+            <input
+              id="contactPhone"
+              name="contactPhone"
+              type="tel"
+              defaultValue={site.contactSection?.contactInfo?.phone?.number ?? ""}
+              className="mt-2 w-full max-w-2xl rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
+            />
+          </div>
+          <div>
+            <label htmlFor="contactPrivacy" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
+              Privacy Text
+            </label>
+            <textarea
+              id="contactPrivacy"
+              name="contactPrivacy"
+              rows={3}
+              defaultValue={site.contactSection?.privacyText ?? ""}
+              className="mt-2 w-full max-w-2xl rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
+            />
+          </div>
+        </div>
+      </article>
+
+      {/* Mission Section */}
+      <article className="rounded-3xl border border-brand/10 bg-white p-6 shadow-sm sm:p-8">
+        <h3 className="text-base font-extrabold tracking-tight text-ink">
+          Mission Section
+        </h3>
+        <div className="mt-5 space-y-4">
+          <div>
+            <label htmlFor="missionTitle" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
+              Hero Title
+            </label>
+            <input
+              id="missionTitle"
+              name="missionTitle"
+              type="text"
+              defaultValue={site.missionSection?.hero?.title ?? ""}
+              className="mt-2 w-full max-w-2xl rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
+            />
+          </div>
+          <div>
+            <label htmlFor="missionDescription" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
+              Hero Description
+            </label>
+            <textarea
+              id="missionDescription"
+              name="missionDescription"
+              rows={3}
+              defaultValue={site.missionSection?.hero?.description ?? ""}
+              className="mt-2 w-full max-w-2xl rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
+            />
+          </div>
+          <div>
+            <label htmlFor="missionCtaLabel" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
+              CTA Button Label
+            </label>
+            <input
+              id="missionCtaLabel"
+              name="missionCtaLabel"
+              type="text"
+              defaultValue={site.missionSection?.hero?.ctaLabel ?? ""}
+              className="mt-2 w-full max-w-2xl rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
+            />
+          </div>
+          <div>
+            <label htmlFor="missionIndustriesTitle" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
+              Industries Section Title
+            </label>
+            <input
+              id="missionIndustriesTitle"
+              name="missionIndustriesTitle"
+              type="text"
+              defaultValue={site.missionSection?.industriesIntro?.title ?? ""}
+              className="mt-2 w-full max-w-2xl rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
+            />
+          </div>
+          <div>
+            <label htmlFor="missionIndustriesDescription" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
+              Industries Section Description
+            </label>
+            <textarea
+              id="missionIndustriesDescription"
+              name="missionIndustriesDescription"
+              rows={2}
+              defaultValue={site.missionSection?.industriesIntro?.description ?? ""}
+              className="mt-2 w-full max-w-2xl rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
+            />
+          </div>
+        </div>
+      </article>
+
+      {/* About Section */}
+      <article className="rounded-3xl border border-brand/10 bg-white p-6 shadow-sm sm:p-8">
+        <h3 className="text-base font-extrabold tracking-tight text-ink">
+          About Section
+        </h3>
+        <div className="mt-5 space-y-4">
+          <div>
+            <label htmlFor="aboutTitle" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
+              About Title
+            </label>
+            <input
+              id="aboutTitle"
+              name="aboutTitle"
+              type="text"
+              defaultValue={site.aboutSection?.title ?? ""}
+              className="mt-2 w-full max-w-2xl rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
             />
           </div>
           <div>
             <label className="block text-xs font-bold uppercase tracking-wider text-gray-500">
-              Meta description
+              About Paragraphs
             </label>
-            <textarea
-              placeholder="Brief description for search engines…"
-              rows={3}
-              className="mt-2 w-full max-w-md rounded-xl border border-brand/20 bg-brand-surface/30 px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
-              readOnly
-              disabled
-            />
+            <p className="mt-1 text-xs font-semibold text-gray-500">
+              Add multiple paragraphs. Leave empty to remove.
+            </p>
+            {site.aboutSection?.paragraphs?.map((para: string, i: number) => (
+              <textarea
+                key={i}
+                id={`aboutParagraph_${i}`}
+                name={`aboutParagraph_${i}`}
+                rows={2}
+                defaultValue={para}
+                className="mt-2 w-full max-w-2xl rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
+              />
+            ))}
+            {(!site.aboutSection?.paragraphs || site.aboutSection.paragraphs.length === 0) && (
+              <textarea
+                id="aboutParagraph_0"
+                name="aboutParagraph_0"
+                rows={2}
+                className="mt-2 w-full max-w-2xl rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
+                placeholder="Add first paragraph..."
+              />
+            )}
           </div>
         </div>
-        <p className="mt-4 text-xs font-semibold text-gray-500">
-          Dummy fields – not connected to backend.
-        </p>
       </article>
 
+      {/* FAQ Section */}
       <article className="rounded-3xl border border-brand/10 bg-white p-6 shadow-sm sm:p-8">
         <h3 className="text-base font-extrabold tracking-tight text-ink">
-          Notifications
+          FAQ Section
         </h3>
-        <p className="mt-2 text-sm font-semibold leading-relaxed text-gray-600">
-          Enable email alerts for new contact submissions. Toggle and options
-          can be added here when implementing real settings.
-        </p>
-        <div className="mt-4 flex h-12 w-24 items-center justify-center rounded-xl border-2 border-dashed border-brand/20 bg-brand-surface/20">
-          <span className="text-xs font-bold text-gray-400">Toggle</span>
+        <div className="mt-5 space-y-4">
+          <div>
+            <label htmlFor="faqTitle" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
+              FAQ Title
+            </label>
+            <input
+              id="faqTitle"
+              name="faqTitle"
+              type="text"
+              defaultValue={site.faqSection?.title ?? ""}
+              className="mt-2 w-full max-w-2xl rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
+            />
+          </div>
+          <div>
+            <label htmlFor="faqSubtitle" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
+              FAQ Subtitle
+            </label>
+            <input
+              id="faqSubtitle"
+              name="faqSubtitle"
+              type="text"
+              defaultValue={site.faqSection?.subtitle ?? ""}
+              className="mt-2 w-full max-w-2xl rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
+            />
+          </div>
+          <div>
+            <label htmlFor="faqContactLabel" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
+              Contact Button Label
+            </label>
+            <input
+              id="faqContactLabel"
+              name="faqContactLabel"
+              type="text"
+              defaultValue={site.faqSection?.contactButtonLabel ?? ""}
+              className="mt-2 w-full max-w-2xl rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
+            />
+          </div>
+          <div>
+            <label className="block text-xs font-bold uppercase tracking-wider text-gray-500">
+              FAQ Items
+            </label>
+            <p className="mt-1 text-xs font-semibold text-gray-500">
+              Add question / answer pairs. Leave question empty to remove.
+            </p>
+            {(site.faqSection?.items ?? []).map((item: any, i: number) => (
+              <div key={i} className="mt-4 flex flex-col gap-2 rounded-xl border border-brand/10 bg-brand-surface/20 p-4">
+                <input
+                  name={`faqQuestion_${i}`}
+                  type="text"
+                  defaultValue={item.question ?? ""}
+                  placeholder="Question"
+                  className="w-full rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
+                />
+                <textarea
+                  name={`faqAnswer_${i}`}
+                  rows={2}
+                  defaultValue={item.answer ?? ""}
+                  placeholder="Answer"
+                  className="w-full rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
+                />
+              </div>
+            ))}
+            {(!site.faqSection?.items || site.faqSection.items.length === 0) && (
+              <div className="mt-4 flex flex-col gap-2 rounded-xl border border-brand/10 bg-brand-surface/20 p-4">
+                <input
+                  name="faqQuestion_0"
+                  type="text"
+                  placeholder="Question"
+                  className="w-full rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
+                />
+                <textarea
+                  name="faqAnswer_0"
+                  rows={2}
+                  placeholder="Answer"
+                  className="w-full rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
+                />
+              </div>
+            )}
+            {(site.faqSection?.items?.length ?? 0) > 0 && (
+              <div className="mt-4 flex flex-col gap-2 rounded-xl border border-dashed border-brand/20 bg-white p-4">
+                <input
+                  name={`faqQuestion_${(site.faqSection?.items ?? []).length}`}
+                  type="text"
+                  placeholder="+ New question (optional)"
+                  className="w-full rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
+                />
+                <textarea
+                  name={`faqAnswer_${(site.faqSection?.items ?? []).length}`}
+                  rows={2}
+                  placeholder="+ New answer (optional)"
+                  className="w-full rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
+                />
+              </div>
+            )}
+          </div>
         </div>
       </article>
-    </div>
+
+      {/* Products Section */}
+      <article className="rounded-3xl border border-brand/10 bg-white p-6 shadow-sm sm:p-8">
+        <h3 className="text-base font-extrabold tracking-tight text-ink">
+          Products Section
+        </h3>
+        <div className="mt-5 space-y-6">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div>
+              <label htmlFor="productsTechDataLabel" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
+                Tech Data Button Label
+              </label>
+              <input
+                id="productsTechDataLabel"
+                name="productsTechDataLabel"
+                type="text"
+                defaultValue={site.productsSection?.actions?.techDataLabel ?? ""}
+                className="mt-2 w-full rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
+              />
+            </div>
+            <div>
+              <label htmlFor="productsDemoLabel" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
+                Demo Button Label
+              </label>
+              <input
+                id="productsDemoLabel"
+                name="productsDemoLabel"
+                type="text"
+                defaultValue={site.productsSection?.actions?.demoLabel ?? ""}
+                className="mt-2 w-full rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
+              />
+            </div>
+          </div>
+          <div>
+            <label className="block text-xs font-bold uppercase tracking-wider text-gray-500">
+              Products
+            </label>
+            <p className="mt-1 text-xs font-semibold text-gray-500">
+              Edit name, tab title/desc, description, and savings text per product.
+            </p>
+            {(site.productsSection?.products ?? []).map((p: any, i: number) => (
+              <div key={p.id ?? i} className="mt-4 flex flex-col gap-4 rounded-xl border border-brand/10 bg-brand-surface/20 p-5">
+                <p className="text-sm font-bold text-brand">
+                  Product {i + 1}: {p.name || p.tabTitle || p.id}
+                </p>
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                  <div>
+                    <label className="block text-xs font-bold text-gray-500">Name</label>
+                    <input
+                      name={`product_${i}_name`}
+                      type="text"
+                      defaultValue={p.name ?? ""}
+                      className="mt-1 w-full rounded-xl border border-brand/20 bg-white px-4 py-2.5 text-sm font-semibold text-ink focus:outline-none focus:ring-2 focus:ring-brand/30"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold text-gray-500">Tab Title</label>
+                    <input
+                      name={`product_${i}_tabTitle`}
+                      type="text"
+                      defaultValue={p.tabTitle ?? ""}
+                      className="mt-1 w-full rounded-xl border border-brand/20 bg-white px-4 py-2.5 text-sm font-semibold text-ink focus:outline-none focus:ring-2 focus:ring-brand/30"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-xs font-bold text-gray-500">Tab Description</label>
+                  <input
+                    name={`product_${i}_tabDesc`}
+                    type="text"
+                    defaultValue={p.tabDesc ?? ""}
+                    className="mt-1 w-full rounded-xl border border-brand/20 bg-white px-4 py-2.5 text-sm font-semibold text-ink focus:outline-none focus:ring-2 focus:ring-brand/30"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-bold text-gray-500">Description</label>
+                  <textarea
+                    name={`product_${i}_description`}
+                    rows={3}
+                    defaultValue={p.description ?? ""}
+                    className="mt-1 w-full rounded-xl border border-brand/20 bg-white px-4 py-2.5 text-sm font-semibold text-ink focus:outline-none focus:ring-2 focus:ring-brand/30"
+                  />
+                </div>
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                  <div>
+                    <label className="block text-xs font-bold text-gray-500">Savings Title</label>
+                    <input
+                      name={`product_${i}_savingsTitle`}
+                      type="text"
+                      defaultValue={p.savingsTitle ?? ""}
+                      className="mt-1 w-full rounded-xl border border-brand/20 bg-white px-4 py-2.5 text-sm font-semibold text-ink focus:outline-none focus:ring-2 focus:ring-brand/30"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold text-gray-500">Savings Subtitle</label>
+                    <input
+                      name={`product_${i}_savingsSubtitle`}
+                      type="text"
+                      defaultValue={p.savingsSubtitle ?? ""}
+                      className="mt-1 w-full rounded-xl border border-brand/20 bg-white px-4 py-2.5 text-sm font-semibold text-ink focus:outline-none focus:ring-2 focus:ring-brand/30"
+                    />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </article>
+
+      {/* Save Button */}
+      <div className="flex items-center justify-end gap-3">
+        <button
+          type="submit"
+          className="rounded-full bg-brand-cta px-6 py-3 text-sm font-extrabold text-white shadow-md transition hover:shadow-lg hover:opacity-95"
+        >
+          Save Changes
+        </button>
+      </div>
+    </form>
   );
 }
 

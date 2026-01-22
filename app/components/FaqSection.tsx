@@ -3,27 +3,15 @@
 import React, { useState } from 'react';
 // import { ChevronUp } from 'lucide-react';
 
-const faqData = [
-    {
-        id: 1,
-        question: "Welche Vorteile bietet der i-mop im Vergleich zu herkömmlichen Reinigungslösungen?",
-        answer: "Der i-mop kombiniert die Flexibilität eines Flachmops mit der Leistung einer Scheuersaugmaschine...",
-        icon: '/next.png'
-    },
-    {
-        id: 2,
-        question: "Welche Modelle des i-mop stehen zur Verfügung, und wie unterscheiden sie sich?",
-        answer: "Es gibt verschiedene Modelle wie den i-mop Lite, XL und XXL, die sich in Tankkapazität und Arbeitsbreite unterscheiden."
-    },
-    {
-        id: 3,
-        question: "Welches Zubehör und welche Funktionen verbessern die Nutzung des i-mop?",
-        answer: "Zubehör wie verschiedene Bürstentypen, Pads und Akku-Optionen ermöglichen eine individuelle Anpassung."
-    }
-];
+type FaqItem = { id: number; question: string; answer: string; icon?: string };
 
-export default function FaqSection() {
+export default function FaqSection({ site }: { site: any }) {
     const [openId, setOpenId] = useState<number | null>(null);
+    const faq = site?.faqSection;
+    const faqData: FaqItem[] = Array.isArray(faq?.items) ? faq.items : [];
+    const title = faq?.title ?? "FAQ";
+    const subtitle = faq?.subtitle ?? "Sie haben weitere Fragen? Kontaktieren Sie uns gerne jederzeit.";
+    const contactLabel = faq?.contactButtonLabel ?? "Kontakt";
 
     return (
         <section className="bg-white py-16 px-4 md:px-20 lg:px-32 font-sans  faq-section">
@@ -31,9 +19,9 @@ export default function FaqSection() {
 
                 {/* Left Side: Header and Contact */}
                 <div className="md:w-1/3 space-y-6">
-                    <h2 className="text-5xl font-bold text-[#333333] text-brand">FAQ</h2>
+                    <h2 className="text-5xl font-bold text-[#333333] text-brand">{title}</h2>
                     <p className="text-gray-600 text-lg leading-relaxed faq-para md:mb-4 mb-0">
-                        Sie haben weitere Fragen? Kontaktieren Sie uns gerne jederzeit.
+                        {subtitle}
                     </p>
                     <button onClick={(e) => {
                         e.preventDefault();
@@ -42,7 +30,7 @@ export default function FaqSection() {
                             element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                         }
                     }} className="bg-[#00B1E6] hover:bg-[#0096C2] text-white font-bold py-3 px-10 rounded-full transition-colors duration-300 faq-contact-btn hidden md:block">
-                        Kontakt
+                        {contactLabel}
                     </button>
                 </div>
 
@@ -94,7 +82,7 @@ export default function FaqSection() {
                             element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                         }
                     }} className="bg-[#00B1E6] hover:bg-[#0096C2] text-white font-bold py-3 px-10 rounded-full transition-colors duration-300 faq-contact-btn">
-                        Kontakt
+                        {contactLabel}
                     </button>
                 </div>
 

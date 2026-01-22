@@ -12,7 +12,7 @@ export default async function Home() {
     <main className="min-h-screen">
       <VideoSection site={site} />
       <ProductShowcase site={site} />
-       <FaqSection />
+       <FaqSection site={site} />
       <MissionSection site={site} />
       <FeaturesAndAbout site={site} />
       <Contact site={site} />

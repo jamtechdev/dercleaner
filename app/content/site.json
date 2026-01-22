@@ -564,6 +564,28 @@
       }
     ]
   },
+  "faqSection": {
+    "title": "FAQ",
+    "subtitle": "Sie haben weitere Fragen? Kontaktieren Sie uns gerne jederzeit.",
+    "contactButtonLabel": "Kontakt",
+    "items": [
+      {
+        "id": 1,
+        "question": "Welche Vorteile bietet der i-mop im Vergleich zu herkömmlichen Reinigungslösungen?",
+        "answer": "Der i-mop kombiniert die Flexibilität eines Flachmops mit der Leistung einer Scheuersaugmaschine..."
+      },
+      {
+        "id": 2,
+        "question": "Welche Modelle des i-mop stehen zur Verfügung, und wie unterscheiden sie sich?",
+        "answer": "Es gibt verschiedene Modelle wie den i-mop Lite, XL und XXL, die sich in Tankkapazität und Arbeitsbreite unterscheiden."
+      },
+      {
+        "id": 3,
+        "question": "Welches Zubehör und welche Funktionen verbessern die Nutzung des i-mop?",
+        "answer": "Zubehör wie verschiedene Bürstentypen, Pads und Akku-Optionen ermöglichen eine individuelle Anpassung."
+      }
+    ]
+  },
   "missionSection": {
     "hero": {
       "backgroundImage": {
