@@ -81,9 +81,13 @@ export async function saveSiteQuickAction(formData: FormData) {
   redirect("/admin?saved=1");
 }
 
-export async function clearSubmissionsAction() {
+export async function clearSubmissionsAction(formData: FormData) {
   await requireAdmin();
   await clearContactSubmissions();
+  const view = formData.get("view");
+  if (view === "contact") {
+    redirect("/admin?view=contact&cleared=1");
+  }
   redirect("/admin?cleared=1");
 }
 
