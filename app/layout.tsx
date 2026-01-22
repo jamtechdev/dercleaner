@@ -6,6 +6,9 @@ import Footer from "./components/Footer";
 import GlobalLoadingOverlay from "./components/GlobalLoadingOverlay";
 import { getSite } from "./lib/site";
 
+/** Always read site.json at request time (no static cache). Needed so admin/server edits to site.json take effect. */
+export const dynamic = "force-dynamic";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
