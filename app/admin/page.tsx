@@ -519,7 +519,7 @@ function SettingsView({ site }: { site: any }) {
           </div>
           <div>
             <label htmlFor="missionCtaLabel" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
-              CTA-Button-Label
+            CTA-Button-Beschriftung
             </label>
             <input
               id="missionCtaLabel"
@@ -692,13 +692,13 @@ function SettingsView({ site }: { site: any }) {
                 <input
                   name={`faqQuestion_${(site.faqSection?.items ?? []).length}`}
                   type="text"
-                  placeholder="+ New question (optional)"
+                  placeholder="+ Neue Frage (optional)"
                   className="w-full rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
                 />
                 <textarea
                   name={`faqAnswer_${(site.faqSection?.items ?? []).length}`}
                   rows={2}
-                  placeholder="+ New answer (optional)"
+                  placeholder="+ Neue Antwort (optional)"
                   className="w-full rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
                 />
               </div>
@@ -1140,7 +1140,7 @@ function ContactView({
               Kontakt-Eingaben
             </h2>
             <p className="mt-0.5 text-sm font-semibold text-gray-600">
-              {submissions.length} total
+              {submissions.length} Gesamt
             </p>
           </div>
 
