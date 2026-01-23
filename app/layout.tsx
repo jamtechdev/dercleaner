@@ -6,7 +6,7 @@ import Footer from "./components/Footer";
 import GlobalLoadingOverlay from "./components/GlobalLoadingOverlay";
 import { getSite } from "./lib/site";
 
-/** Always read site.json at request time (no static cache). Needed so admin/server edits to site.json take effect. */
+/** Always read site config from database at request time (no static cache). Needed so admin/server edits take effect immediately. */
 export const dynamic = "force-dynamic";
 
 const geistSans = Geist({

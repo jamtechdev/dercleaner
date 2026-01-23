@@ -1,16 +1,7 @@
 'use server'
 
-import { mkdir, readFile, writeFile } from "node:fs/promises";
-import path from "node:path";
-
-type ContactSubmission = {
-  id: string;
-  createdAt: string;
-  name: string;
-  email: string;
-  tel: string;
-  message: string;
-};
+import { initializeDatabase } from "@/app/database/data-source";
+import { ContactSubmissionRepository } from "@/app/database/repositories/ContactSubmissionRepository";
 
 export type ContactFormState = {
   success: boolean;
@@ -20,47 +11,22 @@ export type ContactFormState = {
 };
 
 async function persistContactSubmission(formData: FormData): Promise<string> {
+  await initializeDatabase();
+  
   const name = String(formData.get("name") ?? "").trim();
   const email = String(formData.get("email") ?? "").trim();
   const tel = String(formData.get("tel") ?? "").trim();
   const message = String(formData.get("message") ?? "").trim();
 
-  const createdAt = new Date().toISOString();
-  const id =
-    typeof crypto?.randomUUID === "function"
-      ? crypto.randomUUID()
-      : `${Date.now()}-${Math.random().toString(16).slice(2)}`;
-
-  const submission: ContactSubmission = {
-    id,
-    createdAt,
+  const repo = new ContactSubmissionRepository();
+  const submission = await repo.create({
     name,
     email,
-    tel,
+    tel: tel || undefined,
     message,
-  };
+  });
 
-  // NOTE: This writes to the server filesystem (works in local/dev or Node servers).
-  // It will NOT be persistent on most serverless hosts (e.g. Vercel).
-  const dataDir = path.join(process.cwd(), "data");
-  const filePath = path.join(dataDir, "contact-submissions.json");
-
-  await mkdir(dataDir, { recursive: true });
-
-  let existing: ContactSubmission[] = [];
-  try {
-    const raw = await readFile(filePath, "utf8");
-    const parsed = JSON.parse(raw);
-    if (Array.isArray(parsed)) existing = parsed as ContactSubmission[];
-  } catch {
-    // first write: file doesn't exist yet OR JSON is invalid -> start fresh
-    existing = [];
-  }
-
-  existing.push(submission);
-  await writeFile(filePath, JSON.stringify(existing, null, 2), "utf8");
-
-  return id;
+  return submission.id;
 }
 
 // Use with <form action={formAction}> + useActionState in a client component

@@ -1,27 +1,47 @@
-import { mkdir, readFile, writeFile } from "node:fs/promises";
-import path from "node:path";
+import { initializeDatabase } from "@/app/database/data-source";
+import { ContactSubmissionRepository } from "@/app/database/repositories/ContactSubmissionRepository";
+import { SiteConfigRepository } from "@/app/database/repositories/SiteConfigRepository";
 
-export const SITE_JSON_PATH = path.join(
-  process.cwd(),
-  "app",
-  "content",
-  "site.json",
-);
+// Initialize database connection
+let dbInitialized = false;
 
-export const SUBMISSIONS_JSON_PATH = path.join(
-  process.cwd(),
-  "data",
-  "contact-submissions.json",
-);
+async function ensureDbInitialized() {
+  if (!dbInitialized) {
+    await initializeDatabase();
+    dbInitialized = true;
+  }
+}
 
 export async function getSite(): Promise<any> {
-  const raw = await readFile(SITE_JSON_PATH, "utf8");
-  return JSON.parse(raw);
+  await ensureDbInitialized();
+  const repo = new SiteConfigRepository();
+  const config = await repo.getConfig();
+  
+  // If no config exists, return empty structure
+  if (!config) {
+    return {
+      seo: { title: "", description: "" },
+      branding: { name: "", logo: { src: "", alt: "" } },
+      navigation: { links: [] },
+      videoSection: { youtubeUrl: "" },
+      productsSection: { actions: { techDataLabel: "", demoLabel: "" }, products: [] },
+      faqSection: { title: "", subtitle: "", contactButtonLabel: "", items: [] },
+      missionSection: { hero: { title: "", description: "", ctaLabel: "" }, industriesIntro: { title: "", description: "" }, industries: [] },
+      featuresSection: { features: [] },
+      aboutSection: { title: "", paragraphs: [] },
+      contactSection: { title: "", subtitle: "", contactInfo: { firstContact: { email: "" }, customerSupport: { email: "" }, phone: { number: "" } }, privacyText: "" },
+      footer: { information: { title: "", links: [] }, legal: { title: "", links: [] } },
+      legalPages: {},
+    };
+  }
+  
+  return config;
 }
 
 export async function saveSite(nextSite: unknown): Promise<void> {
-  const json = JSON.stringify(nextSite, null, 2);
-  await writeFile(SITE_JSON_PATH, json + "\n", "utf8");
+  await ensureDbInitialized();
+  const repo = new SiteConfigRepository();
+  await repo.saveConfig(nextSite);
 }
 
 export async function saveSiteFromString(jsonString: string): Promise<any> {
@@ -31,16 +51,23 @@ export async function saveSiteFromString(jsonString: string): Promise<any> {
 }
 
 export async function getContactSubmissions(): Promise<any[]> {
-  try {
-    const raw = await readFile(SUBMISSIONS_JSON_PATH, "utf8");
-    const parsed = JSON.parse(raw);
-    return Array.isArray(parsed) ? parsed : [];
-  } catch {
-    return [];
-  }
+  await ensureDbInitialized();
+  const repo = new ContactSubmissionRepository();
+  const submissions = await repo.findAll();
+  
+  // Convert to format expected by existing code
+  return submissions.map((s) => ({
+    id: s.id,
+    createdAt: s.createdAt.toISOString(),
+    name: s.name,
+    email: s.email,
+    tel: s.tel || "",
+    message: s.message,
+  }));
 }
 
 export async function clearContactSubmissions(): Promise<void> {
-  await mkdir(path.dirname(SUBMISSIONS_JSON_PATH), { recursive: true });
-  await writeFile(SUBMISSIONS_JSON_PATH, "[]\n", "utf8");
+  await ensureDbInitialized();
+  const repo = new ContactSubmissionRepository();
+  await repo.deleteAll();
 }
