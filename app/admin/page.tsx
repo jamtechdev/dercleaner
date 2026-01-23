@@ -1088,7 +1088,7 @@ async function ProductsView() {
               Produkte verwalten
             </h2>
             <p className="mt-2 max-w-2xl text-sm font-semibold leading-relaxed text-gray-600">
-              {totalProducts} total
+              {totalProducts} Gesamt
             </p>
           </div>
         </div>
