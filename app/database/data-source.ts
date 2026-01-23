@@ -2,6 +2,7 @@ import "reflect-metadata";
 import { DataSource } from "typeorm";
 import { ContactSubmission } from "./entities/ContactSubmission";
 import { SiteConfig } from "./entities/SiteConfig";
+import { Product } from "./entities/Product";
 
 export const AppDataSource = new DataSource({
   type: "mysql",
@@ -12,7 +13,7 @@ export const AppDataSource = new DataSource({
   database: process.env.DB_NAME || "der_cleaner",
   synchronize: process.env.NODE_ENV !== "production", // Auto-sync in dev, use migrations in production
   logging: process.env.NODE_ENV === "development",
-  entities: [ContactSubmission, SiteConfig],
+  entities: [ContactSubmission, SiteConfig, Product],
   migrations: [], // No migrations for now - using synchronize in dev
   subscribers: [],
 });

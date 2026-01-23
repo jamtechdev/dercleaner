@@ -6,13 +6,22 @@ import {
   logoutAction,
   saveSiteQuickAction,
   saveSiteAction,
+  createProductAction,
+  updateProductAction,
+  deleteProductAction,
 } from "@/app/admin/actions";
 import { VideoSourceSelector } from "@/app/admin/VideoSourceSelector";
 import { RichTextEditor } from "@/app/admin/RichTextEditor";
+import { ProductRepository } from "@/app/database/repositories/ProductRepository";
+import { initializeDatabase } from "@/app/database/data-source";
+import { ProductCreateForm } from "@/app/admin/ProductCreateForm";
+import { ProductEditForm } from "@/app/admin/ProductEditForm";
+import { ProductsListView } from "@/app/admin/ProductsListView";
 
 const SIDEBAR_LINKS = [
   { id: "dashboard", label: "Armaturenbrett", href: "/admin?view=dashboard" },
   { id: "contact", label: "Kontakt", href: "/admin?view=contact" },
+  { id: "products", label: "Produkte", href: "/admin?view=products" },
   { id: "legal", label: "Rechtliches", href: "/admin?view=legal" },
   { id: "settings", label: "Einstellungen", href: "/admin?view=settings" },
   // { id: "reports", label: "Reports", href: "/admin?view=reports" },
@@ -48,6 +57,15 @@ function NavIcon({ id, active }: { id: ViewId; active: boolean }) {
           <polyline points="10 9 9 9 8 9" />
         </svg>
       );
+    case "products":
+      return (
+        <svg className={`shrink-0 ${cn}`} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+          <rect x="3" y="3" width="7" height="7" rx="1" />
+          <rect x="14" y="3" width="7" height="7" rx="1" />
+          <rect x="3" y="14" width="7" height="7" rx="1" />
+          <rect x="14" y="14" width="7" height="7" rx="1" />
+        </svg>
+      );
     case "settings":
       return (
         <svg className={`shrink-0 ${cn}`} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
@@ -68,7 +86,7 @@ function NavIcon({ id, active }: { id: ViewId; active: boolean }) {
   }
 }
 
-type ViewId = "dashboard" | "contact" | "settings" | "reports" | "legal";
+type ViewId = "dashboard" | "contact" | "products" | "settings" | "reports" | "legal";
 
 export default async function AdminPage({
   searchParams,
@@ -85,13 +103,23 @@ export default async function AdminPage({
 
   const site = await getSite();
   const submissions = await getContactSubmissions();
+  
+  // Get products count for dashboard
+  let totalProducts = 0;
+  try {
+    await initializeDatabase();
+    const productRepo = new ProductRepository();
+    totalProducts = await productRepo.count();
+  } catch (error) {
+    console.error("Error fetching products count:", error);
+  }
 
   const sp = (await searchParams) ?? {};
   const showSaved = sp.saved === "1";
   const showCleared = sp.cleared === "1";
   const showInvalidJson = sp.error === "invalid_json";
   const viewRaw = sp.view ?? "dashboard";
-  const validViews = ["dashboard", "contact", "settings", "reports", "legal"] as const;
+  const validViews = ["dashboard", "contact", "products", "settings", "reports", "legal"] as const;
   const view: ViewId = (validViews.includes(viewRaw as any) ? viewRaw : "dashboard") as ViewId;
   const currentPage = Math.max(1, Number(sp.page ?? "1") || 1);
   const pageSize = 10;
@@ -163,7 +191,7 @@ export default async function AdminPage({
         {/* Left sidebar */}
         <aside className="sticky top-[4.5rem] h-[calc(100vh-4.5rem)] w-60 shrink-0 border-r border-brand/10 bg-white py-6 pl-4 pr-3 shadow-[2px_0_16px_-4px_rgba(0,163,204,0.1)]">
           <p className="mb-3 px-3 text-xs font-bold uppercase tracking-wider text-gray-400">
-            Menu
+          Speisekarte
           </p>
           <nav className="flex flex-col gap-1">
             {SIDEBAR_LINKS.map((item) => {
@@ -188,9 +216,14 @@ export default async function AdminPage({
 
         <section className="min-w-0 flex-1 px-4 py-8 sm:px-6 md:px-10 lg:px-12">
           {view === "dashboard" && (
-            <DashboardView siteName={site.branding?.name ?? "Der Cleaner"} totalContacts={submissions.length} />
+            <DashboardView 
+              siteName={site.branding?.name ?? "Der Cleaner"} 
+              totalContacts={submissions.length}
+              totalProducts={totalProducts}
+            />
           )}
           {view === "settings" && <SettingsView site={site} />}
+          {view === "products" && <ProductsView />}
           {view === "legal" && <LegalPagesView site={site} />}
           {view === "reports" && <ReportsView />}
           {view === "contact" && (
@@ -209,10 +242,10 @@ export default async function AdminPage({
   );
 }
 
-function DashboardView({ siteName, totalContacts }: { siteName: string; totalContacts: number }) {
+function DashboardView({ siteName, totalContacts, totalProducts }: { siteName: string; totalContacts: number; totalProducts: number }) {
   return (
-    <div className="grid grid-cols-1 gap-6">
-      <article className="overflow-hidden rounded-3xl border border-brand/10 bg-white p-6 shadow-md transition hover:shadow-lg sm:p-8">
+    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+      <article className="overflow-hidden rounded-3xl border border-brand/10 bg-white p-6 shadow-md transition hover:shadow-lg sm:p-8 sm:col-span-2">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full bg-brand-surface px-3 py-1 text-xs font-bold uppercase tracking-wider text-brand">
@@ -238,6 +271,19 @@ function DashboardView({ siteName, totalContacts }: { siteName: string; totalCon
         </p>
         <p className="mt-2 text-3xl font-extrabold tracking-tight text-ink">
           {totalContacts}
+        </p>
+      </Link>
+
+      <Link
+        href="/admin?view=products"
+        className="group relative overflow-hidden rounded-3xl border border-brand/10 bg-white p-6 shadow-sm transition hover:shadow-md hover:border-brand/20 cursor-pointer"
+      >
+        <div className="absolute top-0 right-0 h-20 w-20 -translate-y-1/2 translate-x-1/2 rounded-full bg-brand opacity-10" aria-hidden />
+        <p className="text-xs font-bold uppercase tracking-widest text-brand/80">
+          Gesamt Produkte
+        </p>
+        <p className="mt-2 text-3xl font-extrabold tracking-tight text-ink">
+          {totalProducts}
         </p>
       </Link>
     </div>
@@ -661,114 +707,6 @@ function SettingsView({ site }: { site: any }) {
         </div>
       </article>
 
-      {/* Products Section */}
-      <article className="rounded-3xl border border-brand/10 bg-white p-6 shadow-sm sm:p-8">
-        <h3 className="text-base font-extrabold tracking-tight text-ink">
-          Produkte-Bereich
-        </h3>
-        <div className="mt-5 space-y-6">
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <div>
-              <label htmlFor="productsTechDataLabel" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
-              Technische Daten-Schaltflächenbezeichnung
-              </label>
-              <input
-                id="productsTechDataLabel"
-                name="productsTechDataLabel"
-                type="text"
-                defaultValue={site.productsSection?.actions?.techDataLabel ?? ""}
-                className="mt-2 w-full rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
-              />
-            </div>
-            <div>
-              <label htmlFor="productsDemoLabel" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
-              Demo-Schaltflächenbezeichnung
-              </label>
-              <input
-                id="productsDemoLabel"
-                name="productsDemoLabel"
-                type="text"
-                defaultValue={site.productsSection?.actions?.demoLabel ?? ""}
-                className="mt-2 w-full rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
-              />
-            </div>
-          </div>
-          <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-gray-500">
-              Produkte
-            </label>
-            <p className="mt-1 text-xs font-semibold text-gray-500">
-              Bearbeiten Sie den Namen, den Tab-Titel/Beschreibung, die Beschreibung und den Ersparnistext pro Produkt.
-            </p>
-            {(site.productsSection?.products ?? []).map((p: any, i: number) => (
-              <div key={p.id ?? i} className="mt-4 flex flex-col gap-4 rounded-xl border border-brand/10 bg-brand-surface/20 p-5">
-                <p className="text-sm font-bold text-brand">
-                  Produkt {i + 1}: {p.name || p.tabTitle || p.id}
-                </p>
-                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                  <div>
-                    <label className="block text-xs font-bold text-gray-500">Produktname</label>
-                    <input
-                      name={`product_${i}_name`}
-                      type="text"
-                      defaultValue={p.name ?? ""}
-                      className="mt-1 w-full rounded-xl border border-brand/20 bg-white px-4 py-2.5 text-sm font-semibold text-ink focus:outline-none focus:ring-2 focus:ring-brand/30"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-bold text-gray-500">Tab-Titel</label>
-                    <input
-                      name={`product_${i}_tabTitle`}
-                      type="text"
-                      defaultValue={p.tabTitle ?? ""}
-                      className="mt-1 w-full rounded-xl border border-brand/20 bg-white px-4 py-2.5 text-sm font-semibold text-ink focus:outline-none focus:ring-2 focus:ring-brand/30"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-xs font-bold text-gray-500">Tab-Beschreibung</label>
-                  <input
-                    name={`product_${i}_tabDesc`}
-                    type="text"
-                    defaultValue={p.tabDesc ?? ""}
-                    className="mt-1 w-full rounded-xl border border-brand/20 bg-white px-4 py-2.5 text-sm font-semibold text-ink focus:outline-none focus:ring-2 focus:ring-brand/30"
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs font-bold text-gray-500">Beschreibung</label>
-                  <textarea
-                    name={`product_${i}_description`}
-                    rows={3}
-                    defaultValue={p.description ?? ""}
-                    className="mt-1 w-full rounded-xl border border-brand/20 bg-white px-4 py-2.5 text-sm font-semibold text-ink focus:outline-none focus:ring-2 focus:ring-brand/30"
-                  />
-                </div>
-                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                  <div>
-                    <label className="block text-xs font-bold text-gray-500">Ersparnistitel</label>
-                    <input
-                      name={`product_${i}_savingsTitle`}
-                      type="text"
-                      defaultValue={p.savingsTitle ?? ""}
-                      className="mt-1 w-full rounded-xl border border-brand/20 bg-white px-4 py-2.5 text-sm font-semibold text-ink focus:outline-none focus:ring-2 focus:ring-brand/30"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-bold text-gray-500">Ersparnisuntertitel</label>
-                    <input
-                      name={`product_${i}_savingsSubtitle`}
-                      type="text"
-                      defaultValue={p.savingsSubtitle ?? ""}
-                      className="mt-1 w-full rounded-xl border border-brand/20 bg-white px-4 py-2.5 text-sm font-semibold text-ink focus:outline-none focus:ring-2 focus:ring-brand/30"
-                    />
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </article>
-
       {/* Save Button */}
       <div className="flex items-center justify-end gap-3">
         <button
@@ -1106,6 +1044,73 @@ function ReportsView() {
       </article>
     </div>
   );
+}
+
+// Helper function to convert Product entity to plain object
+function productToPlainObject(product: any): any {
+  return {
+    id: product.id,
+    name: product.name,
+    tabTitle: product.tabTitle,
+    tabDesc: product.tabDesc,
+    tabImage: product.tabImage,
+    heroImage: product.heroImage,
+    video: product.video,
+    featuresImage: product.featuresImage,
+    savingsTitle: product.savingsTitle,
+    savingsSubtitle: product.savingsSubtitle,
+    stats: product.stats,
+    description: product.description,
+    technicalSpecs: product.technicalSpecs,
+    features: product.features,
+    displayOrder: product.displayOrder,
+    createdAt: product.createdAt instanceof Date ? product.createdAt.toISOString() : product.createdAt,
+    updatedAt: product.updatedAt instanceof Date ? product.updatedAt.toISOString() : product.updatedAt,
+  };
+}
+
+async function ProductsView() {
+  await initializeDatabase();
+  const repo = new ProductRepository();
+  const products = await repo.findAll();
+  const plainProducts = products.map(productToPlainObject);
+  const totalProducts = plainProducts.length;
+
+  return (
+    <div className="grid grid-cols-1 gap-6">
+      <article className="rounded-3xl border border-brand/10 bg-white p-6 shadow-sm sm:p-8">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <div className="inline-flex items-center gap-2 rounded-full bg-brand-surface px-3 py-1 text-xs font-bold uppercase tracking-wider text-brand">
+              Produkte
+            </div>
+            <h2 className="mt-3 text-xl font-extrabold tracking-tight text-ink">
+              Produkte verwalten
+            </h2>
+            <p className="mt-2 max-w-2xl text-sm font-semibold leading-relaxed text-gray-600">
+              {totalProducts} total
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <ProductCreateForm />
+
+      {plainProducts.length === 0 ? (
+        <article className="rounded-3xl border border-brand/10 bg-white p-12 shadow-sm text-center">
+          <p className="text-sm font-semibold text-gray-600">
+            Noch keine Produkte vorhanden. Erstellen Sie Ihr erstes Produkt.
+          </p>
+        </article>
+      ) : (
+        <ProductsListView products={plainProducts} />
+      )}
+    </div>
+  );
+}
+
+function ProductEditFormWrapper({ product }: { product: any }) {
+  return <ProductEditForm product={product} />;
 }
 
 function ContactView({

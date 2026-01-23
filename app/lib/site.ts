@@ -1,6 +1,7 @@
 import { initializeDatabase } from "@/app/database/data-source";
 import { ContactSubmissionRepository } from "@/app/database/repositories/ContactSubmissionRepository";
 import { SiteConfigRepository } from "@/app/database/repositories/SiteConfigRepository";
+import { ProductRepository } from "@/app/database/repositories/ProductRepository";
 
 // Initialize database connection
 let dbInitialized = false;
@@ -12,10 +13,38 @@ async function ensureDbInitialized() {
   }
 }
 
+// Helper function to convert Product entity to plain object
+function productToPlainObject(product: any): any {
+  return {
+    id: product.id,
+    name: product.name,
+    tabTitle: product.tabTitle,
+    tabDesc: product.tabDesc,
+    tabImage: product.tabImage,
+    heroImage: product.heroImage,
+    video: product.video,
+    featuresImage: product.featuresImage,
+    savingsTitle: product.savingsTitle,
+    savingsSubtitle: product.savingsSubtitle,
+    stats: product.stats,
+    description: product.description,
+    technicalSpecs: product.technicalSpecs,
+    features: product.features,
+    displayOrder: product.displayOrder,
+    createdAt: product.createdAt instanceof Date ? product.createdAt.toISOString() : product.createdAt,
+    updatedAt: product.updatedAt instanceof Date ? product.updatedAt.toISOString() : product.updatedAt,
+  };
+}
+
 export async function getSite(): Promise<any> {
   await ensureDbInitialized();
   const repo = new SiteConfigRepository();
   const config = await repo.getConfig();
+  
+  // Get products from database and convert to plain objects
+  const productRepo = new ProductRepository();
+  const products = await productRepo.findAll();
+  const plainProducts = products.map(productToPlainObject);
   
   // If no config exists, return empty structure
   if (!config) {
@@ -24,7 +53,7 @@ export async function getSite(): Promise<any> {
       branding: { name: "", logo: { src: "", alt: "" } },
       navigation: { links: [] },
       videoSection: { youtubeUrl: "", videoFileUrl: "" },
-      productsSection: { actions: { techDataLabel: "", demoLabel: "" }, products: [] },
+      productsSection: { actions: { techDataLabel: "", demoLabel: "" }, products: plainProducts },
       faqSection: { title: "", subtitle: "", contactButtonLabel: "", items: [] },
       missionSection: { hero: { title: "", description: "", ctaLabel: "" }, industriesIntro: { title: "", description: "" }, industries: [] },
       featuresSection: { features: [] },
@@ -38,6 +67,10 @@ export async function getSite(): Promise<any> {
       },
     };
   }
+  
+  // Merge products from database into config (as plain objects)
+  config.productsSection = config.productsSection || { actions: { techDataLabel: "", demoLabel: "" }, products: [] };
+  config.productsSection.products = plainProducts;
   
   return config;
 }

@@ -13,6 +13,8 @@ import {
   saveSite,
   saveSiteFromString,
 } from "@/app/lib/site";
+import { ProductRepository } from "@/app/database/repositories/ProductRepository";
+import { initializeDatabase } from "@/app/database/data-source";
 
 function adminUser(): string {
   return process.env.ADMIN_USERNAME || "admin";
@@ -189,35 +191,6 @@ export async function saveSiteQuickAction(formData: FormData) {
     site.faqSection.items = faqItems;
   }
 
-  // Products Section – actions
-  if (formData.get("productsTechDataLabel") !== null) {
-    if (!site.productsSection?.actions) site.productsSection.actions = { techDataLabel: "", demoLabel: "" };
-    site.productsSection.actions.techDataLabel = String(formData.get("productsTechDataLabel") ?? "");
-  }
-  if (formData.get("productsDemoLabel") !== null) {
-    if (!site.productsSection?.actions) site.productsSection.actions = { techDataLabel: "", demoLabel: "" };
-    site.productsSection.actions.demoLabel = String(formData.get("productsDemoLabel") ?? "");
-  }
-
-  // Products Section – per product (name, tabTitle, tabDesc, description, savingsTitle, savingsSubtitle)
-  const products = site.productsSection?.products;
-  if (Array.isArray(products)) {
-    for (let i = 0; i < products.length; i++) {
-      const name = formData.get(`product_${i}_name`);
-      const tabTitle = formData.get(`product_${i}_tabTitle`);
-      const tabDesc = formData.get(`product_${i}_tabDesc`);
-      const description = formData.get(`product_${i}_description`);
-      const savingsTitle = formData.get(`product_${i}_savingsTitle`);
-      const savingsSubtitle = formData.get(`product_${i}_savingsSubtitle`);
-      if (name !== null) products[i].name = String(name ?? "");
-      if (tabTitle !== null) products[i].tabTitle = String(tabTitle ?? "");
-      if (tabDesc !== null) products[i].tabDesc = String(tabDesc ?? "");
-      if (description !== null) products[i].description = String(description ?? "");
-      if (savingsTitle !== null) products[i].savingsTitle = String(savingsTitle ?? "");
-      if (savingsSubtitle !== null) products[i].savingsSubtitle = String(savingsSubtitle ?? "");
-    }
-  }
-
   // Legal Pages Section - only process when saving from legal view
   const view = formData.get("view");
   if (view === "legal") {
@@ -314,4 +287,133 @@ export async function downloadSubmissionsAction() {
   await requireAdmin();
   const submissions = await getContactSubmissions();
   return submissions;
+}
+
+// Product Actions
+async function ensureDbInitialized() {
+  await initializeDatabase();
+}
+
+export async function createProductAction(formData: FormData) {
+  await requireAdmin();
+  await ensureDbInitialized();
+
+  const repo = new ProductRepository();
+  
+  const tabImageSrc = String(formData.get("tabImageSrc") ?? "").trim();
+  const tabImageAlt = String(formData.get("tabImageAlt") ?? "").trim();
+  const heroImageSrc = String(formData.get("heroImageSrc") ?? "").trim();
+  const heroImageAlt = String(formData.get("heroImageAlt") ?? "").trim();
+  const videoSrc = String(formData.get("videoSrc") ?? "").trim();
+  const videoAlt = String(formData.get("videoAlt") ?? "").trim();
+  const featuresImageSrc = String(formData.get("featuresImageSrc") ?? "").trim();
+  const featuresImageAlt = String(formData.get("featuresImageAlt") ?? "").trim();
+
+  // Parse stats from JSON string
+  let stats: { icon: string; label: string; value: string; sub: string }[] | undefined;
+  const statsJson = formData.get("stats");
+  if (statsJson && typeof statsJson === "string") {
+    try {
+      const parsed = JSON.parse(statsJson);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        // Filter out empty stats (all fields empty)
+        stats = parsed.filter((stat: any) => 
+          stat.label?.trim() || stat.value?.trim() || stat.icon?.trim() || stat.sub?.trim()
+        );
+        if (stats.length === 0) stats = undefined;
+      }
+    } catch (e) {
+      console.error("Error parsing stats:", e);
+    }
+  }
+
+  await repo.create({
+    name: String(formData.get("name") ?? ""),
+    tabTitle: String(formData.get("tabTitle") ?? ""),
+    tabDesc: String(formData.get("tabDesc") ?? "").trim() || undefined,
+    tabImage: { src: tabImageSrc, alt: tabImageAlt || tabImageSrc },
+    heroImage: { src: heroImageSrc, alt: heroImageAlt || heroImageSrc },
+    video: videoSrc ? { src: videoSrc, alt: videoAlt || videoSrc } : undefined,
+    featuresImage: featuresImageSrc ? { src: featuresImageSrc, alt: featuresImageAlt || featuresImageSrc } : undefined,
+    savingsTitle: String(formData.get("savingsTitle") ?? ""),
+    savingsSubtitle: String(formData.get("savingsSubtitle") ?? ""),
+    stats: stats,
+    description: String(formData.get("description") ?? "").trim() || undefined,
+    displayOrder: Number(formData.get("displayOrder") ?? "0") || 0,
+  });
+
+  redirect("/admin?view=products&saved=1");
+}
+
+export async function updateProductAction(formData: FormData) {
+  await requireAdmin();
+  await ensureDbInitialized();
+
+  const repo = new ProductRepository();
+  const id = String(formData.get("id") ?? "");
+  
+  if (!id) {
+    redirect("/admin?view=products&error=missing_id");
+    return;
+  }
+
+  const tabImageSrc = String(formData.get("tabImageSrc") ?? "").trim();
+  const tabImageAlt = String(formData.get("tabImageAlt") ?? "").trim();
+  const heroImageSrc = String(formData.get("heroImageSrc") ?? "").trim();
+  const heroImageAlt = String(formData.get("heroImageAlt") ?? "").trim();
+  const videoSrc = String(formData.get("videoSrc") ?? "").trim();
+  const videoAlt = String(formData.get("videoAlt") ?? "").trim();
+  const featuresImageSrc = String(formData.get("featuresImageSrc") ?? "").trim();
+  const featuresImageAlt = String(formData.get("featuresImageAlt") ?? "").trim();
+
+  // Parse stats from JSON string
+  let stats: { icon: string; label: string; value: string; sub: string }[] | undefined;
+  const statsJson = formData.get("stats");
+  if (statsJson && typeof statsJson === "string") {
+    try {
+      const parsed = JSON.parse(statsJson);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        // Filter out empty stats (all fields empty)
+        stats = parsed.filter((stat: any) => 
+          stat.label?.trim() || stat.value?.trim() || stat.icon?.trim() || stat.sub?.trim()
+        );
+        if (stats.length === 0) stats = undefined;
+      }
+    } catch (e) {
+      console.error("Error parsing stats:", e);
+    }
+  }
+
+  await repo.update(id, {
+    name: String(formData.get("name") ?? ""),
+    tabTitle: String(formData.get("tabTitle") ?? ""),
+    tabDesc: String(formData.get("tabDesc") ?? "").trim() || undefined,
+    tabImage: { src: tabImageSrc, alt: tabImageAlt || tabImageSrc },
+    heroImage: { src: heroImageSrc, alt: heroImageAlt || heroImageSrc },
+    video: videoSrc ? { src: videoSrc, alt: videoAlt || videoSrc } : undefined,
+    featuresImage: featuresImageSrc ? { src: featuresImageSrc, alt: featuresImageAlt || featuresImageSrc } : undefined,
+    savingsTitle: String(formData.get("savingsTitle") ?? ""),
+    savingsSubtitle: String(formData.get("savingsSubtitle") ?? ""),
+    stats: stats,
+    description: String(formData.get("description") ?? "").trim() || undefined,
+    displayOrder: Number(formData.get("displayOrder") ?? "0") || 0,
+  } as any);
+
+  redirect("/admin?view=products&saved=1");
+}
+
+export async function deleteProductAction(formData: FormData) {
+  await requireAdmin();
+  await ensureDbInitialized();
+
+  const repo = new ProductRepository();
+  const id = String(formData.get("id") ?? "");
+  
+  if (!id) {
+    redirect("/admin?view=products&error=missing_id");
+    return;
+  }
+
+  await repo.delete(id);
+  redirect("/admin?view=products&deleted=1");
 }

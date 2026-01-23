@@ -22,9 +22,13 @@ type Product = {
 };
 
 export default function ProductShowcase({ site }: { site: any }) {
-  const products = site.productsSection.products as Product[];
+  const products = (site.productsSection?.products || []) as Product[];
   const [activeId, setActiveId] = useState<string>(products[0]?.id ?? "");
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  if (!products || products.length === 0) {
+    return null;
+  }
 
   const activeProduct = products.find((p) => p.id === activeId) ?? products[0];
   if (!activeProduct) return null;
@@ -58,15 +62,21 @@ export default function ProductShowcase({ site }: { site: any }) {
           className="dc-animate-fade-up w-full flex flex-col md:flex-row gap-4 md:gap-8 md:items-center"
         >
           {/* Large Product Image */}
-          <div className="relative w-full md:w-1/2 h-[250px] sm:h-[320px] md:h-[550px] flex-shrink-0 mx-auto md:mx-0">
-            <Image
-              key={activeProduct.heroImage.src}
-              src={activeProduct.heroImage.src}
-              alt={activeProduct.heroImage.alt}
-              fill
-              className="object-contain"
-            />
-          </div>
+          {activeProduct.heroImage?.src && activeProduct.heroImage.src.trim() ? (
+            <div className="relative w-full md:w-1/2 h-[250px] sm:h-[320px] md:h-[550px] flex-shrink-0 mx-auto md:mx-0">
+              <Image
+                key={activeProduct.heroImage.src}
+                src={activeProduct.heroImage.src}
+                alt={activeProduct.heroImage.alt || activeProduct.name}
+                fill
+                className="object-contain"
+              />
+            </div>
+          ) : (
+            <div className="relative w-full md:w-1/2 h-[250px] sm:h-[320px] md:h-[550px] flex-shrink-0 mx-auto md:mx-0 bg-gray-100 rounded-lg flex items-center justify-center">
+              <span className="text-gray-400">No Image</span>
+            </div>
+          )}
 
           {/* Product Details */}
           <div className="w-full md:w-1/2 space-y-4 md:space-y-10 flex flex-col">
@@ -88,18 +98,20 @@ export default function ProductShowcase({ site }: { site: any }) {
             </header>
 
             {/* Stats Cards */}
-            <div className="space-y-3 md:space-y-10 einsparungen-boxes w-full mb-0">
-              {activeProduct.stats.map((s, index) => (
-                <StatCard
-                  key={s.label}
-                  icon={s.icon}
-                  label={s.label}
-                  value={s.value}
-                  sub={s.sub}
-                  index={index}
-                />
-              ))}
-            </div>
+            {activeProduct.stats && Array.isArray(activeProduct.stats) && activeProduct.stats.length > 0 && (
+              <div className="space-y-3 md:space-y-10 einsparungen-boxes w-full mb-0">
+                {activeProduct.stats.map((s, index) => (
+                  <StatCard
+                    key={s.label}
+                    icon={s.icon}
+                    label={s.label}
+                    value={s.value}
+                    sub={s.sub}
+                    index={index}
+                  />
+                ))}
+              </div>
+            )}
 
             {/* Actions */}
             <div className="pt-2 md:pt-4 space-y-3 md:space-y-14 technishe-daten w-full">
@@ -179,14 +191,20 @@ function ProductTab({
       aria-pressed={isActive}
     >
       <div className="flex items-center gap-3 md:gap-4">
-        <div className="w-10 h-10 md:w-18 md:h-18 sm:w-16 sm:h-16 relative flex-shrink-0">
-          <Image
-            src={imageSrc}
-            alt={imageAlt}
-            fill
-            className="object-contain active-first-image"
-          />
-        </div>
+        {imageSrc && imageSrc.trim() ? (
+          <div className="w-10 h-10 md:w-18 md:h-18 sm:w-16 sm:h-16 relative flex-shrink-0">
+            <Image
+              src={imageSrc}
+              alt={imageAlt || name}
+              fill
+              className="object-contain active-first-image"
+            />
+          </div>
+        ) : (
+          <div className="w-10 h-10 md:w-18 md:h-18 sm:w-16 sm:h-16 relative flex-shrink-0 bg-gray-200 rounded flex items-center justify-center">
+            <span className="text-xs text-gray-400">No Image</span>
+          </div>
+        )}
         <div className="min-w-0 flex-1 " >
           <h3 className="font-bold text-sm md:text-base sm:text-lg truncate md:truncate-none">{name}</h3>
           {!end && (
@@ -294,29 +312,33 @@ function ProductDetailsModal({
 
           {/* Product Image or Video */}
           <div className={`relative w-full h-[200px] sm:h-[300px] md:h-[400px] lg:h-[490px] mb-4 md:mb-8 bg-gray-50 rounded-lg md:rounded-xl overflow-hidden imop-pop-box ${product.id}`}>
-            {product.featuresImage && product.featuresImage.src ? (
+            {product.featuresImage && product.featuresImage.src && product.featuresImage.src.trim() ? (
               <Image
                 src={product.featuresImage.src}
-                alt={product.featuresImage.alt}
+                alt={product.featuresImage.alt || product.name}
                 fill
                 className="object-contain p-4"
               />
-            ) : product.video && product.video.src ? (
+            ) : product.video && product.video.src && product.video.src.trim() ? (
               <video
                 src={product.video.src}
                 controls
                 className="w-full h-full object-contain"
-                aria-label={product.video.alt}
+                aria-label={product.video.alt || product.name}
               >
                 Your browser does not support the video tag.
               </video>
-            ) : (
+            ) : product.heroImage && product.heroImage.src && product.heroImage.src.trim() ? (
               <Image
                 src={product.heroImage.src}
-                alt={product.heroImage.alt}
+                alt={product.heroImage.alt || product.name}
                 fill
                 className="object-contain p-4"
               />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center bg-gray-100">
+                <span className="text-gray-400">No Image Available</span>
+              </div>
             )}
           </div>
 
@@ -331,38 +353,40 @@ function ProductDetailsModal({
           </div>
 
           {/* Stats Grid - Savings */}
-          <div className="mb-4 md:mb-8">
-            <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-3 md:mb-4">Einsparungen</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
-              {product.stats.map((stat) => (
-                <div
-                  key={stat.label}
-                  className="flex items-center p-3 md:p-5 rounded-lg md:rounded-2xl bg-[var(--tertiary-color)]"
-                >
-                  <div className="w-12 h-12 md:w-14 md:h-14 bg-brand rounded-full flex items-center justify-center text-white text-xl mr-3 md:mr-4 flex-shrink-0 pop-up-icons">
-                    {/* {stat.icon} */}
-                    <img
-                      src={stat.icon}
-                      alt={stat.label}
-                      className="w-6 h-6 md:w-7 md:h-7"
-                    />
+          {product.stats && Array.isArray(product.stats) && product.stats.length > 0 && (
+            <div className="mb-4 md:mb-8">
+              <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-3 md:mb-4">Einsparungen</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+                {product.stats.map((stat) => (
+                  <div
+                    key={stat.label}
+                    className="flex items-center p-3 md:p-5 rounded-lg md:rounded-2xl bg-[var(--tertiary-color)]"
+                  >
+                    <div className="w-12 h-12 md:w-14 md:h-14 bg-brand rounded-full flex items-center justify-center text-white text-xl mr-3 md:mr-4 flex-shrink-0 pop-up-icons">
+                      {/* {stat.icon} */}
+                      <img
+                        src={stat.icon}
+                        alt={stat.label}
+                        className="w-6 h-6 md:w-7 md:h-7"
+                      />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="text-brand font-bold text-base md:text-lg leading-none mb-1">
+                        {stat.label}
+                      </p>
+                      <p className="text-base md:text-lg lg:text-xl font-medium text-gray-800 pop-up-date">
+                        {stat.value}
+                      </p>
+                      <p className="text-xs md:text-sm text-gray-600 pop-up-date">{stat.sub}</p>
+                    </div>
                   </div>
-                  <div className="min-w-0 flex-1">
-                    <p className="text-brand font-bold text-base md:text-lg leading-none mb-1">
-                      {stat.label}
-                    </p>
-                    <p className="text-base md:text-lg lg:text-xl font-medium text-gray-800 pop-up-date">
-                      {stat.value}
-                    </p>
-                    <p className="text-xs md:text-sm text-gray-600 pop-up-date">{stat.sub}</p>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Technical Specifications */}
-          {product.technicalSpecs && product.technicalSpecs.length > 0 && (
+          {product.technicalSpecs && Array.isArray(product.technicalSpecs) && product.technicalSpecs.length > 0 && (
             <div className="mb-4 md:mb-8 border-t pt-4 md:pt-6">
               <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-3 md:mb-4">Technische Daten</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
@@ -394,7 +418,7 @@ function ProductDetailsModal({
           )}
 
           {/* Features */}
-          {product.features && product.features.length > 0 && (
+          {product.features && Array.isArray(product.features) && product.features.length > 0 && (
             <div className="border-t pt-4 md:pt-6">
               <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-4 md:mb-6">Funktionen</h3>
               <div className="space-y-4 md:space-y-6">
