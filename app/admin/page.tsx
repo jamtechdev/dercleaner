@@ -14,7 +14,7 @@ const SIDEBAR_LINKS = [
   { id: "dashboard", label: "Armaturenbrett", href: "/admin?view=dashboard" },
   { id: "contact", label: "Kontakt", href: "/admin?view=contact" },
   { id: "legal", label: "Rechtliches", href: "/admin?view=legal" },
-  { id: "settings", label: "Settings", href: "/admin?view=settings" },
+  { id: "settings", label: "Einstellungen", href: "/admin?view=settings" },
   // { id: "reports", label: "Reports", href: "/admin?view=reports" },
 ] as const;
 
@@ -670,7 +670,7 @@ function SettingsView({ site }: { site: any }) {
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
               <label htmlFor="productsTechDataLabel" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
-                Tech Data-Button-Label
+              Technische Daten-Schaltflächenbezeichnung
               </label>
               <input
                 id="productsTechDataLabel"
@@ -682,7 +682,7 @@ function SettingsView({ site }: { site: any }) {
             </div>
             <div>
               <label htmlFor="productsDemoLabel" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
-                Demo-Button-Label
+              Demo-Schaltflächenbezeichnung
               </label>
               <input
                 id="productsDemoLabel"
@@ -856,7 +856,7 @@ function LegalPagesView({ site }: { site: any }) {
           </div>
           <div>
             <label htmlFor="impressumBackLabel" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
-              Zurück-Button Label
+            Beschriftung der Schaltfläche „Zurück“.
             </label>
             <input
               id="impressumBackLabel"
@@ -934,7 +934,7 @@ function LegalPagesView({ site }: { site: any }) {
           </div>
           <div>
             <label htmlFor="agbBackLabel" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
-              Zurück-Button Label
+            Beschriftung der Schaltfläche „Zurück“.
             </label>
             <input
               id="agbBackLabel"
@@ -1012,7 +1012,7 @@ function LegalPagesView({ site }: { site: any }) {
           </div>
           <div>
             <label htmlFor="datenschutzBackLabel" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
-              Zurück-Button Label
+            Beschriftung der Schaltfläche „Zurück“.
             </label>
             <input
               id="datenschutzBackLabel"
