@@ -17,6 +17,8 @@ export const AppDataSource = new DataSource({
   subscribers: [],
 });
 
+console.log("process.env.DB_USER", process.env.DB_USER)
+
 // Initialize connection
 let isInitialized = false;
 
