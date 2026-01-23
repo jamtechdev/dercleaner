@@ -80,7 +80,7 @@ export function RichTextEditor({ name, defaultValue = "", placeholder = "" }: Ri
     if (editor && defaultValue !== undefined) {
       const currentContent = editor.getHTML();
       if (currentContent !== defaultValue) {
-        editor.commands.setContent(defaultValue, false);
+        editor.commands.setContent(defaultValue, { emitUpdate: false });
       }
     }
   }, [defaultValue, editor]);
