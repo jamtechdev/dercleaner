@@ -33,12 +33,12 @@ public/videos/*.MOV
 public/videos/*.avi
 
 # uploaded product images (keep directory structure but ignore image files)
-public/images/products/*.jpg
-public/images/products/*.jpeg
-public/images/products/*.png
-public/images/products/*.gif
-public/images/products/*.webp
-public/images/products/*.svg
+# public/images/products/*.jpg
+# public/images/products/*.jpeg
+# public/images/products/*.png
+# public/images/products/*.gif
+# public/images/products/*.webp
+# public/images/products/*.svg
 
 # debug
 npm-debug.log*
