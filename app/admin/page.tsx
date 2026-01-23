@@ -365,7 +365,7 @@ function SettingsView({ site }: { site: any }) {
             <div key={i} className="flex flex-col gap-3 sm:flex-row sm:gap-4">
               <div className="flex-1">
                 <label htmlFor={`navLabel_${i}`} className="block text-xs font-bold uppercase tracking-wider text-gray-500">
-                  Label {i + 1}
+                  Etikett {i + 1}
                 </label>
                 <input
                   id={`navLabel_${i}`}
@@ -636,7 +636,7 @@ function SettingsView({ site }: { site: any }) {
           </div>
           <div>
             <label htmlFor="faqContactLabel" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
-              Kontakt-Button-Label
+              Kontakt-Taste-Etikett
             </label>
             <input
               id="faqContactLabel"
@@ -1157,7 +1157,7 @@ function ContactView({
                 type="submit"
                 className="rounded-full bg-ink px-4 py-2.5 text-sm font-extrabold text-white shadow-sm transition hover:bg-black hover:shadow"
               >
-                Clear
+                Klar
               </button>
             </form>
           </div>
