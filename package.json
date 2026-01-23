@@ -10,6 +10,16 @@
     "seed": "tsx scripts/seed-database.ts"
   },
   "dependencies": {
+    "@tiptap/extension-blockquote": "^3.16.0",
+    "@tiptap/extension-code": "^3.16.0",
+    "@tiptap/extension-horizontal-rule": "^3.16.0",
+    "@tiptap/extension-link": "^3.16.0",
+    "@tiptap/extension-placeholder": "^3.16.0",
+    "@tiptap/extension-strike": "^3.16.0",
+    "@tiptap/extension-text-align": "^3.16.0",
+    "@tiptap/extension-underline": "^3.16.0",
+    "@tiptap/react": "^3.16.0",
+    "@tiptap/starter-kit": "^3.16.0",
     "mysql2": "^3.16.1",
     "next": "16.0.10",
     "react": "19.2.1",

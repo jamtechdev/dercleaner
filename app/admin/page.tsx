@@ -7,10 +7,13 @@ import {
   saveSiteQuickAction,
   saveSiteAction,
 } from "@/app/admin/actions";
+import { VideoSourceSelector } from "@/app/admin/VideoSourceSelector";
+import { RichTextEditor } from "@/app/admin/RichTextEditor";
 
 const SIDEBAR_LINKS = [
-  // { id: "dashboard", label: "Dashboard", href: "/admin" },
-  { id: "dashboard", label: "Dashboard", href: "/admin?view=contact" },
+  { id: "dashboard", label: "Armaturenbrett", href: "/admin?view=dashboard" },
+  { id: "contact", label: "Kontakt", href: "/admin?view=contact" },
+  { id: "legal", label: "Rechtliches", href: "/admin?view=legal" },
   { id: "settings", label: "Settings", href: "/admin?view=settings" },
   // { id: "reports", label: "Reports", href: "/admin?view=reports" },
 ] as const;
@@ -28,13 +31,23 @@ function NavIcon({ id, active }: { id: ViewId; active: boolean }) {
           <rect x="3" y="16" width="7" height="5" rx="1" />
         </svg>
       );
-    // case "contact":
-    //   return (
-    //     <svg className={`shrink-0 ${cn}`} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-    //       <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-    //       <polyline points="22,6 12,13 2,6" />
-    //     </svg>
-    //   );
+    case "contact":
+      return (
+        <svg className={`shrink-0 ${cn}`} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+          <polyline points="22,6 12,13 2,6" />
+        </svg>
+      );
+    case "legal":
+      return (
+        <svg className={`shrink-0 ${cn}`} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+          <polyline points="14 2 14 8 20 8" />
+          <line x1="16" y1="13" x2="8" y2="13" />
+          <line x1="16" y1="17" x2="8" y2="17" />
+          <polyline points="10 9 9 9 8 9" />
+        </svg>
+      );
     case "settings":
       return (
         <svg className={`shrink-0 ${cn}`} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
@@ -55,7 +68,7 @@ function NavIcon({ id, active }: { id: ViewId; active: boolean }) {
   }
 }
 
-type ViewId = "dashboard" | "contact" | "settings" | "reports";
+type ViewId = "dashboard" | "contact" | "settings" | "reports" | "legal";
 
 export default async function AdminPage({
   searchParams,
@@ -78,7 +91,7 @@ export default async function AdminPage({
   const showCleared = sp.cleared === "1";
   const showInvalidJson = sp.error === "invalid_json";
   const viewRaw = sp.view ?? "dashboard";
-  const validViews = ["dashboard", "contact", "settings", "reports"] as const;
+  const validViews = ["dashboard", "contact", "settings", "reports", "legal"] as const;
   const view: ViewId = (validViews.includes(viewRaw as any) ? viewRaw : "dashboard") as ViewId;
   const currentPage = Math.max(1, Number(sp.page ?? "1") || 1);
   const pageSize = 10;
@@ -104,10 +117,10 @@ export default async function AdminPage({
             ].join(" ")}
           >
             {showInvalidJson
-              ? "Invalid JSON. Please fix and try again."
+              ? "Ungültiges JSON. Bitte korrigieren Sie den Fehler und versuchen Sie es erneut."
               : showCleared
-                ? "Submissions cleared."
-                : "Website content saved."}
+                ? "Eingereichte Unterlagen freigegeben."
+                : "Website-Inhalte gespeichert."}
           </div>
         </div>
       )}
@@ -120,10 +133,10 @@ export default async function AdminPage({
                 {site.branding.name}
               </p>
               <h1 className="mt-0.5 text-2xl font-extrabold tracking-tight text-ink">
-                Admin Dashboard
+                Admin Armaturenbrett
               </h1>
               <p className="mt-0.5 text-sm font-semibold text-gray-500">
-                Manage website content and contact leads.
+                Website-Inhalte verwalten und Leads kontaktieren.
               </p>
             </div>
 
@@ -131,15 +144,14 @@ export default async function AdminPage({
               <Link
                 href="/"
                 className="rounded-full border border-brand/25 bg-white px-4 py-2.5 text-sm font-bold text-ink shadow-sm transition hover:border-brand/40 hover:bg-brand-surface hover:shadow"
-              >
-                View site
+              >Website ansehen
               </Link>
               <form action={logoutAction}>
                 <button
                   type="submit"
                   className="rounded-full bg-brand-cta px-4 py-2.5 text-sm font-extrabold text-white shadow-md transition hover:shadow-lg hover:opacity-95"
                 >
-                  Logout
+                  Abmelden
                 </button>
               </form>
             </div>
@@ -176,9 +188,10 @@ export default async function AdminPage({
 
         <section className="min-w-0 flex-1 px-4 py-8 sm:px-6 md:px-10 lg:px-12">
           {view === "dashboard" && (
-            <DashboardView siteName={site.branding?.name ?? "Der Cleaner"} />
+            <DashboardView siteName={site.branding?.name ?? "Der Cleaner"} totalContacts={submissions.length} />
           )}
           {view === "settings" && <SettingsView site={site} />}
+          {view === "legal" && <LegalPagesView site={site} />}
           {view === "reports" && <ReportsView />}
           {view === "contact" && (
             <ContactView
@@ -196,65 +209,37 @@ export default async function AdminPage({
   );
 }
 
-function DashboardView({ siteName }: { siteName: string }) {
-  const stats = [
-    { label: "Total Visitors", value: "12,847", sub: "Last 30 days", accent: "bg-brand" },
-    { label: "Page Views", value: "48,291", sub: "Last 30 days", accent: "bg-brand-cta" },
-    { label: "Avg. Session", value: "2m 34s", sub: "Last 30 days", accent: "bg-about" },
-  ];
+function DashboardView({ siteName, totalContacts }: { siteName: string; totalContacts: number }) {
   return (
     <div className="grid grid-cols-1 gap-6">
       <article className="overflow-hidden rounded-3xl border border-brand/10 bg-white p-6 shadow-md transition hover:shadow-lg sm:p-8">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full bg-brand-surface px-3 py-1 text-xs font-bold uppercase tracking-wider text-brand">
-              Dashboard
+            Armaturenbrett
             </div>
             <h2 className="mt-3 text-xl font-extrabold tracking-tight text-ink">
-              Welcome back
+              Willkommen zurück
             </h2>
             <p className="mt-2 max-w-2xl text-sm font-semibold leading-relaxed text-gray-600">
-              Welcome to the {siteName} admin dashboard. Use the sidebar to switch
-              between <strong>Dashboard</strong>, <strong>Contact Us</strong>,{" "}
-              <strong>Settings</strong>, and <strong>Reports</strong>.
+              Willkommen im Admin-Armaturenbrett von {siteName}.
             </p>
           </div>
-          {/* <div className="hidden shrink-0 sm:block h-14 w-14 rounded-2xl bg-gradient-to-br from-brand to-brand-cta opacity-90" aria-hidden /> */}
         </div>
       </article>
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-        {stats.map((stat) => (
-          <article
-            key={stat.label}
-            className="group relative overflow-hidden rounded-3xl border border-brand/10 bg-white p-5 shadow-sm transition hover:shadow-md hover:border-brand/20"
-          >
-            <div className={`absolute top-0 right-0 h-20 w-20 -translate-y-1/2 translate-x-1/2 rounded-full ${stat.accent} opacity-10`} aria-hidden />
-            <p className="text-xs font-bold uppercase tracking-widest text-brand/80">
-              {stat.label}
-            </p>
-            <p className="mt-2 text-2xl font-extrabold tracking-tight text-ink">
-              {stat.value}
-            </p>
-            <p className="mt-1 text-xs font-semibold text-gray-500">
-              {stat.sub}
-            </p>
-          </article>
-        ))}
-      </div>
-
-      <article className="rounded-3xl border border-brand/10 bg-white p-6 shadow-sm sm:p-8">
-        <h2 className="text-lg font-extrabold tracking-tight text-ink">
-          Quick overview
-        </h2>
-        <p className="mt-3 max-w-2xl text-sm font-semibold leading-relaxed text-gray-600">
-          This is a placeholder overview. You can manage contact form
-          submissions from the <strong className="text-ink">Contact Us</strong> menu. Use{" "}
-          <strong className="text-ink">Settings</strong> for site configuration and{" "}
-          <strong className="text-ink">Reports</strong> for analytics. All data shown here is dummy
-          content for layout purposes.
+      <Link
+        href="/admin?view=contact"
+        className="group relative overflow-hidden rounded-3xl border border-brand/10 bg-white p-6 shadow-sm transition hover:shadow-md hover:border-brand/20 cursor-pointer"
+      >
+        <div className="absolute top-0 right-0 h-20 w-20 -translate-y-1/2 translate-x-1/2 rounded-full bg-brand opacity-10" aria-hidden />
+        <p className="text-xs font-bold uppercase tracking-widest text-brand/80">
+          Gesamt Kontakte
         </p>
-      </article>
+        <p className="mt-2 text-3xl font-extrabold tracking-tight text-ink">
+          {totalContacts}
+        </p>
+      </Link>
     </div>
   );
 }
@@ -263,27 +248,28 @@ function SettingsView({ site }: { site: any }) {
 
   return (
     <form action={saveSiteQuickAction} className="grid grid-cols-1 gap-6">
+      <input type="hidden" name="view" value="settings" />
       <article className="rounded-3xl border border-brand/10 bg-white p-6 shadow-sm sm:p-8">
         <div className="inline-flex items-center gap-2 rounded-full bg-brand-surface px-3 py-1 text-xs font-bold uppercase tracking-wider text-brand">
-          Settings
+          Einstellungen
         </div>
         <h2 className="mt-3 text-xl font-extrabold tracking-tight text-ink">
-          Website Content Management
+          Website-Inhalte verwalten
         </h2>
         <p className="mt-2 max-w-2xl text-sm font-semibold leading-relaxed text-gray-600">
-          Update your website content. Changes will be saved immediately after clicking "Save Changes".
+          Aktualisieren Sie Ihre Website-Inhalte. Änderungen werden sofort nach dem Klicken auf „Änderungen speichern“ gespeichert.
         </p>
       </article>
 
       {/* SEO & Branding */}
       <article className="rounded-3xl border border-brand/10 bg-white p-6 shadow-sm sm:p-8">
         <h3 className="text-base font-extrabold tracking-tight text-ink">
-          SEO & Branding
+          SEO und Branding
         </h3>
         <div className="mt-5 space-y-4">
           <div>
             <label htmlFor="seoTitle" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
-              Site Title (SEO)
+              Website-Titel (SEO)
             </label>
             <input
               id="seoTitle"
@@ -291,12 +277,12 @@ function SettingsView({ site }: { site: any }) {
               type="text"
               defaultValue={site.seo?.title ?? ""}
               className="mt-2 w-full max-w-2xl rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
-              placeholder="e.g. Der Cleaner – Professional Cleaning"
+              placeholder="z.B. Der Cleaner – Professionelle Reinigung"
             />
           </div>
           <div>
             <label htmlFor="seoDescription" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
-              Meta Description
+              Meta-Beschreibung
             </label>
             <textarea
               id="seoDescription"
@@ -304,12 +290,12 @@ function SettingsView({ site }: { site: any }) {
               rows={3}
               defaultValue={site.seo?.description ?? ""}
               className="mt-2 w-full max-w-2xl rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
-              placeholder="Brief description for search engines…"
+              placeholder="Kurzbeschreibung für Suchmaschinen…"
             />
           </div>
           <div>
             <label htmlFor="brandingName" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
-              Brand Name
+              Markenname
             </label>
             <input
               id="brandingName"
@@ -317,7 +303,7 @@ function SettingsView({ site }: { site: any }) {
               type="text"
               defaultValue={site.branding?.name ?? ""}
               className="mt-2 w-full max-w-2xl rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
-              placeholder="e.g. Der Cleaner"
+              placeholder="z.B. Der Cleaner"
             />
           </div>
         </div>
@@ -326,7 +312,7 @@ function SettingsView({ site }: { site: any }) {
       {/* Navigation */}
       <article className="rounded-3xl border border-brand/10 bg-white p-6 shadow-sm sm:p-8">
         <h3 className="text-base font-extrabold tracking-tight text-ink">
-          Navigation Links
+          Navigationslinks
         </h3>
         <div className="mt-5 space-y-4">
           {site.navigation?.links?.map((link: any, i: number) => (
@@ -345,7 +331,7 @@ function SettingsView({ site }: { site: any }) {
               </div>
               <div className="flex-1">
                 <label htmlFor={`navHref_${i}`} className="block text-xs font-bold uppercase tracking-wider text-gray-500">
-                  URL {i + 1}
+                  Link-URL {i + 1}
                 </label>
                 <input
                   id={`navHref_${i}`}
@@ -364,34 +350,25 @@ function SettingsView({ site }: { site: any }) {
       {/* Video Section */}
       <article className="rounded-3xl border border-brand/10 bg-white p-6 shadow-sm sm:p-8">
         <h3 className="text-base font-extrabold tracking-tight text-ink">
-          Video Section
+          Video-Bereich
         </h3>
         <div className="mt-5 space-y-4">
-          <div>
-            <label htmlFor="youtubeUrl" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
-              YouTube URL
-            </label>
-            <input
-              id="youtubeUrl"
-              name="youtubeUrl"
-              type="url"
-              defaultValue={site.videoSection?.youtubeUrl ?? ""}
-              className="mt-2 w-full max-w-2xl rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
-              placeholder="https://youtu.be/..."
-            />
-          </div>
+          <VideoSourceSelector
+            currentYoutubeUrl={site.videoSection?.youtubeUrl ?? ""}
+            currentVideoFileUrl={site.videoSection?.videoFileUrl ?? ""}
+          />
         </div>
       </article>
 
       {/* Contact Section */}
       <article className="rounded-3xl border border-brand/10 bg-white p-6 shadow-sm sm:p-8">
         <h3 className="text-base font-extrabold tracking-tight text-ink">
-          Contact Section
+          Kontakt-Bereich
         </h3>
         <div className="mt-5 space-y-4">
           <div>
             <label htmlFor="contactTitle" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
-              Contact Title
+              Kontakt-Titel
             </label>
             <input
               id="contactTitle"
@@ -403,7 +380,7 @@ function SettingsView({ site }: { site: any }) {
           </div>
           <div>
             <label htmlFor="contactSubtitle" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
-              Contact Subtitle
+              Kontakt-Untertitel
             </label>
             <input
               id="contactSubtitle"
@@ -415,7 +392,7 @@ function SettingsView({ site }: { site: any }) {
           </div>
           <div>
             <label htmlFor="contactEmail1" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
-              First Contact Email
+              Erste Kontakt-E-Mail
             </label>
             <input
               id="contactEmail1"
@@ -427,7 +404,7 @@ function SettingsView({ site }: { site: any }) {
           </div>
           <div>
             <label htmlFor="contactEmail2" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
-              Customer Support Email
+              Kundensupport-E-Mail
             </label>
             <input
               id="contactEmail2"
@@ -439,7 +416,7 @@ function SettingsView({ site }: { site: any }) {
           </div>
           <div>
             <label htmlFor="contactPhone" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
-              Phone Number
+              Telefonnummer
             </label>
             <input
               id="contactPhone"
@@ -451,7 +428,7 @@ function SettingsView({ site }: { site: any }) {
           </div>
           <div>
             <label htmlFor="contactPrivacy" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
-              Privacy Text
+              Datenschutztext
             </label>
             <textarea
               id="contactPrivacy"
@@ -467,12 +444,12 @@ function SettingsView({ site }: { site: any }) {
       {/* Mission Section */}
       <article className="rounded-3xl border border-brand/10 bg-white p-6 shadow-sm sm:p-8">
         <h3 className="text-base font-extrabold tracking-tight text-ink">
-          Mission Section
+          Mission-Bereich
         </h3>
         <div className="mt-5 space-y-4">
           <div>
             <label htmlFor="missionTitle" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
-              Hero Title
+              Hero-Titel
             </label>
             <input
               id="missionTitle"
@@ -484,7 +461,7 @@ function SettingsView({ site }: { site: any }) {
           </div>
           <div>
             <label htmlFor="missionDescription" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
-              Hero Description
+              Hero-Beschreibung
             </label>
             <textarea
               id="missionDescription"
@@ -496,7 +473,7 @@ function SettingsView({ site }: { site: any }) {
           </div>
           <div>
             <label htmlFor="missionCtaLabel" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
-              CTA Button Label
+              CTA-Button-Label
             </label>
             <input
               id="missionCtaLabel"
@@ -508,7 +485,7 @@ function SettingsView({ site }: { site: any }) {
           </div>
           <div>
             <label htmlFor="missionIndustriesTitle" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
-              Industries Section Title
+            Titel des Abschnitts „Branchen“
             </label>
             <input
               id="missionIndustriesTitle"
@@ -520,7 +497,7 @@ function SettingsView({ site }: { site: any }) {
           </div>
           <div>
             <label htmlFor="missionIndustriesDescription" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
-              Industries Section Description
+              Beschreibung des Abschnitts „Branchen“
             </label>
             <textarea
               id="missionIndustriesDescription"
@@ -536,12 +513,12 @@ function SettingsView({ site }: { site: any }) {
       {/* About Section */}
       <article className="rounded-3xl border border-brand/10 bg-white p-6 shadow-sm sm:p-8">
         <h3 className="text-base font-extrabold tracking-tight text-ink">
-          About Section
+          Über-Bereich
         </h3>
         <div className="mt-5 space-y-4">
           <div>
             <label htmlFor="aboutTitle" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
-              About Title
+              Über-Titel
             </label>
             <input
               id="aboutTitle"
@@ -553,10 +530,10 @@ function SettingsView({ site }: { site: any }) {
           </div>
           <div>
             <label className="block text-xs font-bold uppercase tracking-wider text-gray-500">
-              About Paragraphs
+              Über-Absätze
             </label>
             <p className="mt-1 text-xs font-semibold text-gray-500">
-              Add multiple paragraphs. Leave empty to remove.
+              Fügen Sie mehrere Absätze hinzu. Lassen Sie leer, um zu entfernen.
             </p>
             {site.aboutSection?.paragraphs?.map((para: string, i: number) => (
               <textarea
@@ -584,12 +561,12 @@ function SettingsView({ site }: { site: any }) {
       {/* FAQ Section */}
       <article className="rounded-3xl border border-brand/10 bg-white p-6 shadow-sm sm:p-8">
         <h3 className="text-base font-extrabold tracking-tight text-ink">
-          FAQ Section
+          FAQ-Bereich
         </h3>
         <div className="mt-5 space-y-4">
           <div>
             <label htmlFor="faqTitle" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
-              FAQ Title
+              FAQ-Titel
             </label>
             <input
               id="faqTitle"
@@ -601,7 +578,7 @@ function SettingsView({ site }: { site: any }) {
           </div>
           <div>
             <label htmlFor="faqSubtitle" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
-              FAQ Subtitle
+              FAQ-Untertitel
             </label>
             <input
               id="faqSubtitle"
@@ -613,7 +590,7 @@ function SettingsView({ site }: { site: any }) {
           </div>
           <div>
             <label htmlFor="faqContactLabel" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
-              Contact Button Label
+              Kontakt-Button-Label
             </label>
             <input
               id="faqContactLabel"
@@ -625,10 +602,10 @@ function SettingsView({ site }: { site: any }) {
           </div>
           <div>
             <label className="block text-xs font-bold uppercase tracking-wider text-gray-500">
-              FAQ Items
+              FAQ-Elemente
             </label>
             <p className="mt-1 text-xs font-semibold text-gray-500">
-              Add question / answer pairs. Leave question empty to remove.
+              Fügen Sie Frage / Antwort-Paare hinzu. Lassen Sie die Frage leer, um zu entfernen.
             </p>
             {(site.faqSection?.items ?? []).map((item: any, i: number) => (
               <div key={i} className="mt-4 flex flex-col gap-2 rounded-xl border border-brand/10 bg-brand-surface/20 p-4">
@@ -687,13 +664,13 @@ function SettingsView({ site }: { site: any }) {
       {/* Products Section */}
       <article className="rounded-3xl border border-brand/10 bg-white p-6 shadow-sm sm:p-8">
         <h3 className="text-base font-extrabold tracking-tight text-ink">
-          Products Section
+          Produkte-Bereich
         </h3>
         <div className="mt-5 space-y-6">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
               <label htmlFor="productsTechDataLabel" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
-                Tech Data Button Label
+                Tech Data-Button-Label
               </label>
               <input
                 id="productsTechDataLabel"
@@ -705,7 +682,7 @@ function SettingsView({ site }: { site: any }) {
             </div>
             <div>
               <label htmlFor="productsDemoLabel" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
-                Demo Button Label
+                Demo-Button-Label
               </label>
               <input
                 id="productsDemoLabel"
@@ -718,19 +695,19 @@ function SettingsView({ site }: { site: any }) {
           </div>
           <div>
             <label className="block text-xs font-bold uppercase tracking-wider text-gray-500">
-              Products
+              Produkte
             </label>
             <p className="mt-1 text-xs font-semibold text-gray-500">
-              Edit name, tab title/desc, description, and savings text per product.
+              Bearbeiten Sie den Namen, den Tab-Titel/Beschreibung, die Beschreibung und den Ersparnistext pro Produkt.
             </p>
             {(site.productsSection?.products ?? []).map((p: any, i: number) => (
               <div key={p.id ?? i} className="mt-4 flex flex-col gap-4 rounded-xl border border-brand/10 bg-brand-surface/20 p-5">
                 <p className="text-sm font-bold text-brand">
-                  Product {i + 1}: {p.name || p.tabTitle || p.id}
+                  Produkt {i + 1}: {p.name || p.tabTitle || p.id}
                 </p>
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                   <div>
-                    <label className="block text-xs font-bold text-gray-500">Name</label>
+                    <label className="block text-xs font-bold text-gray-500">Produktname</label>
                     <input
                       name={`product_${i}_name`}
                       type="text"
@@ -739,7 +716,7 @@ function SettingsView({ site }: { site: any }) {
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-bold text-gray-500">Tab Title</label>
+                    <label className="block text-xs font-bold text-gray-500">Tab-Titel</label>
                     <input
                       name={`product_${i}_tabTitle`}
                       type="text"
@@ -749,7 +726,7 @@ function SettingsView({ site }: { site: any }) {
                   </div>
                 </div>
                 <div>
-                  <label className="block text-xs font-bold text-gray-500">Tab Description</label>
+                  <label className="block text-xs font-bold text-gray-500">Tab-Beschreibung</label>
                   <input
                     name={`product_${i}_tabDesc`}
                     type="text"
@@ -758,7 +735,7 @@ function SettingsView({ site }: { site: any }) {
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold text-gray-500">Description</label>
+                  <label className="block text-xs font-bold text-gray-500">Beschreibung</label>
                   <textarea
                     name={`product_${i}_description`}
                     rows={3}
@@ -768,7 +745,7 @@ function SettingsView({ site }: { site: any }) {
                 </div>
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                   <div>
-                    <label className="block text-xs font-bold text-gray-500">Savings Title</label>
+                    <label className="block text-xs font-bold text-gray-500">Ersparnistitel</label>
                     <input
                       name={`product_${i}_savingsTitle`}
                       type="text"
@@ -777,7 +754,7 @@ function SettingsView({ site }: { site: any }) {
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-bold text-gray-500">Savings Subtitle</label>
+                    <label className="block text-xs font-bold text-gray-500">Ersparnisuntertitel</label>
                     <input
                       name={`product_${i}_savingsSubtitle`}
                       type="text"
@@ -798,7 +775,279 @@ function SettingsView({ site }: { site: any }) {
           type="submit"
           className="rounded-full bg-brand-cta px-6 py-3 text-sm font-extrabold text-white shadow-md transition hover:shadow-lg hover:opacity-95"
         >
-          Save Changes
+          Änderungen speichern
+        </button>
+      </div>
+    </form>
+  );
+}
+
+function LegalPagesView({ site }: { site: any }) {
+  const impressum = site.legalPages?.imprint ?? { title: "", description: "", lastUpdated: "", backToHomeLabel: "", content: "" };
+  const agb = site.legalPages?.terms ?? { title: "", description: "", lastUpdated: "", backToHomeLabel: "", content: "" };
+  const datenschutz = site.legalPages?.privacy ?? { title: "", description: "", lastUpdated: "", backToHomeLabel: "", content: "" };
+
+  return (
+    <form action={saveSiteQuickAction} className="grid grid-cols-1 gap-6">
+      <input type="hidden" name="view" value="legal" />
+      
+      {/* Header */}
+      <article className="rounded-3xl border border-brand/10 bg-white p-6 shadow-sm sm:p-8">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <div className="inline-flex items-center gap-2 rounded-full bg-brand-surface px-3 py-1 text-xs font-bold uppercase tracking-wider text-brand">
+              Rechtliches
+            </div>
+            <h2 className="mt-3 text-xl font-extrabold tracking-tight text-ink">
+              Rechtliche Seiten verwalten
+            </h2>
+            <p className="mt-2 max-w-2xl text-sm font-semibold leading-relaxed text-gray-600">
+              Verwalten Sie die Inhalte für Impressum, AGB und Datenschutzerklärung. HTML-Tags werden unterstützt.
+            </p>
+          </div>
+        </div>
+      </article>
+      {/* Impressum Section */}
+      <article className="rounded-3xl border border-brand/10 bg-white p-6 shadow-sm sm:p-8">
+        <h3 className="text-base font-extrabold tracking-tight text-ink">
+          Impressum
+        </h3>
+        <div className="mt-5 space-y-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div>
+              <label htmlFor="impressumTitle" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
+                Titel
+              </label>
+              <input
+                id="impressumTitle"
+                name="impressumTitle"
+                type="text"
+                defaultValue={impressum.title ?? ""}
+                className="mt-2 w-full rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
+                placeholder="Impressum"
+              />
+            </div>
+            <div>
+              <label htmlFor="impressumLastUpdated" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
+                Letzte Aktualisierung
+              </label>
+              <input
+                id="impressumLastUpdated"
+                name="impressumLastUpdated"
+                type="text"
+                defaultValue={impressum.lastUpdated ?? ""}
+                className="mt-2 w-full rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
+                placeholder="18.12.2025"
+              />
+            </div>
+          </div>
+          <div>
+            <label htmlFor="impressumDescription" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
+              Beschreibung (SEO)
+            </label>
+            <input
+              id="impressumDescription"
+              name="impressumDescription"
+              type="text"
+              defaultValue={impressum.description ?? ""}
+              className="mt-2 w-full rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
+              placeholder="Kurzbeschreibung für Suchmaschinen"
+            />
+          </div>
+          <div>
+            <label htmlFor="impressumBackLabel" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
+              Zurück-Button Label
+            </label>
+            <input
+              id="impressumBackLabel"
+              name="impressumBackLabel"
+              type="text"
+              defaultValue={impressum.backToHomeLabel ?? ""}
+              className="mt-2 w-full rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
+              placeholder="Zurück zur Startseite"
+            />
+          </div>
+          <div>
+            <label htmlFor="impressumContent" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
+              Inhalt
+            </label>
+            <div className="mt-2">
+              <RichTextEditor
+                name="impressumContent"
+                defaultValue={impressum.content ?? ""}
+                placeholder="Geben Sie hier den Inhalt für das Impressum ein..."
+              />
+            </div>
+            <p className="mt-2 text-xs font-semibold text-gray-500">
+              Verwenden Sie die Toolbar zum Formatieren des Textes. Der Inhalt wird als HTML gespeichert.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      {/* AGB Section */}
+      <article className="rounded-3xl border border-brand/10 bg-white p-6 shadow-sm sm:p-8">
+        <h3 className="text-base font-extrabold tracking-tight text-ink">
+          AGB (Allgemeine Geschäftsbedingungen)
+        </h3>
+        <div className="mt-5 space-y-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div>
+              <label htmlFor="agbTitle" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
+                Titel
+              </label>
+              <input
+                id="agbTitle"
+                name="agbTitle"
+                type="text"
+                defaultValue={agb.title ?? ""}
+                className="mt-2 w-full rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
+                placeholder="AGB"
+              />
+            </div>
+            <div>
+              <label htmlFor="agbLastUpdated" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
+                Letzte Aktualisierung
+              </label>
+              <input
+                id="agbLastUpdated"
+                name="agbLastUpdated"
+                type="text"
+                defaultValue={agb.lastUpdated ?? ""}
+                className="mt-2 w-full rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
+                placeholder="18.12.2025"
+              />
+            </div>
+          </div>
+          <div>
+            <label htmlFor="agbDescription" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
+              Beschreibung (SEO)
+            </label>
+            <input
+              id="agbDescription"
+              name="agbDescription"
+              type="text"
+              defaultValue={agb.description ?? ""}
+              className="mt-2 w-full rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
+              placeholder="Kurzbeschreibung für Suchmaschinen"
+            />
+          </div>
+          <div>
+            <label htmlFor="agbBackLabel" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
+              Zurück-Button Label
+            </label>
+            <input
+              id="agbBackLabel"
+              name="agbBackLabel"
+              type="text"
+              defaultValue={agb.backToHomeLabel ?? ""}
+              className="mt-2 w-full rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
+              placeholder="Zurück zur Startseite"
+            />
+          </div>
+          <div>
+            <label htmlFor="agbContent" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
+              Inhalt
+            </label>
+            <div className="mt-2">
+              <RichTextEditor
+                name="agbContent"
+                defaultValue={agb.content ?? ""}
+                placeholder="Geben Sie hier den Inhalt für die AGB ein..."
+              />
+            </div>
+            <p className="mt-2 text-xs font-semibold text-gray-500">
+              Verwenden Sie die Toolbar zum Formatieren des Textes. Der Inhalt wird als HTML gespeichert.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      {/* Datenschutz Section */}
+      <article className="rounded-3xl border border-brand/10 bg-white p-6 shadow-sm sm:p-8">
+        <h3 className="text-base font-extrabold tracking-tight text-ink">
+          Datenschutzerklärung
+        </h3>
+        <div className="mt-5 space-y-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div>
+              <label htmlFor="datenschutzTitle" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
+                Titel
+              </label>
+              <input
+                id="datenschutzTitle"
+                name="datenschutzTitle"
+                type="text"
+                defaultValue={datenschutz.title ?? ""}
+                className="mt-2 w-full rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
+                placeholder="Datenschutzerklärung"
+              />
+            </div>
+            <div>
+              <label htmlFor="datenschutzLastUpdated" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
+                Letzte Aktualisierung
+              </label>
+              <input
+                id="datenschutzLastUpdated"
+                name="datenschutzLastUpdated"
+                type="text"
+                defaultValue={datenschutz.lastUpdated ?? ""}
+                className="mt-2 w-full rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
+                placeholder="18.12.2025"
+              />
+            </div>
+          </div>
+          <div>
+            <label htmlFor="datenschutzDescription" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
+              Beschreibung (SEO)
+            </label>
+            <input
+              id="datenschutzDescription"
+              name="datenschutzDescription"
+              type="text"
+              defaultValue={datenschutz.description ?? ""}
+              className="mt-2 w-full rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
+              placeholder="Kurzbeschreibung für Suchmaschinen"
+            />
+          </div>
+          <div>
+            <label htmlFor="datenschutzBackLabel" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
+              Zurück-Button Label
+            </label>
+            <input
+              id="datenschutzBackLabel"
+              name="datenschutzBackLabel"
+              type="text"
+              defaultValue={datenschutz.backToHomeLabel ?? ""}
+              className="mt-2 w-full rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
+              placeholder="Zurück zur Startseite"
+            />
+          </div>
+          <div>
+            <label htmlFor="datenschutzContent" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
+              Inhalt
+            </label>
+            <div className="mt-2">
+              <RichTextEditor
+                name="datenschutzContent"
+                defaultValue={datenschutz.content ?? ""}
+                placeholder="Geben Sie hier den Inhalt für die Datenschutzerklärung ein..."
+              />
+            </div>
+            <p className="mt-2 text-xs font-semibold text-gray-500">
+              Verwenden Sie die Toolbar zum Formatieren des Textes. Der Inhalt wird als HTML gespeichert.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      {/* Save Button */}
+      <div className="flex items-center justify-end gap-3">
+        <button
+          type="submit"
+          className="rounded-full bg-brand-cta px-6 py-3 text-sm font-extrabold text-white shadow-md transition hover:shadow-lg hover:opacity-95"
+        >
+          Änderungen speichern
         </button>
       </div>
     </form>
@@ -815,31 +1064,31 @@ function ReportsView() {
     <div className="grid grid-cols-1 gap-6">
       <article className="rounded-3xl border border-brand/10 bg-white p-6 shadow-sm sm:p-8">
         <div className="inline-flex items-center gap-2 rounded-full bg-brand-surface px-3 py-1 text-xs font-bold uppercase tracking-wider text-brand">
-          Reports
+          Berichte
         </div>
         <h2 className="mt-3 text-xl font-extrabold tracking-tight text-ink">
-          Reports &amp; analytics
+          Berichte &amp; Analysen 
         </h2>
         <p className="mt-2 max-w-2xl text-sm font-semibold leading-relaxed text-gray-600">
-          View traffic, conversion, and contact lead reports. This section uses
-          dummy content for layout.
+          Sehen Sie sich den Traffic, die Konversion und die Kontakt-Lead-Berichte an. Dieser Bereich verwendet
+          Platzhalter-Inhalte für das Layout.
         </p>
       </article>
 
       <article className="rounded-3xl border border-brand/10 bg-white p-6 shadow-sm sm:p-8">
         <h3 className="text-base font-extrabold tracking-tight text-ink">
-          Traffic overview
+          Traffic-Übersicht
         </h3>
         <div className="mt-5 flex h-44 items-center justify-center rounded-2xl border-2 border-dashed border-brand/20 bg-gradient-to-b from-brand-surface/40 to-brand-surface/10">
           <p className="text-center text-sm font-semibold text-gray-500">
-            Chart placeholder – integrate analytics when ready.
+            Diagramm-Platzhalter – integrieren Sie Analysen, wenn Sie bereit sind.
           </p>
         </div>
       </article>
 
       <article className="rounded-3xl border border-brand/10 bg-white p-6 shadow-sm sm:p-8">
         <h3 className="text-base font-extrabold tracking-tight text-ink">
-          Recent activity
+          Letzte Aktivität
         </h3>
         <ul className="mt-5 space-y-2">
           {activities.map((a, i) => (
@@ -880,10 +1129,10 @@ function ContactView({
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full bg-brand-surface px-3 py-1 text-xs font-bold uppercase tracking-wider text-brand">
-              Contact Us
+              Kontaktiere uns
             </div>
             <h2 className="mt-2 text-xl font-extrabold tracking-tight text-ink">
-              Contact submissions
+              Kontakt-Eingaben
             </h2>
             <p className="mt-0.5 text-sm font-semibold text-gray-600">
               {submissions.length} total
@@ -895,7 +1144,7 @@ function ContactView({
               href="/admin/submissions"
               className="rounded-full border border-brand/25 bg-white px-4 py-2.5 text-sm font-bold text-ink shadow-sm transition hover:border-brand/40 hover:bg-brand-surface hover:shadow"
             >
-              Download JSON
+              JSON herunterladen
             </Link>
             <form action={clearSubmissionsAction}>
               <input type="hidden" name="view" value="contact" />
@@ -919,10 +1168,10 @@ function ContactView({
                   </svg>
                 </div>
                 <p className="text-sm font-semibold text-gray-600">
-                  No submissions yet.
+                  Noch keine Eingaben.
                 </p>
                 <p className="max-w-sm text-xs font-semibold text-gray-500">
-                  Contact form entries will appear here once visitors submit the form.
+                  Kontaktformulareingaben erscheinen hier, wenn Besucher das Formular absenden.
                 </p>
               </div>
             ) : (
@@ -930,19 +1179,19 @@ function ContactView({
                 <thead className="sticky top-0 z-[1] bg-brand-surface">
                   <tr>
                     <th className="px-4 py-3.5 text-xs font-extrabold uppercase tracking-wider text-ink">
-                      Date
+                      Datum
                     </th>
                     <th className="px-4 py-3.5 text-xs font-extrabold uppercase tracking-wider text-ink">
-                      Name
+                      Vorname
                     </th>
                     <th className="px-4 py-3.5 text-xs font-extrabold uppercase tracking-wider text-ink">
-                      Email
+                      E-Mail
                     </th>
                     <th className="px-4 py-3.5 text-xs font-extrabold uppercase tracking-wider text-ink">
-                      Phone
+                      Telefon
                     </th>
                     <th className="px-4 py-3.5 text-xs font-extrabold uppercase tracking-wider text-ink">
-                      Message
+                      Nachricht
                     </th>
                   </tr>
                 </thead>
@@ -984,7 +1233,7 @@ function ContactView({
         {submissions.length > 0 && (
           <div className="mt-5 flex flex-col gap-4 rounded-xl border border-brand/10 bg-brand-surface/20 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-xs font-semibold tabular-nums text-gray-600">
-              Page {safePage} of {totalPages} · Showing{" "}
+              Seite {safePage} von {totalPages} · Anzeigen{" "}
               {(safePage - 1) * pageSize + 1}–
               {Math.min(safePage * pageSize, total)} of {total}
             </p>
@@ -997,7 +1246,7 @@ function ContactView({
                     : "border border-brand/25 bg-white text-ink shadow-sm hover:border-brand/40 hover:bg-brand-surface hover:shadow"
                 }`}
               >
-                Prev
+                Vorherige
               </Link>
               <Link
                 href={`/admin?view=contact&page=${Math.min(
@@ -1010,7 +1259,7 @@ function ContactView({
                     : "border border-brand/25 bg-white text-ink shadow-sm hover:border-brand/40 hover:bg-brand-surface hover:shadow"
                 }`}
               >
-                Next
+                Nächste
               </Link>
             </div>
           </div>

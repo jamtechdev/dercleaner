@@ -23,7 +23,7 @@ export async function getSite(): Promise<any> {
       seo: { title: "", description: "" },
       branding: { name: "", logo: { src: "", alt: "" } },
       navigation: { links: [] },
-      videoSection: { youtubeUrl: "" },
+      videoSection: { youtubeUrl: "", videoFileUrl: "" },
       productsSection: { actions: { techDataLabel: "", demoLabel: "" }, products: [] },
       faqSection: { title: "", subtitle: "", contactButtonLabel: "", items: [] },
       missionSection: { hero: { title: "", description: "", ctaLabel: "" }, industriesIntro: { title: "", description: "" }, industries: [] },
@@ -31,7 +31,11 @@ export async function getSite(): Promise<any> {
       aboutSection: { title: "", paragraphs: [] },
       contactSection: { title: "", subtitle: "", contactInfo: { firstContact: { email: "" }, customerSupport: { email: "" }, phone: { number: "" } }, privacyText: "" },
       footer: { information: { title: "", links: [] }, legal: { title: "", links: [] } },
-      legalPages: {},
+      legalPages: {
+        imprint: { title: "", description: "", lastUpdated: "", backToHomeLabel: "", content: "" },
+        terms: { title: "", description: "", lastUpdated: "", backToHomeLabel: "", content: "" },
+        privacy: { title: "", description: "", lastUpdated: "", backToHomeLabel: "", content: "" },
+      },
     };
   }
   

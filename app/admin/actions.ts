@@ -69,9 +69,31 @@ export async function saveSiteQuickAction(formData: FormData) {
     site.branding.name = String(formData.get("brandingName") ?? "");
   }
 
-  // Video Section
-  if (formData.get("youtubeUrl") !== null) {
-    site.videoSection.youtubeUrl = String(formData.get("youtubeUrl") ?? "");
+  // Video Section - handle both YouTube URL and file upload (mutually exclusive)
+  const youtubeUrl = formData.get("youtubeUrl");
+  const videoFileUrl = formData.get("videoFileUrl");
+  const clearVideoFile = formData.get("clearVideoFile");
+  const clearYoutubeUrl = formData.get("clearYoutubeUrl");
+  
+  // Handle YouTube URL
+  if (youtubeUrl !== null) {
+    const urlValue = String(youtubeUrl ?? "").trim();
+    site.videoSection.youtubeUrl = urlValue;
+  }
+  
+  // Handle video file URL
+  if (videoFileUrl !== null) {
+    const fileUrlValue = String(videoFileUrl ?? "").trim();
+    site.videoSection.videoFileUrl = fileUrlValue;
+  }
+  
+  // Clear fields based on source selection
+  if (clearVideoFile === "true") {
+    site.videoSection.videoFileUrl = "";
+  }
+  
+  if (clearYoutubeUrl === "true") {
+    site.videoSection.youtubeUrl = "";
   }
 
   // Contact Section
@@ -196,7 +218,84 @@ export async function saveSiteQuickAction(formData: FormData) {
     }
   }
 
+  // Legal Pages Section - only process when saving from legal view
+  const view = formData.get("view");
+  if (view === "legal") {
+    if (!site.legalPages) site.legalPages = {};
+    
+    // Impressum
+    if (formData.get("impressumTitle") !== null) {
+      if (!site.legalPages.imprint) site.legalPages.imprint = { title: "", description: "", lastUpdated: "", backToHomeLabel: "", content: "" };
+      site.legalPages.imprint.title = String(formData.get("impressumTitle") ?? "");
+    }
+    if (formData.get("impressumDescription") !== null) {
+      if (!site.legalPages.imprint) site.legalPages.imprint = { title: "", description: "", lastUpdated: "", backToHomeLabel: "", content: "" };
+      site.legalPages.imprint.description = String(formData.get("impressumDescription") ?? "");
+    }
+    if (formData.get("impressumLastUpdated") !== null) {
+      if (!site.legalPages.imprint) site.legalPages.imprint = { title: "", description: "", lastUpdated: "", backToHomeLabel: "", content: "" };
+      site.legalPages.imprint.lastUpdated = String(formData.get("impressumLastUpdated") ?? "");
+    }
+    if (formData.get("impressumBackLabel") !== null) {
+      if (!site.legalPages.imprint) site.legalPages.imprint = { title: "", description: "", lastUpdated: "", backToHomeLabel: "", content: "" };
+      site.legalPages.imprint.backToHomeLabel = String(formData.get("impressumBackLabel") ?? "");
+    }
+    if (formData.get("impressumContent") !== null) {
+      if (!site.legalPages.imprint) site.legalPages.imprint = { title: "", description: "", lastUpdated: "", backToHomeLabel: "", content: "" };
+      site.legalPages.imprint.content = String(formData.get("impressumContent") ?? "");
+    }
+
+    // AGB
+    if (formData.get("agbTitle") !== null) {
+      if (!site.legalPages.terms) site.legalPages.terms = { title: "", description: "", lastUpdated: "", backToHomeLabel: "", content: "" };
+      site.legalPages.terms.title = String(formData.get("agbTitle") ?? "");
+    }
+    if (formData.get("agbDescription") !== null) {
+      if (!site.legalPages.terms) site.legalPages.terms = { title: "", description: "", lastUpdated: "", backToHomeLabel: "", content: "" };
+      site.legalPages.terms.description = String(formData.get("agbDescription") ?? "");
+    }
+    if (formData.get("agbLastUpdated") !== null) {
+      if (!site.legalPages.terms) site.legalPages.terms = { title: "", description: "", lastUpdated: "", backToHomeLabel: "", content: "" };
+      site.legalPages.terms.lastUpdated = String(formData.get("agbLastUpdated") ?? "");
+    }
+    if (formData.get("agbBackLabel") !== null) {
+      if (!site.legalPages.terms) site.legalPages.terms = { title: "", description: "", lastUpdated: "", backToHomeLabel: "", content: "" };
+      site.legalPages.terms.backToHomeLabel = String(formData.get("agbBackLabel") ?? "");
+    }
+    if (formData.get("agbContent") !== null) {
+      if (!site.legalPages.terms) site.legalPages.terms = { title: "", description: "", lastUpdated: "", backToHomeLabel: "", content: "" };
+      site.legalPages.terms.content = String(formData.get("agbContent") ?? "");
+    }
+
+    // Datenschutz
+    if (formData.get("datenschutzTitle") !== null) {
+      if (!site.legalPages.privacy) site.legalPages.privacy = { title: "", description: "", lastUpdated: "", backToHomeLabel: "", content: "" };
+      site.legalPages.privacy.title = String(formData.get("datenschutzTitle") ?? "");
+    }
+    if (formData.get("datenschutzDescription") !== null) {
+      if (!site.legalPages.privacy) site.legalPages.privacy = { title: "", description: "", lastUpdated: "", backToHomeLabel: "", content: "" };
+      site.legalPages.privacy.description = String(formData.get("datenschutzDescription") ?? "");
+    }
+    if (formData.get("datenschutzLastUpdated") !== null) {
+      if (!site.legalPages.privacy) site.legalPages.privacy = { title: "", description: "", lastUpdated: "", backToHomeLabel: "", content: "" };
+      site.legalPages.privacy.lastUpdated = String(formData.get("datenschutzLastUpdated") ?? "");
+    }
+    if (formData.get("datenschutzBackLabel") !== null) {
+      if (!site.legalPages.privacy) site.legalPages.privacy = { title: "", description: "", lastUpdated: "", backToHomeLabel: "", content: "" };
+      site.legalPages.privacy.backToHomeLabel = String(formData.get("datenschutzBackLabel") ?? "");
+    }
+    if (formData.get("datenschutzContent") !== null) {
+      if (!site.legalPages.privacy) site.legalPages.privacy = { title: "", description: "", lastUpdated: "", backToHomeLabel: "", content: "" };
+      site.legalPages.privacy.content = String(formData.get("datenschutzContent") ?? "");
+    }
+  }
+
   await saveSite(site);
+  
+  // Redirect based on which view we're saving from
+  if (view === "legal") {
+    redirect("/admin?view=legal&saved=1");
+  }
   redirect("/admin?view=settings&saved=1");
 }
 
