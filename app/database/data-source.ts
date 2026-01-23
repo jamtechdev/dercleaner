@@ -3,6 +3,8 @@ import { DataSource } from "typeorm";
 import { ContactSubmission } from "./entities/ContactSubmission";
 import { SiteConfig } from "./entities/SiteConfig";
 
+console.log("process.env.DB_USER", process.env.DB_USER)
+
 export const AppDataSource = new DataSource({
   type: "mysql",
   host: process.env.DB_HOST || "localhost",
