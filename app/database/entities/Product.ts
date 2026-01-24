@@ -79,21 +79,27 @@ export class Product {
   @Column({ type: "text", nullable: true })
   description?: string;
 
-  // Technical specs stored as JSON array
+  // Technical specs stored as JSON object with heading and items
   @Column({
     type: "text",
     nullable: true,
     transformer: jsonTransformer,
   })
-  technicalSpecs?: { icon?: string; label: string; value: string }[];
+  technicalSpecs?: {
+    heading?: string;
+    items?: { icon?: string; label: string; value: string }[];
+  };
 
-  // Features stored as JSON array
+  // Features stored as JSON object with heading and items
   @Column({
     type: "text",
     nullable: true,
     transformer: jsonTransformer,
   })
-  features?: { number: string; title: string; description: string }[];
+  features?: {
+    heading?: string;
+    items?: { number: string; title: string; description: string }[];
+  };
 
   @Column({ type: "int", default: 0 })
   displayOrder!: number; // For ordering products

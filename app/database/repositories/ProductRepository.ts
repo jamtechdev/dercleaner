@@ -31,8 +31,14 @@ export class ProductRepository {
     savingsSubtitle: string;
     stats?: { icon: string; label: string; value: string; sub: string }[];
     description?: string;
-    technicalSpecs?: { icon?: string; label: string; value: string }[];
-    features?: { number: string; title: string; description: string }[];
+    technicalSpecs?: {
+      heading?: string;
+      items?: { icon?: string; label: string; value: string }[];
+    };
+    features?: {
+      heading?: string;
+      items?: { number: string; title: string; description: string }[];
+    };
     displayOrder?: number;
   }): Promise<Product> {
     const product = this.repository.create({
@@ -43,8 +49,14 @@ export class ProductRepository {
   }
 
   async update(id: string, data: Partial<Product>): Promise<Product | null> {
-    await this.repository.update(id, data);
-    return this.findById(id);
+    const product = await this.findById(id);
+    if (!product) {
+      return null;
+    }
+    // Merge the data into the existing product entity
+    Object.assign(product, data);
+    // Save will properly apply transformers for JSON fields
+    return this.repository.save(product);
   }
 
   async delete(id: string): Promise<void> {

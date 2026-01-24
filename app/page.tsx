@@ -6,6 +6,9 @@ import ProductShowcase from "./components/ProductShowcase";
 import { VideoSection } from "./components/VideoSection";
 import FaqSection from "./components/FaqSection";
 
+// Force dynamic rendering to always fetch fresh data
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   const site = await getSite();
   return (

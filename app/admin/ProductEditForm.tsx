@@ -5,6 +5,8 @@ import { updateProductAction } from "./actions";
 import { ImageUploadInput } from "./ImageUploadInput";
 import { DeleteProductButton } from "./DeleteProductButton";
 import { StatsInput } from "./StatsInput";
+import { TechnicalDataInput } from "./TechnicalDataInput";
+import { FeaturesInput } from "./FeaturesInput";
 
 export function ProductEditForm({ product }: { product: any }) {
   const [tabImageUrl, setTabImageUrl] = useState(product.tabImage?.src || "");
@@ -171,33 +173,6 @@ export function ProductEditForm({ product }: { product: any }) {
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
-            <label htmlFor={`videoSrc_${product.id}`} className="block text-xs font-bold uppercase tracking-wider text-gray-500">
-              Video URL (optional)
-            </label>
-            <input
-              id={`videoSrc_${product.id}`}
-              name="videoSrc"
-              type="text"
-              defaultValue={product.video?.src ?? ""}
-              className="mt-2 w-full rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
-            />
-          </div>
-          <div>
-            <label htmlFor={`videoAlt_${product.id}`} className="block text-xs font-bold uppercase tracking-wider text-gray-500">
-              Video Alt-Text
-            </label>
-            <input
-              id={`videoAlt_${product.id}`}
-              name="videoAlt"
-              type="text"
-              defaultValue={product.video?.alt ?? ""}
-              className="mt-2 w-full rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
-            />
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          <div>
             <ImageUploadInput
               currentImageUrl={featuresImageUrl}
               onUploadComplete={(url) => {
@@ -233,6 +208,18 @@ export function ProductEditForm({ product }: { product: any }) {
             className="mt-2 w-full max-w-xs rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
           />
         </div>
+
+        <TechnicalDataInput 
+          name="technicalData" 
+          label="Technische Daten"
+          initialData={product.technicalSpecs || undefined}
+        />
+
+        <FeaturesInput 
+          name="features" 
+          label="Funktionen"
+          initialFeatures={product.features || []}
+        />
 
         <div className="flex items-center justify-end gap-3 pt-4 border-t border-brand/10">
           <button

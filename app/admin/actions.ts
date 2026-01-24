@@ -1,6 +1,7 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
 import {
   clearAdminSessionAsync,
   requireAdmin,
@@ -327,6 +328,55 @@ export async function createProductAction(formData: FormData) {
     }
   }
 
+  // Parse technical data from JSON string
+  let technicalSpecs: {
+    heading?: string;
+    items?: { icon?: string; label: string; value: string }[];
+  } | undefined;
+  const technicalDataJson = formData.get("technicalData");
+  if (technicalDataJson && typeof technicalDataJson === "string") {
+    try {
+      const parsed = JSON.parse(technicalDataJson);
+      if (parsed && parsed.items?.length > 0) {
+        technicalSpecs = parsed;
+      }
+    } catch (e) {
+      console.error("Error parsing technical data:", e);
+    }
+  }
+
+  // Parse features from JSON string
+  let features: {
+    heading?: string;
+    items?: { number: string; title: string; description: string }[];
+  } | undefined;
+  const featuresJson = formData.get("features");
+  if (featuresJson && typeof featuresJson === "string") {
+    try {
+      const parsed = JSON.parse(featuresJson);
+      // Handle both old format (array) and new format (object with heading and items)
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        // Old format - convert to new format
+        const filtered = parsed.filter((feature: any) => 
+          feature.number?.trim() || feature.title?.trim() || feature.description?.trim()
+        );
+        if (filtered.length > 0) {
+          features = { heading: "", items: filtered };
+        }
+      } else if (parsed && parsed.items && Array.isArray(parsed.items) && parsed.items.length > 0) {
+        // New format
+        const filtered = parsed.items.filter((feature: any) => 
+          feature.number?.trim() || feature.title?.trim() || feature.description?.trim()
+        );
+        if (filtered.length > 0) {
+          features = { heading: parsed.heading || "", items: filtered };
+        }
+      }
+    } catch (e) {
+      console.error("Error parsing features:", e);
+    }
+  }
+
   await repo.create({
     name: String(formData.get("name") ?? ""),
     tabTitle: String(formData.get("tabTitle") ?? ""),
@@ -339,9 +389,13 @@ export async function createProductAction(formData: FormData) {
     savingsSubtitle: String(formData.get("savingsSubtitle") ?? ""),
     stats: stats,
     description: String(formData.get("description") ?? "").trim() || undefined,
+    technicalSpecs: technicalSpecs,
+    features: features,
     displayOrder: Number(formData.get("displayOrder") ?? "0") || 0,
   });
 
+  // Revalidate homepage to show updated products
+  revalidatePath("/");
   redirect("/admin?view=products&saved=1");
 }
 
@@ -384,6 +438,55 @@ export async function updateProductAction(formData: FormData) {
     }
   }
 
+  // Parse technical data from JSON string
+  let technicalSpecs: {
+    heading?: string;
+    items?: { icon?: string; label: string; value: string }[];
+  } | undefined;
+  const technicalDataJson = formData.get("technicalData");
+  if (technicalDataJson && typeof technicalDataJson === "string") {
+    try {
+      const parsed = JSON.parse(technicalDataJson);
+      if (parsed && parsed.items?.length > 0) {
+        technicalSpecs = parsed;
+      }
+    } catch (e) {
+      console.error("Error parsing technical data:", e);
+    }
+  }
+
+  // Parse features from JSON string
+  let features: {
+    heading?: string;
+    items?: { number: string; title: string; description: string }[];
+  } | undefined;
+  const featuresJson = formData.get("features");
+  if (featuresJson && typeof featuresJson === "string") {
+    try {
+      const parsed = JSON.parse(featuresJson);
+      // Handle both old format (array) and new format (object with heading and items)
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        // Old format - convert to new format
+        const filtered = parsed.filter((feature: any) => 
+          feature.number?.trim() || feature.title?.trim() || feature.description?.trim()
+        );
+        if (filtered.length > 0) {
+          features = { heading: "", items: filtered };
+        }
+      } else if (parsed && parsed.items && Array.isArray(parsed.items) && parsed.items.length > 0) {
+        // New format
+        const filtered = parsed.items.filter((feature: any) => 
+          feature.number?.trim() || feature.title?.trim() || feature.description?.trim()
+        );
+        if (filtered.length > 0) {
+          features = { heading: parsed.heading || "", items: filtered };
+        }
+      }
+    } catch (e) {
+      console.error("Error parsing features:", e);
+    }
+  }
+
   await repo.update(id, {
     name: String(formData.get("name") ?? ""),
     tabTitle: String(formData.get("tabTitle") ?? ""),
@@ -396,9 +499,13 @@ export async function updateProductAction(formData: FormData) {
     savingsSubtitle: String(formData.get("savingsSubtitle") ?? ""),
     stats: stats,
     description: String(formData.get("description") ?? "").trim() || undefined,
+    technicalSpecs: technicalSpecs,
+    features: features,
     displayOrder: Number(formData.get("displayOrder") ?? "0") || 0,
   } as any);
 
+  // Revalidate homepage to show updated products
+  revalidatePath("/");
   redirect("/admin?view=products&saved=1");
 }
 
@@ -415,5 +522,8 @@ export async function deleteProductAction(formData: FormData) {
   }
 
   await repo.delete(id);
+  
+  // Revalidate homepage to show updated products
+  revalidatePath("/");
   redirect("/admin?view=products&deleted=1");
 }

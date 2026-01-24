@@ -4,6 +4,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
+// Helper to validate if a string is a valid image URL/path
+function isValidImageSrc(src: string | undefined | null): boolean {
+  if (!src || typeof src !== "string") return false;
+  const trimmed = src.trim();
+  if (!trimmed) return false;
+  // Must start with /, http://, https://, or data:
+  return trimmed.startsWith("/") || 
+         trimmed.startsWith("http://") || 
+         trimmed.startsWith("https://") ||
+         trimmed.startsWith("data:");
+}
+
 type Product = {
   id: string;
   tabTitle: string;
@@ -17,8 +29,14 @@ type Product = {
   savingsSubtitle: string;
   stats: { icon: string; label: string; value: string; sub: string }[];
   description?: string;
-  technicalSpecs?: { icon?: string; label: string; value: string }[];
-  features?: { number: string; title: string; description: string }[];
+  technicalSpecs?: {
+    heading?: string;
+    items?: { icon?: string; label: string; value: string }[];
+  };
+  features?: {
+    heading?: string;
+    items?: { number: string; title: string; description: string }[];
+  };
 };
 
 export default function ProductShowcase({ site }: { site: any }) {
@@ -62,7 +80,7 @@ export default function ProductShowcase({ site }: { site: any }) {
           className="dc-animate-fade-up w-full flex flex-col md:flex-row gap-4 md:gap-8 md:items-center"
         >
           {/* Large Product Image */}
-          {activeProduct.heroImage?.src && activeProduct.heroImage.src.trim() ? (
+          {isValidImageSrc(activeProduct.heroImage?.src) ? (
             <div className="relative w-full md:w-1/2 h-[250px] sm:h-[320px] md:h-[550px] flex-shrink-0 mx-auto md:mx-0">
               <Image
                 key={activeProduct.heroImage.src}
@@ -191,7 +209,7 @@ function ProductTab({
       aria-pressed={isActive}
     >
       <div className="flex items-center gap-3 md:gap-4">
-        {imageSrc && imageSrc.trim() ? (
+        {isValidImageSrc(imageSrc) ? (
           <div className="w-10 h-10 md:w-18 md:h-18 sm:w-16 sm:h-16 relative flex-shrink-0">
             <Image
               src={imageSrc}
@@ -244,11 +262,15 @@ function StatCard({
   return (
     <div className="flex items-center p-3 md:p-4 rounded-2xl w-full bg-[var(--tertiary-color)]">
       <div className={`w-10 h-10 md:w-12 md:h-12 bg-brand rounded-full flex items-center justify-center text-white text-xl mr-3 md:mr-4 flex-shrink-0 imop-img stack-card-${label}`} >
-        <img
-          src={icon} // Path to the SVG file
-          alt={label} // Alternative text for accessibility
-          className={`w-5 h-5 md:w-6 md:h-6`} // Styling
-        />
+        {isValidImageSrc(icon) ? (
+          <img
+            src={icon}
+            alt={label}
+            className={`w-5 h-5 md:w-6 md:h-6`}
+          />
+        ) : (
+          <span className="text-xs">📊</span>
+        )}
       </div>
       <div className="min-w-0 flex-1">
         <p className="text-brand font-bold text-base md:text-[18px] leading-none mb-1">{label}</p>
@@ -312,23 +334,23 @@ function ProductDetailsModal({
 
           {/* Product Image or Video */}
           <div className={`relative w-full h-[200px] sm:h-[300px] md:h-[400px] lg:h-[490px] mb-4 md:mb-8 bg-gray-50 rounded-lg md:rounded-xl overflow-hidden imop-pop-box ${product.id}`}>
-            {product.featuresImage && product.featuresImage.src && product.featuresImage.src.trim() ? (
+            {isValidImageSrc(product.featuresImage?.src) ? (
               <Image
-                src={product.featuresImage.src}
-                alt={product.featuresImage.alt || product.name}
+                src={product.featuresImage!.src}
+                alt={product.featuresImage!.alt || product.name}
                 fill
                 className="object-contain p-4"
               />
-            ) : product.video && product.video.src && product.video.src.trim() ? (
+            ) : isValidImageSrc(product.video?.src) ? (
               <video
-                src={product.video.src}
+                src={product.video!.src}
                 controls
                 className="w-full h-full object-contain"
-                aria-label={product.video.alt || product.name}
+                aria-label={product.video!.alt || product.name}
               >
                 Your browser does not support the video tag.
               </video>
-            ) : product.heroImage && product.heroImage.src && product.heroImage.src.trim() ? (
+            ) : isValidImageSrc(product.heroImage?.src) ? (
               <Image
                 src={product.heroImage.src}
                 alt={product.heroImage.alt || product.name}
@@ -363,12 +385,15 @@ function ProductDetailsModal({
                     className="flex items-center p-3 md:p-5 rounded-lg md:rounded-2xl bg-[var(--tertiary-color)]"
                   >
                     <div className="w-12 h-12 md:w-14 md:h-14 bg-brand rounded-full flex items-center justify-center text-white text-xl mr-3 md:mr-4 flex-shrink-0 pop-up-icons">
-                      {/* {stat.icon} */}
-                      <img
-                        src={stat.icon}
-                        alt={stat.label}
-                        className="w-6 h-6 md:w-7 md:h-7"
-                      />
+                      {isValidImageSrc(stat.icon) ? (
+                        <img
+                          src={stat.icon}
+                          alt={stat.label}
+                          className="w-6 h-6 md:w-7 md:h-7"
+                        />
+                      ) : (
+                        <span className="text-xs">📊</span>
+                      )}
                     </div>
                     <div className="min-w-0 flex-1">
                       <p className="text-brand font-bold text-base md:text-lg leading-none mb-1">
@@ -386,62 +411,129 @@ function ProductDetailsModal({
           )}
 
           {/* Technical Specifications */}
-          {product.technicalSpecs && Array.isArray(product.technicalSpecs) && product.technicalSpecs.length > 0 && (
+          {product.technicalSpecs && (
+            // Check if it's the new format (object with items)
+            ((product.technicalSpecs as any).items && (product.technicalSpecs as any).items.length > 0) ||
+            // Or old format (array)
+            (Array.isArray(product.technicalSpecs) && product.technicalSpecs.length > 0)
+          ) && (
             <div className="mb-4 md:mb-8 border-t pt-4 md:pt-6">
-              <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-3 md:mb-4">Technische Daten</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
-                {product.technicalSpecs.map((spec, index) => (
-                  <div
-                    key={index}
-                    className="justify-between p-3 md:p-5 rounded-lg md:rounded-2xl bg-[var(--tertiary-color)] pop-up-technische-box"
-                  >
-                    {spec.icon && (
-                      <span className="daten-icons">
-                        <img
-                          src={spec.icon}
-                          alt={spec.label}
-                          className="w-8 h-8 md:w-10 md:h-10"
-                        />
-                      </span>
-                    )}
+              <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-3 md:mb-4">
+                {(product.technicalSpecs as any).heading || "Technische Daten"}
+              </h3>
+              
+              {/* Technical Data Items */}
+              {((product.technicalSpecs as any).items && (product.technicalSpecs as any).items.length > 0) ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+                  {(product.technicalSpecs as any).items.map((spec: any, index: number) => (
+                    <div
+                      key={index}
+                      className="justify-between p-3 md:p-5 rounded-lg md:rounded-2xl bg-[var(--tertiary-color)] pop-up-technische-box"
+                    >
+                      {isValidImageSrc(spec.icon) && (
+                        <span className="daten-icons">
+                          <img
+                            src={spec.icon}
+                            alt={spec.label}
+                            className="w-8 h-8 md:w-10 md:h-10"
+                          />
+                        </span>
+                      )}
 
-                    <p className="text-brand font-bold text-base md:text-lg">
-                      {spec.label}:
-                    </p>
-                    <p className="text-base md:text-lg lg:text-xl font-medium text-gray-800 pop-up-date">
-                      {spec.value}
-                    </p>
-                  </div>
-                ))}
-              </div>
+                      <p className="text-brand font-bold text-base md:text-lg">
+                        {spec.label}:
+                      </p>
+                      <p className="text-base md:text-lg lg:text-xl font-medium text-gray-800 pop-up-date">
+                        {spec.value}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              ) : Array.isArray(product.technicalSpecs) && product.technicalSpecs.length > 0 ? (
+                // Old format (array)
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+                  {product.technicalSpecs.map((spec: any, index: number) => (
+                    <div
+                      key={index}
+                      className="justify-between p-3 md:p-5 rounded-lg md:rounded-2xl bg-[var(--tertiary-color)] pop-up-technische-box"
+                    >
+                      {isValidImageSrc(spec.icon) && (
+                        <span className="daten-icons">
+                          <img
+                            src={spec.icon}
+                            alt={spec.label}
+                            className="w-8 h-8 md:w-10 md:h-10"
+                          />
+                        </span>
+                      )}
+
+                      <p className="text-brand font-bold text-base md:text-lg">
+                        {spec.label}:
+                      </p>
+                      <p className="text-base md:text-lg lg:text-xl font-medium text-gray-800 pop-up-date">
+                        {spec.value}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              ) : null}
             </div>
           )}
 
           {/* Features */}
-          {product.features && Array.isArray(product.features) && product.features.length > 0 && (
+          {product.features && (
+            // Check if it's the new format (object with items) or old format (array)
+            ((product.features as any).items && Array.isArray((product.features as any).items) && (product.features as any).items.length > 0) ||
+            (Array.isArray(product.features) && product.features.length > 0)
+          ) && (
             <div className="border-t pt-4 md:pt-6">
-              <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-4 md:mb-6">Funktionen</h3>
+              <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-4 md:mb-6">
+                {(product.features as any).heading || "Funktionen"}
+              </h3>
               <div className="space-y-4 md:space-y-6">
-                {product.features.map((feature, index) => (
-                  <div
-                    key={index}
-                    className="flex gap-3 md:gap-4 p-4 md:p-5 rounded-lg md:rounded-2xl bg-[var(--tertiary-color)]"
-                  >
-                    <div className="flex-shrink-0">
-                      <span className="text-brand font-bold text-xl md:text-2xl">
-                        {feature.number}
-                      </span>
+                {((product.features as any).items && Array.isArray((product.features as any).items)) ? (
+                  (product.features as any).items.map((feature: any, index: number) => (
+                    <div
+                      key={index}
+                      className="flex gap-3 md:gap-4 p-4 md:p-5 rounded-lg md:rounded-2xl bg-[var(--tertiary-color)]"
+                    >
+                      <div className="flex-shrink-0">
+                        <span className="text-brand font-bold text-xl md:text-2xl">
+                          {feature.number}
+                        </span>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h4 className="text-lg md:text-xl font-bold text-gray-800 mb-1 md:mb-2">
+                          {feature.title}
+                        </h4>
+                        <p className="text-sm md:text-base text-gray-700 leading-relaxed">
+                          {feature.description}
+                        </p>
+                      </div>
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <h4 className="text-lg md:text-xl font-bold text-gray-800 mb-1 md:mb-2">
-                        {feature.title}
-                      </h4>
-                      <p className="text-sm md:text-base text-gray-700 leading-relaxed">
-                        {feature.description}
-                      </p>
+                  ))
+                ) : Array.isArray(product.features) ? (
+                  product.features.map((feature: any, index: number) => (
+                    <div
+                      key={index}
+                      className="flex gap-3 md:gap-4 p-4 md:p-5 rounded-lg md:rounded-2xl bg-[var(--tertiary-color)]"
+                    >
+                      <div className="flex-shrink-0">
+                        <span className="text-brand font-bold text-xl md:text-2xl">
+                          {feature.number}
+                        </span>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h4 className="text-lg md:text-xl font-bold text-gray-800 mb-1 md:mb-2">
+                          {feature.title}
+                        </h4>
+                        <p className="text-sm md:text-base text-gray-700 leading-relaxed">
+                          {feature.description}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))
+                ) : null}
               </div>
             </div>
           )}

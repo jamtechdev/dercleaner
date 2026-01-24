@@ -4,6 +4,8 @@ import { useState } from "react";
 import { createProductAction } from "./actions";
 import { ImageUploadInput } from "./ImageUploadInput";
 import { StatsInput } from "./StatsInput";
+import { TechnicalDataInput } from "./TechnicalDataInput";
+import { FeaturesInput } from "./FeaturesInput";
 
 export function ProductCreateForm() {
   const [tabImageUrl, setTabImageUrl] = useState("");
@@ -149,31 +151,6 @@ export function ProductCreateForm() {
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
-            <label htmlFor="new_videoSrc" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
-              Video URL (optional)
-            </label>
-            <input
-              id="new_videoSrc"
-              name="videoSrc"
-              type="text"
-              className="mt-2 w-full rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
-            />
-          </div>
-          <div>
-            <label htmlFor="new_videoAlt" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
-              Video Alt-Text
-            </label>
-            <input
-              id="new_videoAlt"
-              name="videoAlt"
-              type="text"
-              className="mt-2 w-full rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
-            />
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          <div>
             <ImageUploadInput
               currentImageUrl={featuresImageUrl}
               onUploadComplete={(url) => {
@@ -208,6 +185,10 @@ export function ProductCreateForm() {
             className="mt-2 w-full max-w-xs rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
           />
         </div>
+
+        <TechnicalDataInput name="technicalData" label="Technische Daten" />
+
+        <FeaturesInput name="features" label="Funktionen" />
 
         <div className="flex items-center justify-end gap-3 pt-4 border-t border-brand/10">
           <button
