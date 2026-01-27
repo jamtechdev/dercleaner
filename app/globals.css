@@ -39,17 +39,22 @@ h2,
 span,
 h3,
 p,
-button,div {
+button,
+div {
   font-family: "Roboto", sans-serif !important;
 }
 
 
 .mission-section {
-    background-position: center center; /* Center the background image */
-    background-size: cover;;
-    background-repeat: no-repeat; /* Prevent repeating the image */
-    background-size: 100% 100%; /* Stretch the image to fill the entire element */
-    background-image: url('/Image.jpg') !important;
+  background-position: center center;
+  /* Center the background image */
+  background-size: cover;
+  ;
+  background-repeat: no-repeat;
+  /* Prevent repeating the image */
+  background-size: 100% 100%;
+  /* Stretch the image to fill the entire element */
+  background-image: url('/Image.jpg') !important;
 
 }
 
@@ -120,12 +125,8 @@ body {
 
 .einsparungen-boxes>div {
   margin: 20px 0px;
-  ;
 }
 
-.technishe-daten {
-  /* margin-top: 80px;; */
-}
 
 .imop-buttons {
   background: none;
@@ -140,8 +141,8 @@ body {
   padding: 15px 60px !important;
 }
 
-.mission-section-icons img{
-  width:26px;
+.mission-section-icons img {
+  width: 26px;
 }
 
 
@@ -183,11 +184,6 @@ body {
   background-color: rgb(236 0 133);
 }
 
-.pop-up-icons img {
-  /* width: 30px !important; */
-}
-
-
 
 .pop-up-date {
   font-size: 16px !important;
@@ -221,7 +217,7 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
-.owner-img img{
+.owner-img img {
   position: static !important;
 }
 
@@ -384,32 +380,35 @@ textarea {
 
 /* FAQ */
 
-.faq-section{
-  padding:120px 0px;
+.faq-section {
+  padding: 120px 0px;
   padding-left: 15px;
-  padding-right: 15px;;
+  padding-right: 15px;
+  ;
   /* margin:50px 0px; */
-  background:#f0f9ff;
+  background: #f0f9ff;
 }
 
-.faq-section button{
-  background:white;
+.faq-section button {
+  background: white;
 }
 
-.faq-content-box{
-  background-color: white;;
+.faq-content-box {
+  background-color: white;
+  ;
 }
 
-.faq-contact-btn{
-  background:#00a3cc !important;
+.faq-contact-btn {
+  background: #00a3cc !important;
 }
 
 /* .faq > p{
   font-size: 16px !important;
 } */
 
-.faq-para{
-  font-size: 16px;;
+.faq-para {
+  font-size: 16px;
+  ;
 }
 
 @media(max-width:991px) {
@@ -477,7 +476,7 @@ textarea {
     ;
   }
 
-  .owner-img img{
+  .owner-img img {
     position: static !important;
   }
 
@@ -530,7 +529,7 @@ textarea {
     }
 
 
-    .owner-img img{
+    .owner-img img {
       position: absolute !important;
     }
   }
@@ -548,7 +547,8 @@ textarea {
     ;
   }
 
-  .hero-section{
-    height: 237px;;
+  .hero-section {
+    height: 237px;
+    ;
   }
 }
