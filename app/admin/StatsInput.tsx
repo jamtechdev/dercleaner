@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ImageUploadInput } from "./ImageUploadInput";
 
 // Component for uploading stat icons
@@ -16,21 +16,20 @@ function StatIconUploadInput({
   statIndex: number;
 }) {
   const [iconUrl, setIconUrl] = useState(currentIconUrl || "");
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
     setIconUrl(currentIconUrl || "");
   }, [currentIconUrl]);
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-3">
       <label className="block text-xs font-semibold text-gray-600 mb-1">
         {label}
       </label>
-      <input
-        type="hidden"
-        id={`stat_icon_${statIndex}`}
-        value={iconUrl}
-      />
+
+      <input type="hidden" id={`stat_icon_${statIndex}`} value={iconUrl} />
+
       <input
         type="text"
         value={iconUrl}
@@ -38,14 +37,18 @@ function StatIconUploadInput({
           const newUrl = e.target.value;
           setIconUrl(newUrl);
           onUploadComplete(newUrl);
-          const hiddenInput = document.getElementById(`stat_icon_${statIndex}`) as HTMLInputElement;
+          const hiddenInput = document.getElementById(
+            `stat_icon_${statIndex}`
+          ) as HTMLInputElement;
           if (hiddenInput) hiddenInput.value = newUrl;
         }}
         placeholder="/cleaner.svg oder URL eingeben"
         className="w-full rounded-lg border border-brand/20 bg-white px-3 py-2 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
       />
-      <div className="mt-2">
+
+      <div className="flex items-center gap-3">
         <input
+          ref={fileInputRef}
           type="file"
           accept="image/jpeg,image/jpg,image/png,image/gif,image/webp,image/svg+xml"
           onChange={async (e) => {
@@ -54,13 +57,27 @@ function StatIconUploadInput({
 
             const maxSize = 10 * 1024 * 1024; // 10MB
             if (file.size > maxSize) {
-              alert(`Dateigröße überschreitet das Limit von 10MB. Aktuelle Größe: ${(file.size / (1024 * 1024)).toFixed(2)}MB`);
+              alert(
+                `Dateigröße überschreitet das Limit von 10MB. Aktuelle Größe: ${(
+                  file.size /
+                  (1024 * 1024)
+                ).toFixed(2)}MB`
+              );
               return;
             }
 
-            const allowedTypes = ["image/jpeg", "image/jpg", "image/png", "image/gif", "image/webp", "image/svg+xml"];
+            const allowedTypes = [
+              "image/jpeg",
+              "image/jpg",
+              "image/png",
+              "image/gif",
+              "image/webp",
+              "image/svg+xml",
+            ];
             if (!allowedTypes.includes(file.type)) {
-              alert("Ungültiger Dateityp. Bitte laden Sie eine Bilddatei hoch (JPEG, PNG, GIF, WebP oder SVG).");
+              alert(
+                "Ungültiger Dateityp. Bitte laden Sie eine Bilddatei hoch (JPEG, PNG, GIF, WebP oder SVG)."
+              );
               return;
             }
 
@@ -81,24 +98,34 @@ function StatIconUploadInput({
 
               setIconUrl(data.url);
               onUploadComplete(data.url);
-              const hiddenInput = document.getElementById(`stat_icon_${statIndex}`) as HTMLInputElement;
+              const hiddenInput = document.getElementById(
+                `stat_icon_${statIndex}`
+              ) as HTMLInputElement;
               if (hiddenInput) hiddenInput.value = data.url;
             } catch (error) {
-              alert(error instanceof Error ? error.message : "Bild-Upload fehlgeschlagen");
+              alert(
+                error instanceof Error
+                  ? error.message
+                  : "Bild-Upload fehlgeschlagen"
+              );
+            } finally {
+              if (fileInputRef.current) {
+                fileInputRef.current.value = "";
+              }
             }
           }}
           className="hidden"
-          id={`stat_icon_file_${statIndex}`}
         />
-        <label
-          htmlFor={`stat_icon_file_${statIndex}`}
-          className="inline-flex cursor-pointer items-center gap-2 rounded-lg border border-brand/25 bg-white px-3 py-1.5 text-xs font-bold text-ink shadow-sm transition hover:border-brand/40 hover:bg-brand-surface hover:shadow"
+        <button
+          type="button"
+          onClick={() => fileInputRef.current?.click()}
+          className="inline-flex items-center rounded-lg border border-brand/25 bg-white px-3 py-1.5 text-xs font-medium text-ink shadow-sm transition hover:border-brand/40 hover:bg-brand-surface hover:shadow"
         >
-          <svg className="h-3 w-3 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-          </svg>
-          <span>Icon hochladen</span>
-        </label>
+          Icon auswählen
+        </button>
+        <span className="text-[11px] text-gray-500">
+          PNG/SVG, max. 10MB
+        </span>
       </div>
       {iconUrl && (
         <div className="mt-2">

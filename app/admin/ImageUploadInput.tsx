@@ -102,7 +102,7 @@ export function ImageUploadInput({
               accept={accept}
               onChange={handleFileChange}
               disabled={uploading}
-              id={`${name}_file`}
+              // id={`${name}_file`}
               className="hidden"
             />
             <button

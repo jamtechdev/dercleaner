@@ -139,10 +139,16 @@ export function TechnicalDataInput({
     }, [currentIconUrl]);
 
     return (
-      <div className="space-y-2">
-        <label className="block text-xs font-semibold text-gray-600 mb-1">
-          {label}
-        </label>
+      <div className="space-y-3 rounded-lg border border-brand/20 bg-white/70 p-3 shadow-sm">
+        <div className="space-y-1.5">
+          <label className="block text-xs font-semibold text-gray-700">
+            {label}
+          </label>
+          <p className="text-[11px] text-gray-500">
+            Icon-URL einfügen oder Datei hochladen (max. 10 MB).
+          </p>
+        </div>
+
         <input
           type="text"
           value={iconUrl}
@@ -153,18 +159,20 @@ export function TechnicalDataInput({
             onUploadComplete(newUrl);
             // Force image reload if URL changed
             if (newUrl !== currentIconUrl) {
-              setImageKey(prev => prev + 1);
+              setImageKey((prev) => prev + 1);
             }
           }}
           placeholder="/icon.svg oder URL eingeben"
-          className="w-full rounded-lg border border-brand/20 bg-white px-3 py-2 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
+          className="w-full rounded-lg border border-brand/20 bg-white px-3 py-2 text-sm font-semibold text-ink placeholder:text-gray-400 shadow-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/30"
         />
-        <div className="mt-2">
-          <input
-            ref={fileInputRef}
-            type="file"
-            accept="image/jpeg,image/jpg,image/png,image/gif,image/webp,image/svg+xml"
-            onChange={async (e) => {
+
+        <div className="flex items-center justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/jpeg,image/jpg,image/png,image/gif,image/webp,image/svg+xml"
+              onChange={async (e) => {
               const file = e.target.files?.[0];
               if (!file) return;
 
@@ -190,55 +198,67 @@ export function TechnicalDataInput({
                 return;
               }
 
-              try {
-                const formData = new FormData();
-                formData.append("image", file);
+                try {
+                  const formData = new FormData();
+                  formData.append("image", file);
 
-                const response = await fetch("/api/upload-image", {
-                  method: "POST",
-                  body: formData,
-                });
+                  const response = await fetch("/api/upload-image", {
+                    method: "POST",
+                    body: formData,
+                  });
 
-                const result = await response.json();
+                  const result = await response.json();
 
-                if (!response.ok) {
-                  throw new Error(result.error || "Upload fehlgeschlagen");
+                  if (!response.ok) {
+                    throw new Error(result.error || "Upload fehlgeschlagen");
+                  }
+
+                  // Update parent state first - this will trigger re-render with new currentIconUrl
+                  onUploadComplete(result.url);
+
+                  // Update local state for immediate UI feedback
+                  setIconUrl(result.url);
+                  // Force image reload with new key
+                  setImageKey((prev) => prev + 1);
+
+                  // Reset file input to allow uploading the same file again
+                  if (fileInputRef.current) {
+                    fileInputRef.current.value = "";
+                  }
+
+                  setIsUploading(false);
+                } catch (error) {
+                  alert(
+                    error instanceof Error
+                      ? error.message
+                      : "Icon-Upload fehlgeschlagen"
+                  );
+                  setIsUploading(false);
+                  if (fileInputRef.current) {
+                    fileInputRef.current.value = "";
+                  }
                 }
+              }}
+              className="hidden"
+            />
+            <button
+              type="button"
+              onClick={() => fileInputRef.current?.click()}
+              disabled={isUploading}
+              className="inline-flex items-center rounded-lg border border-dashed border-brand/40 bg-brand-surface/40 px-3 py-1.5 text-xs font-medium text-ink shadow-sm transition hover:bg-brand-surface hover:border-brand/60 disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {isUploading ? "Lade Icon ..." : "Icon auswählen"}
+            </button>
+            <span className="text-[11px] text-gray-500">
+              {iconUrl ? "Vorschau rechts aktualisiert." : "Noch kein Icon gewählt."}
+            </span>
+          </div>
 
-                // Update parent state first - this will trigger re-render with new currentIconUrl
-                onUploadComplete(result.url);
-                
-                // Update local state for immediate UI feedback
-                setIconUrl(result.url);
-                // Force image reload with new key
-                setImageKey(prev => prev + 1);
-                
-                // Reset file input to allow uploading the same file again
-                if (fileInputRef.current) {
-                  fileInputRef.current.value = "";
-                }
-                
-                setIsUploading(false);
-              } catch (error) {
-                alert(error instanceof Error ? error.message : "Icon-Upload fehlgeschlagen");
-                setIsUploading(false);
-                if (fileInputRef.current) {
-                  fileInputRef.current.value = "";
-                }
-              }
-            }}
-            className="hidden"
-            id={`tech_icon_file_${name}_${itemIndex}`}
-          />
-          <label
-            htmlFor={`tech_icon_file_${name}_${itemIndex}`}
-            className={`inline-flex cursor-pointer items-center gap-2 rounded-lg border border-brand/25 bg-white px-3 py-1.5 text-xs font-bold text-ink shadow-sm transition hover:border-brand/40 hover:bg-brand-surface hover:shadow ${isUploading ? 'opacity-50 cursor-wait' : ''}`}
-          >
-            <svg className="h-3 w-3 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
-            <span>{isUploading ? 'Wird hochgeladen...' : 'Icon hochladen'}</span>
-          </label>
+          {isUploading && (
+            <span className="text-[11px] font-medium text-gray-600">
+              Wird hochgeladen ...
+            </span>
+          )}
         </div>
         {iconUrl && (
           <div className="mt-2">
