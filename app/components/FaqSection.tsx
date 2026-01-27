@@ -45,7 +45,7 @@ export default function FaqSection({ site }: { site: any }) {
                                 onClick={() => setOpenId(openId === item.id ? null : item.id)}
                                 className="w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 transition-colors"
                             >
-                                <span className="text-lg text-gray-700 font-medium pr-4">
+                                <span className="text-md text-bold text-gray-700 pr-4">
                                     {item.question}
                                 </span>
                                 <div className={`flex-shrink-0 w-10 h-10 rounded-full bg-[#00B1E6] flex items-center justify-center transition-transform duration-300 ${openId === item.id ? 'rotate-0' : 'rotate-180'}`}>

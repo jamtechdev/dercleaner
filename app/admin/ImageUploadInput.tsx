@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { ChangeEvent, useRef, useState } from "react";
 
 interface ImageUploadInputProps {
   currentImageUrl?: string;
@@ -11,164 +11,140 @@ interface ImageUploadInputProps {
 }
 
 export function ImageUploadInput({
-  currentImageUrl,
+  currentImageUrl = "",
   onUploadComplete,
   label,
   name,
   accept = "image/jpeg,image/jpg,image/png,image/gif,image/webp,image/svg+xml",
 }: ImageUploadInputProps) {
+  const [uploadedUrl, setUploadedUrl] = useState(currentImageUrl);
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
-  const [uploadSuccess, setUploadSuccess] = useState(false);
-  const [uploadedUrl, setUploadedUrl] = useState(currentImageUrl || "");
-  const fileInputRef = useRef<HTMLInputElement>(null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
-  // Sync with currentImageUrl prop
-  useEffect(() => {
-    if (currentImageUrl !== undefined) {
-      setUploadedUrl(currentImageUrl);
-      const hiddenInput = document.getElementById(name) as HTMLInputElement;
-      if (hiddenInput) hiddenInput.value = currentImageUrl;
-    }
-  }, [currentImageUrl, name]);
+  const handleUrlChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setUploadedUrl(value);
+    onUploadComplete(value);
+    setUploadError(null);
+  };
 
-  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    // Validate file size (10MB)
-    const maxSize = 10 * 1024 * 1024; // 10MB
-    if (file.size > maxSize) {
-      setUploadError(`Dateigröße überschreitet das Limit von 10MB. Aktuelle Größe: ${(file.size / (1024 * 1024)).toFixed(2)}MB`);
-      return;
-    }
+    e.target.value = "";
 
-    // Validate file type
-    const allowedTypes = ["image/jpeg", "image/jpg", "image/png", "image/gif", "image/webp", "image/svg+xml"];
-    if (!allowedTypes.includes(file.type)) {
-      setUploadError("Ungültiger Dateityp. Bitte laden Sie eine Bilddatei hoch (JPEG, PNG, GIF, WebP oder SVG).");
+    if (file.size > 10 * 1024 * 1024) {
+      setUploadError("Image size must be under 10MB");
       return;
     }
 
     setUploading(true);
     setUploadError(null);
-    setUploadSuccess(false);
 
     try {
       const formData = new FormData();
       formData.append("image", file);
 
-      const response = await fetch("/api/upload-image", {
+      const res = await fetch("/api/upload-image", {
         method: "POST",
         body: formData,
       });
 
-      const data = await response.json();
+      const data = await res.json();
 
-      if (!response.ok) {
-        throw new Error(data.error || "Upload fehlgeschlagen");
+      if (!res.ok) {
+        throw new Error(data?.error || "Upload failed");
       }
 
       setUploadedUrl(data.url);
-      setUploadSuccess(true);
-      // Update hidden input
-      const hiddenInput = document.getElementById(name) as HTMLInputElement;
-      if (hiddenInput) hiddenInput.value = data.url;
       onUploadComplete(data.url);
-    } catch (error) {
-      setUploadError(error instanceof Error ? error.message : "Bild-Upload fehlgeschlagen");
+    } catch (err) {
+      setUploadError(
+        err instanceof Error ? err.message : "Upload failed"
+      );
     } finally {
       setUploading(false);
     }
   };
 
   return (
-    <div className="space-y-2">
-      <label htmlFor={`${name}_text`} className="block text-xs font-bold uppercase tracking-wider text-gray-500">
-        {label}
-      </label>
-      
-      {/* Hidden input to store the URL for form submission */}
-      <input type="hidden" name={name} id={name} value={uploadedUrl} />
-      
-      {/* URL input for manual entry or display */}
-      <input
-        type="text"
-        id={`${name}_text`}
-        value={uploadedUrl}
-        onChange={(e) => {
-          const newUrl = e.target.value;
-          setUploadedUrl(newUrl);
-          onUploadComplete(newUrl);
-          // Update hidden input
-          const hiddenInput = document.getElementById(name) as HTMLInputElement;
-          if (hiddenInput) hiddenInput.value = newUrl;
-        }}
-        placeholder="/images/products/product_123.jpg oder URL eingeben"
-        className="mt-2 w-full rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
-      />
-
-      {/* File upload input */}
-      <div className="mt-2">
-        <input
-          ref={fileInputRef}
-          type="file"
-          accept={accept}
-          onChange={handleFileChange}
-          className="hidden"
-          id={`${name}_file`}
-        />
+    <div className="space-y-3 rounded-xl border border-gray-200 bg-white/60 p-4 shadow-sm">
+      <div className="space-y-1.5">
         <label
-          htmlFor={`${name}_file`}
-          className="inline-flex cursor-pointer items-center gap-2 rounded-xl border border-brand/25 bg-white px-4 py-2.5 text-sm font-bold text-ink shadow-sm transition hover:border-brand/40 hover:bg-brand-surface hover:shadow"
+          className="block text-xs font-semibold tracking-wide text-gray-700"
+          htmlFor={name}
         >
-          {uploading ? (
-            <>
-              <svg className="h-4 w-4 animate-spin text-brand" fill="none" viewBox="0 0 24 24">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-              </svg>
-              <span>Wird hochgeladen...</span>
-            </>
-          ) : (
-            <>
-              <svg className="h-4 w-4 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-              <span>Bild hochladen</span>
-            </>
-          )}
+          {label}
         </label>
+        <p className="text-[11px] text-gray-500">
+          Füge eine Bild-URL ein oder lade eine Datei hoch (max. 10 MB).
+        </p>
       </div>
 
-      {/* Preview */}
-      {uploadedUrl && (
-        <div className="mt-2">
-          <div className="relative h-32 w-32 overflow-hidden rounded-lg border border-brand/20 bg-gray-50">
+      <div className="space-y-2">
+        <input
+          id={name}
+          name={name}
+          type="text"
+          value={uploadedUrl}
+          onChange={handleUrlChange}
+          placeholder="https://... oder über die Schaltfläche unten hochladen"
+          className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-sm shadow-sm outline-none transition focus:border-gray-900 focus:ring-2 focus:ring-gray-900/10"
+        />
+
+        <div className="flex items-center justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept={accept}
+              onChange={handleFileChange}
+              disabled={uploading}
+              id={`${name}_file`}
+              className="hidden"
+            />
+            <button
+              type="button"
+              onClick={() => fileInputRef.current?.click()}
+              disabled={uploading}
+              className="inline-flex items-center rounded-lg border border-dashed border-gray-300 bg-gray-50 px-3 py-1.5 text-xs font-medium text-gray-700 shadow-sm transition hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {uploading ? "Lade hoch ..." : "Bild auswählen"}
+            </button>
+            <span className="text-[11px] text-gray-500">
+              {uploadedUrl && !uploadError
+                ? "Vorschau unten aktualisiert."
+                : "Noch kein Bild ausgewählt."}
+            </span>
+          </div>
+
+          {uploading && (
+            <span className="text-[11px] font-medium text-gray-600">
+              Wird hochgeladen ...
+            </span>
+          )}
+        </div>
+      </div>
+
+      {uploadedUrl && !uploadError && (
+        <div className="mt-1 rounded-lg border border-dashed border-gray-200 bg-gray-50 p-2">
+          <p className="mb-1 text-[11px] font-medium text-gray-600">
+            Vorschau
+          </p>
+          <div className="flex items-center justify-center rounded-md bg-white p-2">
             <img
               src={uploadedUrl}
-              alt="Preview"
-              className="h-full w-full object-contain"
-              onError={(e) => {
-                (e.target as HTMLImageElement).style.display = "none";
-              }}
+              alt={label}
+              className="max-h-40 w-auto rounded-md object-contain"
             />
           </div>
         </div>
       )}
 
-      {/* Success message */}
-      {uploadSuccess && (
-        <p className="text-xs font-semibold text-green-600">
-          Bild erfolgreich hochgeladen!
-        </p>
-      )}
-
-      {/* Error message */}
       {uploadError && (
-        <p className="text-xs font-semibold text-red-600">
-          {uploadError}
-        </p>
+        <p className="text-xs font-medium text-red-600">{uploadError}</p>
       )}
     </div>
   );

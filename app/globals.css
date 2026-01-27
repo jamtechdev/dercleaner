@@ -221,6 +221,11 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+.owner-img img{
+  position: static !important;
+}
+
+
 
 .daten-icons img {
   width: 25px;
@@ -282,10 +287,11 @@ body {
   ;
 }
 
+
 .uber-uns>p {
   font-weight: 600;
   font-size: 16px !important;
-  text-align: justify;
+  /* text-align: justify; */
 }
 
 .form-btn {
@@ -398,6 +404,10 @@ textarea {
   background:#00a3cc !important;
 }
 
+/* .faq > p{
+  font-size: 16px !important;
+} */
+
 .faq-para{
   font-size: 16px;;
 }
@@ -467,6 +477,10 @@ textarea {
     ;
   }
 
+  .owner-img img{
+    position: static !important;
+  }
+
   .imop-buttons {
     padding: 25px;
     display: flex;
@@ -513,6 +527,11 @@ textarea {
       object-position: center;
       height: 100%;
       ;
+    }
+
+
+    .owner-img img{
+      position: absolute !important;
     }
   }
 
