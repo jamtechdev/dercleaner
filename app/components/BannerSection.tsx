@@ -45,6 +45,10 @@ export const BannerSection: React.FC<BannerSectionProps> = ({ site }) => {
                         <p className="text-2xl font-black text-black sm:text-3xl">
                             7.–11.2.2026 | <span className="font-bold">Messe Stuttgart</span>
                         </p>
+                        <p className="font-black text-black">
+                            Halle 5, Stand 5A32 <br />
+                            <span className="font-bold">(I-team Germany)</span>
+                        </p>
                     </div>
                 </div>
 
