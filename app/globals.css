@@ -429,6 +429,8 @@ textarea {
     position: absolute !important;
     left: 79% !important;
     display: block !important;
+    left: auto !important;
+    right: 10px !important;
   }
 
   .md-mb-10 {
