@@ -8,6 +8,7 @@ interface ImageUploadInputProps {
   label: string;
   name: string;
   accept?: string;
+  folder?: string;
 }
 
 export function ImageUploadInput({
@@ -16,6 +17,7 @@ export function ImageUploadInput({
   label,
   name,
   accept = "image/jpeg,image/jpg,image/png,image/gif,image/webp,image/svg+xml",
+  folder = "uploads",
 }: ImageUploadInputProps) {
   const [uploadedUrl, setUploadedUrl] = useState(currentImageUrl);
   const [uploading, setUploading] = useState(false);
@@ -46,6 +48,7 @@ export function ImageUploadInput({
     try {
       const formData = new FormData();
       formData.append("image", file);
+      formData.append("folder", folder);
 
       const res = await fetch("/api/upload-image", {
         method: "POST",

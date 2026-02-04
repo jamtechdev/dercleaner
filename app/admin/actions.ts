@@ -1,7 +1,6 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { revalidatePath } from "next/cache";
 import {
   clearAdminSessionAsync,
   requireAdmin,
@@ -15,7 +14,6 @@ import {
   saveSiteFromString,
 } from "@/app/lib/site";
 import { ProductRepository } from "@/app/database/repositories/ProductRepository";
-import { initializeDatabase } from "@/app/database/data-source";
 
 function adminUser(): string {
   return process.env.ADMIN_USERNAME || "admin";
@@ -71,32 +69,18 @@ export async function saveSiteQuickAction(formData: FormData) {
   if (formData.get("brandingName") !== null) {
     site.branding.name = String(formData.get("brandingName") ?? "");
   }
+  if (formData.get("brandingLogoSrc") !== null) {
+    if (!site.branding.logo) site.branding.logo = { src: "", alt: "" };
+    site.branding.logo.src = String(formData.get("brandingLogoSrc") ?? "");
+  }
+  if (formData.get("brandingLogoAlt") !== null) {
+    if (!site.branding.logo) site.branding.logo = { src: "", alt: "" };
+    site.branding.logo.alt = String(formData.get("brandingLogoAlt") ?? "");
+  }
 
-  // Video Section - handle both YouTube URL and file upload (mutually exclusive)
-  const youtubeUrl = formData.get("youtubeUrl");
-  const videoFileUrl = formData.get("videoFileUrl");
-  const clearVideoFile = formData.get("clearVideoFile");
-  const clearYoutubeUrl = formData.get("clearYoutubeUrl");
-  
-  // Handle YouTube URL
-  if (youtubeUrl !== null) {
-    const urlValue = String(youtubeUrl ?? "").trim();
-    site.videoSection.youtubeUrl = urlValue;
-  }
-  
-  // Handle video file URL
-  if (videoFileUrl !== null) {
-    const fileUrlValue = String(videoFileUrl ?? "").trim();
-    site.videoSection.videoFileUrl = fileUrlValue;
-  }
-  
-  // Clear fields based on source selection
-  if (clearVideoFile === "true") {
-    site.videoSection.videoFileUrl = "";
-  }
-  
-  if (clearYoutubeUrl === "true") {
-    site.videoSection.youtubeUrl = "";
+  // Video Section
+  if (formData.get("youtubeUrl") !== null) {
+    site.videoSection.youtubeUrl = String(formData.get("youtubeUrl") ?? "");
   }
 
   // Contact Section
@@ -117,6 +101,28 @@ export async function saveSiteQuickAction(formData: FormData) {
   }
   if (formData.get("contactPhone") !== null) {
     site.contactSection.contactInfo.phone.number = String(formData.get("contactPhone") ?? "");
+  }
+
+  // Banner Section
+  if (formData.get("bannerTitle") !== null) {
+    if (!site.bannerSection) site.bannerSection = { title: "", subtitle: "", ctaLabel: "", ctaLink: "", backgroundImage: "" };
+    site.bannerSection.title = String(formData.get("bannerTitle") ?? "");
+  }
+  if (formData.get("bannerSubtitle") !== null) {
+    if (!site.bannerSection) site.bannerSection = { title: "", subtitle: "", ctaLabel: "", ctaLink: "", backgroundImage: "" };
+    site.bannerSection.subtitle = String(formData.get("bannerSubtitle") ?? "");
+  }
+  if (formData.get("bannerCtaLabel") !== null) {
+    if (!site.bannerSection) site.bannerSection = { title: "", subtitle: "", ctaLabel: "", ctaLink: "", backgroundImage: "" };
+    site.bannerSection.ctaLabel = String(formData.get("bannerCtaLabel") ?? "");
+  }
+  if (formData.get("bannerCtaLink") !== null) {
+    if (!site.bannerSection) site.bannerSection = { title: "", subtitle: "", ctaLabel: "", ctaLink: "", backgroundImage: "" };
+    site.bannerSection.ctaLink = String(formData.get("bannerCtaLink") ?? "");
+  }
+  if (formData.get("bannerBackgroundImage") !== null) {
+    if (!site.bannerSection) site.bannerSection = { title: "", subtitle: "", ctaLabel: "", ctaLink: "", backgroundImage: "" };
+    site.bannerSection.backgroundImage = String(formData.get("bannerBackgroundImage") ?? "");
   }
 
   // Mission Section
@@ -192,84 +198,36 @@ export async function saveSiteQuickAction(formData: FormData) {
     site.faqSection.items = faqItems;
   }
 
-  // Legal Pages Section - only process when saving from legal view
-  const view = formData.get("view");
-  if (view === "legal") {
-    if (!site.legalPages) site.legalPages = {};
-    
-    // Impressum
-    if (formData.get("impressumTitle") !== null) {
-      if (!site.legalPages.imprint) site.legalPages.imprint = { title: "", description: "", lastUpdated: "", backToHomeLabel: "", content: "" };
-      site.legalPages.imprint.title = String(formData.get("impressumTitle") ?? "");
-    }
-    if (formData.get("impressumDescription") !== null) {
-      if (!site.legalPages.imprint) site.legalPages.imprint = { title: "", description: "", lastUpdated: "", backToHomeLabel: "", content: "" };
-      site.legalPages.imprint.description = String(formData.get("impressumDescription") ?? "");
-    }
-    if (formData.get("impressumLastUpdated") !== null) {
-      if (!site.legalPages.imprint) site.legalPages.imprint = { title: "", description: "", lastUpdated: "", backToHomeLabel: "", content: "" };
-      site.legalPages.imprint.lastUpdated = String(formData.get("impressumLastUpdated") ?? "");
-    }
-    if (formData.get("impressumBackLabel") !== null) {
-      if (!site.legalPages.imprint) site.legalPages.imprint = { title: "", description: "", lastUpdated: "", backToHomeLabel: "", content: "" };
-      site.legalPages.imprint.backToHomeLabel = String(formData.get("impressumBackLabel") ?? "");
-    }
-    if (formData.get("impressumContent") !== null) {
-      if (!site.legalPages.imprint) site.legalPages.imprint = { title: "", description: "", lastUpdated: "", backToHomeLabel: "", content: "" };
-      site.legalPages.imprint.content = String(formData.get("impressumContent") ?? "");
-    }
+  // Products Section – actions
+  if (formData.get("productsTechDataLabel") !== null) {
+    if (!site.productsSection?.actions) site.productsSection.actions = { techDataLabel: "", demoLabel: "" };
+    site.productsSection.actions.techDataLabel = String(formData.get("productsTechDataLabel") ?? "");
+  }
+  if (formData.get("productsDemoLabel") !== null) {
+    if (!site.productsSection?.actions) site.productsSection.actions = { techDataLabel: "", demoLabel: "" };
+    site.productsSection.actions.demoLabel = String(formData.get("productsDemoLabel") ?? "");
+  }
 
-    // AGB
-    if (formData.get("agbTitle") !== null) {
-      if (!site.legalPages.terms) site.legalPages.terms = { title: "", description: "", lastUpdated: "", backToHomeLabel: "", content: "" };
-      site.legalPages.terms.title = String(formData.get("agbTitle") ?? "");
-    }
-    if (formData.get("agbDescription") !== null) {
-      if (!site.legalPages.terms) site.legalPages.terms = { title: "", description: "", lastUpdated: "", backToHomeLabel: "", content: "" };
-      site.legalPages.terms.description = String(formData.get("agbDescription") ?? "");
-    }
-    if (formData.get("agbLastUpdated") !== null) {
-      if (!site.legalPages.terms) site.legalPages.terms = { title: "", description: "", lastUpdated: "", backToHomeLabel: "", content: "" };
-      site.legalPages.terms.lastUpdated = String(formData.get("agbLastUpdated") ?? "");
-    }
-    if (formData.get("agbBackLabel") !== null) {
-      if (!site.legalPages.terms) site.legalPages.terms = { title: "", description: "", lastUpdated: "", backToHomeLabel: "", content: "" };
-      site.legalPages.terms.backToHomeLabel = String(formData.get("agbBackLabel") ?? "");
-    }
-    if (formData.get("agbContent") !== null) {
-      if (!site.legalPages.terms) site.legalPages.terms = { title: "", description: "", lastUpdated: "", backToHomeLabel: "", content: "" };
-      site.legalPages.terms.content = String(formData.get("agbContent") ?? "");
-    }
-
-    // Datenschutz
-    if (formData.get("datenschutzTitle") !== null) {
-      if (!site.legalPages.privacy) site.legalPages.privacy = { title: "", description: "", lastUpdated: "", backToHomeLabel: "", content: "" };
-      site.legalPages.privacy.title = String(formData.get("datenschutzTitle") ?? "");
-    }
-    if (formData.get("datenschutzDescription") !== null) {
-      if (!site.legalPages.privacy) site.legalPages.privacy = { title: "", description: "", lastUpdated: "", backToHomeLabel: "", content: "" };
-      site.legalPages.privacy.description = String(formData.get("datenschutzDescription") ?? "");
-    }
-    if (formData.get("datenschutzLastUpdated") !== null) {
-      if (!site.legalPages.privacy) site.legalPages.privacy = { title: "", description: "", lastUpdated: "", backToHomeLabel: "", content: "" };
-      site.legalPages.privacy.lastUpdated = String(formData.get("datenschutzLastUpdated") ?? "");
-    }
-    if (formData.get("datenschutzBackLabel") !== null) {
-      if (!site.legalPages.privacy) site.legalPages.privacy = { title: "", description: "", lastUpdated: "", backToHomeLabel: "", content: "" };
-      site.legalPages.privacy.backToHomeLabel = String(formData.get("datenschutzBackLabel") ?? "");
-    }
-    if (formData.get("datenschutzContent") !== null) {
-      if (!site.legalPages.privacy) site.legalPages.privacy = { title: "", description: "", lastUpdated: "", backToHomeLabel: "", content: "" };
-      site.legalPages.privacy.content = String(formData.get("datenschutzContent") ?? "");
+  // Products Section – per product (name, tabTitle, tabDesc, description, savingsTitle, savingsSubtitle)
+  const products = site.productsSection?.products;
+  if (Array.isArray(products)) {
+    for (let i = 0; i < products.length; i++) {
+      const name = formData.get(`product_${i}_name`);
+      const tabTitle = formData.get(`product_${i}_tabTitle`);
+      const tabDesc = formData.get(`product_${i}_tabDesc`);
+      const description = formData.get(`product_${i}_description`);
+      const savingsTitle = formData.get(`product_${i}_savingsTitle`);
+      const savingsSubtitle = formData.get(`product_${i}_savingsSubtitle`);
+      if (name !== null) products[i].name = String(name ?? "");
+      if (tabTitle !== null) products[i].tabTitle = String(tabTitle ?? "");
+      if (tabDesc !== null) products[i].tabDesc = String(tabDesc ?? "");
+      if (description !== null) products[i].description = String(description ?? "");
+      if (savingsTitle !== null) products[i].savingsTitle = String(savingsTitle ?? "");
+      if (savingsSubtitle !== null) products[i].savingsSubtitle = String(savingsSubtitle ?? "");
     }
   }
 
   await saveSite(site);
-  
-  // Redirect based on which view we're saving from
-  if (view === "legal") {
-    redirect("/admin?view=legal&saved=1");
-  }
   redirect("/admin?view=settings&saved=1");
 }
 
@@ -290,240 +248,83 @@ export async function downloadSubmissionsAction() {
   return submissions;
 }
 
-// Product Actions
-async function ensureDbInitialized() {
-  await initializeDatabase();
-}
-
 export async function createProductAction(formData: FormData) {
   await requireAdmin();
-  await ensureDbInitialized();
-
   const repo = new ProductRepository();
-  
-  const tabImageSrc = String(formData.get("tabImageSrc") ?? "").trim();
-  const tabImageAlt = String(formData.get("tabImageAlt") ?? "").trim();
-  const heroImageSrc = String(formData.get("heroImageSrc") ?? "").trim();
-  const heroImageAlt = String(formData.get("heroImageAlt") ?? "").trim();
-  const videoSrc = String(formData.get("videoSrc") ?? "").trim();
-  const videoAlt = String(formData.get("videoAlt") ?? "").trim();
-  const featuresImageSrc = String(formData.get("featuresImageSrc") ?? "").trim();
-  const featuresImageAlt = String(formData.get("featuresImageAlt") ?? "").trim();
 
-  // Parse stats from JSON string
-  let stats: { icon: string; label: string; value: string; sub: string }[] | undefined;
-  const statsJson = formData.get("stats");
-  if (statsJson && typeof statsJson === "string") {
-    try {
-      const parsed = JSON.parse(statsJson);
-      if (Array.isArray(parsed) && parsed.length > 0) {
-        // Filter out empty stats (all fields empty)
-        stats = parsed.filter((stat: any) => 
-          stat.label?.trim() || stat.value?.trim() || stat.icon?.trim() || stat.sub?.trim()
-        );
-        if (stats.length === 0) stats = undefined;
-      }
-    } catch (e) {
-      console.error("Error parsing stats:", e);
-    }
-  }
-
-  // Parse technical data from JSON string
-  let technicalSpecs: {
-    heading?: string;
-    items?: { icon?: string; label: string; value: string }[];
-  } | undefined;
-  const technicalDataJson = formData.get("technicalData");
-  if (technicalDataJson && typeof technicalDataJson === "string") {
-    try {
-      const parsed = JSON.parse(technicalDataJson);
-      if (parsed && parsed.items?.length > 0) {
-        technicalSpecs = parsed;
-      }
-    } catch (e) {
-      console.error("Error parsing technical data:", e);
-    }
-  }
-
-  // Parse features from JSON string
-  let features: {
-    heading?: string;
-    items?: { number: string; title: string; description: string }[];
-  } | undefined;
-  const featuresJson = formData.get("features");
-  if (featuresJson && typeof featuresJson === "string") {
-    try {
-      const parsed = JSON.parse(featuresJson);
-      // Handle both old format (array) and new format (object with heading and items)
-      if (Array.isArray(parsed) && parsed.length > 0) {
-        // Old format - convert to new format
-        const filtered = parsed.filter((feature: any) => 
-          feature.number?.trim() || feature.title?.trim() || feature.description?.trim()
-        );
-        if (filtered.length > 0) {
-          features = { heading: "", items: filtered };
-        }
-      } else if (parsed && parsed.items && Array.isArray(parsed.items) && parsed.items.length > 0) {
-        // New format
-        const filtered = parsed.items.filter((feature: any) => 
-          feature.number?.trim() || feature.title?.trim() || feature.description?.trim()
-        );
-        if (filtered.length > 0) {
-          features = { heading: parsed.heading || "", items: filtered };
-        }
-      }
-    } catch (e) {
-      console.error("Error parsing features:", e);
-    }
-  }
+  const statsJson = String(formData.get("stats") ?? "[]");
+  const technicalDataJson = String(formData.get("technicalData") ?? "{}");
+  const featuresJson = String(formData.get("features") ?? "{}");
 
   await repo.create({
     name: String(formData.get("name") ?? ""),
     tabTitle: String(formData.get("tabTitle") ?? ""),
-    tabDesc: String(formData.get("tabDesc") ?? "").trim() || undefined,
-    tabImage: { src: tabImageSrc, alt: tabImageAlt || tabImageSrc },
-    heroImage: { src: heroImageSrc, alt: heroImageAlt || heroImageSrc },
-    video: videoSrc ? { src: videoSrc, alt: videoAlt || videoSrc } : undefined,
-    featuresImage: featuresImageSrc ? { src: featuresImageSrc, alt: featuresImageAlt || featuresImageSrc } : undefined,
+    tabDesc: String(formData.get("tabDesc") ?? ""),
+    tabImage: {
+      src: String(formData.get("tabImageSrc") ?? ""),
+      alt: String(formData.get("tabImageAlt") ?? ""),
+    },
+    heroImage: {
+      src: String(formData.get("heroImageSrc") ?? ""),
+      alt: String(formData.get("heroImageAlt") ?? ""),
+    },
+    featuresImage: {
+      src: String(formData.get("featuresImageSrc") ?? ""),
+      alt: String(formData.get("featuresImageAlt") ?? ""),
+    },
     savingsTitle: String(formData.get("savingsTitle") ?? ""),
     savingsSubtitle: String(formData.get("savingsSubtitle") ?? ""),
-    stats: stats,
-    description: String(formData.get("description") ?? "").trim() || undefined,
-    technicalSpecs: technicalSpecs,
-    features: features,
-    displayOrder: Number(formData.get("displayOrder") ?? "0") || 0,
+    stats: JSON.parse(statsJson),
+    description: String(formData.get("description") ?? ""),
+    technicalSpecs: JSON.parse(technicalDataJson),
+    features: JSON.parse(featuresJson),
+    displayOrder: Number(formData.get("displayOrder") ?? 0),
   });
 
-  // Revalidate homepage to show updated products
-  revalidatePath("/");
   redirect("/admin?view=products&saved=1");
 }
 
 export async function updateProductAction(formData: FormData) {
   await requireAdmin();
-  await ensureDbInitialized();
-
-  const repo = new ProductRepository();
   const id = String(formData.get("id") ?? "");
-  
-  if (!id) {
-    redirect("/admin?view=products&error=missing_id");
-    return;
-  }
+  const repo = new ProductRepository();
 
-  const tabImageSrc = String(formData.get("tabImageSrc") ?? "").trim();
-  const tabImageAlt = String(formData.get("tabImageAlt") ?? "").trim();
-  const heroImageSrc = String(formData.get("heroImageSrc") ?? "").trim();
-  const heroImageAlt = String(formData.get("heroImageAlt") ?? "").trim();
-  const videoSrc = String(formData.get("videoSrc") ?? "").trim();
-  const videoAlt = String(formData.get("videoAlt") ?? "").trim();
-  const featuresImageSrc = String(formData.get("featuresImageSrc") ?? "").trim();
-  const featuresImageAlt = String(formData.get("featuresImageAlt") ?? "").trim();
-
-  // Parse stats from JSON string
-  let stats: { icon: string; label: string; value: string; sub: string }[] | undefined;
-  const statsJson = formData.get("stats");
-  if (statsJson && typeof statsJson === "string") {
-    try {
-      const parsed = JSON.parse(statsJson);
-      if (Array.isArray(parsed) && parsed.length > 0) {
-        // Filter out empty stats (all fields empty)
-        stats = parsed.filter((stat: any) => 
-          stat.label?.trim() || stat.value?.trim() || stat.icon?.trim() || stat.sub?.trim()
-        );
-        if (stats.length === 0) stats = undefined;
-      }
-    } catch (e) {
-      console.error("Error parsing stats:", e);
-    }
-  }
-
-  // Parse technical data from JSON string
-  let technicalSpecs: {
-    heading?: string;
-    items?: { icon?: string; label: string; value: string }[];
-  } | undefined;
-  const technicalDataJson = formData.get("technicalData");
-  if (technicalDataJson && typeof technicalDataJson === "string") {
-    try {
-      const parsed = JSON.parse(technicalDataJson);
-      if (parsed && parsed.items?.length > 0) {
-        technicalSpecs = parsed;
-      }
-    } catch (e) {
-      console.error("Error parsing technical data:", e);
-    }
-  }
-
-  // Parse features from JSON string
-  let features: {
-    heading?: string;
-    items?: { number: string; title: string; description: string }[];
-  } | undefined;
-  const featuresJson = formData.get("features");
-  if (featuresJson && typeof featuresJson === "string") {
-    try {
-      const parsed = JSON.parse(featuresJson);
-      // Handle both old format (array) and new format (object with heading and items)
-      if (Array.isArray(parsed) && parsed.length > 0) {
-        // Old format - convert to new format
-        const filtered = parsed.filter((feature: any) => 
-          feature.number?.trim() || feature.title?.trim() || feature.description?.trim()
-        );
-        if (filtered.length > 0) {
-          features = { heading: "", items: filtered };
-        }
-      } else if (parsed && parsed.items && Array.isArray(parsed.items) && parsed.items.length > 0) {
-        // New format
-        const filtered = parsed.items.filter((feature: any) => 
-          feature.number?.trim() || feature.title?.trim() || feature.description?.trim()
-        );
-        if (filtered.length > 0) {
-          features = { heading: parsed.heading || "", items: filtered };
-        }
-      }
-    } catch (e) {
-      console.error("Error parsing features:", e);
-    }
-  }
+  const statsJson = String(formData.get("stats") ?? "[]");
+  const technicalDataJson = String(formData.get("technicalData") ?? "{}");
+  const featuresJson = String(formData.get("features") ?? "{}");
 
   await repo.update(id, {
     name: String(formData.get("name") ?? ""),
     tabTitle: String(formData.get("tabTitle") ?? ""),
-    tabDesc: String(formData.get("tabDesc") ?? "").trim() || undefined,
-    tabImage: { src: tabImageSrc, alt: tabImageAlt || tabImageSrc },
-    heroImage: { src: heroImageSrc, alt: heroImageAlt || heroImageSrc },
-    video: videoSrc ? { src: videoSrc, alt: videoAlt || videoSrc } : undefined,
-    featuresImage: featuresImageSrc ? { src: featuresImageSrc, alt: featuresImageAlt || featuresImageSrc } : undefined,
+    tabDesc: String(formData.get("tabDesc") ?? ""),
+    tabImage: {
+      src: String(formData.get("tabImageSrc") ?? ""),
+      alt: String(formData.get("tabImageAlt") ?? ""),
+    },
+    heroImage: {
+      src: String(formData.get("heroImageSrc") ?? ""),
+      alt: String(formData.get("heroImageAlt") ?? ""),
+    },
+    featuresImage: {
+      src: String(formData.get("featuresImageSrc") ?? ""),
+      alt: String(formData.get("featuresImageAlt") ?? ""),
+    },
     savingsTitle: String(formData.get("savingsTitle") ?? ""),
     savingsSubtitle: String(formData.get("savingsSubtitle") ?? ""),
-    stats: stats,
-    description: String(formData.get("description") ?? "").trim() || undefined,
-    technicalSpecs: technicalSpecs,
-    features: features,
-    displayOrder: Number(formData.get("displayOrder") ?? "0") || 0,
-  } as any);
+    stats: JSON.parse(statsJson),
+    description: String(formData.get("description") ?? ""),
+    technicalSpecs: JSON.parse(technicalDataJson),
+    features: JSON.parse(featuresJson),
+    displayOrder: Number(formData.get("displayOrder") ?? 0),
+  });
 
-  // Revalidate homepage to show updated products
-  revalidatePath("/");
   redirect("/admin?view=products&saved=1");
 }
 
 export async function deleteProductAction(formData: FormData) {
   await requireAdmin();
-  await ensureDbInitialized();
-
-  const repo = new ProductRepository();
   const id = String(formData.get("id") ?? "");
-  
-  if (!id) {
-    redirect("/admin?view=products&error=missing_id");
-    return;
-  }
-
+  const repo = new ProductRepository();
   await repo.delete(id);
-  
-  // Revalidate homepage to show updated products
-  revalidatePath("/");
-  redirect("/admin?view=products&deleted=1");
+  // Note: Caller might need to handle redirection or refresh
 }

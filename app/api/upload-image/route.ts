@@ -26,6 +26,7 @@ export async function POST(request: NextRequest) {
 
     const formData = await request.formData();
     const file = formData.get("image") as File | null;
+    const folder = String(formData.get("folder") ?? "uploads").replace(/[^a-zA-Z0-9_-]/g, "");
 
     if (!file) {
       return NextResponse.json({ error: "Keine Datei bereitgestellt" }, { status: 400 });
@@ -35,7 +36,7 @@ export async function POST(request: NextRequest) {
     if (file.size > MAX_FILE_SIZE) {
       const maxSizeMB = MAX_FILE_SIZE / (1024 * 1024);
       return NextResponse.json(
-        { error: `Dateigröße überschreitet das maximale Limit von ${maxSizeMB}MB` },
+        { error: `Dateigröße überschreitet das maximale limit von ${maxSizeMB}MB` },
         { status: 400 }
       );
     }
@@ -48,19 +49,18 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Create images directory if it doesn't exist
-    const imagesDir = join(process.cwd(), "public", "images", "products");
+    // Create target directory based on folder parameter
+    const imagesDir = join(process.cwd(), "public", "images", folder);
     if (!existsSync(imagesDir)) {
       await mkdir(imagesDir, { recursive: true });
     }
 
-    // Generate unique filename with timestamp
+    // Generate unique filename
     const timestamp = Date.now();
     const originalName = file.name.replace(/[^a-zA-Z0-9.-]/g, "_");
-    // Get file extension from original name or MIME type
     let fileExtension = originalName.split(".").pop()?.toLowerCase() || "jpg";
-    
-    // Map MIME types to extensions if extension is missing or invalid
+
+    // Map MIME types if needed
     const mimeToExt: Record<string, string> = {
       "image/jpeg": "jpg",
       "image/jpg": "jpg",
@@ -69,12 +69,13 @@ export async function POST(request: NextRequest) {
       "image/webp": "webp",
       "image/svg+xml": "svg",
     };
-    
+
     if (!fileExtension || !["jpg", "jpeg", "png", "gif", "webp", "svg"].includes(fileExtension)) {
       fileExtension = mimeToExt[file.type] || "jpg";
     }
-    
-    const fileName = `product_${timestamp}.${fileExtension}`;
+
+    // Generic prefix instead of hardcoded 'product_'
+    const fileName = `img_${timestamp}.${fileExtension}`;
     const filePath = join(imagesDir, fileName);
 
     // Convert file to buffer and save
@@ -87,9 +88,8 @@ export async function POST(request: NextRequest) {
       throw new Error("Datei konnte nicht gespeichert werden");
     }
 
-    // Return the public URL path (Next.js serves files from public/ at root)
-    // Ensure the path starts with / and doesn't have double slashes
-    const publicUrl = `/images/products/${fileName}`.replace(/\/+/g, '/');
+    // Return the public URL path
+    const publicUrl = `/images/${folder}/${fileName}`.replace(/\/+/g, '/');
 
     return NextResponse.json({
       success: true,

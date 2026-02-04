@@ -6,6 +6,8 @@ import { VideoSection } from "./components/VideoSection";
 import FaqSection from "./components/FaqSection";
 import About from "./components/FeaturesAndAbout";
 import Features from "./components/Features";
+import { BannerSection } from "./components/BannerSection";
+
 
 // Force dynamic rendering to always fetch fresh data
 export const dynamic = "force-dynamic";
@@ -15,7 +17,9 @@ export default async function Home() {
   return (
     <main className="min-h-screen">
       <VideoSection site={site} />
+      <BannerSection site={site} />
       <ProductShowcase site={site} />
+
       <Features site={site} />
       <FaqSection site={site} />
       <MissionSection site={site} />

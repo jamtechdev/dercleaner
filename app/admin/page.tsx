@@ -12,6 +12,7 @@ import {
 } from "@/app/admin/actions";
 import { VideoSourceSelector } from "@/app/admin/VideoSourceSelector";
 import { RichTextEditor } from "@/app/admin/RichTextEditor";
+import { SettingsImageInput } from "@/app/admin/SettingsImageInput";
 import { ProductRepository } from "@/app/database/repositories/ProductRepository";
 import { initializeDatabase } from "@/app/database/data-source";
 import { ProductCreateForm } from "@/app/admin/ProductCreateForm";
@@ -103,7 +104,7 @@ export default async function AdminPage({
 
   const site = await getSite();
   const submissions = await getContactSubmissions();
-  
+
   // Get products count for dashboard
   let totalProducts = 0;
   try {
@@ -191,7 +192,7 @@ export default async function AdminPage({
         {/* Left sidebar */}
         <aside className="sticky top-[4.5rem] h-[calc(100vh-4.5rem)] w-60 shrink-0 border-r border-brand/10 bg-white py-6 pl-4 pr-3 shadow-[2px_0_16px_-4px_rgba(0,163,204,0.1)]">
           <p className="mb-3 px-3 text-xs font-bold uppercase tracking-wider text-gray-400">
-          Speisekarte
+            Speisekarte
           </p>
           <nav className="flex flex-col gap-1">
             {SIDEBAR_LINKS.map((item) => {
@@ -200,11 +201,10 @@ export default async function AdminPage({
                 <Link
                   key={item.id}
                   href={item.href}
-                  className={`group flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-bold transition-all duration-200 ${
-                    isActive
-                      ? "bg-brand-cta text-white shadow-md"
-                      : "text-ink hover:bg-brand-soft hover:text-ink"
-                  }`}
+                  className={`group flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-bold transition-all duration-200 ${isActive
+                    ? "bg-brand-cta text-white shadow-md"
+                    : "text-ink hover:bg-brand-soft hover:text-ink"
+                    }`}
                 >
                   <NavIcon id={item.id} active={isActive} />
                   <span>{item.label}</span>
@@ -216,8 +216,8 @@ export default async function AdminPage({
 
         <section className="min-w-0 flex-1 px-4 py-8 sm:px-6 md:px-10 lg:px-12">
           {view === "dashboard" && (
-            <DashboardView 
-              siteName={site.branding?.name ?? "Der Cleaner"} 
+            <DashboardView
+              siteName={site.branding?.name ?? "Der Cleaner"}
               totalContacts={submissions.length}
               totalProducts={totalProducts}
             />
@@ -249,7 +249,7 @@ function DashboardView({ siteName, totalContacts, totalProducts }: { siteName: s
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full bg-brand-surface px-3 py-1 text-xs font-bold uppercase tracking-wider text-brand">
-            Armaturenbrett
+              Armaturenbrett
             </div>
             <h2 className="mt-3 text-xl font-extrabold tracking-tight text-ink">
               Willkommen zurück
@@ -352,6 +352,28 @@ function SettingsView({ site }: { site: any }) {
               placeholder="z.B. Der Cleaner"
             />
           </div>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div>
+              <SettingsImageInput
+                label="Markenlogo"
+                name="brandingLogoSrc"
+                initialValue={site.branding?.logo?.src ?? ""}
+              />
+            </div>
+            <div>
+              <label htmlFor="brandingLogoAlt" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
+                Logo-Alternativtext
+              </label>
+              <input
+                id="brandingLogoAlt"
+                name="brandingLogoAlt"
+                type="text"
+                defaultValue={site.branding?.logo?.alt ?? ""}
+                className="mt-2 w-full rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
+                placeholder="z.B. Der Cleaner Logo"
+              />
+            </div>
+          </div>
         </div>
       </article>
 
@@ -403,6 +425,70 @@ function SettingsView({ site }: { site: any }) {
             currentYoutubeUrl={site.videoSection?.youtubeUrl ?? ""}
             currentVideoFileUrl={site.videoSection?.videoFileUrl ?? ""}
           />
+        </div>
+      </article>
+
+      {/* Banner Section */}
+      <article className="rounded-3xl border border-brand/10 bg-white p-6 shadow-sm sm:p-8">
+        <h3 className="text-base font-extrabold tracking-tight text-ink">
+          Banner-Bereich (nach Video)
+        </h3>
+        <div className="mt-5 space-y-4">
+          <div>
+            <label htmlFor="bannerTitle" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
+              Banner-Titel
+            </label>
+            <input
+              id="bannerTitle"
+              name="bannerTitle"
+              type="text"
+              defaultValue={site.bannerSection?.title ?? ""}
+              className="mt-2 w-full max-w-2xl rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
+            />
+          </div>
+          <div>
+            <label htmlFor="bannerSubtitle" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
+              Banner-Untertitel
+            </label>
+            <textarea
+              id="bannerSubtitle"
+              name="bannerSubtitle"
+              rows={3}
+              defaultValue={site.bannerSection?.subtitle ?? ""}
+              className="mt-2 w-full max-w-2xl rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
+            />
+          </div>
+          <div>
+            <label htmlFor="bannerCtaLabel" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
+              CTA-Button-Beschriftung
+            </label>
+            <input
+              id="bannerCtaLabel"
+              name="bannerCtaLabel"
+              type="text"
+              defaultValue={site.bannerSection?.ctaLabel ?? ""}
+              className="mt-2 w-full max-w-2xl rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
+            />
+          </div>
+          <div>
+            <label htmlFor="bannerCtaLink" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
+              CTA-Button-Link
+            </label>
+            <input
+              id="bannerCtaLink"
+              name="bannerCtaLink"
+              type="text"
+              defaultValue={site.bannerSection?.ctaLink ?? ""}
+              className="mt-2 w-full max-w-2xl rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
+            />
+          </div>
+          <div>
+            <SettingsImageInput
+              label="Hintergrundbild"
+              name="bannerBackgroundImage"
+              initialValue={site.bannerSection?.backgroundImage ?? ""}
+            />
+          </div>
         </div>
       </article>
 
@@ -519,7 +605,7 @@ function SettingsView({ site }: { site: any }) {
           </div>
           <div>
             <label htmlFor="missionCtaLabel" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
-            CTA-Button-Beschriftung
+              CTA-Button-Beschriftung
             </label>
             <input
               id="missionCtaLabel"
@@ -531,7 +617,7 @@ function SettingsView({ site }: { site: any }) {
           </div>
           <div>
             <label htmlFor="missionIndustriesTitle" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
-            Titel des Abschnitts „Branchen“
+              Titel des Abschnitts „Branchen“
             </label>
             <input
               id="missionIndustriesTitle"
@@ -728,7 +814,7 @@ function LegalPagesView({ site }: { site: any }) {
   return (
     <form action={saveSiteQuickAction} className="grid grid-cols-1 gap-6">
       <input type="hidden" name="view" value="legal" />
-      
+
       {/* Header */}
       <article className="rounded-3xl border border-brand/10 bg-white p-6 shadow-sm sm:p-8">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -794,7 +880,7 @@ function LegalPagesView({ site }: { site: any }) {
           </div>
           <div>
             <label htmlFor="impressumBackLabel" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
-            Beschriftung der Schaltfläche „Zurück“.
+              Beschriftung der Schaltfläche „Zurück“.
             </label>
             <input
               id="impressumBackLabel"
@@ -872,7 +958,7 @@ function LegalPagesView({ site }: { site: any }) {
           </div>
           <div>
             <label htmlFor="agbBackLabel" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
-            Beschriftung der Schaltfläche „Zurück“.
+              Beschriftung der Schaltfläche „Zurück“.
             </label>
             <input
               id="agbBackLabel"
@@ -950,7 +1036,7 @@ function LegalPagesView({ site }: { site: any }) {
           </div>
           <div>
             <label htmlFor="datenschutzBackLabel" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
-            Beschriftung der Schaltfläche „Zurück“.
+              Beschriftung der Schaltfläche „Zurück“.
             </label>
             <input
               id="datenschutzBackLabel"
@@ -1005,7 +1091,7 @@ function ReportsView() {
           Berichte
         </div>
         <h2 className="mt-3 text-xl font-extrabold tracking-tight text-ink">
-          Berichte &amp; Analysen 
+          Berichte &amp; Analysen
         </h2>
         <p className="mt-2 max-w-2xl text-sm font-semibold leading-relaxed text-gray-600">
           Sehen Sie sich den Traffic, die Konversion und die Kontakt-Lead-Berichte an. Dieser Bereich verwendet
@@ -1204,9 +1290,8 @@ function ContactView({
                   {pageItems.map((s: any, i) => (
                     <tr
                       key={s.id}
-                      className={`border-t border-brand/10 transition hover:bg-brand-surface/50 ${
-                        i % 2 === 1 ? "bg-white/50" : ""
-                      }`}
+                      className={`border-t border-brand/10 transition hover:bg-brand-surface/50 ${i % 2 === 1 ? "bg-white/50" : ""
+                        }`}
                     >
                       <td className="whitespace-nowrap px-4 py-3 text-xs font-semibold tabular-nums text-gray-600">
                         {s.createdAt
@@ -1245,11 +1330,10 @@ function ContactView({
             <div className="flex items-center gap-2">
               <Link
                 href={`/admin?view=contact&page=${Math.max(1, safePage - 1)}`}
-                className={`rounded-full px-4 py-2.5 text-sm font-bold transition ${
-                  safePage <= 1
-                    ? "pointer-events-none cursor-default border border-brand/20 bg-white text-ink opacity-50"
-                    : "border border-brand/25 bg-white text-ink shadow-sm hover:border-brand/40 hover:bg-brand-surface hover:shadow"
-                }`}
+                className={`rounded-full px-4 py-2.5 text-sm font-bold transition ${safePage <= 1
+                  ? "pointer-events-none cursor-default border border-brand/20 bg-white text-ink opacity-50"
+                  : "border border-brand/25 bg-white text-ink shadow-sm hover:border-brand/40 hover:bg-brand-surface hover:shadow"
+                  }`}
               >
                 Vorherige
               </Link>
@@ -1258,11 +1342,10 @@ function ContactView({
                   totalPages,
                   safePage + 1
                 )}`}
-                className={`rounded-full px-4 py-2.5 text-sm font-bold transition ${
-                  safePage >= totalPages
-                    ? "pointer-events-none cursor-default border border-brand/20 bg-white text-ink opacity-50"
-                    : "border border-brand/25 bg-white text-ink shadow-sm hover:border-brand/40 hover:bg-brand-surface hover:shadow"
-                }`}
+                className={`rounded-full px-4 py-2.5 text-sm font-bold transition ${safePage >= totalPages
+                  ? "pointer-events-none cursor-default border border-brand/20 bg-white text-ink opacity-50"
+                  : "border border-brand/25 bg-white text-ink shadow-sm hover:border-brand/40 hover:bg-brand-surface hover:shadow"
+                  }`}
               >
                 Nächste
               </Link>
