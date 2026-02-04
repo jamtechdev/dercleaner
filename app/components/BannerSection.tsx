@@ -48,7 +48,7 @@ export const BannerSection: React.FC<BannerSectionProps> = ({ site }) => {
                             </p>
                             <p className="text-sm font-semibold text-slate-800 sm:text-base">
                                 Halle 5, Stand 5A32 <br />
-                                <span className="font-bold text-slate-900">(I-team Germany)</span>
+                                {/* <span className="font-bold text-slate-900">(I-team Germany)</span> */}
                             </p>
                         </div>
                     </div>
