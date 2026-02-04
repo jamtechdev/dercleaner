@@ -23,9 +23,9 @@ export function VideoSection({ site }: { site: any }) {
   }, []);
 
   // Determine video source: prefer uploaded file, fallback to YouTube embed, then default
-  const videoSrc = site.videoSection?.videoFileUrl 
-    ? site.videoSection.videoFileUrl 
-    : site.videoSection?.youtubeUrl 
+  const videoSrc = site.videoSection?.videoFileUrl
+    ? site.videoSection.videoFileUrl
+    : site.videoSection?.youtubeUrl
       ? null // YouTube will be handled via iframe
       : "/latest_video.MOV"; // Default fallback
 
@@ -37,9 +37,9 @@ export function VideoSection({ site }: { site: any }) {
       {isYouTube ? (
         // YouTube embed
         <iframe
-          className="absolute inset-0 h-full w-full"
-          src={`https://www.youtube.com/embed/${extractYouTubeId(site.videoSection.youtubeUrl)}?autoplay=1&mute=1&loop=1&playlist=${extractYouTubeId(site.videoSection.youtubeUrl)}&controls=0&modestbranding=1`}
-          allow="autoplay; encrypted-media"
+          className="absolute inset-0 h-full w-full pointer-events-none"
+          src={`https://www.youtube.com/embed/${extractYouTubeId(site.videoSection.youtubeUrl)}?autoplay=1&mute=1&loop=1&playlist=${extractYouTubeId(site.videoSection.youtubeUrl)}&controls=0&modestbranding=0`}
+          allow="autoplay;"
           allowFullScreen
           title="Cleaning video"
         />

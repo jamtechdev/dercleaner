@@ -17,44 +17,46 @@ export const BannerSection: React.FC<BannerSectionProps> = ({ site }) => {
 
     return (
         <section className="relative w-full overflow-hidden bg-brand-soft">
-            <div className="mx-auto flex max-w-7xl flex-col-reverse items-center justify-between gap-12 px-6 py-16 sm:px-10 md:flex-row md:py-24 lg:px-12 lg:py-32">
+            <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-8 px-4 py-12 sm:gap-12 sm:px-10 md:flex-row md:py-24 lg:px-12 lg:py-32">
 
-                <div className="flex flex-1 flex-col items-start gap-4 text-left md:w-1/2">
-                    {/* Top Tagline (Light Blue/Cyan) */}
-                    <h3 className="dc-animate-fade-up text-3xl font-bold text-[#67B5D1] sm:text-4xl">
+                <div className="flex w-full flex-1 flex-col items-start gap-4 text-left md:w-1/2">
+                    {/* Top Tagline */}
+                    <h3 className="dc-animate-fade-up text-xl font-bold text-brand sm:text-2xl md:text-3xl">
                         Besuchen Sie uns auf der Messe!
                     </h3>
 
                     {/* Event Section */}
-                    <div className="dc-animate-fade-up flex flex-col gap-1">
-                        <div className="flex items-center gap-4">
-                            {/* Replace with your actual Logo component or <img> */}
-                            <img src="/banner_icon.png" alt="Intergastra Logo" className="h-12 w-auto" />
+                    <div className="dc-animate-fade-up flex flex-col gap-3 sm:gap-4">
+                        <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+                            {/* Logo */}
+                            <img src="/banner_icon.png" alt="Intergastra Logo" className="h-8 w-auto sm:h-10 md:h-12" />
 
-                            <h2 className="text-5xl font-black uppercase tracking-tight text-black sm:text-6xl">
+                            <h2 className="text-3xl font-extrabold uppercase tracking-tight text-slate-900 sm:text-4xl md:text-5xl lg:text-6xl">
                                 INTERGASTRA
                             </h2>
                         </div>
 
                         {/* Subtitle / Description */}
-                        <p className="text-xl font-semibold text-black/90 sm:text-2xl">
+                        <p className="text-base font-medium text-slate-700 sm:text-lg md:text-xl">
                             Leitmesse für Hotellerie & Gastronomie
                         </p>
 
                         {/* Date and Location */}
-                        <p className="text-2xl font-black text-black sm:text-3xl">
-                            7.–11.2.2026 | <span className="font-bold">Messe Stuttgart</span>
-                        </p>
-                        <p className="font-black text-black">
-                            Halle 5, Stand 5A32 <br />
-                            <span className="font-bold">(I-team Germany)</span>
-                        </p>
+                        <div className="mt-2">
+                            <p className="text-lg font-bold text-slate-900 sm:text-xl md:text-2xl">
+                                7.–11.2.2026 | <span className="text-brand">Messe Stuttgart</span>
+                            </p>
+                            <p className="text-sm font-semibold text-slate-800 sm:text-base">
+                                Halle 5, Stand 5A32 <br />
+                                <span className="font-bold text-slate-900">(I-team Germany)</span>
+                            </p>
+                        </div>
                     </div>
                 </div>
 
-                {/* Image - Right Side */}
-                <div className="relative flex flex-1 justify-center md:h-[550px] md:w-1/2 md:justify-end">
-                    <div className="relative h-[300px] w-full overflow-hidden rounded-2xl shadow-2xl sm:h-[400px] md:h-full md:w-[90%]">
+                {/* Image - Right Side (Bottom on Mobile) */}
+                <div className="relative hidden w-full flex-1 justify-center md:flex md:h-[550px] md:w-1/2 md:justify-end">
+                    <div className="relative h-[250px] w-full overflow-hidden rounded-2xl shadow-xl sm:h-[350px] md:h-full md:w-[90%]">
                         <Image
                             src="/banner_right.png"
                             alt="Banner Image"
