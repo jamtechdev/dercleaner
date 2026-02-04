@@ -13,55 +13,58 @@ export const BannerSection: React.FC<BannerSectionProps> = ({ site }) => {
     const subtitle = site.bannerSection?.subtitle || "Entdecken Sie die Zukunft der professionellen Bodenreinigung mit unseren innovativen Lösungen.";
     const ctaLabel = site.bannerSection?.ctaLabel || "Produkte ansehen";
     const ctaLink = site.bannerSection?.ctaLink || "#produkte";
-    const backgroundImage = site.bannerSection?.backgroundImage || "/images/uploads/img_1770202317899.png";
+    const bannerImage = site.bannerSection?.backgroundImage || "/images/uploads/img_1770202317899.png";
 
     return (
-        <section className="relative h-[400px] w-full overflow-hidden sm:h-[500px] md:h-[600px] lg:h-[850px] ">
-            {/* Background Image with Overlay */}
-            <div className="absolute inset-0 z-0">
-                <Image
-                    src={backgroundImage}
-                    alt="Cleaning Banner"
-                    fill
-                    className="object-cover object-center"
-                    priority
-                    sizes="100vw"
-                    unoptimized
-                />
-                <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent sm:via-black/30" />
-            </div>
+        <section className="relative w-full overflow-hidden bg-brand-soft">
+            <div className="mx-auto flex max-w-7xl flex-col-reverse items-center justify-between gap-12 px-6 py-16 sm:px-10 md:flex-row md:py-24 lg:px-12 lg:py-32">
 
-            {/* Content */}
-            <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col items-start justify-center px-6 text-left text-white sm:px-10 lg:px-12">
-                <h2 className="dc-animate-fade-up max-w-3xl text-4xl font-extrabold tracking-tight drop-shadow-lg sm:text-5xl md:text-6xl lg:text-7xl lg:leading-[1.1]">
-                    {title}
-                </h2>
-                <p className="dc-animate-fade-up mt-6 max-w-xl text-lg font-medium text-gray-100 opacity-90 drop-shadow-md delay-100 sm:text-xl lg:mt-8">
-                    {subtitle}
-                </p>
-                <div className="dc-animate-fade-up mt-10 delay-200">
-                    <a
-                        href={ctaLink}
-                        className="group inline-flex items-center rounded-full bg-gradient-to-r from-brand to-brand-cta px-8 py-4 text-lg font-bold text-white shadow-xl ring-2 ring-white/10 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:ring-white/30 active:scale-95"
-                    >
-                        {ctaLabel}
-                        <svg
-                            className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2.5}
-                                d="M17 8l4 4m0 0l-4 4m4-4H3"
-                            />
-                        </svg>
-                    </a>
+                <div className="flex flex-1 flex-col items-start gap-4 text-left md:w-1/2">
+                    {/* Top Tagline (Light Blue/Cyan) */}
+                    <h3 className="dc-animate-fade-up text-3xl font-bold text-[#67B5D1] sm:text-4xl">
+                        Besuchen Sie uns auf der Messe!
+                    </h3>
+
+                    {/* Event Section */}
+                    <div className="dc-animate-fade-up flex flex-col gap-1">
+                        <div className="flex items-center gap-4">
+                            {/* Replace with your actual Logo component or <img> */}
+                            <img src="/banner_icon.png" alt="Intergastra Logo" className="h-12 w-auto" />
+
+                            <h2 className="text-5xl font-black uppercase tracking-tight text-black sm:text-6xl">
+                                INTERGASTRA
+                            </h2>
+                        </div>
+
+                        {/* Subtitle / Description */}
+                        <p className="text-xl font-semibold text-black/90 sm:text-2xl">
+                            Leitmesse für Hotellerie & Gastronomie
+                        </p>
+
+                        {/* Date and Location */}
+                        <p className="text-2xl font-black text-black sm:text-3xl">
+                            7.–11.2.2026 | <span className="font-bold">Messe Stuttgart</span>
+                        </p>
+                    </div>
+                </div>
+
+                {/* Image - Right Side */}
+                <div className="relative flex flex-1 justify-center md:h-[550px] md:w-1/2 md:justify-end">
+                    <div className="relative h-[300px] w-full overflow-hidden rounded-2xl shadow-2xl sm:h-[400px] md:h-full md:w-[90%]">
+                        <Image
+                            src="/banner_right.png"
+                            alt="Banner Image"
+                            fill
+                            className="object-cover object-center transition-transform duration-700 hover:scale-105"
+                            priority
+                            sizes="(max-width: 768px) 100vw, 50vw"
+                        />
+                    </div>
+                    {/* Decorative Blob */}
+                    <div className="absolute -right-20 -top-20 -z-10 h-64 w-64 rounded-full bg-brand/10 blur-3xl md:h-96 md:w-96" />
+                    <div className="absolute -bottom-10 -left-10 -z-10 h-40 w-40 rounded-full bg-brand-cta/20 blur-2xl md:h-64 md:w-64" />
                 </div>
             </div>
-        </section>
+        </section >
     );
 };
