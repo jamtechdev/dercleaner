@@ -20,6 +20,7 @@
 body,
 html {
   font-family: "Roboto", sans-serif;
+  background-color: white !important;
 }
 
 .geist_mono_8d43a2aa-module__8Li5zG__variable {
@@ -105,12 +106,12 @@ body {
 }
 
 /* updated code */
-.einsparungen-boxes > div {
+.einsparungen-boxes>div {
   padding: 20px 20px !important;
   /* background:blue !important; */
 }
 
-.einsparungen-boxes > div {
+.einsparungen-boxes>div {
   margin: 20px 0px;
 }
 
@@ -136,7 +137,7 @@ body {
   /* text-align: justify; */
 }
 
-.schneller-boxes > div span {
+.schneller-boxes>div span {
   color: var(--color-green-600);
   border-radius: 50%;
   justify-content: center;
@@ -239,7 +240,7 @@ body {
   border: 1px solid #ededed;
 }
 
-.schneller-boxes > div {
+.schneller-boxes>div {
   /* cursor: pointer; */
   padding: 20px;
   /* border: 1px solid #ddd; */
@@ -249,18 +250,18 @@ body {
   /* box-shadow: 0 6px 24px #0000000d, 0 0 0 1px #00000014; */
 }
 
-.schneller-boxes > div p {
+.schneller-boxes>div p {
   font-weight: 600;
   font-size: 16px !important;
   text-align: start;
 }
 
-.schneller-boxes > div h3 {
+.schneller-boxes>div h3 {
   font-size: 20px;
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
 }
 
-.uber-uns > p {
+.uber-uns>p {
   font-weight: 600;
   font-size: 16px !important;
   /* text-align: justify; */
@@ -441,7 +442,7 @@ textarea {
   }
 
   .imop-buttons {
-    padding: 25px;
+    /* padding: 25px; */
     display: flex;
   }
 
@@ -449,7 +450,7 @@ textarea {
     gap: 0 !important;
   }
 
-  .schneller-boxes > div {
+  .schneller-boxes>div {
     margin: 0px !important;
     gap: 4;
   }
@@ -466,9 +467,9 @@ textarea {
     background-color: white;
   }
 
-  /* body {
+  body {
     background-color: white;
-  } */
+  }
 
   .active-product div .active-first-image {
     padding-bottom: 10px;
@@ -476,17 +477,22 @@ textarea {
     transform: scale(2.9) !important;
   }
 
-  @media (max-width: 548px) {
-    .hero-section video {
-      object-fit: contain;
-      object-position: center;
-      height: 100%;
-    }
-
-    .owner-img img {
-      position: absolute !important;
-    }
+  .faq-section {
+    padding: 60px 15px;
   }
+
+  /* @media (max-width: 548px) { */
+  .hero-section video {
+    object-fit: contain;
+    object-position: center;
+    height: 100%;
+  }
+
+  .owner-img img {
+    position: absolute !important;
+  }
+
+  /* } */
 }
 
 @media (max-width: 438px) {

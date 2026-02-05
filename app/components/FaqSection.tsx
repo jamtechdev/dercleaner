@@ -15,7 +15,7 @@ export default function FaqSection({ site }: { site: any }) {
 
     return (
         <section className="bg-white py-16 px-4 md:px-20 lg:px-32 font-sans  faq-section">
-            <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-12">
+            <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-6 lg:gap-12">
 
                 {/* Left Side: Header and Contact */}
                 <div className="md:w-1/3 space-y-6">
@@ -75,7 +75,7 @@ export default function FaqSection({ site }: { site: any }) {
                 </div>
 
                 <div className='flex items-center justify-center block md:hidden'>
-                      <button onClick={(e) => {
+                    <button onClick={(e) => {
                         e.preventDefault();
                         const element = document.getElementById('kontakt');
                         if (element) {

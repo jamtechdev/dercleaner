@@ -107,7 +107,7 @@ export function Header({ site }: { site: any }) {
               </button>
             </div>
             <nav className="px-4 py-3">
-              <ul className="flex flex-col gap-4">
+              <ul className="flex flex-col gap-x-4">
                 {(site.navigation.links as Array<{ href: string; label: string }>).map((link) => (
                   <li key={`mobile-${link.href}-${link.label}`}>
                     <Link

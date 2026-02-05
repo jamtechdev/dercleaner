@@ -1,6 +1,6 @@
 export default function Features({ site }: { site: any }) {
     return (
-        <div className="max-w-7xl mx-auto mt-24 mb-24">
+        <div className="max-w-7xl mx-auto mt-12 mb-12 lg:mt-24 lg:mb-24">
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-2 md:gap-5 lg:gap-8 schneller-boxes">
 
                 {(site.featuresSection.features as Array<{ title: string; colorClass: string; icon: string; text: string }>).map((f, i: number) => (
