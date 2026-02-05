@@ -19,10 +19,7 @@ export default function Contact({ site }: { site: any }) {
   type Field = "name" | "email" | "tel" | "message";
   const [errors, setErrors] = useState<Partial<Record<Field, string>>>({});
 
-  const emailRegex = useMemo(
-    () => /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-    [],
-  );
+  const emailRegex = useMemo(() => /^[^\s@]+@[^\s@]+\.[^\s@]+$/, []);
 
   const clearError = (field: Field) => {
     setErrors((prev) => {
@@ -63,7 +60,8 @@ export default function Contact({ site }: { site: any }) {
 
     if (!name) nextErrors.name = "Bitte geben Sie Ihren Namen ein.";
     if (!email) nextErrors.email = "Bitte geben Sie Ihre E-Mail-Adresse ein.";
-    else if (!emailRegex.test(email)) nextErrors.email = "Bitte geben Sie eine gültige E-Mail-Adresse ein.";
+    else if (!emailRegex.test(email))
+      nextErrors.email = "Bitte geben Sie eine gültige E-Mail-Adresse ein.";
 
     // Optional field, but validate if provided
     if (tel && !/^[0-9+()\-.\s]{6,}$/.test(tel)) {
@@ -72,20 +70,26 @@ export default function Contact({ site }: { site: any }) {
 
     if (!message) nextErrors.message = "Bitte geben Sie Ihre Nachricht ein.";
     else if (message.length < 10) {
-      nextErrors.message = "Die Nachricht muss mindestens 10 Zeichen lang sein.";
+      nextErrors.message =
+        "Die Nachricht muss mindestens 10 Zeichen lang sein.";
     }
 
     return nextErrors;
   };
 
   return (
-    <section id="kontakt" className="scroll-mt-24 bg-white py-12 md:py-26 px-4 ">
+    <section
+      id="kontakt"
+      className="scroll-mt-24 bg-white py-12 md:py-26 px-4 "
+    >
       <div className="max-w-7xl mx-auto mt-12">
         <h2 className="text-4xl font-bold text-brand md:mb-2 max-w-xl leading-tight uppercase">
           {site.contactSection.title}
         </h2>
-        <div className="max-w-7xl mx-auto text-sm sm:text-base">{site.contactSection.subtitle}</div>
-        
+        <div className="max-w-7xl mx-auto text-sm sm:text-base text-gray-600 ">
+          {site.contactSection.subtitle}
+        </div>
+
         {/* Contact Information */}
         {site.contactSection.contactInfo && (
           <div className="mt-6 mb-4 grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
@@ -93,7 +97,7 @@ export default function Contact({ site }: { site: any }) {
               <span className="font-semibold text-gray-700 mb-1">
                 {site.contactSection.contactInfo.firstContact.label}:
               </span>
-              <a 
+              <a
                 href={`mailto:${site.contactSection.contactInfo.firstContact.email}`}
                 className="text-brand hover:underline"
               >
@@ -104,7 +108,7 @@ export default function Contact({ site }: { site: any }) {
               <span className="font-semibold text-gray-700 mb-1">
                 {site.contactSection.contactInfo.customerSupport.label}:
               </span>
-              <a 
+              <a
                 href={`mailto:${site.contactSection.contactInfo.customerSupport.email}`}
                 className="text-brand hover:underline"
               >
@@ -121,7 +125,6 @@ export default function Contact({ site }: { site: any }) {
             </div>
           </div>
         )}
-        
 
         {/* The Container */}
         <div className="bg-brand-surface rounded-[28px] sm:rounded-[40px] p-6 sm:p-8 md:p-12 shadow-sm mt-6">
@@ -159,10 +162,13 @@ export default function Contact({ site }: { site: any }) {
                   autoComplete="name"
                   required
                   aria-invalid={!!errors.name}
-                  aria-describedby={errors.name ? "contact-name-error" : undefined}
+                  aria-describedby={
+                    errors.name ? "contact-name-error" : undefined
+                  }
                   onChange={() => clearError("name")}
-                  className={`w-full rounded-full px-5 sm:px-6 py-3.5 sm:py-4 border-none outline-none focus:ring-2 focus:ring-brand bg-white ${errors.name ? "ring-2 ring-red-400" : ""
-                    }`}
+                  className={`w-full rounded-full px-5 sm:px-6 py-3.5 sm:py-4 border-none outline-none focus:ring-2 focus:ring-brand bg-white ${
+                    errors.name ? "ring-2 ring-red-400" : ""
+                  }`}
                 />
                 {errors.name && (
                   <p
@@ -183,10 +189,13 @@ export default function Contact({ site }: { site: any }) {
                   autoComplete="email"
                   required
                   aria-invalid={!!errors.email}
-                  aria-describedby={errors.email ? "contact-email-error" : undefined}
+                  aria-describedby={
+                    errors.email ? "contact-email-error" : undefined
+                  }
                   onChange={() => clearError("email")}
-                  className={`w-full rounded-full px-5 sm:px-6 py-3.5 sm:py-4 border-none outline-none focus:ring-2 focus:ring-brand bg-white ${errors.email ? "ring-2 ring-red-400" : ""
-                    }`}
+                  className={`w-full rounded-full px-5 sm:px-6 py-3.5 sm:py-4 border-none outline-none focus:ring-2 focus:ring-brand bg-white ${
+                    errors.email ? "ring-2 ring-red-400" : ""
+                  }`}
                 />
                 {errors.email && (
                   <p
@@ -206,10 +215,13 @@ export default function Contact({ site }: { site: any }) {
                   inputMode="tel"
                   autoComplete="tel"
                   aria-invalid={!!errors.tel}
-                  aria-describedby={errors.tel ? "contact-tel-error" : undefined}
+                  aria-describedby={
+                    errors.tel ? "contact-tel-error" : undefined
+                  }
                   onChange={() => clearError("tel")}
-                  className={`w-full rounded-full px-5 sm:px-6 py-3.5 sm:py-4 border-none outline-none focus:ring-2 focus:ring-brand bg-white ${errors.tel ? "ring-2 ring-red-400" : ""
-                    }`}
+                  className={`w-full rounded-full px-5 sm:px-6 py-3.5 sm:py-4 border-none outline-none focus:ring-2 focus:ring-brand bg-white ${
+                    errors.tel ? "ring-2 ring-red-400" : ""
+                  }`}
                 />
                 {errors.tel && (
                   <p
@@ -226,7 +238,9 @@ export default function Contact({ site }: { site: any }) {
                 disabled={pending}
                 className="form-btn submit-button-desktop bg-brand-cta text-white font-bold py-4 rounded-full uppercase hover:bg-brand transition disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                {pending ? "Wird gesendet..." : site.contactSection.form.submitLabel}
+                {pending
+                  ? "Wird gesendet..."
+                  : site.contactSection.form.submitLabel}
               </button>
             </div>
 
@@ -242,15 +256,18 @@ export default function Contact({ site }: { site: any }) {
                     errors.message ? "contact-message-error" : undefined
                   }
                   onChange={() => clearError("message")}
-                  className={`h-full min-h-[180px] md:min-h-[200px] rounded-[22px] sm:rounded-[30px] px-5 sm:px-6 py-3.5 sm:py-4 border-none outline-none focus:ring-2 focus:ring-brand resize-none bg-white ${errors.message ? "ring-2 ring-red-400" : ""
-                    }`}
+                  className={`h-full min-h-[180px] md:min-h-[200px] rounded-[22px] sm:rounded-[30px] px-5 sm:px-6 py-3.5 sm:py-4 border-none outline-none focus:ring-2 focus:ring-brand resize-none bg-white ${
+                    errors.message ? "ring-2 ring-red-400" : ""
+                  }`}
                 />
 
                 <button
                   disabled={pending}
                   className="form-btn mt-5 submit-button-mobile bg-brand-cta text-white font-bold py-4 rounded-full uppercase hover:bg-brand transition disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  {pending ? "Wird gesendet..." : site.contactSection.form.submitLabel}
+                  {pending
+                    ? "Wird gesendet..."
+                    : site.contactSection.form.submitLabel}
                 </button>
                 {errors.message && (
                   <p
@@ -269,7 +286,11 @@ export default function Contact({ site }: { site: any }) {
             {privacyParts.length === 2 ? (
               <>
                 {privacyParts[0]}
-                <Link href="/datenschutz"><span className="underline cursor-pointer">Datenschutzvereinbarung</span></Link>
+                <Link href="/datenschutz">
+                  <span className="underline cursor-pointer">
+                    Datenschutzvereinbarung
+                  </span>
+                </Link>
                 {privacyParts[1]}
               </>
             ) : (
