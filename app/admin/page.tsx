@@ -18,6 +18,7 @@ import { initializeDatabase } from "@/app/database/data-source";
 import { ProductCreateForm } from "@/app/admin/ProductCreateForm";
 import { ProductEditForm } from "@/app/admin/ProductEditForm";
 import { ProductsListView } from "@/app/admin/ProductsListView";
+import { HomepageFeaturesInput } from "@/app/admin/HomepageFeaturesInput";
 
 const SIDEBAR_LINKS = [
   { id: "dashboard", label: "Armaturenbrett", href: "/admin?view=dashboard" },
@@ -687,6 +688,19 @@ function SettingsView({ site }: { site: any }) {
               />
             )}
           </div>
+        </div>
+      </article>
+
+      {/* Homepage Features */}
+      <article className="rounded-3xl border border-brand/10 bg-white p-6 shadow-sm sm:p-8">
+        <h3 className="text-base font-extrabold tracking-tight text-ink">
+          Homepage Features
+        </h3>
+        <div className="mt-5">
+          <HomepageFeaturesInput
+            initialFeatures={site.featuresSection?.features ?? []}
+            name="homepageFeatures"
+          />
         </div>
       </article>
 

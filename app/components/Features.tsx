@@ -17,7 +17,7 @@ export default function Features({ site }: { site: any }) {
                             <h3 className="font-bold text-lg">{f.title}</h3>
                         </div>
                         <p className="text-xs text-gray-500 leading-relaxed">
-                            {f.text}
+                            {f.text || ""}
                         </p>
                     </div>
                 ))}

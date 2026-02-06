@@ -227,6 +227,17 @@ export async function saveSiteQuickAction(formData: FormData) {
     }
   }
 
+  // Homepage Features
+  const homepageFeaturesJson = formData.get("homepageFeatures");
+  if (homepageFeaturesJson) {
+    try {
+      if (!site.featuresSection) site.featuresSection = { features: [] };
+      site.featuresSection.features = JSON.parse(String(homepageFeaturesJson));
+    } catch (e) {
+      console.error("Error parsing homepage features JSON:", e);
+    }
+  }
+
   await saveSite(site);
   redirect("/admin?view=settings&saved=1");
 }
