@@ -647,25 +647,25 @@
         "title": "sauberer",
         "colorClass": "text-cyan-500",
         "icon": "/cleaner.svg",
-        "text": "Unsere Produkte revolutionieren Ihre Reinigungsroutine, setzen neue Maßstäbe..."
+        "text": "Unsere Produkte revolutionieren Ihre Reinigungsroutine, setzen neue Maßstäbe in der Reinigung und sorgen für ein gesundes Umfeld."
       },
       {
         "title": "grüner",
         "colorClass": "text-green-600",
         "icon": "/greener.svg",
-        "text": "Die wachsende Sorge um unseren Planeten erfordert nachhaltigere Reinigungsprodukte..."
+        "text": "Die wachsende Sorge um unseren Planeten erfordert nachhaltigere Reinigungsprodukte und -techniken."
       },
       {
         "title": "sicherer",
         "colorClass": "text-yellow-500",
         "icon": "/safer.svg",
-        "text": "Intelligentes Design mit einem scharfen Blick für die praktische Anwendung..."
+        "text": "Intelligentes Design mit einem scharfen Blick für die praktische Anwendung führt zu einem optimalen Risikomanagement."
       },
       {
         "title": "besser",
         "colorClass": "text-pink-500",
         "icon": "/better.svg",
-        "text": "Unser Fokus liegt nicht nur auf der Sauberkeit, sondern auch auf dem Wohlbefinden..."
+        "text": "Unser Fokus liegt nicht nur auf der Sauberkeit, sondern auch auf dem Wohlbefinden der Reinigungskräfte und dem Komfort Ihrer Gäste."
       }
     ]
   },
