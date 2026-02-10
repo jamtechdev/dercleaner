@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useSearchParams, usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
+import { logoutAction } from "@/app/admin/actions";
 
 const MENU_ITEMS = [
     {
@@ -34,6 +34,7 @@ const MENU_ITEMS = [
 
 export function AdminSidebar({ isOpen, mobileClose }: { isOpen: boolean; mobileClose: () => void }) {
     const searchParams = useSearchParams();
+    const pathname = usePathname();
     const currentView = searchParams.get("view") || "dashboard";
 
     return (
@@ -47,13 +48,13 @@ export function AdminSidebar({ isOpen, mobileClose }: { isOpen: boolean; mobileC
 
             {/* Sidebar */}
             <aside
-                className={`fixed top-0 bottom-0 left-0 z-30 w-64 transform bg-white border-r border-slate-100 transition-transform duration-300 lg:translate-x-0 lg:static lg:h-screen lg:shrink-0 overflow-y-auto ${isOpen ? "translate-x-0" : "-translate-x-full"
+                className={`fixed top-0 bottom-0 left-0 z-30 w-64 transform bg-white border-r border-slate-100 transition-transform duration-300 overflow-y-auto ${isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
                     }`}
             >
                 <div className="flex flex-col h-full">
                     {/* Logo */}
                     <div className="flex items-center justify-center h-16 border-b border-slate-100 px-6">
-                        <span className="text-xl font-bold bg-gradient-to-r from-[--brand] to-cyan-500 bg-clip-text text-transparent">
+                        <span className="text-xl font-bold text-cyan-500">
                             AdminPanel
                         </span>
                     </div>
@@ -75,8 +76,8 @@ export function AdminSidebar({ isOpen, mobileClose }: { isOpen: boolean; mobileC
                                                 href={item.href}
                                                 onClick={mobileClose}
                                                 className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 group ${isActive
-                                                        ? "bg-[--brand] text-white shadow-md shadow-[--brand]/20"
-                                                        : "text-slate-600 hover:bg-[--brand-soft] hover:text-[--brand]"
+                                                    ? "bg-[#00a3cc] text-white shadow-md shadow-[--brand]/20"
+                                                    : "text-slate-600 hover:bg-[--brand-soft] hover:text-[--brand]"
                                                     }`}
                                             >
                                                 <Icon name={item.icon} className={isActive ? "text-white" : "text-slate-400 group-hover:text-[--brand]"} />
@@ -91,8 +92,7 @@ export function AdminSidebar({ isOpen, mobileClose }: { isOpen: boolean; mobileC
 
                     {/* Logout (Bottom) */}
                     <div className="p-4 border-t border-slate-100">
-                        <form action="/api/auth/signout" method="post">
-                            {/* Note: Using form action for logout from page usually, but here just a link for UI demo if action is server side */}
+                        <form action={logoutAction}>
                             <button type="submit" className="flex w-full items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-red-50 hover:text-red-600 transition-colors">
                                 <Icon name="LogOut" className="text-slate-400 group-hover:text-red-600" />
                                 Logout

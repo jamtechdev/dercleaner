@@ -40,9 +40,7 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <GlobalLoadingOverlay />
-        <Header site={site} />
         {children}
-        <Footer site={site} />
       </body>
     </html>
   );

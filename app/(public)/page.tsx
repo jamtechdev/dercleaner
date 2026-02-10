@@ -1,12 +1,12 @@
-import { getSite } from "./lib/site";
-import Contact from "./components/Contact";
-import MissionSection from "./components/MissionSection";
-import ProductShowcase from "./components/ProductShowcase";
-import { VideoSection } from "./components/VideoSection";
-import FaqSection from "./components/FaqSection";
-import About from "./components/FeaturesAndAbout";
-import Features from "./components/Features";
-import { BannerSection } from "./components/BannerSection";
+import { getSite } from "../lib/site";
+import Contact from "../components/Contact";
+import MissionSection from "../components/MissionSection";
+import ProductShowcase from "../components/ProductShowcase";
+import { VideoSection } from "../components/VideoSection";
+import FaqSection from "../components/FaqSection";
+import About from "../components/FeaturesAndAbout";
+import Features from "../components/Features";
+import { BannerSection } from "../components/BannerSection";
 
 
 // Force dynamic rendering to always fetch fresh data
