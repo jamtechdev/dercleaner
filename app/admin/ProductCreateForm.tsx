@@ -6,6 +6,7 @@ import { ImageUploadInput } from "./ImageUploadInput";
 import { StatsInput } from "./StatsInput";
 import { TechnicalDataInput } from "./TechnicalDataInput";
 import { FeaturesInput } from "./FeaturesInput";
+import { RichTextEditor } from "./RichTextEditor";
 
 export function ProductCreateForm() {
   const [tabImageUrl, setTabImageUrl] = useState("");
@@ -64,12 +65,12 @@ export function ProductCreateForm() {
           <label htmlFor="new_description" className="block text-xs font-bold uppercase tracking-wider text-gray-500">
             Beschreibung
           </label>
-          <textarea
-            id="new_description"
-            name="description"
-            rows={3}
-            className="mt-2 w-full rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
-          />
+          <div className="mt-2 text-ink">
+            <RichTextEditor
+              name="description"
+              placeholder="Produktbeschreibung..."
+            />
+          </div>
         </div>
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">

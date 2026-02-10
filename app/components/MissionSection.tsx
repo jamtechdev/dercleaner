@@ -17,9 +17,10 @@ export default function MissionSection({ site }: { site: any }) {
               {site.missionSection.hero.title}
             </h2>
 
-            <p className="text-base sm:text-lg md:text-[20px] text-gray-700 leading-relaxed font-medium md:mb-10">
-              {site.missionSection.hero.description}
-            </p>
+            <div 
+              className="text-base sm:text-lg md:text-[20px] text-gray-700 leading-relaxed font-medium md:mb-10 prose prose-sm max-w-none"
+              dangerouslySetInnerHTML={{ __html: site.missionSection.hero.description }}
+            />
 
             <div className="pt-4 md:mt-30 flex justify-center">
               <button className="bg-ink text-white px-8 sm:px-12 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:bg-black transition-all transform hover:scale-105 shadow-lg">
@@ -34,9 +35,10 @@ export default function MissionSection({ site }: { site: any }) {
           {/* Header */}
           <div className="md:w-1/3">
             <h2 className="text-2xl font-bold mb-4">{site.missionSection.industriesIntro.title}</h2>
-            <p className="text-gray-400">
-              {site.missionSection.industriesIntro.description}
-            </p>
+            <div
+              className="text-gray-400 prose prose-invert prose-sm max-w-none"
+              dangerouslySetInnerHTML={{ __html: site.missionSection.industriesIntro.description }}
+            />
           </div>
 
           {/* Grid */}

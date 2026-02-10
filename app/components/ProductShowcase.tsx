@@ -10,10 +10,10 @@ function isValidImageSrc(src: string | undefined | null): boolean {
   const trimmed = src.trim();
   if (!trimmed) return false;
   // Must start with /, http://, https://, or data:
-  return trimmed.startsWith("/") || 
-         trimmed.startsWith("http://") || 
-         trimmed.startsWith("https://") ||
-         trimmed.startsWith("data:");
+  return trimmed.startsWith("/") ||
+    trimmed.startsWith("http://") ||
+    trimmed.startsWith("https://") ||
+    trimmed.startsWith("data:");
 }
 
 type Product = {
@@ -105,10 +105,10 @@ export default function ProductShowcase({ site }: { site: any }) {
 
               <div className="flex">
                 <p className="text-gray-700  font-normal mt-2 text-[16px]">
-                  {activeProduct.savingsTitle} 
+                  {activeProduct.savingsTitle}
 
                   {/* <span className="font-normal text-gray-500 ms-2"> */}
-                     {activeProduct.savingsSubtitle}
+                  {activeProduct.savingsSubtitle}
                   {/* </span> */}
                 </p>
               </div>
@@ -325,7 +325,10 @@ function ProductDetailsModal({
               {product.name}
             </h2>
             {product.description && (
-              <p className="text-gray-600 text-sm md:text-base lg:text-lg mb-4">{product.description}</p>
+              <div
+                className="text-gray-600 text-sm md:text-base lg:text-lg mb-4 prose prose-sm max-w-none"
+                dangerouslySetInnerHTML={{ __html: product.description }}
+              />
             )}
             {product.tabDesc && !product.description && (
               <p className="text-gray-600 text-sm md:text-base lg:text-lg">{product.tabDesc}</p>
@@ -417,68 +420,68 @@ function ProductDetailsModal({
             // Or old format (array)
             (Array.isArray(product.technicalSpecs) && product.technicalSpecs.length > 0)
           ) && (
-            <div className="mb-4 md:mb-8 border-t pt-4 md:pt-6">
-              <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-3 md:mb-4">
-                {(product.technicalSpecs as any).heading || "Technische Daten"}
-              </h3>
-              
-              {/* Technical Data Items */}
-              {((product.technicalSpecs as any).items && (product.technicalSpecs as any).items.length > 0) ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
-                  {(product.technicalSpecs as any).items.map((spec: any, index: number) => (
-                    <div
-                      key={index}
-                      className="justify-between p-3 md:p-5 rounded-lg md:rounded-2xl bg-[var(--tertiary-color)] pop-up-technische-box"
-                    >
-                      {isValidImageSrc(spec.icon) && (
-                        <span className="daten-icons">
-                          <img
-                            src={spec.icon}
-                            alt={spec.label}
-                            className="w-8 h-8 md:w-10 md:h-10"
-                          />
-                        </span>
-                      )}
+              <div className="mb-4 md:mb-8 border-t pt-4 md:pt-6">
+                <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-3 md:mb-4">
+                  {(product.technicalSpecs as any).heading || "Technische Daten"}
+                </h3>
 
-                      <p className="text-brand font-bold text-base md:text-lg">
-                        {spec.label}:
-                      </p>
-                      <p className="text-base md:text-lg lg:text-xl font-medium text-gray-800 pop-up-date">
-                        {spec.value}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              ) : Array.isArray(product.technicalSpecs) && product.technicalSpecs.length > 0 ? (
-                // Old format (array)
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
-                  {product.technicalSpecs.map((spec: any, index: number) => (
-                    <div
-                      key={index}
-                      className="justify-between p-3 md:p-5 rounded-lg md:rounded-2xl bg-[var(--tertiary-color)] pop-up-technische-box"
-                    >
-                      {isValidImageSrc(spec.icon) && (
-                        <span className="daten-icons">
-                          <img
-                            src={spec.icon}
-                            alt={spec.label}
-                            className="w-8 h-8 md:w-10 md:h-10"
-                          />
-                        </span>
-                      )}
+                {/* Technical Data Items */}
+                {((product.technicalSpecs as any).items && (product.technicalSpecs as any).items.length > 0) ? (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+                    {(product.technicalSpecs as any).items.map((spec: any, index: number) => (
+                      <div
+                        key={index}
+                        className="justify-between p-3 md:p-5 rounded-lg md:rounded-2xl bg-[var(--tertiary-color)] pop-up-technische-box"
+                      >
+                        {isValidImageSrc(spec.icon) && (
+                          <span className="daten-icons">
+                            <img
+                              src={spec.icon}
+                              alt={spec.label}
+                              className="w-8 h-8 md:w-10 md:h-10"
+                            />
+                          </span>
+                        )}
 
-                      <p className="text-brand font-bold text-base md:text-lg">
-                        {spec.label}:
-                      </p>
-                      <p className="text-base md:text-lg lg:text-xl font-medium text-gray-800 pop-up-date">
-                        {spec.value}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              ) : null}
-            </div>
-          )}
+                        <p className="text-brand font-bold text-base md:text-lg">
+                          {spec.label}:
+                        </p>
+                        <p className="text-base md:text-lg lg:text-xl font-medium text-gray-800 pop-up-date">
+                          {spec.value}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                ) : Array.isArray(product.technicalSpecs) && product.technicalSpecs.length > 0 ? (
+                  // Old format (array)
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+                    {product.technicalSpecs.map((spec: any, index: number) => (
+                      <div
+                        key={index}
+                        className="justify-between p-3 md:p-5 rounded-lg md:rounded-2xl bg-[var(--tertiary-color)] pop-up-technische-box"
+                      >
+                        {isValidImageSrc(spec.icon) && (
+                          <span className="daten-icons">
+                            <img
+                              src={spec.icon}
+                              alt={spec.label}
+                              className="w-8 h-8 md:w-10 md:h-10"
+                            />
+                          </span>
+                        )}
+
+                        <p className="text-brand font-bold text-base md:text-lg">
+                          {spec.label}:
+                        </p>
+                        <p className="text-base md:text-lg lg:text-xl font-medium text-gray-800 pop-up-date">
+                          {spec.value}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                ) : null}
+              </div>
+            )}
 
           {/* Features */}
           {product.features && (
@@ -486,57 +489,57 @@ function ProductDetailsModal({
             ((product.features as any).items && Array.isArray((product.features as any).items) && (product.features as any).items.length > 0) ||
             (Array.isArray(product.features) && product.features.length > 0)
           ) && (
-            <div className="border-t pt-4 md:pt-6">
-              <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-4 md:mb-6">
-                {(product.features as any).heading || "Funktionen"}
-              </h3>
-              <div className="space-y-4 md:space-y-6">
-                {((product.features as any).items && Array.isArray((product.features as any).items)) ? (
-                  (product.features as any).items.map((feature: any, index: number) => (
-                    <div
-                      key={index}
-                      className="flex gap-3 md:gap-4 p-4 md:p-5 rounded-lg md:rounded-2xl bg-[var(--tertiary-color)]"
-                    >
-                      <div className="flex-shrink-0">
-                        <span className="text-brand font-bold text-xl md:text-2xl">
-                          {feature.number}
-                        </span>
+              <div className="border-t pt-4 md:pt-6">
+                <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-4 md:mb-6">
+                  {(product.features as any).heading || "Funktionen"}
+                </h3>
+                <div className="space-y-4 md:space-y-6">
+                  {((product.features as any).items && Array.isArray((product.features as any).items)) ? (
+                    (product.features as any).items.map((feature: any, index: number) => (
+                      <div
+                        key={index}
+                        className="flex gap-3 md:gap-4 p-4 md:p-5 rounded-lg md:rounded-2xl bg-[var(--tertiary-color)]"
+                      >
+                        <div className="flex-shrink-0">
+                          <span className="text-brand font-bold text-xl md:text-2xl">
+                            {feature.number}
+                          </span>
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <h4 className="text-lg md:text-xl font-bold text-gray-800 mb-1 md:mb-2">
+                            {feature.title}
+                          </h4>
+                          <p className="text-sm md:text-base text-gray-700 leading-relaxed">
+                            {feature.description}
+                          </p>
+                        </div>
                       </div>
-                      <div className="flex-1 min-w-0">
-                        <h4 className="text-lg md:text-xl font-bold text-gray-800 mb-1 md:mb-2">
-                          {feature.title}
-                        </h4>
-                        <p className="text-sm md:text-base text-gray-700 leading-relaxed">
-                          {feature.description}
-                        </p>
+                    ))
+                  ) : Array.isArray(product.features) ? (
+                    product.features.map((feature: any, index: number) => (
+                      <div
+                        key={index}
+                        className="flex gap-3 md:gap-4 p-4 md:p-5 rounded-lg md:rounded-2xl bg-[var(--tertiary-color)]"
+                      >
+                        <div className="flex-shrink-0">
+                          <span className="text-brand font-bold text-xl md:text-2xl">
+                            {feature.number}
+                          </span>
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <h4 className="text-lg md:text-xl font-bold text-gray-800 mb-1 md:mb-2">
+                            {feature.title}
+                          </h4>
+                          <p className="text-sm md:text-base text-gray-700 leading-relaxed">
+                            {feature.description}
+                          </p>
+                        </div>
                       </div>
-                    </div>
-                  ))
-                ) : Array.isArray(product.features) ? (
-                  product.features.map((feature: any, index: number) => (
-                    <div
-                      key={index}
-                      className="flex gap-3 md:gap-4 p-4 md:p-5 rounded-lg md:rounded-2xl bg-[var(--tertiary-color)]"
-                    >
-                      <div className="flex-shrink-0">
-                        <span className="text-brand font-bold text-xl md:text-2xl">
-                          {feature.number}
-                        </span>
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <h4 className="text-lg md:text-xl font-bold text-gray-800 mb-1 md:mb-2">
-                          {feature.title}
-                        </h4>
-                        <p className="text-sm md:text-base text-gray-700 leading-relaxed">
-                          {feature.description}
-                        </p>
-                      </div>
-                    </div>
-                  ))
-                ) : null}
+                    ))
+                  ) : null}
+                </div>
               </div>
-            </div>
-          )}
+            )}
         </div>
       </div>
     </div>

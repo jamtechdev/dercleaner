@@ -85,7 +85,7 @@ export default function Contact({ site }: { site: any }) {
           {site.contactSection.title}
         </h2>
         <div className="max-w-7xl mx-auto text-sm sm:text-base">{site.contactSection.subtitle}</div>
-        
+
         {/* Contact Information */}
         {site.contactSection.contactInfo && (
           <div className="mt-6 mb-4 grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
@@ -93,7 +93,7 @@ export default function Contact({ site }: { site: any }) {
               <span className="font-semibold text-gray-700 mb-1">
                 {site.contactSection.contactInfo.firstContact.label}:
               </span>
-              <a 
+              <a
                 href={`mailto:${site.contactSection.contactInfo.firstContact.email}`}
                 className="text-brand hover:underline"
               >
@@ -104,7 +104,7 @@ export default function Contact({ site }: { site: any }) {
               <span className="font-semibold text-gray-700 mb-1">
                 {site.contactSection.contactInfo.customerSupport.label}:
               </span>
-              <a 
+              <a
                 href={`mailto:${site.contactSection.contactInfo.customerSupport.email}`}
                 className="text-brand hover:underline"
               >
@@ -121,7 +121,7 @@ export default function Contact({ site }: { site: any }) {
             </div>
           </div>
         )}
-        
+
 
         {/* The Container */}
         <div className="bg-brand-surface rounded-[28px] sm:rounded-[40px] p-6 sm:p-8 md:p-12 shadow-sm mt-6">
@@ -265,17 +265,10 @@ export default function Contact({ site }: { site: any }) {
             </div>
           </form>
 
-          <p className="text-[16px] text-gray-500 mt-6 leading-normal">
-            {privacyParts.length === 2 ? (
-              <>
-                {privacyParts[0]}
-                <Link href="/datenschutz"><span className="underline cursor-pointer">Datenschutzvereinbarung</span></Link>
-                {privacyParts[1]}
-              </>
-            ) : (
-              site.contactSection.privacyText
-            )}
-          </p>
+          <div
+            className="text-[16px] text-gray-500 mt-6 leading-normal prose prose-sm max-w-none"
+            dangerouslySetInnerHTML={{ __html: site.contactSection.privacyText }}
+          />
         </div>
       </div>
     </section>

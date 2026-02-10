@@ -21,7 +21,7 @@ export function ContactSubmissionsView({
             <article className="rounded-3xl border border-slate-100 bg-white p-6 shadow-sm sm:p-8">
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                     <div>
-                        <div className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1 text-xs font-bold uppercase tracking-wider text-[--brand]">
+                        <div className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1 text-xs font-bold uppercase tracking-wider text-brand">
                             Contact
                         </div>
                         <h2 className="mt-2 text-xl font-extrabold tracking-tight text-slate-900">
@@ -34,10 +34,10 @@ export function ContactSubmissionsView({
 
                     <div className="flex flex-wrap items-center gap-3">
                         <Link
-                            href="/admin/submissions"
-                            className="rounded-full border border-slate-200 bg-white px-4 py-2.5 text-sm font-bold text-slate-700 shadow-sm transition hover:border-[--brand] hover:text-[--brand]"
+                            href="/admin/submissions?format=csv"
+                            className="rounded-full border border-slate-200 bg-white px-4 py-2.5 text-sm font-bold text-slate-700 shadow-sm transition hover:border-brand hover:text-brand"
                         >
-                            Export JSON
+                            Export CSV
                         </Link>
                         <form action={clearSubmissionsAction}>
                             <input type="hidden" name="view" value="contact" />
@@ -80,7 +80,7 @@ export function ContactSubmissionsView({
                                             <td className="whitespace-nowrap px-4 py-3 font-bold text-slate-900">
                                                 {s.name || "—"}
                                             </td>
-                                            <td className="whitespace-nowrap px-4 py-3 text-[--brand-cta]">
+                                            <td className="whitespace-nowrap px-4 py-3 text-brand-cta">
                                                 {s.email || "—"}
                                             </td>
                                             <td className="whitespace-nowrap px-4 py-3 text-slate-600">

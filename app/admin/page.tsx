@@ -13,6 +13,7 @@ import { ContactInfoView } from "@/app/admin/components/ContactInfoView";
 import { ContactSubmissionsView } from "@/app/admin/components/ContactSubmissionsView";
 import { ProductsView } from "@/app/admin/components/ProductsView";
 import { LegalPagesView } from "@/app/admin/components/LegalPagesView";
+import { FeaturesView } from "@/app/admin/components/FeaturesView";
 
 export default async function AdminPage({
   searchParams,
@@ -63,37 +64,59 @@ export default async function AdminPage({
 
   return (
     <div className="space-y-6">
-      {/* Toast / Notification Area */}
-      {(showSaved || showCleared || showInvalidJson) && (
-        <div className="fixed top-20 right-6 z-50 animate-in fade-in slide-in-from-top-2">
-          <div
-            className={[
-              "rounded-xl px-4 py-3 text-sm font-bold shadow-lg border",
-              showInvalidJson
-                ? "border-red-200 bg-red-50 text-red-700"
-                : "border-[--brand]/20 bg-[#f1faff] text-[--brand]",
-            ].join(" ")}
-          >
-            {showInvalidJson
-              ? "Invalid JSON Data."
-              : showCleared
-                ? "Data cleared successfully."
-                : "Changes saved successfully!"}
-          </div>
-        </div>
-      )}
-
       {/* Main Content Render */}
-      {view === "dashboard" && (
-        <DashboardView
-          siteName={site.branding?.name ?? "Admin Panel"}
-          totalContacts={submissions.length}
-          totalProducts={totalProducts}
-        />
-      )}
+      {view === "dashboard" && (() => {
+        // Growth Calculation (Current week vs Last week)
+        const now = new Date();
+        const oneWeekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+        const twoWeeksAgo = new Date(now.getTime() - 14 * 24 * 60 * 60 * 1000);
+
+        const thisWeekLeads = submissions.filter(s => s.createdAt && new Date(s.createdAt) > oneWeekAgo).length;
+        const lastWeekLeads = submissions.filter(s => s.createdAt && new Date(s.createdAt) <= oneWeekAgo && new Date(s.createdAt) > twoWeeksAgo).length;
+
+        let growth = 0;
+        if (lastWeekLeads === 0) {
+          growth = thisWeekLeads > 0 ? 100 : 0;
+        } else {
+          growth = Math.round(((thisWeekLeads - lastWeekLeads) / lastWeekLeads) * 100);
+        }
+
+        // Optimization Score Calculation (0-100)
+        const sections = [
+          site.branding?.name,
+          site.seo?.metaTitle,
+          site.homepage?.hero?.title,
+          site.featuresSection?.features?.length > 0,
+          site.aboutSection?.title,
+          totalProducts > 0, // Products count as a section being used
+          site.faqSection?.items?.length > 0,
+          site.contactSection?.email,
+          site.legalPages?.imprint?.content,
+          site.legalPages?.privacy?.content
+        ];
+        const fulfilled = sections.filter(Boolean).length;
+        const score = Math.round((fulfilled / sections.length) * 100);
+
+        return (
+          <DashboardView
+            siteName={site.branding?.name ?? "Admin Panel"}
+            totalContacts={submissions.length}
+            totalProducts={totalProducts}
+            recentLeads={submissions.slice(-5).reverse()}
+            leadsLast24h={submissions.filter(s => {
+              if (!s.createdAt) return false;
+              const d = new Date(s.createdAt);
+              return (now.getTime() - d.getTime()) < 24 * 60 * 60 * 1000;
+            }).length}
+            growthPercentage={growth}
+            optimizationScore={score}
+          />
+        );
+      })()}
 
       {/* Website Content */}
       {view === "homepage" && <HomepageView site={site} />}
+      {view === "features" && <FeaturesView site={site} />}
       {view === "about" && <AboutView site={site} />}
       {view === "products" && <ProductsView />}
       {view === "faq" && <FaqView site={site} />}
@@ -119,7 +142,6 @@ export default async function AdminPage({
 
       {/* System Settings */}
       {view === "navigation" && <NavigationView site={site} />}
-      {view === "seo" && <SeoView site={site} />}
       {view === "settings" && (
         // General settings or redirect to SEO?
         // For now, let's reuse SEO view or create a general one later.

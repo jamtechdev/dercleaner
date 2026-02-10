@@ -4,9 +4,10 @@ import { SettingsImageInput } from "../SettingsImageInput";
 export function SeoView({ site }: { site: any }) {
     return (
         <form action={saveSiteQuickAction} className="space-y-6 max-w-4xl">
+            <input type="hidden" name="view" value="settings" />
             <div className="flex items-center justify-between">
                 <h2 className="text-xl font-bold text-slate-800">SEO & Branding Settings</h2>
-                <button className="rounded-full bg-[--brand-cta] px-6 py-2 text-sm font-bold text-white shadow-md hover:opacity-90 transition">
+                <button className="rounded-full bg-brand-cta px-6 py-2 text-sm font-bold text-white shadow-md hover:opacity-90 transition">
                     Save Changes
                 </button>
             </div>
@@ -19,7 +20,7 @@ export function SeoView({ site }: { site: any }) {
                         <input
                             name="seoTitle"
                             defaultValue={site.seo?.title ?? ""}
-                            className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-medium outline-none focus:border-[--brand] focus:ring-1 focus:ring-[--brand]"
+                            className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-medium outline-none focus:border-brand focus:ring-1 focus:ring-brand"
                             placeholder="e.g. Der Cleaner"
                         />
                     </div>
@@ -29,7 +30,7 @@ export function SeoView({ site }: { site: any }) {
                             name="seoDescription"
                             rows={3}
                             defaultValue={site.seo?.description ?? ""}
-                            className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-medium outline-none focus:border-[--brand] focus:ring-1 focus:ring-[--brand]"
+                            className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-medium outline-none focus:border-brand focus:ring-1 focus:ring-brand"
                             placeholder="Brief description for search engines..."
                         />
                     </div>
@@ -44,7 +45,7 @@ export function SeoView({ site }: { site: any }) {
                         <input
                             name="brandingName"
                             defaultValue={site.branding?.name ?? ""}
-                            className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-medium outline-none focus:border-[--brand] focus:ring-1 focus:ring-[--brand]"
+                            className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-medium outline-none focus:border-brand focus:ring-1 focus:ring-brand"
                         />
                     </div>
                     <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -58,7 +59,7 @@ export function SeoView({ site }: { site: any }) {
                             <input
                                 name="brandingLogoAlt"
                                 defaultValue={site.branding?.logo?.alt ?? ""}
-                                className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-medium outline-none focus:border-[--brand] focus:ring-1 focus:ring-[--brand]"
+                                className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-medium outline-none focus:border-brand focus:ring-1 focus:ring-brand"
                             />
                         </div>
                     </div>

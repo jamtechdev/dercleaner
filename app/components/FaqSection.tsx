@@ -66,16 +66,17 @@ export default function FaqSection({ site }: { site: any }) {
 
                             {/* Answer Section with basic transition */}
                             {openId === item.id && (
-                                <div className="px-6 pb-6 text-gray-600 animate-fadeIn faq-content-box">
-                                    {item.answer}
-                                </div>
+                                <div
+                                    className="px-6 pb-6 text-gray-600 animate-fadeIn faq-content-box prose prose-sm max-w-none"
+                                    dangerouslySetInnerHTML={{ __html: item.answer }}
+                                />
                             )}
                         </div>
                     ))}
                 </div>
 
                 <div className='flex items-center justify-center block md:hidden'>
-                      <button onClick={(e) => {
+                    <button onClick={(e) => {
                         e.preventDefault();
                         const element = document.getElementById('kontakt');
                         if (element) {

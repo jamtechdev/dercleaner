@@ -26,13 +26,10 @@ export default function About({ site }: { site: any }) {
             <h2 className="text-4xl font-bold text-brand mb-8">
               {site.aboutSection.title}
             </h2>
-            <div className="space-y-6 text-gray-700 leading-relaxed text-sm uber-uns">
-              {(site.aboutSection.paragraphs as string[]).map(
-                (text: string, idx: number) => (
-                  <p key={idx}>{text}</p>
-                )
-              )}
-            </div>
+            <div
+              className="space-y-6 text-gray-700 leading-relaxed text-sm uber-uns prose prose-sm max-w-none"
+              dangerouslySetInnerHTML={{ __html: site.aboutSection?.content || (site.aboutSection?.paragraphs || []).map((p: string) => `<p>${p}</p>`).join("") }}
+            />
           </div>
         </div>
 

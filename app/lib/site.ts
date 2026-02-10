@@ -58,7 +58,7 @@ export async function getSite(): Promise<any> {
       faqSection: { title: "", subtitle: "", contactButtonLabel: "", items: [] },
       missionSection: { hero: { title: "", description: "", ctaLabel: "" }, industriesIntro: { title: "", description: "" }, industries: [] },
       featuresSection: { features: [] },
-      aboutSection: { title: "", paragraphs: [] },
+      aboutSection: { title: "", content: "", image: { src: "", alt: "" } },
       contactSection: { title: "", subtitle: "", contactInfo: { firstContact: { email: "" }, customerSupport: { email: "" }, phone: { number: "" } }, privacyText: "" },
       footer: { information: { title: "", links: [] }, legal: { title: "", links: [] } },
       legalPages: {

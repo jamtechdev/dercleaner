@@ -5,7 +5,7 @@
   --background: #ffffff;
   --foreground: #171717;
 
-  /* Brand tokens (update these to match Figma) */
+  /* Brand tokens */
   --brand: #00a3cc;
   --brand-cta: #00a6da;
   --brand-soft: #e0f7fa;
@@ -15,56 +15,36 @@
   --ink-2: #343a44;
   --about: #4fbce1;
   --card: #f8f9fa;
+
+  --primary-color: #00A8CF;
+  --secondary-color: #CEF6FF;
+  --tertiary-color: #E0F9FF;
+  --quaternary-color: #2E3A48;
 }
-
-
 
 body,
 html {
   font-family: "Roboto", sans-serif;
-}
-
-.geist_mono_8d43a2aa-module__8Li5zG__variable {
-  font-family: "Roboto", sans-serif !important;
-
-}
-
-.geist_mono_8d43a2aa-module__8Li5zG__variable {
-  font-family: "Roboto", sans-serif !important;
-
+  background: var(--background);
+  color: var(--foreground);
 }
 
 h1,
 h2,
-span,
 h3,
+h4,
+h5,
+h6,
+span,
 p,
 button,
-div {
+div,
+input,
+textarea {
   font-family: "Roboto", sans-serif !important;
 }
 
-
-.mission-section {
-  background-position: center center;
-  /* Center the background image */
-  background-size: cover;
-  ;
-  background-repeat: no-repeat;
-  /* Prevent repeating the image */
-  background-size: 100% 100%;
-  /* Stretch the image to fill the entire element */
-  background-image: url('/Image.jpg') !important;
-
-}
-
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-
   --color-brand: var(--brand);
   --color-brand-cta: var(--brand-cta);
   --color-brand-soft: var(--brand-soft);
@@ -76,17 +56,9 @@ div {
   --color-card: var(--card);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -120,7 +92,6 @@ body {
 /* updated code */
 .einsparungen-boxes>div {
   padding: 20px 20px !important;
-  /* background:blue !important; */
 }
 
 .einsparungen-boxes>div {
@@ -148,8 +119,6 @@ body {
 
 .text-xs {
   font-size: 14px !important;
-  ;
-  /* text-align: justify; */
 }
 
 .schneller-boxes>div span {

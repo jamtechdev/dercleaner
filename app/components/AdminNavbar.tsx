@@ -30,7 +30,7 @@ export function AdminNavbar({ onMenuClick }: { onMenuClick: () => void }) {
                     <input
                         type="text"
                         placeholder="Search..."
-                        className="w-full rounded-full border border-slate-200 bg-slate-50 py-2 pl-10 text-black placeholder:text-black border border-gray-500 pr-4 text-sm outline-none focus:border-[--brand] focus:ring-1 focus:ring-[--brand]"
+                        className="w-full rounded-full border border-slate-300 bg-slate-50 py-2 pl-10 text-black placeholder:text-slate-500 pr-4 text-sm outline-none focus:border-brand focus:ring-1 focus:ring-brand"
                     />
                 </div>
             </div>
@@ -47,10 +47,10 @@ export function AdminNavbar({ onMenuClick }: { onMenuClick: () => void }) {
                 {/* Profile Dropdown (Simplified as Avatar) */}
                 <div className="flex items-center gap-3 pl-4 border-l border-slate-200">
                     <div className="text-right hidden md:block">
-                        <p className="text-sm text-black font-bold text-[--brand-cta]">Admin</p>
-                        <p className="text-xs text-slate-800">Super Admin</p>
+                        <p className="text-sm text-brand-cta font-bold">Admin</p>
+                        <p className="text-xs text-slate-500">Super Admin</p>
                     </div>
-                    <div className="h-10 w-10 rounded-full text-black bg-[--brand-soft] border border-[--brand]/20 flex items-center justify-center text-[--brand] font-bold">
+                    <div className="h-10 w-10 rounded-full bg-brand-soft border border-brand/20 flex items-center justify-center text-brand font-bold">
                         A
                     </div>
                 </div>

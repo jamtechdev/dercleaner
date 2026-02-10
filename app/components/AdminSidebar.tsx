@@ -15,6 +15,7 @@ const MENU_ITEMS = [
         category: "Website Content",
         items: [
             { id: "homepage", label: "Homepage", href: "/admin?view=homepage", icon: "Home" },
+            { id: "features", label: "Features", href: "/admin?view=features", icon: "Layout" },
             { id: "about", label: "About Us", href: "/admin?view=about", icon: "Info" },
             { id: "products", label: "Services / Products", href: "/admin?view=products", icon: "Package" },
             { id: "testimonials", label: "Testimonials (FAQ)", href: "/admin?view=faq", icon: "MessageSquareQuote" },
@@ -23,10 +24,15 @@ const MENU_ITEMS = [
         ],
     },
     {
+        category: "Pages",
+        items: [
+            { id: "legal", label: "Legal Pages", href: "/admin?view=legal", icon: "FileText" },
+        ],
+    },
+    {
         category: "System",
         items: [
             { id: "navigation", label: "Navigation Menu", href: "/admin?view=navigation", icon: "Menu" },
-            { id: "seo", label: "SEO Settings", href: "/admin?view=seo", icon: "Search" },
             { id: "settings", label: "Settings", href: "/admin?view=settings", icon: "Settings" },
         ],
     },
@@ -76,11 +82,11 @@ export function AdminSidebar({ isOpen, mobileClose }: { isOpen: boolean; mobileC
                                                 href={item.href}
                                                 onClick={mobileClose}
                                                 className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 group ${isActive
-                                                    ? "bg-[#00a3cc] text-white shadow-md shadow-[--brand]/20"
-                                                    : "text-slate-600 hover:bg-[--brand-soft] hover:text-[--brand]"
+                                                    ? "bg-brand text-white shadow-md shadow-brand/20"
+                                                    : "text-slate-600 hover:bg-brand-soft hover:text-brand"
                                                     }`}
                                             >
-                                                <Icon name={item.icon} className={isActive ? "text-white" : "text-slate-400 group-hover:text-[--brand]"} />
+                                                <Icon name={item.icon} className={isActive ? "text-white" : "text-slate-400 group-hover:text-brand"} />
                                                 {item.label}
                                             </Link>
                                         );
@@ -117,6 +123,14 @@ function Icon({ name, className }: { name: string; className?: string }) {
                     <rect x="14" y="3" width="7" height="5" rx="1" />
                     <rect x="14" y="12" width="7" height="9" rx="1" />
                     <rect x="3" y="16" width="7" height="5" rx="1" />
+                </svg>
+            );
+        case "Layout":
+            return (
+                <svg className={cn} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                    <line x1="3" y1="9" x2="21" y2="9" />
+                    <line x1="9" y1="21" x2="9" y2="9" />
                 </svg>
             );
         case "Home":
@@ -156,6 +170,12 @@ function Icon({ name, className }: { name: string; className?: string }) {
             return (
                 <svg className={cn} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+            );
+        case "FileText":
+            return (
+                <svg className={cn} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
             );
         case "Menu":

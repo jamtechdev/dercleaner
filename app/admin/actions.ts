@@ -142,19 +142,37 @@ export async function saveSiteQuickAction(formData: FormData) {
     site.missionSection.industriesIntro.description = String(formData.get("missionIndustriesDescription") ?? "");
   }
 
+  // Features Section
+  const features: any[] = [];
+  for (let i = 0; i < 100; i++) {
+    const title = formData.get(`featureTitle_${i}`);
+    if (title !== null) {
+      features.push({
+        title: String(title),
+        icon: String(formData.get(`featureIcon_${i}`) ?? ""),
+        text: String(formData.get(`featureText_${i}`) ?? ""),
+        colorClass: String(formData.get(`featureColor_${i}`) ?? ""),
+      });
+    }
+  }
+  if (features.length > 0) {
+    site.featuresSection.features = features;
+  }
+
   // About Section
   if (formData.get("aboutTitle") !== null) {
     site.aboutSection.title = String(formData.get("aboutTitle") ?? "");
   }
-  const aboutParagraphs: string[] = [];
-  for (let i = 0; i < 10; i++) {
-    const para = formData.get(`aboutParagraph_${i}`);
-    if (para && String(para).trim()) {
-      aboutParagraphs.push(String(para));
-    }
+  if (formData.get("aboutContent") !== null) {
+    site.aboutSection.content = String(formData.get("aboutContent") ?? "");
   }
-  if (aboutParagraphs.length > 0) {
-    site.aboutSection.paragraphs = aboutParagraphs;
+  if (formData.get("aboutImageSrc") !== null) {
+    if (!site.aboutSection.image) site.aboutSection.image = { src: "", alt: "" };
+    site.aboutSection.image.src = String(formData.get("aboutImageSrc") ?? "");
+  }
+  if (formData.get("aboutImageAlt") !== null) {
+    if (!site.aboutSection.image) site.aboutSection.image = { src: "", alt: "" };
+    site.aboutSection.image.alt = String(formData.get("aboutImageAlt") ?? "");
   }
 
   // Navigation links (edit existing)
@@ -182,7 +200,7 @@ export async function saveSiteQuickAction(formData: FormData) {
     site.faqSection.contactButtonLabel = String(formData.get("faqContactLabel") ?? "");
   }
   const faqItems: { id: number; question: string; answer: string; icon?: string }[] = [];
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < 100; i++) {
     const q = formData.get(`faqQuestion_${i}`);
     const a = formData.get(`faqAnswer_${i}`);
     if (q && String(q).trim()) {
@@ -227,8 +245,33 @@ export async function saveSiteQuickAction(formData: FormData) {
     }
   }
 
+  // Legal Pages
+  const editingPage = formData.get("editingPage");
+  if (editingPage) {
+    const pageKey = String(editingPage);
+    if (!site.legalPages) site.legalPages = {};
+
+    // The keys in the database/JSON might be different from the form names
+    // Form names are: imprintTitle, agbTitle, datenschutzTitle etc.
+    // Map them to internal keys
+    const internalKey = pageKey === "imprint" ? "imprint" : pageKey === "privacy" ? "privacy" : "terms";
+
+    if (!site.legalPages[internalKey]) {
+      site.legalPages[internalKey] = { title: "", description: "", lastUpdated: "", backToHomeLabel: "", content: "" };
+    }
+
+    const title = formData.get(`${pageKey}Title`);
+    const lastUpdated = formData.get(`${pageKey}LastUpdated`);
+    const content = formData.get(`${pageKey}Content`);
+
+    if (title !== null) site.legalPages[internalKey].title = String(title);
+    if (lastUpdated !== null) site.legalPages[internalKey].lastUpdated = String(lastUpdated);
+    if (content !== null) site.legalPages[internalKey].content = String(content);
+  }
+
   await saveSite(site);
-  redirect("/admin?view=settings&saved=1");
+  const view = formData.get("view") || "settings";
+  redirect(`/admin?view=${view}&saved=1`);
 }
 
 export async function clearSubmissionsAction(formData: FormData) {

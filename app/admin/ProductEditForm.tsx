@@ -7,6 +7,7 @@ import { DeleteProductButton } from "./DeleteProductButton";
 import { StatsInput } from "./StatsInput";
 import { TechnicalDataInput } from "./TechnicalDataInput";
 import { FeaturesInput } from "./FeaturesInput";
+import { RichTextEditor } from "./RichTextEditor";
 
 export function ProductEditForm({ product }: { product: any }) {
   const [tabImageUrl, setTabImageUrl] = useState(product.tabImage?.src || "");
@@ -23,7 +24,7 @@ export function ProductEditForm({ product }: { product: any }) {
     <article className="rounded-3xl border border-brand/10 bg-white p-6 shadow-sm sm:p-8">
       <form action={updateProductAction} className="space-y-6">
         <input type="hidden" name="id" value={product.id} />
-        
+
         <div className="flex items-center justify-between border-b border-brand/10 pb-4">
           <h3 className="text-lg font-extrabold text-ink">
             {product.name || "Unbenanntes Produkt"}
@@ -77,13 +78,13 @@ export function ProductEditForm({ product }: { product: any }) {
           <label htmlFor={`description_${product.id}`} className="block text-xs font-bold uppercase tracking-wider text-gray-500">
             Beschreibung
           </label>
-          <textarea
-            id={`description_${product.id}`}
-            name="description"
-            rows={3}
-            defaultValue={product.description ?? ""}
-            className="mt-2 w-full rounded-xl border border-brand/20 bg-white px-4 py-3 text-sm font-semibold text-ink placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/30"
-          />
+          <div className="mt-2">
+            <RichTextEditor
+              name="description"
+              defaultValue={product.description ?? ""}
+              placeholder="Produktbeschreibung..."
+            />
+          </div>
         </div>
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -115,9 +116,9 @@ export function ProductEditForm({ product }: { product: any }) {
           </div>
         </div>
 
-        <StatsInput 
-          name="stats" 
-          label="Einsparungen (Stats)" 
+        <StatsInput
+          name="stats"
+          label="Einsparungen (Stats)"
           initialStats={product.stats || []}
         />
 
@@ -209,14 +210,14 @@ export function ProductEditForm({ product }: { product: any }) {
           />
         </div>
 
-        <TechnicalDataInput 
-          name="technicalData" 
+        <TechnicalDataInput
+          name="technicalData"
           label="Technische Daten"
           initialData={product.technicalSpecs || undefined}
         />
 
-        <FeaturesInput 
-          name="features" 
+        <FeaturesInput
+          name="features"
           label="Funktionen"
           initialFeatures={product.features || []}
         />
