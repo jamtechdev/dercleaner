@@ -7,6 +7,7 @@ import FaqSection from "./components/FaqSection";
 import About from "./components/FeaturesAndAbout";
 import Features from "./components/Features";
 import { BannerSection } from "./components/BannerSection";
+import NewsLetter from "./components/NewsLetter";
 
 
 // Force dynamic rendering to always fetch fresh data
@@ -25,6 +26,7 @@ export default async function Home() {
       <MissionSection site={site} />
       <About site={site} />
       <Contact site={site} />
+      <NewsLetter />
     </main>
   );
 }
