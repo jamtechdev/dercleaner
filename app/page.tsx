@@ -26,7 +26,7 @@ export default async function Home() {
       <MissionSection site={site} />
       <About site={site} />
       <Contact site={site} />
-      <NewsLetter />
+      {/* <NewsLetter /> */}
     </main>
   );
 }
