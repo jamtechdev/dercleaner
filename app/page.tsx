@@ -18,7 +18,7 @@ export default async function Home() {
   return (
     <main className="min-h-screen">
       <VideoSection site={site} />
-      <BannerSection site={site} />
+      {/* <BannerSection site={site} /> */}
       <ProductShowcase site={site} />
 
       <Features site={site} />
