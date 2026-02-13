@@ -12,28 +12,28 @@ const MENU_ITEMS = [
         ],
     },
     {
-        category: "Website Content",
+        category: "Webseiten-Inhalte",
         items: [
-            { id: "homepage", label: "Homepage", href: "/admin?view=homepage", icon: "Home" },
-            { id: "features", label: "Features", href: "/admin?view=features", icon: "Layout" },
-            { id: "about", label: "About Us", href: "/admin?view=about", icon: "Info" },
-            { id: "products", label: "Services / Products", href: "/admin?view=products", icon: "Package" },
-            { id: "testimonials", label: "Testimonials (FAQ)", href: "/admin?view=faq", icon: "MessageSquareQuote" },
-            { id: "media", label: "Banner & Media", href: "/admin?view=media", icon: "Image" },
-            { id: "contact", label: "Contact Info", href: "/admin?view=contact-info", icon: "Phone" },
+            { id: "homepage", label: "Startseite", href: "/admin?view=homepage", icon: "Home" },
+            { id: "features", label: "Funktionen", href: "/admin?view=features", icon: "Layout" },
+            { id: "about", label: "Über uns", href: "/admin?view=about", icon: "Info" },
+            { id: "products", label: "Dienstleistungen / Produkte", href: "/admin?view=products", icon: "Package" },
+            { id: "testimonials", label: "Kundenstimmen (FAQ)", href: "/admin?view=faq", icon: "MessageSquareQuote" },
+            { id: "media", label: "Banner & Medien", href: "/admin?view=media", icon: "Image" },
+            { id: "contact", label: "Kontaktinformationen", href: "/admin?view=contact-info", icon: "Phone" },
         ],
     },
     {
-        category: "Pages",
+        category: "Seiten",
         items: [
-            { id: "legal", label: "Legal Pages", href: "/admin?view=legal", icon: "FileText" },
+            { id: "legal", label: "Rechtliche Seiten", href: "/admin?view=legal", icon: "FileText" },
         ],
     },
     {
         category: "System",
         items: [
-            { id: "navigation", label: "Navigation Menu", href: "/admin?view=navigation", icon: "Menu" },
-            { id: "settings", label: "Settings", href: "/admin?view=settings", icon: "Settings" },
+            { id: "navigation", label: "Navigationsmenü", href: "/admin?view=navigation", icon: "Menu" },
+            { id: "settings", label: "Einstellungen", href: "/admin?view=settings", icon: "Settings" },
         ],
     },
 ];
@@ -61,7 +61,7 @@ export function AdminSidebar({ isOpen, mobileClose }: { isOpen: boolean; mobileC
                     {/* Logo */}
                     <div className="flex items-center justify-center h-16 border-b border-slate-100 px-6">
                         <span className="text-xl font-bold text-cyan-500">
-                            AdminPanel
+                            Adminbereich
                         </span>
                     </div>
 
@@ -101,7 +101,7 @@ export function AdminSidebar({ isOpen, mobileClose }: { isOpen: boolean; mobileC
                         <form action={logoutAction}>
                             <button type="submit" className="flex w-full items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-red-50 hover:text-red-600 transition-colors">
                                 <Icon name="LogOut" className="text-slate-400 group-hover:text-red-600" />
-                                Logout
+                                Abmelden
                             </button>
                         </form>
                     </div>

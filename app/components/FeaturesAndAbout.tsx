@@ -7,7 +7,7 @@ export default function About({ site }: { site: any }) {
 
 
       {/* Bottom Section: About Us */}
-      <div id="ueber-uns" className="bg-surface-alt scroll-mt-8 mt-24">
+      <div id="ueber-uns" className="bg-surface-alt scroll-mt-8">
         <div className="flex flex-col md:w-[80%] mx-auto lg:flex-row min-h-[750px] lg:gap-20 uber-uns-img">
           {/* Left: Image with Background Color */}
           <div className="lg:w-1/2 relative bg-about flex items-end justify-center overflow-hidden">
