@@ -99,7 +99,7 @@ export default async function AdminPage({
 
         return (
           <DashboardView
-            siteName={site.branding?.name ?? "Admin Panel"}
+            siteName={site.branding?.name ?? "Adminbereich"}
             totalContacts={submissions.length}
             totalProducts={totalProducts}
             recentLeads={submissions.slice(-5).reverse()}

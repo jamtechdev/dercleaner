@@ -6,17 +6,17 @@ export function ContactInfoView({ site }: { site: any }) {
         <form action={saveSiteQuickAction} className="space-y-6 max-w-4xl">
             <input type="hidden" name="view" value="contact-info" />
             <div className="flex items-center justify-between">
-                <h2 className="text-xl font-bold text-slate-800">Contact Information</h2>
+                <h2 className="text-xl font-bold text-slate-800">Kontaktinformationen</h2>
                 <button className="rounded-full bg-brand-cta px-6 py-2 text-sm font-bold text-white shadow-md hover:opacity-90 transition">
-                    Save Changes
+                    Änderungen speichern
                 </button>
             </div>
 
             <div className="rounded-2xl bg-white p-6 shadow-sm border border-slate-100">
-                <h3 className="mb-4 text-base font-bold text-slate-800">Contact Section Details</h3>
+                <h3 className="mb-4 text-base font-bold text-slate-800">Kontaktdaten</h3>
                 <div className="space-y-4">
                     <div>
-                        <label className="mb-1 block text-xs font-bold uppercase text-slate-400">Section Title</label>
+                        <label className="mb-1 block text-xs font-bold uppercase text-slate-400">Bereichsüberschrift</label>
                         <input
                             name="contactTitle"
                             defaultValue={site.contactSection?.title ?? ""}
@@ -24,7 +24,7 @@ export function ContactInfoView({ site }: { site: any }) {
                         />
                     </div>
                     <div>
-                        <label className="mb-1 block text-xs font-bold uppercase text-slate-400">Subtitle</label>
+                        <label className="mb-1 block text-xs font-bold uppercase text-slate-400">Untertitel</label>
                         <input
                             name="contactSubtitle"
                             defaultValue={site.contactSection?.subtitle ?? ""}
@@ -34,7 +34,7 @@ export function ContactInfoView({ site }: { site: any }) {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label className="mb-1 block text-xs font-bold uppercase text-slate-400">Primary Email</label>
+                            <label className="mb-1 block text-xs font-bold uppercase text-slate-400">Haupt-E-Mail</label>
                             <input
                                 name="contactEmail1"
                                 type="email"
@@ -43,7 +43,7 @@ export function ContactInfoView({ site }: { site: any }) {
                             />
                         </div>
                         <div>
-                            <label className="mb-1 block text-xs font-bold uppercase text-slate-400">Support Email</label>
+                            <label className="mb-1 block text-xs font-bold uppercase text-slate-400">Support-E-Mail</label>
                             <input
                                 name="contactEmail2"
                                 type="email"
@@ -52,7 +52,7 @@ export function ContactInfoView({ site }: { site: any }) {
                             />
                         </div>
                         <div>
-                            <label className="mb-1 block text-xs font-bold uppercase text-slate-400">Phone Number</label>
+                            <label className="mb-1 block text-xs font-bold uppercase text-slate-400">Telefonnummer</label>
                             <input
                                 name="contactPhone"
                                 type="tel"
@@ -63,11 +63,11 @@ export function ContactInfoView({ site }: { site: any }) {
                     </div>
 
                     <div>
-                        <label className="mb-1 block text-xs font-bold uppercase text-slate-400">Privacy Notice Text</label>
+                        <label className="mb-1 block text-xs font-bold uppercase text-slate-400">Hinweis zum Datenschutz</label>
                         <RichTextEditor
                             name="contactPrivacy"
                             defaultValue={site.contactSection?.privacyText ?? ""}
-                            placeholder="Privacy notice text..."
+                            placeholder="Datenschutzhinweis..."
                         />
                     </div>
                 </div>

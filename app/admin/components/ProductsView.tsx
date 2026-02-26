@@ -39,32 +39,32 @@ export async function ProductsView() {
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                     <div>
                         <div className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1 text-xs font-bold uppercase tracking-wider text-[--brand]">
-                            Products
+                            Produkte
                         </div>
                         <h2 className="mt-3 text-xl font-extrabold tracking-tight text-slate-900">
-                            Manage Products
+                            Produkte verwalten
                         </h2>
                         <p className="mt-2 text-sm font-semibold text-slate-500">
-                            {totalProducts} Total Products
+                            {totalProducts} Produkte gesamt
                         </p>
                     </div>
                 </div>
             </article>
 
             <div className="bg-white rounded-3xl border border-blue-100 shadow-sm p-6">
-                <h3 className="text-lg font-bold text-slate-800 mb-4">Add New Product</h3>
+                <h3 className="text-lg font-bold text-slate-800 mb-4">Neues Produkt hinzufügen</h3>
                 <ProductCreateForm />
             </div>
 
             {plainProducts.length === 0 ? (
                 <article className="rounded-3xl border border-dashed border-slate-300 bg-white p-12 shadow-sm text-center">
                     <p className="text-sm font-semibold text-slate-500">
-                        No products yet. Create your first product above.
+                        Noch keine Produkte. Erstellen Sie oben Ihr erstes Produkt.
                     </p>
                 </article>
             ) : (
                 <div className="space-y-4">
-                    <h3 className="text-lg font-bold text-slate-800 px-2">Product List</h3>
+                    <h3 className="text-lg font-bold text-slate-800 px-2">Produktliste</h3>
                     <ProductsListView products={plainProducts} />
                 </div>
             )}

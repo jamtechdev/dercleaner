@@ -7,17 +7,17 @@ export function AboutView({ site }: { site: any }) {
         <form action={saveSiteQuickAction} className="space-y-6 max-w-4xl">
             <input type="hidden" name="view" value="about" />
             <div className="flex items-center justify-between">
-                <h2 className="text-xl font-bold text-slate-800">About Us Content</h2>
+                <h2 className="text-xl font-bold text-slate-800">Über-uns-Inhalte</h2>
                 <button className="rounded-full bg-brand-cta px-6 py-2 text-sm font-bold text-white shadow-md hover:opacity-90 transition">
-                    Save Changes
+                    Änderungen speichern
                 </button>
             </div>
 
             <div className="rounded-2xl bg-white p-6 shadow-sm border border-slate-100">
-                <h3 className="mb-4 text-base font-bold text-slate-800">About Section Header</h3>
+                <h3 className="mb-4 text-base font-bold text-slate-800">Überschrift Bereich Über uns</h3>
                 <div className="space-y-4">
                     <div>
-                        <label className="mb-1 block text-xs font-bold uppercase text-slate-400">Title</label>
+                        <label className="mb-1 block text-xs font-bold uppercase text-slate-400">Titel</label>
                         <input
                             name="aboutTitle"
                             defaultValue={site.aboutSection?.title ?? ""}
@@ -28,7 +28,7 @@ export function AboutView({ site }: { site: any }) {
             </div>
 
             <div className="rounded-2xl bg-white p-6 shadow-sm border border-slate-100">
-                <h3 className="mb-4 text-base font-bold text-slate-800">About Content</h3>
+                <h3 className="mb-4 text-base font-bold text-slate-800">Inhalt Über uns</h3>
                 <RichTextEditor
                     name="aboutContent"
                     defaultValue={site.aboutSection?.content || (site.aboutSection?.paragraphs || []).join("\n\n")}
@@ -36,15 +36,15 @@ export function AboutView({ site }: { site: any }) {
             </div>
 
             <div className="rounded-2xl bg-white p-6 shadow-sm border border-slate-100">
-                <h3 className="mb-4 text-base font-bold text-slate-800">About Image</h3>
+                <h3 className="mb-4 text-base font-bold text-slate-800">Bild Über uns</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <SettingsImageInput
-                        label="About Image"
+                        label="Bild Über uns"
                         name="aboutImageSrc"
                         initialValue={site.aboutSection?.image?.src ?? ""}
                     />
                     <div>
-                        <label className="mb-1 block text-xs font-bold uppercase text-slate-400">Image Alt Text</label>
+                        <label className="mb-1 block text-xs font-bold uppercase text-slate-400">Bild Alt-Text</label>
                         <input
                             name="aboutImageAlt"
                             defaultValue={site.aboutSection?.image?.alt ?? ""}

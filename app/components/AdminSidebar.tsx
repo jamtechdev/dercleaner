@@ -6,9 +6,9 @@ import { logoutAction } from "@/app/admin/actions";
 
 const MENU_ITEMS = [
     {
-        category: "Dashboard",
+        category: "Übersicht",
         items: [
-            { id: "dashboard", label: "Dashboard", href: "/admin?view=dashboard", icon: "LayoutDashboard" },
+            { id: "dashboard", label: "Armaturenbrett", href: "/admin?view=dashboard", icon: "LayoutDashboard" },
         ],
     },
     {

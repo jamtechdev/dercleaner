@@ -22,18 +22,18 @@ export function DashboardView({
     optimizationScore
 }: DashboardViewProps) {
     const stats = [
-        { label: "Total Leads", value: totalContacts, icon: "Users", color: "text-emerald-600", bg: "bg-emerald-50", desc: "Lifetime leads" },
-        { label: "New Leads (24h)", value: leadsLast24h, icon: "TrendingUp", color: "text-blue-600", bg: "bg-blue-50", desc: "Since yesterday" },
-        { label: "Active Services", value: totalProducts, icon: "Package", color: "text-purple-600", bg: "bg-purple-50", desc: "Live products" },
-        { label: "Site Status", value: "Online", icon: "Globe", color: "text-brand-cta", bg: "bg-orange-50", desc: "System healthy" },
+        { label: "Leads gesamt", value: totalContacts, icon: "Users", color: "text-emerald-600", bg: "bg-emerald-50", desc: "Leads gesamt" },
+        { label: "Neue Leads (24h)", value: leadsLast24h, icon: "TrendingUp", color: "text-blue-600", bg: "bg-blue-50", desc: "Seit gestern" },
+        { label: "Aktive Dienstleistungen", value: totalProducts, icon: "Package", color: "text-purple-600", bg: "bg-purple-50", desc: "Produkte live" },
+        { label: "Status", value: "Online", icon: "Globe", color: "text-brand-cta", bg: "bg-orange-50", desc: "System in Ordnung" },
     ];
 
     return (
         <div className="space-y-8 animate-in fade-in duration-700">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div className="flex flex-col gap-2">
-                    <h1 className="text-3xl font-black text-slate-800 tracking-tight">Welcome, Admin! 👋</h1>
-                    <p className="text-slate-500 font-medium italic">Currently managing <span className="text-brand font-black not-italic">{siteName}</span></p>
+                    <h1 className="text-3xl font-black text-slate-800 tracking-tight">Willkommen, Admin! 👋</h1>
+                    <p className="text-slate-500 font-medium italic">Sie verwalten gerade <span className="text-brand font-black not-italic">{siteName}</span></p>
                 </div>
                 <div className="flex items-center gap-3 bg-white p-2 pr-4 rounded-2xl shadow-sm border border-slate-100">
                     <div className="flex -space-x-2">
@@ -43,7 +43,7 @@ export function DashboardView({
                             </div>
                         ))}
                     </div>
-                    <div className="text-xs font-bold text-slate-400">System Live & Secure</div>
+                    <div className="text-xs font-bold text-slate-400">System live und sicher</div>
                 </div>
             </div>
 
@@ -74,10 +74,10 @@ export function DashboardView({
                     <div className="flex items-center justify-between border-b border-slate-50 px-8 py-7 bg-slate-50/20">
                         <div className="flex items-center gap-3">
                             <div className="h-3 w-3 rounded-full bg-blue-500 animate-pulse ring-4 ring-blue-50" />
-                            <h3 className="font-black text-slate-800 tracking-tight text-lg">Recent Inquiries</h3>
+                            <h3 className="font-black text-slate-800 tracking-tight text-lg">Letzte Anfragen</h3>
                         </div>
                         <Link href="/admin?view=contact-info" className="group flex items-center gap-2 text-xs font-black text-brand hover:text-brand-cta transition-all uppercase tracking-widest bg-brand-soft px-4 py-2 rounded-xl">
-                            Full Reports
+                            Alle Berichte
                             <Icon name="ChevronRight" className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                         </Link>
                     </div>
@@ -86,9 +86,9 @@ export function DashboardView({
                             <table className="w-full text-left text-sm">
                                 <thead>
                                     <tr className="bg-slate-50/50 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
-                                        <th className="px-8 py-5">Client Profile</th>
-                                        <th className="px-8 py-5">Communication</th>
-                                        <th className="px-8 py-5">Arrival</th>
+                                        <th className="px-8 py-5">Kunde</th>
+                                        <th className="px-8 py-5">Kontakt</th>
+                                        <th className="px-8 py-5">Eingang</th>
                                         <th className="px-8 py-5 text-right">Status</th>
                                     </tr>
                                 </thead>
@@ -101,8 +101,8 @@ export function DashboardView({
                                                         {(lead.name || "C")[0].toUpperCase()}
                                                     </div>
                                                     <div>
-                                                        <div className="font-black text-slate-800 tracking-tight text-base">{lead.name || "Client"}</div>
-                                                        <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Business Lead</div>
+                                                        <div className="font-black text-slate-800 tracking-tight text-base">{lead.name || "Kunde"}</div>
+                                                        <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Geschäftskontakt</div>
                                                     </div>
                                                 </div>
                                             </td>
@@ -114,10 +114,10 @@ export function DashboardView({
                                                 </div>
                                             </td>
                                             <td className="px-8 py-6 text-slate-500 text-xs font-black">
-                                                {lead.createdAt ? new Date(lead.createdAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : 'Just now'}
+                                                {lead.createdAt ? new Date(lead.createdAt).toLocaleDateString('de-DE', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : 'Gerade eben'}
                                             </td>
                                             <td className="px-8 py-6 text-right">
-                                                <span className="inline-flex items-center rounded-xl bg-blue-50 px-4 py-1.5 text-[10px] font-black uppercase tracking-[0.1em] text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300 shadow-sm">New</span>
+                                                <span className="inline-flex items-center rounded-xl bg-blue-50 px-4 py-1.5 text-[10px] font-black uppercase tracking-[0.1em] text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300 shadow-sm">Neu</span>
                                             </td>
                                         </tr>
                                     )) : (
@@ -125,7 +125,7 @@ export function DashboardView({
                                             <td colSpan={4} className="px-8 py-32 text-center">
                                                 <div className="flex flex-col items-center gap-4 opacity-20">
                                                     <Icon name="Users" className="h-16 w-16 text-slate-400" />
-                                                    <p className="font-black uppercase text-sm tracking-[0.3em] text-slate-600">No Inbound Leads</p>
+                                                    <p className="font-black uppercase text-sm tracking-[0.3em] text-slate-600">Keine eingehenden Leads</p>
                                                 </div>
                                             </td>
                                         </tr>
@@ -144,15 +144,15 @@ export function DashboardView({
                             <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-md">
                                 <Icon name="TrendingUp" className="h-6 w-6" />
                             </div>
-                            <h3 className="text-2xl font-black tracking-tight mb-3">Site Health 📈</h3>
-                            <p className="text-indigo-100 text-sm mb-8 leading-relaxed font-medium">Your website is performing {growthPercentage >= 0 ? '+' : ''}{growthPercentage}% {growthPercentage >= 0 ? 'better' : 'lower'} than last week.</p>
+                            <h3 className="text-2xl font-black tracking-tight mb-3">Website-Status 📈</h3>
+                            <p className="text-indigo-100 text-sm mb-8 leading-relaxed font-medium">Ihre Website liegt {growthPercentage >= 0 ? '+' : ''}{growthPercentage}% {growthPercentage >= 0 ? 'besser' : 'schlechter'} als letzte Woche.</p>
 
                             <div className="space-y-4">
                                 <div className="h-2 w-full bg-white/10 rounded-full overflow-hidden">
                                     <div className="h-full bg-white rounded-full shadow-[0_0_15px_rgba(255,255,255,0.5)] transition-all duration-1000" style={{ width: `${optimizationScore}%` }} />
                                 </div>
                                 <div className="flex justify-between text-[10px] font-black uppercase tracking-widest text-indigo-200">
-                                    <span>Optimization</span>
+                                    <span>Optimierung</span>
                                     <span>{optimizationScore}%</span>
                                 </div>
                             </div>
@@ -163,7 +163,7 @@ export function DashboardView({
                     {/* Quick Shortcuts */}
                     <div className="rounded-[32px] bg-slate-900 p-8 text-white shadow-2xl shadow-slate-300 relative overflow-hidden">
                         <div className="relative z-10">
-                            <h3 className="text-lg font-black tracking-tight mb-6 uppercase tracking-[0.1em] text-slate-400 text-xs">Quick Management</h3>
+                            <h3 className="text-lg font-black tracking-tight mb-6 uppercase tracking-[0.1em] text-slate-400 text-xs">Schnellzugriff</h3>
 
                             <div className="space-y-4">
                                 <Link href="/admin?view=homepage" className="flex items-center justify-between p-5 rounded-[24px] bg-white/[0.03] hover:bg-white/[0.08] transition-all border border-white/10 group">
@@ -171,7 +171,7 @@ export function DashboardView({
                                         <div className="p-3 rounded-xl bg-blue-500/20 text-blue-400 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
                                             <Icon name="Globe" className="w-5 h-5" />
                                         </div>
-                                        <span className="font-black text-sm tracking-tight text-slate-200">Home Content</span>
+                                        <span className="font-black text-sm tracking-tight text-slate-200">Startseite</span>
                                     </div>
                                     <Icon name="ChevronRight" className="w-4 h-4 text-slate-700 group-hover:text-white group-hover:translate-x-1 transition-all" />
                                 </Link>
@@ -180,7 +180,7 @@ export function DashboardView({
                                         <div className="p-3 rounded-xl bg-purple-500/20 text-purple-400 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
                                             <Icon name="Package" className="w-5 h-5" />
                                         </div>
-                                        <span className="font-black text-sm tracking-tight text-slate-200">Our Services</span>
+                                        <span className="font-black text-sm tracking-tight text-slate-200">Dienstleistungen</span>
                                     </div>
                                     <Icon name="ChevronRight" className="w-4 h-4 text-slate-700 group-hover:text-white group-hover:translate-x-1 transition-all" />
                                 </Link>
@@ -189,7 +189,7 @@ export function DashboardView({
                                         <div className="p-3 rounded-xl bg-emerald-500/20 text-emerald-400 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
                                             <Icon name="Phone" className="w-5 h-5" />
                                         </div>
-                                        <span className="font-black text-sm tracking-tight text-slate-200">Settings</span>
+                                        <span className="font-black text-sm tracking-tight text-slate-200">Einstellungen</span>
                                     </div>
                                     <Icon name="ChevronRight" className="w-4 h-4 text-slate-700 group-hover:text-white group-hover:translate-x-1 transition-all" />
                                 </Link>
